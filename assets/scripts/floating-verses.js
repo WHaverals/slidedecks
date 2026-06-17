@@ -46,7 +46,6 @@ window.FloatingVerses = (function () {
 		{ text: 'O my Luve&rsquo;s like a red, red rose,<br>That&rsquo;s newly sprung in June', attr: 'Robert Burns', size: 16 },
 		{ text: 'Fair Daffodils, we weep to see<br>You haste away so soon', attr: 'Robert Herrick', size: 17 },
 		{ text: 'Whan that Aprille with his shoures soote,<br>The droghte of March hath perced to the roote', attr: 'Geoffrey Chaucer', size: 14 },
-		{ text: 'The Lord is my shepherd; I shall not want', attr: 'Psalms, King James Bible', size: 16 },
 		{ text: 'How do I love thee? Let me count the ways.<br>I love thee to the depth and breadth and height', attr: 'Elizabeth Barrett Browning', size: 14 },
 	];
 
