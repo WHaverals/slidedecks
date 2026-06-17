@@ -32,6 +32,7 @@
     "sass": "^1.100.0"
   },
   "devDependencies": {
-    "live-server": "^1.2.2"
+    "live-server": "^1.2.2",
+    "playwright": "^1.61.0"
   }
 }
