@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" data-embed="true">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PPA Poets Network</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+  <link rel="stylesheet" href="./embed.css" />
+</head>
+<body>
+  <div id="ui">
+    <div class="titleRow">
+      <div class="title">PPA Poets</div>
+      <div class="titleActions">
+        <button id="aboutBtn" type="button" aria-expanded="false" aria-controls="aboutPanel">About</button>
+        <button id="resetBtn" type="button" title="Reset selection and view">Reset</button>
+      </div>
+    </div>
+
+    <input id="search" type="search" list="poet-list" spellcheck="false"
+      placeholder="Search poet (or QID), press Enter…" />
+    <datalist id="poet-list"></datalist>
+
+    <div id="timeControls">
+      <div class="controlHeader">
+        <label for="sliceSlider">Publication window</label>
+        <span id="sliceLabel">Loading…</span>
+      </div>
+      <input id="sliceSlider" type="range" min="0" max="0" value="0" step="1" disabled />
+      <div id="sliceStats"></div>
+      <div class="filterRow">
+        <label for="minWorksSlider">Named in at least <span id="minWorksLabel">1</span> <span id="minWorksNoun">work</span></label>
+        <input id="minWorksSlider" type="range" min="1" max="100" value="1" step="1" />
+      </div>
+      <label class="toggleRow" for="highlightNewToggle">
+        <input id="highlightNewToggle" type="checkbox" />
+        Highlight first PPA appearances
+      </label>
+    </div>
+
+    <details id="topPoetsPanel" class="topPanel">
+      <summary>Top named poets</summary>
+      <ol id="topPoetsList"></ol>
+    </details>
+
+    <div id="aboutPanel" hidden>
+      <div class="aboutTitle">About this network</div>
+      <div class="aboutBody">
+        Poets are Wikidata-linked identities in the <a href="https://prosody.princeton.edu/" target="_blank" rel="noreferrer">Princeton Prosody Archive</a>.
+        This is not a concordance of every co-mention. A line is drawn when two poets are repeatedly named near one another, within overlapping five-page
+        windows, more often than their overall visibility in the archive would lead us to expect. The network therefore
+        highlights recurrent pairings that stand out from background frequency. Colors mark communities of poets that
+        tend to be grouped together. The publication-window slider keeps the same archive-wide layout but filters the
+        view to poets and links active in a selected PPA publication window.
+        <span class="aboutStats">Full archive view: 2,223 poets · 33,573 displayed links</span>
+      </div>
+    </div>
+
+    <div id="hint">Click a node to highlight neighbors. Click background to clear.</div>
+    <div id="status" aria-live="polite">Loading…</div>
+    <div id="details"></div>
+  </div>
+
+  <div id="container"></div>
+  <script>
+    window.PPA_POETS_EMBED = true;
+    window.PPA_POETS_ASSET_BASE = 'https://whaverals.github.io/ppa_poets/';
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/graphology@0.25.4/dist/graphology.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sigma@3.0.2/dist/sigma.min.js"></script>
+  <script src="./app.js?v=20260611-ui"></script>
+</body>
+</html>

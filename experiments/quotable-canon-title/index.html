@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>The Quotable Canon — title slide prototype</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400&display=swap"
+		/>
+
+		<style>
+			:root {
+				--paper: #faf8f5;
+				--ink: #1c1917;
+				--muted: #57534e;
+				--accent: #b5341c;
+			}
+
+			* {
+				box-sizing: border-box;
+			}
+
+			html,
+			body {
+				margin: 0;
+				height: 100%;
+				overflow: hidden;
+				background: var(--paper);
+				font-family: 'Source Sans 3', system-ui, sans-serif;
+				color: var(--ink);
+			}
+
+			.stage {
+				position: relative;
+				width: 100vw;
+				height: 100vh;
+			}
+
+			/* ---- physics field: the whole slide, behind the title ----------- */
+			#zone {
+				position: absolute;
+				inset: 0;
+				z-index: 0;
+				overflow: hidden;
+			}
+
+			/* each fragment is a little paper slip: the container that marks
+			   its lines as belonging together */
+			.frag {
+				position: absolute;
+				top: 0;
+				left: 0;
+				padding: 0.55em 0.85em;
+				background: rgba(255, 255, 255, 0.55);
+				border: 1px solid rgba(28, 25, 23, 0.08);
+				border-radius: 3px;
+				font-family: 'Fraunces', Georgia, serif;
+				font-style: italic;
+				font-weight: 500;
+				color: rgba(28, 25, 23, 0.5);
+				white-space: nowrap;
+				line-height: 1.45;
+				will-change: transform;
+				user-select: none;
+				pointer-events: none;
+			}
+
+			.frag--accent {
+				color: rgba(181, 52, 28, 0.55);
+				border-color: rgba(181, 52, 28, 0.14);
+			}
+
+			/* ---- title block: floats above the field ------------------------ */
+			.title-block {
+				position: absolute;
+				inset: 0;
+				z-index: 2;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				pointer-events: none;
+				/* soft paper scrim: slips dim (but stay readable) behind the title */
+				background: radial-gradient(
+					ellipse 56% 58% at 50% 50%,
+					rgba(250, 248, 245, 0.82) 38%,
+					rgba(250, 248, 245, 0) 74%
+				);
+			}
+
+			.title-inner {
+				width: min(86vw, 880px);
+			}
+
+			.title-inner::before {
+				content: '';
+				display: block;
+				width: 3.2rem;
+				height: 5px;
+				background: var(--accent);
+				margin-bottom: 2rem;
+			}
+
+			.eyebrow {
+				margin: 0 0 1.4rem;
+				font-size: 0.8rem;
+				font-weight: 600;
+				letter-spacing: 0.16em;
+				text-transform: uppercase;
+				color: var(--accent);
+			}
+
+			.eyebrow span {
+				font-weight: 400;
+				color: var(--muted);
+				margin-left: 1.2em;
+			}
+
+			h1 {
+				margin: 0;
+				font-family: 'Fraunces', Georgia, serif;
+				font-weight: 600;
+				font-size: clamp(2.4rem, 5vw, 4.2rem);
+				letter-spacing: -0.035em;
+				line-height: 1.05;
+				text-wrap: balance;
+			}
+
+			.subtitle {
+				margin: 1.4rem 0 0;
+				font-size: clamp(1rem, 1.6vw, 1.3rem);
+				color: var(--muted);
+				max-width: 36em;
+			}
+
+			.presenter {
+				margin-top: 3.2rem;
+				padding-top: 1.3rem;
+				border-top: 1px solid rgba(28, 25, 23, 0.12);
+				display: flex;
+				align-items: flex-end;
+				justify-content: space-between;
+				gap: 2.5rem;
+			}
+
+			.logos {
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+				flex-shrink: 0;
+				opacity: 0.85;
+			}
+
+			.logos .divider {
+				width: 1px;
+				height: 34px;
+				background: rgba(28, 25, 23, 0.15);
+			}
+
+			.logos .princeton {
+				height: 42px;
+				width: auto;
+			}
+
+			.logos .cdh {
+				height: 36px;
+				width: auto;
+			}
+
+			.presenter .name {
+				margin: 0;
+				font-weight: 600;
+			}
+
+			.presenter .affiliation {
+				margin: 0.3rem 0 0;
+				font-size: 0.9rem;
+				color: var(--muted);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="stage">
+			<div id="zone"></div>
+
+			<div class="title-block">
+				<div class="title-inner">
+					<p class="eyebrow">Conference Name <span>June 2026</span></p>
+					<h1>The Quotable Canon</h1>
+					<p class="subtitle">
+						Poetry as Example in the Princeton Prosody Archive, 1532&ndash;1929
+					</p>
+					<div class="presenter">
+						<div>
+							<p class="name">Wouter Haverals</p>
+							<p class="affiliation">
+								with Meredith Martin, Rebecca Sutton Koeser &amp; Laure Thompson<br />
+								Princeton University &middot; Center for Digital Humanities
+							</p>
+						</div>
+						<div class="logos">
+							<img
+								src="../../assets/logos/princeton-mark-black.svg"
+								alt="Princeton University"
+								class="princeton"
+							/>
+							<span class="divider" aria-hidden="true"></span>
+							<img
+								src="../../assets/logos/cdh-black.svg"
+								alt="Center for Digital Humanities at Princeton"
+								class="cdh"
+							/>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script src="matter.min.js"></script>
+		<script>
+			'use strict';
+
+			/* =================================================================
+			   Tuning knobs.
+			   ================================================================= */
+			const CONFIG = {
+				frictionAir: 0.055,
+				restitution: 0.15,
+				lift: -0.00006, // base buoyancy; scaled per slip (slow drift)
+				swayAmp: 0.00002, // left/right wander while rising
+				swayPeriod: 4200, // ms per sway cycle (varied per slip)
+				maxActive: 7, // slips airborne at once
+				respawnDelay: [4000, 9000],
+			};
+
+			/* Verse fragments — float up through the frame and respawn from below. */
+			const LINES = [
+				{ text: 'Hope is the thing with feathers —<br>That perches in the soul —', size: 17, accent: true },
+				{ text: 'I wandered lonely as a cloud<br>That floats on high o&rsquo;er vales and hills', size: 16 },
+				{ text: 'To be, or not to be,<br>that is the question', size: 18 },
+				{ text: 'Tyger Tyger, burning bright,<br>In the forests of the night', size: 16 },
+				{ text: 'The curfew tolls the knell of parting day,<br>The lowing herd wind slowly o&rsquo;er the lea', size: 14 },
+				{ text: 'Shall I compare thee to a summer&rsquo;s day?<br>Thou art more lovely and more temperate', size: 15 },
+				{ text: 'Things fall apart;<br>the centre cannot hold', size: 17 },
+				{ text: 'Water, water, every where,<br>Nor any drop to drink', size: 16 },
+				{ text: 'Season of mists and mellow fruitfulness,<br>Close bosom-friend of the maturing sun', size: 14 },
+				{ text: 'so much depends<br>upon<br>a red wheel<br>barrow', size: 15 },
+			];
+
+			const { Engine, Bodies, Body, Composite } = Matter;
+
+			const zone = document.getElementById('zone');
+			const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+			function staticLayout() {
+				const W = zone.clientWidth;
+				const H = zone.clientHeight;
+				const spots = [
+					[0.08, 0.12], [0.3, 0.32], [0.07, 0.55], [0.26, 0.78],
+					[0.55, 0.08], [0.62, 0.84], [0.48, 0.48], [0.8, 0.3],
+					[0.78, 0.62], [0.55, 0.66],
+				];
+				LINES.forEach((cfg, i) => {
+					const el = document.createElement('div');
+					el.className = 'frag' + (cfg.accent ? ' frag--accent' : '');
+					el.style.fontSize = cfg.size + 'px';
+					el.innerHTML = cfg.text;
+					zone.appendChild(el);
+					el.style.transform =
+						'translate(' + spots[i][0] * W + 'px,' + spots[i][1] * H + 'px) rotate(' +
+						(((i * 7) % 5) - 2) + 'deg)';
+				});
+			}
+
+			if (reduced) {
+				staticLayout();
+			} else {
+				document.fonts.ready.then(start);
+			}
+
+			function start() {
+				const CAT_LINE = 0x0001;
+				const CAT_WALL = 0x0004;
+
+				const engine = Engine.create();
+				engine.gravity.y = 0;
+
+				let W = zone.clientWidth;
+				let H = zone.clientHeight;
+
+				let walls = [];
+				function buildWalls() {
+					walls.forEach((w) => Composite.remove(engine.world, w));
+					const opts = {
+						isStatic: true,
+						collisionFilter: { category: CAT_WALL, mask: CAT_LINE },
+					};
+					walls = [
+						Bodies.rectangle(-30, 0, 60, H * 6, opts),
+						Bodies.rectangle(W + 30, 0, 60, H * 6, opts),
+					];
+					Composite.add(engine.world, walls);
+				}
+				buildWalls();
+				window.addEventListener('resize', () => {
+					W = zone.clientWidth;
+					H = zone.clientHeight;
+					buildWalls();
+				});
+
+				const frags = [];
+
+				function shuffle(arr) {
+					for (let i = arr.length - 1; i > 0; i--) {
+						const j = Math.floor(Math.random() * (i + 1));
+						[arr[i], arr[j]] = [arr[j], arr[i]];
+					}
+					return arr;
+				}
+
+				let queue = shuffle([...LINES]);
+				function nextCfg() {
+					if (!queue.length) queue = shuffle([...LINES]);
+					return queue.shift();
+				}
+
+				function rand(range) {
+					return range[0] + Math.random() * (range[1] - range[0]);
+				}
+
+				function spawnSoon(delay) {
+					setTimeout(() => {
+						if (frags.length >= CONFIG.maxActive) {
+							spawnSoon(4000);
+							return;
+						}
+						spawnLine(nextCfg());
+					}, delay);
+				}
+
+				function measure(el) {
+					el.style.visibility = 'hidden';
+					zone.appendChild(el);
+					const r = { w: el.offsetWidth, h: el.offsetHeight };
+					el.style.visibility = '';
+					return r;
+				}
+
+				function spawnLine(cfg) {
+					const el = document.createElement('div');
+					el.className = 'frag' + (cfg.accent ? ' frag--accent' : '');
+					el.style.fontSize = cfg.size + 'px';
+					el.innerHTML = cfg.text;
+					const { w, h } = measure(el);
+
+					const margin = w / 2 + 24;
+					const x = margin + Math.random() * Math.max(1, W - margin * 2);
+					const body = Bodies.rectangle(x, H + h / 2 + 60, w, h, {
+						frictionAir: CONFIG.frictionAir,
+						restitution: CONFIG.restitution,
+						friction: 0,
+						chamfer: { radius: 6 },
+						collisionFilter: { category: CAT_LINE, mask: CAT_LINE | CAT_WALL },
+					});
+					Body.setInertia(body, body.inertia * 6);
+					Body.setAngle(body, (Math.random() - 0.5) * 0.06);
+
+					const liftScale = 0.85 + Math.random() * 0.35;
+					// enter already at cruising speed: the slip glides across the
+					// frame edge with the same continuous motion it rises with
+					Body.setVelocity(body, { x: 0, y: -0.33 * liftScale });
+					Composite.add(engine.world, body);
+
+					// position the element before its first painted frame
+					el.style.transform =
+						'translate(' + (x - w / 2) + 'px,' + (body.position.y - h / 2) + 'px) rotate(' +
+						body.angle + 'rad)';
+
+					const frag = {
+						cfg,
+						el,
+						body,
+						w,
+						h,
+						born: performance.now(),
+						bobPhase: Math.random() * Math.PI * 2,
+						swayPeriod: CONFIG.swayPeriod * (0.8 + Math.random() * 0.5),
+						liftScale,
+						restAngle: (Math.random() - 0.5) * 0.06,
+					};
+					frags.push(frag);
+				}
+
+				/* initial population, staggered entrances */
+				for (let i = 0; i < CONFIG.maxActive - 1; i++) {
+					spawnSoon(600 + i * 3200 + Math.random() * 900);
+				}
+
+				function removeFrag(frag) {
+					Composite.remove(engine.world, frag.body);
+					frag.el.remove();
+					const i = frags.indexOf(frag);
+					if (i >= 0) frags.splice(i, 1);
+				}
+
+				function tick(now) {
+					for (const frag of [...frags]) {
+						const { body } = frag;
+						const m = body.mass;
+
+						// settle back toward each slip's slight resting tilt
+						body.torque += (frag.restAngle - body.angle) * body.inertia * 0.00012;
+						Body.setAngularVelocity(body, body.angularVelocity * 0.985);
+
+						// steady buoyant rise — entry speed matches cruise speed
+						body.force.y += m * CONFIG.lift * frag.liftScale;
+
+						// lazy left/right wander
+						body.force.x += m * CONFIG.swayAmp * Math.sin(now / frag.swayPeriod + frag.bobPhase);
+
+						if (body.position.y < -frag.h * 2) {
+							removeFrag(frag); // a survivor: out of the frame, into the canon
+							spawnSoon(rand(CONFIG.respawnDelay));
+						}
+					}
+				}
+
+				function render() {
+					for (const f of frags) {
+						f.el.style.transform =
+							'translate(' + (f.body.position.x - f.w / 2) + 'px,' +
+							(f.body.position.y - f.h / 2) + 'px) rotate(' + f.body.angle + 'rad)';
+					}
+				}
+
+				let last = performance.now();
+				let running = true;
+				function loop(now) {
+					if (running) {
+						tick(now);
+						Engine.update(engine, Math.min(32, now - last));
+						render();
+					}
+					last = now;
+					requestAnimationFrame(loop);
+				}
+				requestAnimationFrame(loop);
+
+				document.addEventListener('visibilitychange', () => {
+					running = !document.hidden;
+				});
+
+				// debug handle: __qc.step(600) advances ~10s of simulation
+				window.__qc = {
+					engine,
+					frags,
+					step(n) {
+						let sim = performance.now();
+						for (let i = 0; i < n; i++) {
+							sim += 16.7;
+							tick(sim);
+							Engine.update(engine, 16.7);
+						}
+						render();
+					},
+				};
+			}
+		</script>
+	</body>
+</html>

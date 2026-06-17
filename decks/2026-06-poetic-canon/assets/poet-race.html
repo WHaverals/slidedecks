@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,500&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;600&display=swap"
+		/>
+		<script src="../../../plugins/d3/d3.min.js"></script>
+		<style>
+			html,
+			body {
+				margin: 0;
+				background: transparent;
+				overflow: hidden;
+			}
+			svg {
+				display: block;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="poet-race-data.js"></script>
+		<script>
+			// ----- deck-tuned config -----
+			const n = 10; // bars on screen
+			const k = 4; // interpolation sub-steps per decade (smoothness)
+			const transitionMs = 230; // per sub-step → ~0.9s per decade hop (~21s total)
+
+			// monochrome: every bar the same accent. Persistence at the head reads
+			// from the bars that barely move while the lower ranks churn — no
+			// arbitrary "which poets count as anchors" colour split.
+			const COLORS = {
+				bar: '#4662ac',
+				name: '#1c1917',
+				value: '#857f77',
+				year: 'rgba(70, 98, 172, 0.16)',
+			};
+
+			const SERIF = "'Fraunces', Georgia, serif";
+			const SANS = "'Source Sans 3', system-ui, sans-serif";
+			const MONO = "'JetBrains Mono', ui-monospace, monospace";
+
+			// ----- geometry (viewBox units) -----
+			const width = 960;
+			const marginTop = 16;
+			const marginRight = 104;
+			const marginBottom = 16;
+			const marginLeft = 236;
+			const barSize = 36;
+			const height = marginTop + barSize * (n + 1.1) + marginBottom;
+
+			const formatNumber = d3.format(',.0f');
+			const displayYear = (yr) => Math.floor(Math.round(yr) / 10) * 10 + 's';
+
+			// ----- data -> keyframes -----
+			const frames = window.PPA_POET_RACE.frames;
+			const data = frames.flatMap((f) =>
+				Object.entries(f.values).map(([name, value]) => ({
+					name,
+					date: f.year,
+					value: Number(value),
+				}))
+			);
+
+			function computeKeyframes(data, k, n) {
+				const names = new Set(data.map((d) => d.name));
+				const datevalues = Array.from(
+					d3.rollup(
+						data,
+						([d]) => d.value,
+						(d) => d.date,
+						(d) => d.name
+					)
+				)
+					.map(([date, map]) => [date, map])
+					.sort((a, b) => d3.ascending(a[0], b[0]));
+
+				const rank = (value) => {
+					const rows = Array.from(names, (name) => ({ name, value: value(name) }));
+					rows.sort((a, b) => d3.descending(a.value, b.value));
+					for (let i = 0; i < rows.length; ++i) rows[i].rank = Math.min(n, i);
+					return rows;
+				};
+
+				const out = [];
+				let lastDate, lastMap;
+				for (const [[ka, a], [kb, b]] of d3.pairs(datevalues)) {
+					for (let i = 0; i < k; ++i) {
+						const t = i / k;
+						out.push([
+							ka * (1 - t) + kb * t,
+							rank((name) => (a.get(name) || 0) * (1 - t) + (b.get(name) || 0) * t),
+						]);
+					}
+					lastDate = kb;
+					lastMap = b;
+				}
+				if (lastMap !== undefined) out.push([lastDate, rank((name) => lastMap.get(name) || 0)]);
+				return out;
+			}
+
+			const keyframes = computeKeyframes(data, k, n);
+			const nameframes = d3.groups(
+				keyframes.flatMap(([, rows]) => rows),
+				(d) => d.name
+			);
+			const prev = new Map(nameframes.flatMap(([, rows]) => d3.pairs(rows, (a, b) => [b, a])));
+			const next = new Map(nameframes.flatMap(([, rows]) => d3.pairs(rows)));
+
+			const x = d3.scaleLinear().range([marginLeft, width - marginRight]);
+			const y = d3
+				.scaleBand()
+				.domain(d3.range(n + 1))
+				.rangeRound([marginTop, marginTop + barSize * (n + 1 + 0.1)])
+				.padding(0.16);
+
+			// ----- svg -----
+			const svg = d3
+				.select('body')
+				.append('svg')
+				.attr('viewBox', `0 0 ${width} ${height}`)
+				.attr('preserveAspectRatio', 'xMidYMid meet')
+				.attr('role', 'img')
+				.attr('aria-label', 'Poets in the PPA by distinct works, 1700–1930');
+
+			// reveald3 gives the iframe a 100vh viewport; size the svg to the iframe
+			// element's real pixels instead (same trick as the pages ribbon).
+			function fitToFrame() {
+				const el = window.frameElement;
+				svg
+					.attr('width', el ? el.clientWidth : width)
+					.attr('height', el ? el.clientHeight : height);
+			}
+			fitToFrame();
+			window.addEventListener('resize', fitToFrame);
+
+			// big decade ticker sits behind the bars, bottom-right
+			const yearLabel = svg
+				.append('text')
+				.attr('text-anchor', 'end')
+				.attr('x', width - 6)
+				.attr('y', height - 8)
+				.attr('fill', COLORS.year)
+				.style('font-family', SERIF)
+				.style('font-weight', 600)
+				.style('font-size', '92px')
+				.style('font-variant-numeric', 'tabular-nums');
+
+			const barLayer = svg.append('g');
+			const nameLayer = svg.append('g').attr('text-anchor', 'end');
+			const valueLayer = svg
+				.append('g')
+				.attr('text-anchor', 'start')
+				.style('font-family', MONO)
+				.style('font-variant-numeric', 'tabular-nums');
+
+			const barFill = () => COLORS.bar;
+
+			function textTween(a, b) {
+				const i = d3.interpolateNumber(a, b);
+				return function (t) {
+					this.textContent = formatNumber(Math.round(i(t)));
+				};
+			}
+
+			function drawKeyframe([year, rows], transition) {
+				const top = rows.slice(0, n);
+				const leader = Math.max(top[0]?.value || 1, 1);
+				x.domain([0, leader]);
+				yearLabel.text(displayYear(year));
+
+				const bars = barLayer.selectAll('rect').data(top, (d) => d.name);
+				bars
+					.join(
+						(enter) =>
+							enter
+								.append('rect')
+								.attr('rx', 2)
+								.attr('fill', barFill)
+								.attr('height', y.bandwidth())
+								.attr('x', x(0))
+								.attr('y', (d) => y((prev.get(d) || d).rank))
+								.attr('width', (d) => Math.max(0, x((prev.get(d) || d).value) - x(0))),
+						(update) => update,
+						(exit) =>
+							transition
+								? exit
+										.transition(transition)
+										.remove()
+										.attr('y', (d) => y((next.get(d) || d).rank))
+										.attr('width', (d) => Math.max(0, x((next.get(d) || d).value) - x(0)))
+								: exit.remove()
+					)
+					.attr('fill', barFill)
+					.call((sel) =>
+						transition
+							? sel
+									.transition(transition)
+									.attr('y', (d) => y(d.rank))
+									.attr('width', (d) => Math.max(0, x(d.value) - x(0)))
+							: sel
+									.attr('y', (d) => y(d.rank))
+									.attr('width', (d) => Math.max(0, x(d.value) - x(0)))
+					);
+
+				const names = nameLayer.selectAll('text').data(top, (d) => d.name);
+				names
+					.join(
+						(enter) =>
+							enter
+								.append('text')
+								.attr('x', marginLeft - 12)
+								.attr('dy', '0.32em')
+								.attr('y', (d) => y((prev.get(d) || d).rank) + y.bandwidth() / 2)
+								.text((d) => d.name),
+						(update) => update,
+						(exit) =>
+							transition
+								? exit
+										.transition(transition)
+										.remove()
+										.attr('y', (d) => y((next.get(d) || d).rank) + y.bandwidth() / 2)
+								: exit.remove()
+					)
+					.style('font-family', SANS)
+					.style('font-size', '17px')
+					.style('font-weight', 500)
+					.attr('fill', COLORS.name)
+					.call((sel) =>
+						transition
+							? sel.transition(transition).attr('y', (d) => y(d.rank) + y.bandwidth() / 2)
+							: sel.attr('y', (d) => y(d.rank) + y.bandwidth() / 2)
+					);
+
+				const values = valueLayer.selectAll('text').data(top, (d) => d.name);
+				values
+					.join(
+						(enter) =>
+							enter
+								.append('text')
+								.attr('dy', '0.32em')
+								.attr('x', (d) => x((prev.get(d) || d).value) + 8)
+								.attr('y', (d) => y((prev.get(d) || d).rank) + y.bandwidth() / 2)
+								.text((d) => formatNumber(Math.round((prev.get(d) || d).value))),
+						(update) => update,
+						(exit) =>
+							transition
+								? exit
+										.transition(transition)
+										.remove()
+										.attr('x', (d) => x((next.get(d) || d).value) + 8)
+										.attr('y', (d) => y((next.get(d) || d).rank) + y.bandwidth() / 2)
+								: exit.remove()
+					)
+					.style('font-size', '14px')
+					.style('font-weight', 400)
+					.attr('fill', COLORS.value)
+					.call((sel) => {
+						if (!transition) {
+							sel
+								.attr('x', (d) => x(d.value) + 8)
+								.attr('y', (d) => y(d.rank) + y.bandwidth() / 2)
+								.text((d) => formatNumber(Math.round(d.value)));
+							return;
+						}
+						sel
+							.transition(transition)
+							.attr('x', (d) => x(d.value) + 8)
+							.attr('y', (d) => y(d.rank) + y.bandwidth() / 2)
+							.tween('text', (d) => textTween((prev.get(d) || d).value, d.value));
+					});
+			}
+
+			// ----- playback state -----
+			let cur = 0; // current keyframe index
+			let playing = false;
+			let generation = 0;
+
+			function renderInstant(i) {
+				cur = Math.max(0, Math.min(i, keyframes.length - 1));
+				drawKeyframe(keyframes[cur], null);
+			}
+
+			function morphTo(i, ms, ease) {
+				cur = Math.max(0, Math.min(i, keyframes.length - 1));
+				return new Promise((resolve) => {
+					const t = svg.transition().duration(ms).ease(ease || d3.easeLinear);
+					drawKeyframe(keyframes[cur], t);
+					t.end().then(resolve, resolve);
+				});
+			}
+
+			// decade-exact keyframes (every k sub-steps) for the step buttons
+			const decadeKfs = [];
+			for (let i = 0; i < keyframes.length; i += k) decadeKfs.push(i);
+			if (decadeKfs[decadeKfs.length - 1] !== keyframes.length - 1)
+				decadeKfs.push(keyframes.length - 1);
+
+			function syncPauseUI() {
+				try {
+					if (window.frameElement && window.parent.syncRacePauseUI)
+						window.parent.syncRacePauseUI(playing);
+				} catch (e) {}
+			}
+
+			async function play() {
+				if (playing) return;
+				if (cur >= keyframes.length - 1) renderInstant(0); // replay from the start
+				playing = true;
+				syncPauseUI();
+				const gen = ++generation;
+				for (let i = cur + 1; i < keyframes.length; i++) {
+					if (gen !== generation || !playing) return;
+					await morphTo(i, transitionMs, d3.easeLinear);
+				}
+				playing = false;
+				syncPauseUI();
+			}
+
+			function pause() {
+				playing = false;
+				generation++; // cancel any in-flight play loop
+				syncPauseUI();
+			}
+
+			function stepDecade(dir) {
+				pause();
+				let di = 0,
+					best = Infinity;
+				decadeKfs.forEach((kf, idx) => {
+					const d = Math.abs(kf - cur);
+					if (d < best) {
+						best = d;
+						di = idx;
+					}
+				});
+				di = Math.max(0, Math.min(decadeKfs.length - 1, di + dir));
+				morphTo(decadeKfs[di], 520, d3.easeCubicOut);
+			}
+
+			renderInstant(0);
+
+			// hooks for the deck chrome + standalone preview
+			window.KEYFRAME_COUNT = keyframes.length;
+			window.renderInstant = renderInstant;
+			window.raceControl = {
+				play,
+				pause,
+				toggle: () => (playing ? pause() : play()),
+				prevDecade: () => stepDecade(-1),
+				nextDecade: () => stepDecade(1),
+				isPlaying: () => playing,
+			};
+
+			// reveald3: advancing into the slide runs the race; stepping back pauses
+			var _transitions = [
+				{
+					transitionForward: () => play(),
+					transitionBackward: () => pause(),
+					index: 0,
+				},
+			];
+		</script>
+	</body>
+</html>

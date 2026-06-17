@@ -1,0 +1,6 @@
+/* Presentation embed — full controls + graph on wouter deck paper (#faf8f5) */
+html,
+body {
+  background: #faf8f5;
+  overflow: hidden;
+}

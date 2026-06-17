@@ -1,0 +1,730 @@
+/**
+ * Wouter — signature reveal.js theme
+ *
+ * Warm light, editorial feel. Fraunces headings + Source Sans 3 body.
+ * Compile with: npm run build:theme
+ */
+
+@use 'sass:color';
+@use 'template/mixins' as mixins;
+
+$bg: #faf8f5;
+$text: #1c1917;
+$text-muted: #57534e;
+// Rubric vermilion — the red medieval scribes used for emphasis. Vivid on paper,
+// warm enough to sit with the ink/cream palette, ~8.7:1 contrast on $bg.
+$accent: #b5341c;
+$accent-light: #eda584;
+$code-bg: #ebe6de;
+$code-bg-dark: #3a322c;
+
+@use 'template/settings' with (
+	$background-color: $bg,
+
+	$main-font: "'Source Sans 3', system-ui, sans-serif",
+	$main-font-size: 36px,
+	$main-color: $text,
+	$block-margin: 28px,
+
+	$heading-font: "'Fraunces', Georgia, serif",
+	$heading-color: $text,
+	$heading-text-transform: none,
+	$heading-letter-spacing: -0.03em,
+	$heading-font-weight: 600,
+	$heading-margin: 0 0 0.6em 0,
+	$heading1-size: 2.8em,
+	$heading2-size: 1.8em,
+	$heading3-size: 1.35em,
+	$heading4-size: 1em,
+
+	$code-font: "'JetBrains Mono', ui-monospace, monospace",
+
+	$link-color: $accent,
+	$link-color-hover: color.scale($accent, $lightness: -10%),
+	$selection-color: #fff,
+	$selection-background-color: $accent,
+
+	$overlay-element-bg-color: '28 25 23',
+	$overlay-element-fg-color: '250 248 245'
+);
+
+@use 'template/theme';
+
+// Fonts are loaded via <link> tags in each deck's <head> (template/index.html) —
+// a CSS @import here would land mid-stylesheet after the theme output, which is
+// invalid CSS and not honored by all browsers.
+
+// ---------------------------------------------------------------------------
+// Accent palettes — historic pigments and manuscript inks. Pick one per deck
+// with <body data-palette="...">; no attribute means rubric (the default).
+// Paper and ink stay constant; only the accent swaps.
+// ---------------------------------------------------------------------------
+body {
+	--w-accent: #{$accent}; // rubric — manuscript vermilion
+	--w-accent-light: #{$accent-light};
+}
+
+body[data-palette='lapis'] {
+	--w-accent: #2e4fa3; // ultramarine, ground lapis lazuli
+	--w-accent-light: #a3b6e8;
+}
+
+body[data-palette='verdigris'] {
+	--w-accent: #1d7368; // oxidized-copper green
+	--w-accent-light: #8fd0c6;
+}
+
+body[data-palette='tyrian'] {
+	--w-accent: #6d597a; // dusty murex purple
+	--w-accent-light: #cbbfd4;
+}
+
+body[data-palette='archive'] {
+	--w-accent: #4662ac; // Princeton Prosody Archive blue
+	--w-accent-light: #9eb0dc;
+	--w-section-bg: #262b3c; // PPA blue mixed into ink — section breaks, not warm brown
+}
+
+.reveal {
+	--r-link-color: var(--w-accent);
+	--r-link-color-hover: color-mix(in srgb, var(--w-accent) 85%, #1c1917);
+	--r-selection-background-color: var(--w-accent);
+}
+
+.reveal {
+	// Reveal clears inline top with center:false, but our full-bleed slides
+	// (title, section-break, closing) use height:100%. For position:absolute
+	// sections that makes top:auto resolve to 100% — one slide-height below the
+	// canvas. Backgrounds still fill the screen; text is off-screen until you
+	// zoom the browser (which recalculates layout). Pin every section to the
+	// top of the slide canvas.
+	.slides > section {
+		top: 0;
+	}
+
+	// Decks run with center: false so headings sit at the same height on every
+	// slide; the padding gives them a consistent breathing room from the top.
+	.slides section {
+		text-align: left;
+		padding-top: 0.5em;
+
+		p,
+		ul,
+		ol {
+			max-width: 42em;
+		}
+	}
+
+	// Title + closing slides — shared editorial scaffolding: main block centered
+	// in the upper area, presenter + logos anchored in a footer row at the bottom.
+	.slides section.title-slide,
+	.slides section.closing-slide {
+		box-sizing: border-box;
+		height: 100%;
+		display: flex !important;
+		flex-direction: column;
+		text-align: left;
+		padding: 3rem 3.25rem 2.5rem;
+
+		.title-slide__main,
+		.closing-slide__main {
+			margin: auto 0;
+
+			// Signature mark: short accent bar above the main block
+			&::before {
+				content: '';
+				display: block;
+				width: 2.8rem;
+				height: 5px;
+				background: var(--w-accent);
+				margin-bottom: 1.8rem;
+			}
+		}
+
+		.title-slide__eyebrow,
+		.closing-slide__eyebrow {
+			display: flex;
+			flex-wrap: wrap; // long conference names + place/date flow onto a second row
+			align-items: baseline;
+			gap: 0.4em 1.1em;
+			margin: 0 0 1.3rem;
+			font-size: 0.58em;
+			letter-spacing: 0.16em;
+			text-transform: uppercase;
+		}
+
+		// with dot separators (conference · place · date) the eyebrow runs as one
+		// flowing line: place/date continue right after the conference name and
+		// wrap like text instead of jumping to their own row
+		.title-slide__eyebrow:has(.title-slide__sep) {
+			display: block;
+			line-height: 1.7;
+		}
+
+		.slide-footer {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			gap: 2.5rem;
+			padding-top: 1.4rem;
+			border-top: 1px solid color.change($text, $alpha: 0.12);
+			--footer-block-height: calc(0.88em * 1.25 + 0.25rem + 0.62em * 1.4);
+		}
+
+		.slide-footer__name {
+			font-size: 0.88em;
+			font-weight: 600;
+			line-height: 1.25;
+			margin: 0;
+			color: $text;
+		}
+
+		.slide-footer__affiliation {
+			font-size: 0.62em;
+			color: $text-muted;
+			margin: 0.25rem 0 0;
+			line-height: 1.4;
+		}
+
+		.slide-footer__logos {
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+			flex-shrink: 0;
+			height: var(--footer-block-height);
+			opacity: 0.85;
+		}
+
+		.slide-footer__divider {
+			width: 1px;
+			height: 100%;
+			background: color.change($text, $alpha: 0.15);
+			flex-shrink: 0;
+		}
+
+		.logo-princeton {
+			height: 100%;
+			width: auto;
+		}
+
+		.logo-cdh {
+			height: 86%;
+			width: auto;
+		}
+
+		p {
+			max-width: none;
+		}
+	}
+
+	.slides section.title-slide {
+		.title-slide__event {
+			font-weight: 600;
+			color: var(--w-accent);
+		}
+
+		.title-slide__date {
+			font-weight: 400;
+			color: $text-muted;
+		}
+
+		// middle-dot separator between conference · place · date in the eyebrow
+		.title-slide__sep {
+			font-weight: 400;
+			color: color.change($text-muted, $alpha: 0.6);
+			margin: 0 0.45em;
+		}
+
+		.title-slide__presentation {
+			font-size: 2.7em;
+			line-height: 1.06;
+			letter-spacing: -0.035em;
+			margin: 0;
+			max-width: 11.5em;
+			text-wrap: balance;
+		}
+
+		.title-slide__subtitle {
+			font-family: 'Fraunces', Georgia, serif;
+			font-size: 0.62em;
+			font-weight: 500;
+			font-style: italic;
+			line-height: 1.25;
+			letter-spacing: -0.02em;
+			color: $text-muted;
+			margin: 0.85rem 0 0;
+			max-width: 16em;
+			text-wrap: balance;
+		}
+
+		// Floating verse slips (Matter.js) — title slide only
+		&.title-slide--animated {
+			position: relative;
+			overflow: hidden;
+
+			.title-slide__zone {
+				position: absolute;
+				inset: 0;
+				z-index: 0;
+				overflow: hidden;
+				pointer-events: none;
+			}
+
+			.title-slide__main,
+			.slide-footer {
+				position: relative;
+				z-index: 1;
+			}
+
+			// scrim has to cover the full width of long, multi-line titles —
+			// anchored near the block's center, not its left edge
+			.title-slide__main::after {
+				content: '';
+				position: absolute;
+				inset: -2.5rem -4rem;
+				z-index: -1;
+				pointer-events: none;
+				opacity: 0;
+				transition: none; // off instantly when the slide leaves
+				background: radial-gradient(
+					ellipse 78% 74% at 34% 45%,
+					rgba(250, 248, 245, 0.9) 40%,
+					rgba(250, 248, 245, 0) 76%
+				);
+			}
+
+			// slips rise through the footer band: keep the logos quietly on top
+			.slide-footer::after {
+				content: '';
+				position: absolute;
+				inset: -1.6rem -2rem -2.5rem;
+				z-index: -1;
+				pointer-events: none;
+				opacity: 0;
+				transition: none; // off instantly when the slide leaves
+				background: linear-gradient(
+					to top,
+					rgba(250, 248, 245, 0.9) 60%,
+					rgba(250, 248, 245, 0) 100%
+				);
+			}
+
+			// paper-colored scrims ghost as a light box during cross-fade — keep
+			// them off while the slide is leaving, entering, or reveal is mid-fade
+			&.past .title-slide__main::after,
+			&.past .slide-footer::after,
+			&.future .title-slide__main::after,
+			&.future .slide-footer::after,
+			&.present:not(.title-slide--scrims) .title-slide__main::after,
+			&.present:not(.title-slide--scrims) .slide-footer::after {
+				opacity: 0;
+				transition: none;
+			}
+
+			// fade in only on the on-state: the class lands after the slide
+			// transition ends (deck JS), so this never runs mid-cross-fade —
+			// all off-states above stay transition: none to avoid the ghost box
+			&.present.title-slide--scrims .title-slide__main::after,
+			&.present.title-slide--scrims .slide-footer::after {
+				opacity: 1;
+				transition: opacity 0.35s ease;
+			}
+
+			.title-slide__presentation {
+				font-size: 2.1em;
+				max-width: 16em;
+			}
+		}
+	}
+
+	// During reveal cross-fades, hide title scrims and floating snippets on every
+	// animated title slide — backward nav can re-apply .present while a stale
+	// .title-slide--scrims class is still on the section from the first visit.
+	&.is-transitioning .slides section.title-slide.title-slide--animated {
+		.title-slide__main::after,
+		.slide-footer::after {
+			opacity: 0 !important;
+			transition: none !important;
+		}
+
+		.title-slide__zone {
+			opacity: 0;
+			visibility: hidden;
+		}
+	}
+
+	.floating-frag {
+		position: absolute;
+		top: 0;
+		left: 0;
+		padding: 0.55em 0.85em;
+		background: rgba(255, 255, 255, 0.55);
+		border: 1px solid rgba(28, 25, 23, 0.08);
+		border-radius: 3px;
+		font-family: 'Fraunces', Georgia, serif;
+		font-style: italic;
+		font-weight: 500;
+		color: rgba(28, 25, 23, 0.5);
+		white-space: nowrap;
+		line-height: 1.45;
+		will-change: transform;
+		user-select: none;
+		pointer-events: none;
+	}
+
+	// Slip tints from the PPA logo tricolor: border carries the hue, text is
+	// the hue mixed toward ink so it stays subordinate to the title.
+	$ppa-tints: (
+		'ppa-blue': #4662ac,
+		'ppa-teal': #58c3c4,
+		'ppa-coral': #f05c6a,
+	);
+
+	@each $name, $hue in $ppa-tints {
+		.floating-frag--#{$name} {
+			border-color: color.change($hue, $alpha: 0.5);
+			color: color.change(color.mix($hue, #1c1917, 45%), $alpha: 0.68);
+
+			.floating-frag__attr {
+				color: color.change(color.mix($hue, #1c1917, 55%), $alpha: 0.55);
+			}
+		}
+	}
+
+	// epigraph-style attribution: roman against the italic verse, right-aligned
+	.floating-frag__attr {
+		display: block;
+		margin-top: 0.45em;
+		font-style: normal;
+		font-size: 0.6em;
+		letter-spacing: 0.02em;
+		text-align: right;
+		color: rgba(28, 25, 23, 0.42);
+
+		i {
+			font-style: italic;
+		}
+	}
+
+	.slides section.closing-slide {
+		.closing-slide__eyebrow {
+			font-weight: 600;
+			color: var(--w-accent);
+		}
+
+		.closing-slide__heading {
+			font-size: 2.3em;
+			font-weight: 500;
+			font-style: italic;
+			letter-spacing: -0.02em;
+			line-height: 1.1;
+			margin: 0 0 1.6rem;
+			max-width: 13em;
+		}
+
+		.closing-slide__contact {
+			display: flex;
+			align-items: center;
+			gap: 0.9em;
+			font-size: 0.78em;
+			color: $text-muted;
+
+			a {
+				color: $text;
+			}
+		}
+
+		// Bluesky / GitHub etc. — monochrome ink, same treatment as the logos
+		.closing-slide__icon {
+			display: inline-flex;
+			align-items: center;
+			color: $text;
+			opacity: 0.8;
+			text-decoration: none;
+
+			svg {
+				width: 1.05em;
+				height: 1.05em;
+				fill: currentColor;
+			}
+
+			&:hover {
+				opacity: 1;
+				color: var(--w-accent);
+			}
+		}
+	}
+
+	// Full-bleed image slide — a centered figure with a provenance caption.
+	// The figure shrinks to the image's rendered width, so captions can align
+	// to the image's edges. Three caption treatments:
+	//   (default)                      hangs under the image, flush-left to its edge
+	//   .image-slide--caption-aside    a narrow column beside the image (good for portraits)
+	//   .image-slide--caption-corner   a whisper pinned to the slide corner (image dominates)
+	.slides section.image-slide {
+		box-sizing: border-box;
+		height: 100%;
+		display: flex !important;
+		align-items: center;
+		justify-content: center;
+		text-align: left;
+		padding: 1.6rem 2.75rem;
+
+		figure {
+			margin: 0;
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.95rem;
+			width: fit-content;
+			max-width: 100%;
+			max-height: 100%;
+			min-height: 0;
+		}
+
+		img {
+			display: block;
+			width: auto;
+			height: auto;
+			max-width: 100%;
+			max-height: 100%;
+			min-height: 0;
+			// drop-shadow follows the image's alpha channel, so transparent
+			// (cut-out) PNGs cast a shadow on their silhouette, not a box frame
+			filter: drop-shadow(0 8px 24px color.change($text, $alpha: 0.18));
+		}
+
+		// Default: caption hangs flush-left under the image, wrapped to a
+		// comfortable measure (narrower than a hero image, so it never widens
+		// the figure or overruns the image's edges).
+		.image-slide__caption {
+			margin: 0;
+			max-width: 38em;
+			padding-left: 0.9em;
+			// muted accent rule — the deck's blue blended toward paper, brackets
+			// the credit and echoes the title slide's accent bar
+			border-left: 3px solid color-mix(in srgb, var(--w-accent) 70%, #{$bg});
+			font-size: 0.4em;
+			line-height: 1.5;
+			color: $text-muted;
+			text-wrap: pretty;
+
+			em {
+				color: color.change($text, $alpha: 0.85);
+			}
+
+			// optional small accent tick before the credit
+			&.image-slide__caption--ticked::before {
+				content: '';
+				display: inline-block;
+				width: 1.4em;
+				height: 2px;
+				margin: 0 0.6em 0.18em 0;
+				background: var(--w-accent);
+				vertical-align: middle;
+			}
+		}
+
+		// Beside the image: a narrow column with a vertical accent rule
+		&.image-slide--caption-aside {
+			figure {
+				flex-direction: row;
+				align-items: flex-end;
+				gap: 1.7rem;
+			}
+
+			.image-slide__caption {
+				width: 13em;
+				min-width: 0;
+				flex-shrink: 0;
+				align-self: flex-end;
+				padding-left: 1.1rem;
+				border-left: 2px solid var(--w-accent);
+				margin-bottom: 0.2em;
+			}
+		}
+
+		// Pinned to the slide corner — a whisper for a terse credit (a shelfmark,
+		// a source line). The image is capped short of full height so the credit
+		// always has clear margin beneath it.
+		&.image-slide--caption-corner {
+			img {
+				max-height: 84%;
+			}
+
+			.image-slide__caption {
+				position: absolute;
+				left: 2.75rem;
+				bottom: 1.4rem;
+				width: auto;
+				min-width: 0;
+				max-width: 26em;
+				font-size: 0.34em;
+				color: color.change($text-muted, $alpha: 0.85);
+			}
+		}
+	}
+
+	// Section-break slide — data-background-color="#2a2420" (default) or
+	// var(--w-section-bg) on archive / PPA decks (#262b3c)
+	.slides section.section-slide {
+		box-sizing: border-box;
+		height: 100%;
+		display: flex !important;
+		flex-direction: column;
+		justify-content: center;
+		text-align: left;
+		padding: 3rem 3.25rem;
+
+		.section-slide__number {
+			font-family: 'JetBrains Mono', ui-monospace, monospace;
+			font-size: 0.58em;
+			letter-spacing: 0.2em;
+			color: var(--w-accent);
+			margin: 0 0 1.4rem;
+		}
+
+		h2 {
+			font-size: 2.3em;
+			font-weight: 500;
+			font-style: italic;
+			letter-spacing: -0.02em;
+			margin: 0;
+			max-width: 13em;
+		}
+
+		&.has-dark-background .section-slide__number {
+			color: var(--w-accent-light);
+		}
+	}
+
+	strong {
+		color: color-mix(in srgb, var(--w-accent) 92%, #1c1917);
+		font-weight: 600;
+	}
+
+	// Emphasis swaps into the heading serif's italic — quiet editorial signature
+	em {
+		font-family: 'Fraunces', Georgia, serif;
+		font-style: italic;
+		letter-spacing: -0.01em;
+	}
+
+	ul li::marker {
+		color: var(--w-accent);
+	}
+
+	ol li::marker {
+		color: var(--w-accent);
+		font-weight: 600;
+	}
+
+	a {
+		text-decoration: underline;
+		text-decoration-thickness: 1.5px;
+		text-underline-offset: 0.16em;
+		text-decoration-color: color-mix(in srgb, var(--w-accent) 45%, transparent);
+
+		&:hover {
+			text-decoration-color: currentColor;
+		}
+	}
+
+	blockquote {
+		border-left: 3px solid var(--w-accent);
+		padding-left: 1em;
+		font-style: italic;
+		color: $text-muted;
+	}
+
+	.progress {
+		height: 3px;
+		color: color-mix(in srgb, var(--w-accent) 25%, transparent);
+
+		span {
+			background: var(--w-accent);
+		}
+	}
+
+	.slide-number {
+		font-family: 'Source Sans 3', system-ui, sans-serif;
+		font-size: 14px;
+		color: $text-muted;
+		background: transparent;
+		// centre the counter on the navigation arrows' vertical axis
+		// (controls right:16px + arrow column 5em @ 7px = 51px from the edge)
+		right: 51px;
+		bottom: 12px;
+		left: auto;
+		transform: translateX(50%);
+	}
+
+	// Navigation arrows: smaller, tucked neatly above the slide number, and
+	// only shown for directions that are actually available (no faded stubs).
+	.controls {
+		font-size: 7px;
+		right: 16px;
+		bottom: 40px;
+	}
+
+	.controls button:not(.enabled) {
+		display: none;
+	}
+
+	// The up arrow is only meaningful on a down-slide; hide it otherwise.
+	// (Reveal keeps it "enabled" on a stack as a back-affordance, so we gate it
+	// on a .can-up class toggled from the deck's slidechanged handler.)
+	.controls .navigate-up {
+		display: none;
+	}
+
+	&.can-up .controls .navigate-up {
+		display: block;
+	}
+
+	&.can-up .controls[data-controls-back-arrows='faded'] .navigate-up.enabled {
+		opacity: 0.9;
+	}
+
+	&.can-up .controls[data-controls-back-arrows='faded'] .navigate-up.enabled:hover {
+		opacity: 1;
+	}
+
+	// Inline code on light slides — subtle, not a heavy tan block
+	code:not(pre code) {
+		background: color.change($text, $alpha: 0.05);
+		color: $text;
+		padding: 0.12em 0.35em;
+		border-radius: 4px;
+		border: 1px solid color.change($text, $alpha: 0.1);
+	}
+
+	// Code blocks on light slides
+	pre code.hljs {
+		background: $code-bg;
+		color: $text;
+	}
+}
+
+section.has-dark-background {
+	a {
+		color: var(--w-accent-light);
+	}
+
+	strong {
+		color: var(--w-accent-light);
+	}
+
+	code:not(pre code) {
+		background: color.change(#fff, $alpha: 0.12);
+		color: #f0ebe3;
+		border-color: color.change(#fff, $alpha: 0.18);
+	}
+
+	pre code.hljs {
+		background: $code-bg-dark;
+		color: #f0ebe3;
+	}
+}
+
+@include mixins.dark-bg-text-color(#f0ebe3);

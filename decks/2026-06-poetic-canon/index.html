@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		/>
+		<title>Evolution of the Poetic Canon in the Princeton Prosody Archive</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap"
+		/>
+
+		<link rel="stylesheet" href="../../reveal/dist/reset.css" />
+		<link rel="stylesheet" href="../../reveal/dist/reveal.css" />
+		<link rel="stylesheet" href="../../theme/wouter.css" />
+		<link rel="stylesheet" href="../../theme/highlight-wouter.css" />
+		<link rel="stylesheet" href="poetic-canon.css" />
+
+		<style>
+			/* reveald3 sizes its iframe with 100vw; fill the fig-container instead */
+			.reveal .fig-container iframe {
+				width: 100% !important;
+				height: 100% !important;
+			}
+		</style>
+	</head>
+	<body data-palette="archive">
+		<div class="reveal">
+			<div class="slides">
+				<section class="title-slide title-slide--animated">
+					<div class="title-slide__zone" aria-hidden="true"></div>
+
+					<div class="title-slide__main">
+						<p class="title-slide__eyebrow">
+							<span class="title-slide__event">Mapping the Canon: Quantitative Approaches to Literary History</span>
+							<span class="title-slide__sep" aria-hidden="true">·</span>
+							<span class="title-slide__date">Darmstadt</span>
+							<span class="title-slide__sep" aria-hidden="true">·</span>
+							<span class="title-slide__date">June 18&ndash;19, 2026</span>
+						</p>
+						<h1 class="title-slide__presentation">
+							Evolution of the Poetic Canon in the Princeton Prosody Archive
+						</h1>
+					</div>
+
+					<footer class="slide-footer">
+						<div class="slide-footer__presenter">
+							<p class="slide-footer__name">Wouter Haverals</p>
+							<p class="slide-footer__affiliation">
+								Princeton University · Center for Digital Humanities
+							</p>
+						</div>
+
+						<div class="slide-footer__logos">
+							<img
+								src="../../assets/logos/princeton-mark-black.svg"
+								alt="Princeton University"
+								class="logo-princeton"
+							/>
+							<span class="slide-footer__divider" aria-hidden="true"></span>
+							<img
+								src="../../assets/logos/cdh-black.svg"
+								alt="Center for Digital Humanities at Princeton"
+								class="logo-cdh"
+							/>
+						</div>
+					</footer>
+
+					<aside class="notes">
+						Thanks very much — I’m Wouter Haverals, from the Center for Digital Humanities at Princeton. For the next fifteen minutes I want to ask how a poetic canon really changes across two centuries — and to come at it from an odd angle: not the poems people praised, but the ones they kept reaching for when they needed an example. Let me start with a single poem.
+					</aside>
+				</section>
+
+				<section class="section-slide" data-background-color="#262b3c">
+					<p class="section-slide__number">01</p>
+					<h2>Canonicity through <em>use</em></h2>
+				<aside class="notes">
+					[Pause.] First, what I even mean by ‘canon’ here — canon as use.
+				</aside>
+				</section>
+
+				<section class="image-slide">
+					<figure>
+						<img
+							src="figures/gray-elegy-opening.png"
+							alt="Illustrated opening of Gray's Elegy Written in a Country Church-Yard, 1766 edition"
+						/>
+						<figcaption class="image-slide__caption">
+							Designs by Mr R. Bentley for <em>Six Poems by Mr T. Gray</em> (London, 1766) &mdash; Gray&rsquo;s <em>Elegy</em> opening. Library collection, Anglesey Abbey, Cambridgeshire &middot; 12.J.23
+						</figcaption>
+					</figure>
+				<aside class="notes">
+					This is Gray’s Elegy Written in a Country Churchyard — one of the best-loved poems in English. Here it is in a lovely 1766 edition: printed whole, as a poem you’d sit and read. Hold that picture — because it’s almost never how the poem turns up in the books I study.
+				</aside>
+				</section>
+
+				<section class="elegy-stack-slide">
+					<div class="elegy-stack-slide__header">
+						<h2>Gray&rsquo;s <em>Elegy</em>, in pieces</h2>
+					</div>
+
+					<div class="elegy-stack-slide__stage">
+						<div class="elegy-stack-slide__showcase">
+							<div class="elegy-stack-slide__layout">
+								<div class="elegy-stack-column">
+									<div class="elegy-stack" aria-live="polite">
+								<figure class="elegy-snippet elegy-snippet--1">
+									<div class="elegy-snippet__media">
+										<img
+											src="articles/quotable_canon/figures/01-sheridan-elocution.png"
+											alt="Sheridan and Henderson excerpt: Elegy lines used for elocution"
+											width="1107"
+											height="970"
+										/>
+									</div>
+									<figcaption>
+										<strong>Sheridan &amp; Henderson</strong> (1796), p.&nbsp;3 &mdash; elocution
+									</figcaption>
+								</figure>
+
+								<figure class="elegy-snippet elegy-snippet--2 fragment fade-in">
+									<div class="elegy-snippet__media">
+										<img
+											src="articles/quotable_canon/figures/02-gardiner-notation.png"
+											alt="Gardiner excerpt: Elegy opening set to musical notation"
+											width="1171"
+											height="972"
+										/>
+									</div>
+									<figcaption>
+										<strong>Gardiner</strong> (1856), p.&nbsp;51 &mdash; set to notation
+									</figcaption>
+								</figure>
+
+								<figure class="elegy-snippet elegy-snippet--3 fragment fade-in">
+									<div class="elegy-snippet__media">
+										<img
+											src="articles/quotable_canon/figures/03-breen-plagiarism.png"
+											alt="Breen excerpt: opening line traced to Dante"
+											width="1131"
+											height="977"
+										/>
+									</div>
+									<figcaption>
+										<strong>Breen</strong> (1857), p.&nbsp;231 &mdash; plagiarism
+									</figcaption>
+								</figure>
+
+								<figure class="elegy-snippet elegy-snippet--4 fragment fade-in">
+									<div class="elegy-snippet__media">
+										<img
+											src="articles/quotable_canon/figures/04-brooke-theology.png"
+											alt="Brooke excerpt: couplet silently rewritten"
+											width="1127"
+											height="961"
+										/>
+									</div>
+									<figcaption>
+										<strong>Brooke</strong> (1880), p.&nbsp;22 &mdash; lines rewritten
+									</figcaption>
+								</figure>
+
+								<figure class="elegy-snippet elegy-snippet--5 fragment fade-in">
+									<div class="elegy-snippet__media">
+										<img
+											src="articles/quotable_canon/figures/05-skeat-scansion.png"
+											alt="Skeat excerpt: single Elegy lines as metrical types"
+											width="1082"
+											height="979"
+										/>
+									</div>
+									<figcaption>
+										<strong>Skeat</strong> (1898), p.&nbsp;488 &mdash; scansion
+									</figcaption>
+								</figure>
+
+								<figure class="elegy-snippet elegy-snippet--6 fragment fade-in">
+									<div class="elegy-snippet__media">
+										<img
+											src="articles/quotable_canon/figures/06-hyde-grammar.png"
+											alt="Hyde excerpt: Elegy fragment in a grammar exercise"
+											width="1114"
+											height="950"
+										/>
+									</div>
+									<figcaption>
+										<strong>Hyde</strong> (1906), p.&nbsp;87 &mdash; grammar exercise
+									</figcaption>
+								</figure>
+									</div>
+								</div>
+
+								<div class="elegy-stack-slide__hint fragment">
+									<p class="elegy-epigraph__line">
+										Rarely the whole poem&mdash;usually a line someone can teach with.
+									</p>
+									<p class="elegy-epigraph__line">
+										Authority made through use&mdash;lines cut, copied, and repurposed.
+									</p>
+									<p class="elegy-epigraph__line elegy-epigraph__line--cite">
+										&ldquo;le jeu du d&eacute;coupage et du collage&rdquo;
+										<span class="elegy-epigraph__source">Compagnon, 1979</span>
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<aside class="notes">
+						In this world the Elegy almost never appears whole. [Click through.] Here it’s drilling students on long vowels. Here the opening stanza is set to music. Here a critic uses it to catch Gray ‘stealing’ a line from Dante. Here a clergyman quietly changes ‘they’ to ‘he’ to fit his point. Here it’s chopped into thirty-two separate metrical types. And here one line is mangled for a grammar drill. So the poem arrives in pieces — as lines you can teach with. Authority gets made through use; Compagnon called it the game of cut-and-paste. That’s really the whole talk, in one poem.
+					</aside>
+				</section>
+
+				<section class="section-slide" data-background-color="#262b3c">
+					<p class="section-slide__number">02</p>
+					<h2>The Princeton Prosody Archive</h2>
+				<aside class="notes">
+					[Pause.] Now the archive that lets us see this at scale.
+				</aside>
+				</section>
+
+				<section class="ppa-intro-slide ppa-intro-slide--archive">
+					<h2>The scattered history of poetic instruction</h2>
+
+					<div class="ppa-intro__layout">
+						<div class="ppa-intro__col">
+							<dl class="ppa-intro__facts">
+								<div class="ppa-intro__fact">
+									<dt class="ppa-intro__fact-label">What it gathers</dt>
+									<dd class="ppa-intro__fact-value">
+										Prosody manuals, elocution handbooks, grammar books, schoolbooks
+									</dd>
+								</div>
+								<div class="ppa-intro__fact">
+									<dt class="ppa-intro__fact-label">Span</dt>
+									<dd class="ppa-intro__fact-value">
+										1532&ndash;1929 · searchable · public domain
+									</dd>
+								</div>
+								<div class="ppa-intro__fact">
+									<dt class="ppa-intro__fact-label">Scale</dt>
+									<dd class="ppa-intro__fact-value">
+										~7,000 works · ~2&nbsp;million pages · full text
+									</dd>
+								</div>
+								<div class="ppa-intro__fact">
+									<dt class="ppa-intro__fact-label">Collections</dt>
+									<dd class="ppa-intro__fact-value">
+										Six, hand-curated &mdash; chiefly Literary &amp; Linguistic
+									</dd>
+								</div>
+							</dl>
+
+							<div class="ppa-intro__exposure">
+								<p class="ppa-intro__exposure-label">Pages per year</p>
+								<div
+									class="fig-container"
+									data-file="assets/ppa-pages-ribbon.html"
+									data-scroll="no"
+								></div>
+							</div>
+						</div>
+
+						<figure class="ppa-intro__brand">
+							<img
+								src="../../assets/logos/PPALogo_Web.svg"
+								alt="Princeton Prosody Archive"
+								width="730"
+								height="1164"
+							/>
+							<figcaption class="ppa-intro__brand-link">
+								<a href="https://prosody.princeton.edu/" target="_blank" rel="noopener">prosody.princeton.edu</a>
+							</figcaption>
+						</figure>
+					</div>
+
+					<aside class="notes">
+						This is the Princeton Prosody Archive — nearly four centuries of books that teach how verse sounds, scans, and should be read aloud. Manuals, elocution handbooks, grammar books, schoolbooks. Around seven thousand works, two million pages, all full text. That little graph is just pages surviving per year. [One click lights up the nineteenth century.] You can see it&rsquo;s by far the densest stretch. No methods yet; I just want you to feel the shape of the collection.
+					</aside>
+				</section>
+
+				<section class="ppa-intro-slide ppa-intro-slide--concept">
+					<h2>An archive of <em>use</em></h2>
+					<p class="ppa-intro__lede">
+						Not an anthology of great literature&mdash;books that make verse legible,
+						audible, and reproducible.
+					</p>
+
+					<div class="ppa-intro__points">
+						<p>
+							<strong>Poets as instruments.</strong>
+							Names invoked to settle a rule; lines quoted to make a point concrete.
+						</p>
+						<p>
+							<strong>A different map of canon.</strong>
+							What became teachably familiar in ordinary instruction&mdash;across centuries
+							of writing about form.
+						</p>
+					</div>
+
+					<aside class="notes">
+						The key thing: this is not an anthology of great literature. These are books that put poetry to work — to settle a rule, to make a point land. Poets here are instruments. And that gives us a different map of the canon: not what critics chose, but what became teachably familiar — ordinary, reach-for-able — across centuries of writing about form.
+					</aside>
+				</section>
+
+				<section class="section-slide" data-background-color="#262b3c">
+					<p class="section-slide__number">03</p>
+					<h2>Canonicity traced in the PPA</h2>
+				<aside class="notes">
+					[Pause.] And how to actually trace a canon in this material.
+				</aside>
+				</section>
+
+				<!-- §3 framework: how canon is usually measured vs. the PPA's use-lens -->
+				<section class="ppa-intro-slide ppa-intro-slide--concept">
+					<h2>How do you measure a canon?</h2>
+					<p class="ppa-intro__lede">
+						Most approaches track <em>selection</em>&mdash;what gets chosen, ranked, and remembered.
+					</p>
+
+					<div class="ppa-intro__points">
+						<p>
+							<strong>Canon as selection.</strong>
+							Curricula and reading lists, prizes and reviews, library circulation,
+							reader platforms, stylometric prediction.
+						</p>
+						<p>
+							<strong>Canon as use.</strong>
+							The PPA records a quieter signal&mdash;which poets become usable, repeatable
+							common ground when writers explain how verse works.
+						</p>
+					</div>
+
+					<aside class="notes">
+						Let me place that against how we usually measure a canon. Most quantitative work tracks selection — what gets chosen and ranked: curricula, prizes, reviews, what libraries lend, what readers rate. All valuable. The archive gives us something quieter: use. Which poets became repeatable common ground when someone had to explain how poetry works. And there are two ways to count that use — names, and lines. We’ll do both.
+					</aside>
+				</section>
+
+				<section class="section-slide" data-background-color="#262b3c">
+					<p class="section-slide__number">3.1</p>
+					<h2>Counting names</h2>
+					<p class="section-slide__credit">with Petr Plecháč &amp; Artjoms Šeļa &nbsp;&middot;&nbsp; [forthcoming]</p>
+				<aside class="notes">
+					First way to count use: names.
+				</aside>
+				</section>
+
+				<!-- vertical stack: who gets named + a methods backup (press down) -->
+				<section>
+				<!-- 3.1a: entity linking + the "what's in a name" problem -->
+				<section class="names-slide">
+					<div class="names-slide__head">
+						<h2>Who gets <em>named</em>?</h2>
+					</div>
+
+					<p class="names-slide__lede">
+						A poet&rsquo;s name is not a stable search object &mdash; so we resolve every
+						mention to one identity.
+					</p>
+
+					<ol class="names-pipeline" aria-label="From name to countable signal">
+						<li class="names-pipeline__stage fragment" data-fragment-index="1">
+							<p class="names-pipeline__label"><span>01</span> surface forms</p>
+							<div class="names-pipeline__rail"><span class="names-pipeline__dot"></span></div>
+							<div class="names-pipeline__body">
+								<ul class="names-pipeline__variants">
+									<li>&ldquo;Shakspeare&rdquo;</li>
+									<li>&ldquo;Schakespeyr&rdquo;</li>
+									<li>&ldquo;Shaxpere&rdquo;</li>
+									<li>&ldquo;Shakpeare&rdquo;</li>
+									<li class="names-pipeline__epithet">&ldquo;the sweet swan of Avon&rdquo;</li>
+								</ul>
+							</div>
+						</li>
+						<li class="names-pipeline__stage fragment" data-fragment-index="2">
+							<p class="names-pipeline__label"><span>02</span> neural linking</p>
+							<div class="names-pipeline__rail"><span class="names-pipeline__dot"></span></div>
+							<div class="names-pipeline__body">
+								<span class="names-pipeline__engine">ReFinED</span>
+								<span class="names-pipeline__note">mention &times; context</span>
+							</div>
+						</li>
+						<li class="names-pipeline__stage fragment" data-fragment-index="3">
+							<p class="names-pipeline__label"><span>03</span> knowledge base</p>
+							<div class="names-pipeline__rail"><span class="names-pipeline__dot"></span></div>
+							<div class="names-pipeline__body">
+								<span class="names-pipeline__name">William Shakespeare</span>
+								<span class="names-pipeline__qid">Wikidata Q692</span>
+							</div>
+						</li>
+						<li class="names-pipeline__stage fragment" data-fragment-index="4">
+							<p class="names-pipeline__label"><span>04</span> countable signal</p>
+							<div class="names-pipeline__rail"><span class="names-pipeline__dot"></span></div>
+							<div class="names-pipeline__body">
+								<span class="names-pipeline__metric">737,194</span>
+								<span class="names-pipeline__note">mentions &rarr; 3,164 poets</span>
+							</div>
+						</li>
+					</ol>
+
+					<aside class="notes">
+						This first part is joint work with Petr Plecháč and Artjoms Šeļa. The problem: a poet’s name is a moving target — Shakespeare alone shows up spelled a dozen ways, plus ‘the sweet swan of Avon.’ [Click.] So we don’t search for strings. A neural model reads each mention in context [click] and ties it to one identity in Wikidata. [Click.] Do that across the whole archive and the names collapse into countable people — about 737,000 mentions, resolved to just over 3,000 poets. (Accuracy and filtering are on the backup slide just below, if anyone asks.)
+					</aside>
+				</section>
+
+				<!-- backup ▸ method: entity linking -->
+				<section class="backup-slide">
+					<p class="backup-slide__kicker">Backup &middot; method</p>
+					<h2>From name strings to poets</h2>
+					<p class="backup-slide__lede">
+						Named-entity recognition only says &ldquo;<em>Shelley</em> is a person.&rdquo; <em>Entity linking</em> says <em>which</em> Shelley &mdash; Mary or Percy Bysshe &mdash; and pulls &ldquo;Mrs. Shelley,&rdquo; &ldquo;Mary Wollstonecraft Shelley,&rdquo; and the bare surname onto one identity across two centuries.
+					</p>
+
+					<ul class="backup-grid backup-grid--2">
+						<li>
+							<span class="backup-tag">the linker</span>
+							<strong>ReFinED, zero-shot.</strong> A neural model that detects and disambiguates each mention jointly from context, mapping it to a Wikidata QID (Dante &rarr; Q1067) with a 0&ndash;1 confidence. No corpus-specific training; ~1&nbsp;day on an A100 over 1.68M pages.
+						</li>
+						<li>
+							<span class="backup-tag">the Wikidata trap</span>
+							<strong>Linking is only as clean as the knowledge base.</strong> Wikidata files Friedrich Fröbel (the kindergarten founder) and Elizabeth Barrett Browning (d.&nbsp;1861) among &ldquo;soccer players&rdquo; and &ldquo;screenwriters&rdquo; &mdash; so the poet set must be <em>filtered</em>, not taken raw.
+						</li>
+						<li>
+							<span class="backup-tag">how accurate?</span>
+							<strong>~98% at the 0.90 threshold.</strong> On 50 hand-annotated pages (3 annotators), 56 of 57 high-confidence links were correct. The system errs toward <em>silence</em>: its misses are hard OCR forms (&ldquo;Bobert Bums&rdquo;&nbsp;&rarr;&nbsp;Burns, &ldquo;THEOCRITUS&rdquo;), not fabricated poets.
+						</li>
+						<li>
+							<span class="backup-tag">the cascade</span>
+							<strong>From spans to a poet universe.</strong> 23.9M mention spans &rarr; 11.6M linked &rarr; 92,823 humans &rarr; poet-flagged (Q49757) &rarr; conf.&nbsp;&ge;0.90 &rarr; seen in &ge;2 works &rarr; born &le;1900. Noise lives in singletons &mdash; the stability gate drops 34% of names but only 0.4% of mentions.
+						</li>
+					</ul>
+
+					<p class="backup-slide__foot">
+						Final poet universe: <strong>3,164 poets &middot; 737,194 mentions</strong> across 3,149 works, 1559&ndash;1929 &nbsp;&middot;&nbsp; names work with Petr Plecháč &amp; Artjoms Šeļa
+					</p>
+
+					<aside class="notes">
+						[Backup — if asked how linking works or how accurate it is.] The linker is ReFinED: neural, no training needed; it reads each name in context and picks the right Wikidata person. We checked it by hand on fifty pages — about 98% correct at our confidence cutoff, and when it’s unsure it stays silent rather than inventing poets. The funnel runs from 24 million raw name-spans down to about 3,000 poets. The one trap: Wikidata sometimes mislabels people, so we don’t take the raw ‘poet’ tag on faith.
+					</aside>
+				</section>
+				</section>
+				<!-- /vertical stack -->
+
+				<!-- 3.1b: concentration / superstar economy -->
+				<section class="chart-slide">
+					<div class="chart-slide__head">
+						<h2>A superstar economy</h2>
+						<p class="chart-slide__lede">A handful of poets carry most of the attention.</p>
+					</div>
+
+					<figure class="chart-slide__figure">
+						<svg
+							class="conc-chart"
+							viewBox="0 0 720 330"
+							preserveAspectRatio="xMidYMid meet"
+							role="img"
+							aria-label="Cumulative share of all poet mentions held by the top 1, 5, 10 and 25 percent of poets: 58.9, 82.7, 90.0 and 96.3 percent"
+						>
+							<line class="conc-base" x1="72" y1="290" x2="688" y2="290" />
+
+							<rect class="conc-bar" x="90" y="142.8" width="92" height="147.2" rx="3" style="animation-delay: 0s" />
+							<rect class="conc-bar" x="251" y="83.3" width="92" height="206.7" rx="3" style="animation-delay: 0.08s" />
+							<rect class="conc-bar" x="412" y="65" width="92" height="225" rx="3" style="animation-delay: 0.16s" />
+							<rect class="conc-bar" x="573" y="49.3" width="92" height="240.7" rx="3" style="animation-delay: 0.24s" />
+
+							<text class="conc-value" x="136" y="130.8">58.9%</text>
+							<text class="conc-value" x="297" y="71.3">82.7%</text>
+							<text class="conc-value" x="458" y="53">90.0%</text>
+							<text class="conc-value" x="619" y="37.3">96.3%</text>
+
+							<text class="conc-cat" x="136" y="312">Top 1%</text>
+							<text class="conc-cat" x="297" y="312">Top 5%</text>
+							<text class="conc-cat" x="458" y="312">Top 10%</text>
+							<text class="conc-cat" x="619" y="312">Top 25%</text>
+						</svg>
+					</figure>
+
+					<p class="chart-slide__takeaway">
+						The top 1% &mdash; just 32 poets &mdash; account for <strong>59%</strong> of all
+						mentions (Gini&nbsp;0.92). Shakespeare, Milton, Chaucer, Homer, Virgil at the head.
+					</p>
+
+					<aside class="notes">
+						Attention here is wildly unequal. The top one percent of poets — just 32 names — pull fifty-nine percent of all the mentions. The top five percent, over eighty. A Gini of point-nine-two: about as concentrated as it gets. And at the head, Shakespeare, Milton, Chaucer, Homer, Virgil. No surprises — but concentration isn’t the same as standing still.
+					</aside>
+				</section>
+
+				<!-- 3.1b2: the leaderboard in motion (bar-chart race) -->
+				<section class="race-slide">
+					<div class="race-slide__head">
+						<h2>A canon in motion</h2>
+						<p class="race-slide__lede">
+							The leaderboard reshuffles for two centuries &mdash; yet a few anchors never leave the head.
+						</p>
+					</div>
+
+					<div
+						class="fig-container race-slide__fig"
+						data-file="assets/poet-race.html"
+						data-scroll="no"
+					></div>
+
+					<p class="race-slide__foot">
+						Cumulative distinct works, by decade &middot; top&nbsp;10 &middot; Literary collection
+					</p>
+
+					<div class="race-slide__controls" aria-label="Race controls">
+						<button class="race-ctl" type="button" data-race="prev" aria-label="Previous decade" title="Previous decade">
+							<svg class="race-ctl__chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+						</button>
+						<button class="race-ctl race-ctl--toggle is-paused" type="button" data-race="toggle" aria-label="Play or pause" title="Play / pause">
+							<svg class="race-ctl__icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg>
+							<svg class="race-ctl__icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5h3v14H8zM13 5h3v14h-3z" /></svg>
+						</button>
+						<button class="race-ctl" type="button" data-race="next" aria-label="Next decade" title="Next decade">
+							<svg class="race-ctl__chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+						</button>
+					</div>
+
+					<aside class="notes">
+						Because when you watch it move, decade by decade, the leaderboard keeps reshuffling. [Run it.] Romantic and Victorian poets enter late and climb fast. But watch the highlighted names — Shakespeare, Milton, Chaucer, Homer, Virgil — they basically never leave the top. So it’s both at once: a stable inherited core, and constant churn underneath. One detail I love — Chaucer only really climbs at the very end, when the Victorians rediscover the Middle Ages.
+					</aside>
+				</section>
+
+				<!-- 3.1c: co-mention network (results) -->
+				<section
+					data-background-iframe="../../assets/ppa-poets/embed.html"
+					data-background-interactive
+					data-background-color="#faf8f5"
+				>
+					<aside class="notes">
+						And poets don’t travel alone. This is a map of who gets mentioned alongside whom — and it sorts itself into neighborhoods: classical poets here, medieval there, the Romantics over here. [Click a node to light up its neighbors.] I won’t dwell on it, but it’s a good reminder that a canon has a social shape, not just a ranking.
+					</aside>
+				</section>
+
+				<!-- pivot to counting lines -->
+				<section class="pivot-slide">
+					<p class="pivot-slide__kicker">but a name isn&rsquo;t a line</p>
+					<h2 class="pivot-slide__line">
+						Being <em>named</em> is not the same as having your <em>words</em> travel.
+					</h2>
+
+					<aside class="notes">
+						Now — being named is one thing. Having your actual words travel is another. You can be invoked constantly without anyone quoting a single line of you. So for the rest of the talk I want to stop counting names and start counting lines.
+					</aside>
+				</section>
+
+				<section class="section-slide" data-background-color="#262b3c">
+					<p class="section-slide__number">3.2</p>
+					<h2>Counting lines</h2>
+					<p class="section-slide__credit">with Meredith Martin, Rebecca Sutton Koeser &amp; Laure Thompson &nbsp;&middot;&nbsp; [forthcoming]</p>
+				<aside class="notes">
+					Second — and the heart of the talk — lines.
+				</aside>
+				</section>
+
+				<!-- vertical stack: main slide + optional filter detail below (press down to reveal, right to skip) -->
+				<section>
+				<!-- 3.2a: the text-reuse method (two corpora) -->
+				<section class="reuse-slide">
+					<div class="reuse-slide__head">
+						<h2>What gets <em>quoted</em>?</h2>
+						<p class="reuse-slide__lede">
+							A quoted poem is not a search object &mdash; so instead of searching, we let the
+							archive collide with nearly all of English poetry, and see what aligns.
+						</p>
+					</div>
+
+					<ol class="qpipe" aria-label="From a quoted fragment to a matched poem">
+						<li class="qpipe__stage qpipe__stage--frag">
+							<p class="qpipe__label"><span>01</span><span class="qpipe__swap"><span class="qpipe__lbl--a">quoted fragment</span><span class="qpipe__lbl--b">source corpus</span></span></p>
+							<div class="qpipe__rail"><span class="qpipe__dot"></span></div>
+							<div class="qpipe__body">
+								<div class="qpipe__frag-view">
+									<p class="qpipe__snippet">
+										The first line, &ldquo;<span class="qpipe__hit fragment" data-fragment-index="2">The curfew tolls the knell of parting day</span>,&rdquo; has been adopted from Dante&rsquo;s <em>Purgatorio</em>.
+									</p>
+									<p class="qpipe__cite">a PPA host work, 1857</p>
+								</div>
+								<div class="qpipe__corpus-view">
+									<span class="qpipe__name">Princeton Prosody Archive</span>
+									<span class="qpipe__src">7,061<br />works</span>
+								</div>
+							</div>
+						</li>
+
+						<li class="qpipe__stage qpipe__stage--reuse fragment" data-fragment-index="2">
+							<p class="qpipe__label"><span>02</span> text reuse</p>
+							<div class="qpipe__rail"><span class="qpipe__dot"></span></div>
+							<div class="qpipe__body">
+								<span class="qpipe__engine">passim</span>
+								<span class="qpipe__note">n-gram alignment</span>
+							</div>
+						</li>
+
+						<li class="qpipe__stage qpipe__stage--ref fragment" data-fragment-index="1">
+							<p class="qpipe__label"><span>03</span><span class="qpipe__swap"><span class="qpipe__lbl--a">reference poem</span><span class="qpipe__lbl--b">reference corpus</span></span></p>
+							<div class="qpipe__rail"><span class="qpipe__dot"></span></div>
+							<div class="qpipe__body">
+								<span class="qpipe__name qpipe__name--poem">Gray&rsquo;s <em>Elegy</em></span>
+								<span class="qpipe__name qpipe__name--corpus fragment" data-fragment-index="3">Chadwyck-Healey</span>
+								<span class="qpipe__src qpipe__src--corpus">246,724<br />reference poems</span>
+							</div>
+						</li>
+
+						<li class="qpipe__stage qpipe__stage--signal fragment" data-fragment-index="4">
+							<p class="qpipe__label"><span>04</span> countable signal</p>
+							<div class="qpipe__rail"><span class="qpipe__dot"></span></div>
+							<div class="qpipe__body">
+								<span class="qpipe__metric">252,893</span>
+								<span class="qpipe__note">distinct appearances of 37,406 poems across 3,962 PPA host works</span>
+							</div>
+						</li>
+					</ol>
+
+					<aside class="notes">
+						Same problem as before, but harder: a quoted line isn’t a search object either. So instead of searching, we let the whole archive collide with nearly all of English poetry and see what lines up. [Click.] Here’s a real fragment — an 1857 writer quoting the Elegy’s first line. [Click.] On the other side, a huge reference library of poetry. [Click.] A tool called passim aligns the two — the matched line lights up. [Click.] That reference corpus is Chadwyck-Healey, about 310,000 poems, the famous and the forgotten. [Click.] Across the archive that gives us about 253,000 quotation events, of 37,000 different poems. Those six Gray fragments from the start? Found exactly this way.
+					</aside>
+				</section>
+
+				<!-- 3.2b: the filtering pipeline (funnel) -->
+				<section class="funnel-slide">
+					<div class="funnel-slide__head">
+						<h2>A million alignments &rarr; an analytic corpus</h2>
+						<p class="funnel-slide__lede">
+							passim finds far too much. Most of the method is deciding what counts.
+						</p>
+					</div>
+
+					<ol class="funnel">
+						<li class="funnel-row">
+							<p class="funnel-row__label">Raw <em>passim</em> alignments</p>
+							<span class="funnel-row__track"><span class="funnel-bar" style="width: 100%"></span></span>
+							<p class="funnel-row__count">1,263,587</p>
+						</li>
+						<li class="funnel-row">
+							<p class="funnel-row__label">Poem appearances <span>(poem × host work)</span></p>
+							<span class="funnel-row__track"><span class="funnel-bar" style="width: 40.3%"></span></span>
+							<p class="funnel-row__count">509,030</p>
+						</li>
+						<li class="funnel-row">
+							<p class="funnel-row__label">Literary + Linguistic · reprints collapsed · 1694–1920</p>
+							<span class="funnel-row__track"><span class="funnel-bar" style="width: 21.7%"></span></span>
+							<p class="funnel-row__count">274,206</p>
+						</li>
+						<li class="funnel-row">
+							<p class="funnel-row__label">Implausible &amp; misattributed matches removed</p>
+							<span class="funnel-row__track"><span class="funnel-bar" style="width: 20%"></span></span>
+							<p class="funnel-row__count">252,893</p>
+						</li>
+					</ol>
+
+					<p class="funnel-slide__foot">
+						252,893 poem appearances · <strong>37,406 poems</strong> · 3,962 host works
+					</p>
+
+					<aside class="notes">
+						One honest caveat: passim finds far too much — over a million raw matches. Honestly, most of the method is deciding what actually counts. We collapse duplicates, keep only the teaching collections and a clean date window, and drop matches that can’t be real. What’s left — about 253,000 solid appearances of 37,000 poems — is what everything after this rests on. (How passim itself works is a backup, if asked.)
+					</aside>
+				</section>
+
+				<!-- backup ▸ method: text-reuse detection + validation -->
+				<section class="backup-slide">
+					<p class="backup-slide__kicker">Backup &middot; method</p>
+					<h2>Finding quotations at scale</h2>
+					<p class="backup-slide__lede">
+						A quotation is an <em>asymmetric</em> match: we align the PPA, where quotations surface, against a reference body of poetry &mdash; the Chadwyck-Healey English Poetry Database, deduplicated to <em>246,724 reference poems</em>, plus Shakespeare&rsquo;s plays, which Chadwyck-Healey leaves out.
+					</p>
+
+					<ul class="backup-grid backup-grid--2">
+						<li>
+							<span class="backup-tag">the tool</span>
+							<strong>passim.</strong> Built for the <em>Viral Texts</em> project to find reprinted passages across noisy newspaper OCR. It needs no prior guess about which texts align, and is robust to OCR error and ragged passage boundaries.
+						</li>
+						<li>
+							<span class="backup-tag">tuned for verse</span>
+							<strong>Short quotes, not long reprints.</strong> passim&rsquo;s defaults assume long documentary reuse, so we lowered the bar &mdash; n-gram 25&rarr;15, min length 50&rarr;25, gap 600&rarr;300, max DF 100&rarr;10,000 &mdash; with final values chosen against a hand-annotated gold set.
+						</li>
+						<li>
+							<span class="backup-tag">the unit</span>
+							<strong>Poem appearance, not raw record.</strong> OCR noise and paraphrase split one visible quotation into several alignment records, so we count a poem&rsquo;s <em>presence in a host work</em> once &mdash; the level every question here operates at.
+						</li>
+						<li>
+							<span class="backup-tag">then filter</span>
+							<strong>Matches aren&rsquo;t yet a corpus.</strong> Host-side (Literary/Linguistic collections, collapse reprints, 1694&ndash;1920) and poem-side (hand-remove centos &amp; adaptations, a biographical-plausibility cut) filtering follow &mdash; the counts are the analytic-corpus detour one slide up.
+						</li>
+					</ul>
+
+					<p class="backup-slide__foot">
+						1,263,587 raw alignments &rarr; 509,030 appearances &rarr; <strong>252,893 appearances of 37,406 poems</strong> across 3,962 host works
+					</p>
+
+					<aside class="notes">
+						[Backup — if asked how the matching works.] The tool is passim, from the Viral Texts newspaper project — built for messy OCR, and it needs no prior guess about which texts match. We tuned it down for short verse quotations rather than long reprints, with the settings chosen against a hand-checked gold set. And we count a poem once per book it appears in, because OCR splits one quotation into several raw matches.
+					</aside>
+				</section>
+
+				</section>
+				<!-- /vertical stack -->
+
+				<!-- vertical stack: the table + an optional "shared substrate" detour below (press down) -->
+				<section>
+				<!-- 3.2b2: the shape of the record (most/least hosted poems) -->
+				<section class="hosted-slide">
+					<div class="hosted-slide__head">
+						<h2>The most-hosted poems</h2>
+					</div>
+
+					<table class="hosted">
+						<thead>
+							<tr>
+								<th class="t-rank">#</th>
+								<th class="t-work">Work</th>
+								<th class="t-auth">Author</th>
+								<th class="t-app">Appearances</th>
+								<th class="t-span">In the PPA</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td class="t-rank">1</td><td class="t-work"><em>Paradise Lost</em></td><td class="t-auth">John Milton</td><td class="t-app"><span class="t-bar" style="width: 100%"></span><span class="t-num">1,326</span></td><td class="t-span">1679&ndash;1929</td></tr>
+							<tr><td class="t-rank">2</td><td class="t-work"><em>Hamlet</em></td><td class="t-auth">William Shakespeare</td><td class="t-app"><span class="t-bar" style="width: 97%"></span><span class="t-num">1,287</span></td><td class="t-span">1702&ndash;1929</td></tr>
+							<tr><td class="t-rank">3</td><td class="t-work"><em>Psalms</em></td><td class="t-auth">King James Bible</td><td class="t-app"><span class="t-bar" style="width: 86%"></span><span class="t-num">1,145</span></td><td class="t-span">1644&ndash;1928</td></tr>
+							<tr><td class="t-rank">4</td><td class="t-work"><em>Julius Caesar</em></td><td class="t-auth">William Shakespeare</td><td class="t-app"><span class="t-bar" style="width: 69%"></span><span class="t-num">909</span></td><td class="t-span">1702&ndash;1929</td></tr>
+							<tr><td class="t-rank">5</td><td class="t-work"><em>Macbeth</em></td><td class="t-auth">William Shakespeare</td><td class="t-app"><span class="t-bar" style="width: 66%"></span><span class="t-num">877</span></td><td class="t-span">1702&ndash;1929</td></tr>
+							<tr><td class="t-rank">6</td><td class="t-work"><em>The Merchant of Venice</em></td><td class="t-auth">William Shakespeare</td><td class="t-app"><span class="t-bar" style="width: 64%"></span><span class="t-num">844</span></td><td class="t-span">1718&ndash;1928</td></tr>
+							<tr><td class="t-rank">7</td><td class="t-work"><em>An Essay on Criticism</em></td><td class="t-auth">Alexander Pope</td><td class="t-app"><span class="t-bar" style="width: 63%"></span><span class="t-num">833</span></td><td class="t-span">1712&ndash;1929</td></tr>
+							<tr><td class="t-rank">8</td><td class="t-work"><em>Proverbs</em></td><td class="t-auth">King James Bible</td><td class="t-app"><span class="t-bar" style="width: 57%"></span><span class="t-num">757</span></td><td class="t-span">1644&ndash;1927</td></tr>
+							<tr><td class="t-rank">9</td><td class="t-work"><em>Elegy Written in a Country Churchyard</em></td><td class="t-auth">Thomas Gray</td><td class="t-app"><span class="t-bar" style="width: 55%"></span><span class="t-num">735</span></td><td class="t-span">1756&ndash;1929</td></tr>
+							<tr><td class="t-rank">10</td><td class="t-work"><em>Job</em></td><td class="t-auth">King James Bible</td><td class="t-app"><span class="t-bar" style="width: 53%"></span><span class="t-num">698</span></td><td class="t-span">1644&ndash;1927</td></tr>
+							<tr><td class="t-rank">11</td><td class="t-work"><em>Don Juan</em></td><td class="t-auth">Lord Byron</td><td class="t-app"><span class="t-bar" style="width: 52%"></span><span class="t-num">694</span></td><td class="t-span">1810&ndash;1929</td></tr>
+							<tr><td class="t-rank">12</td><td class="t-work"><em>Christus: A Mystery</em></td><td class="t-auth">Henry Wadsworth Longfellow</td><td class="t-app"><span class="t-bar" style="width: 52%"></span><span class="t-num">687</span></td><td class="t-span">1825&ndash;1929</td></tr>
+							<tr class="hosted__gap"><td colspan="5">&ctdot;&ensp; 38,898 more &nbsp;&middot;&nbsp; 42% quoted just once &nbsp;&middot;&nbsp; Gini 0.72 &ensp;&ctdot;</td></tr>
+							<tr><td class="t-rank">38,911</td><td class="t-work"><em>The Mohawk</em></td><td class="t-auth">John D. M&rsquo;Kinnon</td><td class="t-app"><span class="t-num">1</span></td><td class="t-span">1909</td></tr>
+							<tr><td class="t-rank">38,912</td><td class="t-work"><em>Seldom &ldquo;can&rsquo;t&rdquo;</em></td><td class="t-auth">Christina Georgina Rossetti</td><td class="t-app"><span class="t-num">1</span></td><td class="t-span">1915</td></tr>
+							<tr><td class="t-rank">38,913</td><td class="t-work"><em>Greater Memory</em></td><td class="t-auth">Arthur William Edgar O&rsquo;Shaughnessy</td><td class="t-app"><span class="t-num">1</span></td><td class="t-span">1916</td></tr>
+							<tr><td class="t-rank">38,914</td><td class="t-work"><em>To a Cricket</em></td><td class="t-auth">William Cox Bennett</td><td class="t-app"><span class="t-num">1</span></td><td class="t-span">1912</td></tr>
+						</tbody>
+					</table>
+
+					<aside class="notes">
+						So what rises to the top by lines quoted? Milton’s Paradise Lost, then a wall of Shakespeare — and, maybe a surprise, the King James Bible: Psalms, Proverbs, Job, sitting right up there as poetry. Same steep inequality — forty-two percent of poems appear in just one book, ever. But notice it’s a little less extreme than for names. Lines travel a bit more democratically than reputations do.
+					</aside>
+				</section>
+
+				<!-- 3.2c: alignment caveats — non-original "poems" (cento, shared substrate, scripture) -->
+				<section class="backup-slide caveat-slide">
+					<p class="backup-slide__kicker">Backup &middot; when a match lies</p>
+					<h2>&ldquo;Original Poetry&rdquo;</h2>
+					<p class="backup-slide__lede">
+						passim finds <em>real</em> text reuse &mdash; but a reference &ldquo;poem&rdquo; isn&rsquo;t always original. Chadwyck-Healey&rsquo;s long tail of the <em>mute inglorious</em> hides centos and adaptations.
+					</p>
+
+					<div class="caveat-grid">
+						<div class="caveat">
+							<p class="caveat__label"><em>Ode to the Human Heart</em> &mdash; Laman Blanchard, 1842</p>
+							<ul class="cento__lines">
+								<li class="src-milton"><span class="cento__verse">Blind Thamyris, and blind M&aelig;onides,</span><span class="cento__src">Milton</span></li>
+								<li class="src-pope"><span class="cento__verse">Pursue the triumph and partake the gale!</span><span class="cento__src">Pope</span></li>
+								<li class="src-shakespeare"><span class="cento__verse">Drop tears as fast as the Arabian trees,</span><span class="cento__src">Shakespeare</span></li>
+								<li class="src-johnson"><span class="cento__verse">To point a moral or adorn a tale.</span><span class="cento__src">Johnson</span></li>
+							</ul>
+						</div>
+
+						<div class="caveat">
+							<p class="caveat__label"><em>Canto LXXX</em> &mdash; Ezra Pound, 1917</p>
+							<div class="caveat__verse">
+								<p class="src-shakespeare">The evil that men do lives after them&rsquo; <span class="cento__src">Shakespeare</span></p>
+								<p>well, that is from Julius Caesar</p>
+								<p class="caveat__indent">unless memory trick me</p>
+								<p>who crossed the Rubicon up near Rimini</p>
+							</div>
+						</div>
+					</div>
+
+					<p class="backup-slide__foot">
+						So we hand-remove centos &amp; adaptations, then apply a biographical-plausibility filter &mdash; no work can quote a poet not yet born (it discards Pound, b.&nbsp;1885, correctly).
+					</p>
+
+					<aside class="notes">
+						[Backup — only if asked about false matches.] Two lovely failure cases. On the left, a cento: every line is lifted from a different poet — Milton, Pope, Shakespeare, Johnson — and published as ‘original poetry’ by ‘Sir Fretful Plagiary.’ On the right, Pound quoting Shakespeare and naming him. passim catches both correctly — the trick is not crediting the borrowed lines to the wrong poem. That’s what the filtering is for.
+					</aside>
+				</section>
+				</section>
+				<!-- /vertical stack -->
+
+				<!-- vertical stack: the curve + a methods backup (press down) -->
+				<section>
+				<!-- 3.2c2: the practice widened (descriptive curve — sets up the model) -->
+				<section class="rate-slide">
+					<div class="rate-slide__head">
+						<h2>A widening practice</h2>
+						<p class="rate-slide__lede">
+							Distinct poems quoted per 100&nbsp;pages of prosody writing &mdash; a <em>rate</em>, so it climbs only if quotation itself broadened, not merely because the archive grew.
+						</p>
+					</div>
+
+					<div class="fig-container rate-slide__fig" data-file="assets/quotation-rate.html" data-scroll="no"></div>
+
+					<aside class="notes">
+						Before we look at individual poems, one big-picture fact. This is how much poetry the archive quotes over time — but as a rate, per hundred pages, so it only rises if quoting genuinely broadened, not just because there were more books. And it does rise — it roughly triples across the window, peaking around 1880. [Click to mark 1774 — Donaldson v. Becket, the ruling that effectively created the public domain in Britain and flooded the market with cheap reprints.] The model behind the curve is a backup, if you want it.
+					</aside>
+				</section>
+
+				<!-- backup ▸ method: how the rate is modelled -->
+				<section class="backup-slide">
+					<p class="backup-slide__kicker">Backup &middot; method</p>
+					<h2>Holding the archive constant</h2>
+					<p class="backup-slide__lede">
+						A raw count of distinct poems can&rsquo;t separate a <em>widening practice</em> from a <em>thickening archive</em> &mdash; more host pages simply mean more chances to quote. So we model a <em>rate</em>, with the archive&rsquo;s size netted out.
+					</p>
+
+					<div class="backup-eq">
+						\[ A(y) \sim \mathrm{NegBin}(\mu_y,\, \alpha_{\mathrm{disp}}) \qquad\quad \log \mu_y = \alpha + s(y) + \log P(y) \]
+					</div>
+
+					<ul class="backup-grid backup-grid--3">
+						<li>
+							<span class="backup-tag">a rate, not a count</span>
+							<strong>The log&#8209;pages offset.</strong> Page volume enters with its coefficient fixed at&nbsp;1 &mdash; double the host pages, double the poems, by construction. The model is then free to find the <em>departures</em> from that proportionality.
+						</li>
+						<li>
+							<span class="backup-tag">a flexible trend</span>
+							<strong>A natural cubic spline s(y).</strong> Free to bend where the evidence calls for it; 7 degrees of freedom, chosen by AIC. &ldquo;Natural&rdquo; keeps the curve from flailing at the window&rsquo;s edges.
+						</li>
+						<li>
+							<span class="backup-tag">room to wobble</span>
+							<strong>Negative Binomial, not Poisson.</strong> Yearly counts vary far more than their mean &mdash; one dense anthology spikes a year &mdash; so we relax the equal&#8209;variance assumption. &alpha;<sub>disp</sub>&nbsp;=&nbsp;0.5; post&#8209;fit dispersion &asymp;&nbsp;1.01.
+						</li>
+					</ul>
+
+					<p class="backup-slide__foot">
+						Modelled window 1694&ndash;1920 &nbsp;&middot;&nbsp; 1694 = first year with &ge;5 PPA host works &nbsp;&middot;&nbsp; 1920 = the PPA&rsquo;s coverage horizon
+					</p>
+
+					<aside class="notes">
+						[Backup — if asked about the model behind the curve.] We model a rate, poems per page, so archive growth divides out. It’s a negative-binomial regression: a smooth spline for the trend over time; the page count entered as an offset, so ‘more pages’ can’t masquerade as ‘more quoting’; and the negative-binomial part absorbs the wild year-to-year spikes one fat anthology can cause.
+					</aside>
+				</section>
+				</section>
+				<!-- /vertical stack -->
+
+				<!-- 3.2d: Model 2 — per-poem trajectories (the model) -->
+				<section class="traj-slide">
+					<div class="traj-slide__head">
+						<h2>A trajectory for every poem</h2>
+					</div>
+
+					<div class="traj-intro">
+						<p class="traj-question">
+							Which poems did prosodists reach for more over time &mdash; and which did they quietly set aside?
+						</p>
+					</div>
+
+					<div class="traj-model">
+						<div class="traj-model__eq">
+							<span class="traj-eq__lhs fragment" data-fragment-index="1">\( \operatorname{logit}\,(p_{it}) = \)</span>
+							<span class="traj-grp fragment" data-fragment-index="1">
+								<span class="traj-grp__math">\( \alpha + s(t) \)</span>
+								<span class="traj-grp__lbl">shared time curve</span>
+							</span>
+							<span class="traj-op fragment" data-fragment-index="2">+</span>
+							<span class="traj-grp fragment" data-fragment-index="2">
+								<span class="traj-grp__math">\( b^{0}_{i} + b^{1}_{i}\, t \)</span>
+								<span class="traj-grp__lbl">poem slope &mdash; rise or fall</span>
+							</span>
+							<span class="traj-op fragment" data-fragment-index="3">+</span>
+							<span class="traj-grp fragment" data-fragment-index="3">
+								<span class="traj-grp__math">\( u_{a(i)} \)</span>
+								<span class="traj-grp__lbl">author shift</span>
+							</span>
+						</div>
+
+						<p class="traj-gloss fragment" data-fragment-index="1">
+							<span class="traj-gloss__math">\( p_{it} \)</span> &mdash; a poem&rsquo;s prevalence: the share of a decade&rsquo;s prosody works that quote it.
+						</p>
+						<p class="traj-response fragment" data-fragment-index="5">
+							<span class="traj-response__math">\( k_{it} \sim \text{Beta-Binomial}\,(n_t,\, p_{it}) \)</span> &mdash; counts are overdispersed, so not a plain binomial.
+						</p>
+					</div>
+
+					<ul class="traj-notes">
+						<li class="fragment" data-fragment-index="4"><strong>Partial pooling.</strong> Thin-evidence poems are pulled toward the corpus trend; well-attested ones pull it.</li>
+						<li class="fragment" data-fragment-index="5"><strong>Beta-binomial.</strong> Absorbs the superstar overdispersion a plain binomial can&rsquo;t.</li>
+						<li class="fragment" data-fragment-index="6"><strong>Eligibility window.</strong> Each poem is scored only in decades it could have been quoted (no left-truncation bias).</li>
+					</ul>
+
+					<p class="traj-slide__foot fragment" data-fragment-index="6">
+						Hierarchical Bayesian &middot; 896 sustained-presence poems (&ge;30 host works across &ge;10 decades)
+					</p>
+
+					<aside class="notes">
+						Here’s the move that ties everything together. If quoting broadened for everyone, then a poem being quoted more isn’t necessarily gaining ground — it might just be riding the tide. So we give every poem its own trajectory, measured against that shared rising tide. [Build the formula.] A shared time curve everyone sits on; each poem’s own drift above or below it; and a small adjustment for its author’s general standing. The number we care about is that middle slope: is a poem gaining or losing ground relative to the field?
+					</aside>
+				</section>
+
+				<!-- vertical stack: the trajectories + a methods backup (press down) -->
+				<section>
+				<!-- 3.2e: fig7 — selected poem trajectories -->
+				<section class="traj-slide">
+					<div class="traj-slide__head">
+						<h2>Risers, decliners, anchors</h2>
+						<p class="traj-slide__lede">
+							Medieval and Romantic verse climbs; neoclassical translation fades; the perennials hold.
+						</p>
+					</div>
+
+					<div class="fig-container traj-slide__fig" data-file="assets/poem-trajectories.html" data-scroll="no"></div>
+
+					<aside class="notes">
+						And poems fall into three shapes. [Click.] Some rise — here Chaucer’s Canterbury Tales climbs steadily; the medieval revival again. [Click.] Some hold flat — Milton’s L’Allegro just keeps getting quoted, steady for two centuries. [Click.] And some fall — Virgil’s Aeneid, in Dryden’s translation, slides down and down. Risers, anchors, decliners. Let me show you who’s in each group.
+					</aside>
+				</section>
+
+				<!-- backup ▸ method: the per-poem trajectory model -->
+				<section class="backup-slide">
+					<p class="backup-slide__kicker">Backup &middot; method</p>
+					<h2>Reading each poem against the corpus</h2>
+
+					<div class="backup-eq">
+						\[ \operatorname{logit}\,(p_{it}) = \underbrace{\alpha + s(t)}_{\text{shared trend}} \;+\; \underbrace{b^{0}_{i} + b^{1}_{i}\,t}_{\text{poem deviation}} \;+\; \underbrace{u_{a(i)}}_{\text{author shift}} \]
+					</div>
+
+					<ul class="backup-grid backup-grid--2">
+						<li>
+							<span class="backup-tag">the input</span>
+							<strong>Prevalence per decade.</strong> For each eligible poem, p&#770;&nbsp;=&nbsp;k<sub>it</sub>/n<sub>t</sub> &mdash; the share of that decade&rsquo;s PPA host works that quote it. Fitted with a <em>beta&#8209;binomial</em> rather than a binomial, because the superstar poems are overdispersed.
+						</li>
+						<li>
+							<span class="backup-tag">the headline number</span>
+							<strong>The slope b&sup1;&#7522;.</strong> Gaining or losing ground <em>relative to the shared trend</em> &mdash; not in absolute terms. A positive slope outpaces the average poem; a negative one lags even as the whole practice widens around it.
+						</li>
+						<li>
+							<span class="backup-tag">reading the slope</span>
+							<strong>Log&#8209;odds per decade.</strong> +0.25 &asymp; &times;1.28 odds (~28% likelier to be quoted each decade); &minus;0.20 &asymp; &times;0.82 (~18% less). &ldquo;Credibly&rdquo; rising/declining = the 95% credible interval on b&sup1; excludes&nbsp;zero.
+						</li>
+						<li>
+							<span class="backup-tag">keeping it honest</span>
+							<strong>Partial pooling + author shift.</strong> Thin&#8209;evidence poems are pulled toward the corpus trend; well&#8209;attested ones pull it. u<sub>a(i)</sub> separates a poem&rsquo;s own movement from its author&rsquo;s standing (Shakespeare: 37 works; Gray rests almost entirely on the <em>Elegy</em>).
+						</li>
+					</ul>
+
+					<p class="backup-slide__foot">
+						Eligibility starts 18&nbsp;yrs after the poet&rsquo;s birth &mdash; a Tennyson zero in the 1700s is impossibility, not neglect &nbsp;&middot;&nbsp; population = &ge;30 host works across &ge;10 decades &rarr; 896 poems &nbsp;&middot;&nbsp; Bambi / PyMC (NUTS), R&#770;&nbsp;&le;&nbsp;1.02
+					</p>
+
+					<aside class="notes">
+						[Backup — if asked about the per-poem model.] For each poem in each decade we take its prevalence — the share of that decade’s books that quote it — and model it with a beta-binomial, which tolerates the superstars. The slope is the headline: gaining or losing relative to the shared trend. A slope of plus a quarter is roughly a 28% bump per decade in the odds of being quoted. Thin-evidence poems get pulled toward the average, and we only score a poem in decades it could actually have existed.
+					</aside>
+				</section>
+				</section>
+				<!-- /vertical stack -->
+
+				<!-- 3.2e2: the credibly declining poems -->
+				<section class="hosted-slide ranks-slide ranks-slide--falling">
+					<div class="ranks-center">
+					<div class="hosted-slide__head">
+						<h2>Decliners</h2>
+					</div>
+					<table class="hosted">
+						<thead>
+							<tr>
+								<th class="t-rank">#</th>
+								<th class="t-work">Work</th>
+								<th class="t-auth">Author / Translator</th>
+								<th class="t-app">Slope</th>
+								<th class="t-span">Host works</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td class="t-rank">1</td><td class="t-work"><em>Pastoral V</em> <span class="t-year">(transl.&nbsp;1697)</span></td><td class="t-auth">Virgil / John Dryden</td><td class="t-app"><span class="t-bar" style="width: 75%"></span><span class="t-num">&minus;.27</span></td><td class="t-span">31</td></tr>
+							<tr><td class="t-rank">2</td><td class="t-work"><em>The Art of Poetry</em> <span class="t-year">(transl.&nbsp;1680)</span></td><td class="t-auth">Horace / Earl of Roscommon</td><td class="t-app"><span class="t-bar" style="width: 69%"></span><span class="t-num">&minus;.25</span></td><td class="t-span">92</td></tr>
+							<tr><td class="t-rank">3</td><td class="t-work"><em>Prince Arthur</em> <span class="t-year">(1695)</span></td><td class="t-auth">Sir Richard Blackmore</td><td class="t-app"><span class="t-bar" style="width: 69%"></span><span class="t-num">&minus;.25</span></td><td class="t-span">58</td></tr>
+							<tr><td class="t-rank">4</td><td class="t-work"><em>On Roscommon&rsquo;s Translation of Horace</em> <span class="t-year">(1680)</span></td><td class="t-auth">Edmund Waller</td><td class="t-app"><span class="t-bar" style="width: 67%"></span><span class="t-num">&minus;.24</span></td><td class="t-span">32</td></tr>
+							<tr><td class="t-rank">5</td><td class="t-work"><em>The Art of Poetry</em> <span class="t-year">(transl.&nbsp;1757)</span></td><td class="t-auth">Horace / William Duncombe</td><td class="t-app"><span class="t-bar" style="width: 67%"></span><span class="t-num">&minus;.24</span></td><td class="t-span">42</td></tr>
+							<tr><td class="t-rank">6</td><td class="t-work"><em>The Georgics</em> <span class="t-year">(transl.&nbsp;1753)</span></td><td class="t-auth">Virgil / Joseph Warton</td><td class="t-app"><span class="t-bar" style="width: 67%"></span><span class="t-num">&minus;.24</span></td><td class="t-span">50</td></tr>
+							<tr><td class="t-rank">7</td><td class="t-work"><em>Medulla Poetarum Romanorum</em> <span class="t-year">(transl.&nbsp;1737)</span></td><td class="t-auth">Henry Baker</td><td class="t-app"><span class="t-bar" style="width: 64%"></span><span class="t-num">&minus;.23</span></td><td class="t-span">214</td></tr>
+							<tr><td class="t-rank">8</td><td class="t-work"><em>Pastoral I</em> <span class="t-year">(transl.&nbsp;1697)</span></td><td class="t-auth">Virgil / John Dryden</td><td class="t-app"><span class="t-bar" style="width: 64%"></span><span class="t-num">&minus;.23</span></td><td class="t-span">45</td></tr>
+							<tr><td class="t-rank">9</td><td class="t-work"><em>The First Satire of Persius</em> <span class="t-year">(transl.&nbsp;1693)</span></td><td class="t-auth">Persius / John Dryden</td><td class="t-app"><span class="t-bar" style="width: 61%"></span><span class="t-num">&minus;.22</span></td><td class="t-span">39</td></tr>
+							<tr><td class="t-rank">10</td><td class="t-work"><em>An Essay on Translated Verse</em> <span class="t-year">(1684)</span></td><td class="t-auth">Earl of Roscommon</td><td class="t-app"><span class="t-bar" style="width: 61%"></span><span class="t-num">&minus;.22</span></td><td class="t-span">125</td></tr>
+							<tr><td class="t-rank">11</td><td class="t-work"><em>Pastoral III</em> <span class="t-year">(transl.&nbsp;1697)</span></td><td class="t-auth">Virgil / John Dryden</td><td class="t-app"><span class="t-bar" style="width: 61%"></span><span class="t-num">&minus;.22</span></td><td class="t-span">35</td></tr>
+							<tr><td class="t-rank">12</td><td class="t-work"><em>Metamorphoses, Book XII</em> <span class="t-year">(transl.&nbsp;1700)</span></td><td class="t-auth">Ovid / John Dryden</td><td class="t-app"><span class="t-bar" style="width: 61%"></span><span class="t-num">&minus;.22</span></td><td class="t-span">31</td></tr>
+							<tr><td class="t-rank">13</td><td class="t-work"><em>Metamorphoses, Book I</em> <span class="t-year">(transl.&nbsp;1693)</span></td><td class="t-auth">Ovid / John Dryden</td><td class="t-app"><span class="t-bar" style="width: 58%"></span><span class="t-num">&minus;.21</span></td><td class="t-span">48</td></tr>
+							<tr><td class="t-rank">14</td><td class="t-work"><em>An Essay upon Poetry</em> <span class="t-year">(1682)</span></td><td class="t-auth">Duke of Buckingham</td><td class="t-app"><span class="t-bar" style="width: 58%"></span><span class="t-num">&minus;.21</span></td><td class="t-span">79</td></tr>
+							<tr><td class="t-rank">15</td><td class="t-work"><em>Virgil&rsquo;s &AElig;neid</em> <span class="t-year">(transl.&nbsp;1740)</span></td><td class="t-auth">Virgil / Christopher Pitt</td><td class="t-app"><span class="t-bar" style="width: 56%"></span><span class="t-num">&minus;.20</span></td><td class="t-span">140</td></tr>
+						</tbody>
+					</table>
+					</div>
+					<aside class="notes">
+						The decliners first — and look at the right-hand column. It’s almost all translation: Virgil, Horace, Ovid, in Dryden’s and Roscommon’s hands — the neoclassical apparatus eighteenth-century readers leaned on. As a whole group, it quietly fades out.
+					</aside>
+				</section>
+
+				<!-- vertical stack: risers + an anchors backup (press down) -->
+				<section>
+				<!-- 3.2e3: the credibly rising poems -->
+				<section class="hosted-slide ranks-slide ranks-slide--rising">
+					<div class="ranks-center">
+					<div class="hosted-slide__head">
+						<h2>Risers</h2>
+					</div>
+					<table class="hosted">
+						<thead>
+							<tr>
+								<th class="t-rank">#</th>
+								<th class="t-work">Work</th>
+								<th class="t-auth">Author</th>
+								<th class="t-app">Slope</th>
+								<th class="t-span">Host works</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td class="t-rank">1</td><td class="t-work"><em>The Rime of the Ancient Mariner</em> <span class="t-year">(1798)</span></td><td class="t-auth">Samuel Taylor Coleridge</td><td class="t-app"><span class="t-bar" style="width: 97%"></span><span class="t-num">+.35</span></td><td class="t-span">287</td></tr>
+							<tr><td class="t-rank">2</td><td class="t-work"><em>The Daffodils</em> <span class="t-year">(1807)</span></td><td class="t-auth">William Wordsworth</td><td class="t-app"><span class="t-bar" style="width: 86%"></span><span class="t-num">+.31</span></td><td class="t-span">109</td></tr>
+							<tr><td class="t-rank">3</td><td class="t-work"><em>Ode: Intimations of Immortality</em> <span class="t-year">(1807)</span></td><td class="t-auth">William Wordsworth</td><td class="t-app"><span class="t-bar" style="width: 83%"></span><span class="t-num">+.30</span></td><td class="t-span">263</td></tr>
+							<tr><td class="t-rank">4</td><td class="t-work"><em>Tintern Abbey</em> <span class="t-year">(1798)</span></td><td class="t-auth">William Wordsworth</td><td class="t-app"><span class="t-bar" style="width: 72%"></span><span class="t-num">+.26</span></td><td class="t-span">170</td></tr>
+							<tr><td class="t-rank">5</td><td class="t-work"><em>The Eve of St Agnes</em> <span class="t-year">(1820)</span></td><td class="t-auth">John Keats</td><td class="t-app"><span class="t-bar" style="width: 67%"></span><span class="t-num">+.24</span></td><td class="t-span">108</td></tr>
+							<tr><td class="t-rank">6</td><td class="t-work"><em>Prometheus Unbound</em> <span class="t-year">(1820)</span></td><td class="t-auth">Percy Bysshe Shelley</td><td class="t-app"><span class="t-bar" style="width: 64%"></span><span class="t-num">+.23</span></td><td class="t-span">128</td></tr>
+							<tr><td class="t-rank">7</td><td class="t-work"><em>Is There for Honest Poverty</em> <span class="t-year">(1795)</span></td><td class="t-auth">Robert Burns</td><td class="t-app"><span class="t-bar" style="width: 58%"></span><span class="t-num">+.21</span></td><td class="t-span">64</td></tr>
+							<tr><td class="t-rank">8</td><td class="t-work"><em>Christabel</em> <span class="t-year">(1816)</span></td><td class="t-auth">Samuel Taylor Coleridge</td><td class="t-app"><span class="t-bar" style="width: 58%"></span><span class="t-num">+.21</span></td><td class="t-span">157</td></tr>
+							<tr><td class="t-rank">9</td><td class="t-work"><em>The Education of Nature</em> <span class="t-year">(1800)</span></td><td class="t-auth">William Wordsworth</td><td class="t-app"><span class="t-bar" style="width: 56%"></span><span class="t-num">+.20</span></td><td class="t-span">74</td></tr>
+							<tr><td class="t-rank">10</td><td class="t-work"><em>On His Blindness</em> <span class="t-year">(1673)</span></td><td class="t-auth">John Milton</td><td class="t-app"><span class="t-bar" style="width: 53%"></span><span class="t-num">+.19</span></td><td class="t-span">99</td></tr>
+							<tr><td class="t-rank">11</td><td class="t-work"><em>Peter Bell</em> <span class="t-year">(1819)</span></td><td class="t-auth">William Wordsworth</td><td class="t-app"><span class="t-bar" style="width: 53%"></span><span class="t-num">+.19</span></td><td class="t-span">63</td></tr>
+							<tr><td class="t-rank">12</td><td class="t-work"><em>To Daffodils</em> <span class="t-year">(1648)</span></td><td class="t-auth">Robert Herrick</td><td class="t-app"><span class="t-bar" style="width: 53%"></span><span class="t-num">+.19</span></td><td class="t-span">55</td></tr>
+							<tr><td class="t-rank">13</td><td class="t-work"><em>Sonnet 73</em> <span class="t-year">(1609)</span></td><td class="t-auth">William Shakespeare</td><td class="t-app"><span class="t-bar" style="width: 50%"></span><span class="t-num">+.18</span></td><td class="t-span">70</td></tr>
+							<tr><td class="t-rank">14</td><td class="t-work"><em>To a Waterfowl</em> <span class="t-year">(1818)</span></td><td class="t-auth">William Cullen Bryant</td><td class="t-app"><span class="t-bar" style="width: 50%"></span><span class="t-num">+.18</span></td><td class="t-span">71</td></tr>
+							<tr><td class="t-rank">15</td><td class="t-work"><em>Ae Fond Kiss</em> <span class="t-year">(1791)</span></td><td class="t-auth">Robert Burns</td><td class="t-app"><span class="t-bar" style="width: 50%"></span><span class="t-num">+.18</span></td><td class="t-span">41</td></tr>
+						</tbody>
+					</table>
+					</div>
+					<aside class="notes">
+						And the risers are almost the mirror image — it’s the Romantics. Coleridge, Wordsworth five times over, Keats, Shelley, Burns. The poems gaining ground fastest are exactly the ones we now think of as the Romantic core, climbing in real time through the nineteenth century.
+					</aside>
+				</section>
+
+				<!-- backup ▸ the steady anchors -->
+				<section class="hosted-slide ranks-slide ranks-slide--steady">
+					<div class="ranks-center">
+					<div class="hosted-slide__head">
+						<h2>Anchors</h2>
+					</div>
+					<table class="hosted">
+						<thead>
+							<tr>
+								<th class="t-rank">#</th>
+								<th class="t-work">Work</th>
+								<th class="t-auth">Author</th>
+								<th class="t-app">Slope</th>
+								<th class="t-span">Host works</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td class="t-rank">1</td><td class="t-work"><em>Psalms</em> <span class="t-year">(1611)</span></td><td class="t-auth">King James Bible</td><td class="t-app"><span class="t-num">&minus;.011</span></td><td class="t-span">1,110</td></tr>
+							<tr><td class="t-rank">2</td><td class="t-work"><em>Proverbs</em> <span class="t-year">(1611)</span></td><td class="t-auth">King James Bible</td><td class="t-app"><span class="t-num">+.007</span></td><td class="t-span">738</td></tr>
+							<tr><td class="t-rank">3</td><td class="t-work"><em>Job</em> <span class="t-year">(1611)</span></td><td class="t-auth">King James Bible</td><td class="t-app"><span class="t-num">&minus;.005</span></td><td class="t-span">683</td></tr>
+							<tr><td class="t-rank">4</td><td class="t-work"><em>Othello</em> <span class="t-year">(1623)</span></td><td class="t-auth">William Shakespeare</td><td class="t-app"><span class="t-num">+.017</span></td><td class="t-span">661</td></tr>
+							<tr><td class="t-rank">5</td><td class="t-work"><em>King Lear</em> <span class="t-year">(1623)</span></td><td class="t-auth">William Shakespeare</td><td class="t-app"><span class="t-num">+.021</span></td><td class="t-span">579</td></tr>
+							<tr><td class="t-rank">6</td><td class="t-work"><em>The Faerie Queene</em> <span class="t-year">(1596)</span></td><td class="t-auth">Edmund Spenser</td><td class="t-app"><span class="t-num">+.023</span></td><td class="t-span">560</td></tr>
+							<tr><td class="t-rank">7</td><td class="t-work"><em>Henry VIII</em> <span class="t-year">(1623)</span></td><td class="t-auth">William Shakespeare</td><td class="t-app"><span class="t-num">+.026</span></td><td class="t-span">544</td></tr>
+							<tr><td class="t-rank">8</td><td class="t-work"><em>Night Thoughts</em> <span class="t-year">(1742&ndash;46)</span></td><td class="t-auth">Edward Young</td><td class="t-app"><span class="t-num">&minus;.003</span></td><td class="t-span">526</td></tr>
+							<tr><td class="t-rank">9</td><td class="t-work"><em>Henry IV, Part 1</em> <span class="t-year">(1598)</span></td><td class="t-auth">William Shakespeare</td><td class="t-app"><span class="t-num">+.027</span></td><td class="t-span">499</td></tr>
+							<tr><td class="t-rank">10</td><td class="t-work"><em>Essay on Man, Epistle IV</em> <span class="t-year">(1734)</span></td><td class="t-auth">Alexander Pope</td><td class="t-app"><span class="t-num">&minus;.018</span></td><td class="t-span">490</td></tr>
+							<tr><td class="t-rank">11</td><td class="t-work"><em>King John</em> <span class="t-year">(1623)</span></td><td class="t-auth">William Shakespeare</td><td class="t-app"><span class="t-num">+.026</span></td><td class="t-span">467</td></tr>
+							<tr><td class="t-rank">12</td><td class="t-work"><em>Essay on Man, Epistle I</em> <span class="t-year">(1733)</span></td><td class="t-auth">Alexander Pope</td><td class="t-app"><span class="t-num">&minus;.019</span></td><td class="t-span">462</td></tr>
+							<tr><td class="t-rank">13</td><td class="t-work"><em>Henry IV, Part 2</em> <span class="t-year">(1600)</span></td><td class="t-auth">William Shakespeare</td><td class="t-app"><span class="t-num">+.009</span></td><td class="t-span">459</td></tr>
+							<tr><td class="t-rank">14</td><td class="t-work"><em>Henry V</em> <span class="t-year">(1623)</span></td><td class="t-auth">William Shakespeare</td><td class="t-app"><span class="t-num">+.007</span></td><td class="t-span">450</td></tr>
+							<tr><td class="t-rank">15</td><td class="t-work"><em>Measure for Measure</em> <span class="t-year">(1623)</span></td><td class="t-auth">William Shakespeare</td><td class="t-app"><span class="t-num">+.020</span></td><td class="t-span">379</td></tr>
+						</tbody>
+					</table>
+					</div>
+					<aside class="notes">
+						[Backup &mdash; the third archetype.] The anchors: high-volume poems whose slope is credibly flat (|b&sup1;|&nbsp;&le;&nbsp;0.03) &mdash; the canonical workhorses that neither rise nor fade. Scripture and Shakespeare dominate, with Pope&rsquo;s Essay on Man and Young&rsquo;s Night Thoughts. They just keep being quoted, decade after decade.
+					</aside>
+				</section>
+				</section>
+				<!-- /vertical stack -->
+
+				<!-- vertical stack: the ridgeplot + a methods backup (press down) -->
+				<section>
+				<!-- 3.2f: fig8 — period slope ridgeplot -->
+				<section class="traj-slide">
+					<div class="traj-slide__head">
+						<h2>Which eras gained ground</h2>
+					</div>
+
+					<div class="fig-container traj-slide__fig cohort-fig" data-file="assets/cohort-slopes.html" data-scroll="no"></div>
+
+					<aside class="notes">
+						And it isn’t just individual poems — it holds for whole eras. Each ridge is a literary period; left of the line means losing ground, right means gaining. [Reveal.] The Restoration and early-eighteenth-century cohorts sit clearly on the left — the neoclassical decline. Up top, leaning right, the medieval and Romantic periods. So the same story — away from neoclassical translation, toward the medieval and the Romantic — shows up at every scale: the line, the poem, the period.
+					</aside>
+				</section>
+
+				<!-- backup ▸ method: from poems to periods -->
+				<section class="backup-slide">
+					<p class="backup-slide__kicker">Backup &middot; method</p>
+					<h2>From poems to periods</h2>
+					<p class="backup-slide__lede">
+						No new model &mdash; the <em>same</em> per&#8209;poem slopes b&sup1;&#7522;, re&#8209;cut by the literary period each poem belongs to. Labels are Chadwyck&#8209;Healey&rsquo;s bibliographic categories (the database&rsquo;s organizing logic, not a historical argument).
+					</p>
+
+					<ul class="backup-grid backup-grid--2">
+						<li>
+							<span class="backup-tag">why a period can surprise</span>
+							A period is a <em>different unit</em> from poems or authors. It can rise even when most of its authors are flat (a few rise sharply), or fall even when most of its poems hold (the high&#8209;volume ones decline). The ridge checks whether the stories aggregate.
+						</li>
+						<li>
+							<span class="backup-tag">what&rsquo;s included</span>
+							Only periods with &ge;20 modelled poems. The catch&#8209;all &ldquo;Poems &amp; Miscellanies, 1500&ndash;1900&rdquo; &mdash; for poems that fit no named period &mdash; is excluded.
+						</li>
+						<li>
+							<span class="backup-tag">inside the Restoration ridge</span>
+							It&rsquo;s bimodal: the classical&#8209;translation and didactic&#8209;verse apparatus fell hard (&asymp;&nbsp;&minus;0.15), while Dryden&rsquo;s <em>original</em> verse declined only mildly (&asymp;&nbsp;&minus;0.05, intervals straddling&nbsp;zero).
+						</li>
+						<li>
+							<span class="backup-tag">inside Jacobean / Caroline</span>
+							Layered: short lyric and song rose, the Shakespeare plays and Milton&rsquo;s longer poems held, the heroic&#8209;narrative tradition gave way &mdash; lyricization in miniature.
+						</li>
+					</ul>
+
+					<p class="backup-slide__foot">
+						Slopes in log&#8209;odds per decade vs the shared trend &nbsp;&middot;&nbsp; Middle English sits furthest right &mdash; Chaucer and the founders the nineteenth century canonized
+					</p>
+
+					<aside class="notes">
+						[Backup — if asked about the period grouping.] No new model — these are the same per-poem slopes, just grouped by the literary period each poem is labeled with in Chadwyck-Healey. A period can move even when its individual authors don’t, so it’s a useful cross-check. One nice detail: the Restoration ridge is actually two humps — the translation machinery falls hard, while Dryden’s own original verse only drifts down gently.
+					</aside>
+				</section>
+				</section>
+				<!-- /vertical stack -->
+
+				<section class="references-slide">
+					<h2>References</h2>
+					<ul class="references-list">
+						<li><span class="ref-author">Ayoola, Tom, et al.</span> &ldquo;ReFinED: An Efficient Zero-Shot-Capable Approach to End-to-End Entity Linking.&rdquo; <em>arXiv</em>:2207.04108, arXiv, 8 July 2022.</li>
+						<li><span class="ref-author">Benedict, Barbara M.</span> &ldquo;Choice Reading: Anthologies, Reading Practices and the Canon, 1680&ndash;1800.&rdquo; <em>The Yearbook of English Studies</em>, vol. 45, 2015, p. 35.</li>
+						<li><span class="ref-author">Bonnell, Thomas F.</span> &ldquo;Bookselling and Canon-Making: The Trade Rivalry over the English Poets, 1776&ndash;1783.&rdquo; <em>Studies in Eighteenth-Century Culture</em>, 1990.</li>
+						<li><span class="ref-author">Bonnell, Thomas Frank.</span> <em>The Most Disreputable Trade: Publishing the Classics of English Poetry, 1765&ndash;1810</em>. Oxford University Press, 2008.</li>
+						<li><span class="ref-author">Capretto, Tom&aacute;s, et al.</span> &ldquo;Bambi: A Simple Interface for Fitting Bayesian Linear Models in Python.&rdquo; <em>Journal of Statistical Software</em>, 2022.</li>
+						<li><span class="ref-author">Compagnon, Antoine.</span> <em>La Seconde Main: Ou, Le Travail de la Citation</em>. Seuil, 1979.</li>
+						<li><span class="ref-author">Gini, Corrado.</span> <em>Variabilit&agrave; e Mutabilit&agrave;: Contributo Allo Studio Delle Distribuzioni e Relazioni Statistiche</em>. Cuppini, 1912.</li>
+						<li><span class="ref-author">Guillory, John.</span> <em>Cultural Capital: The Problem of Literary Canon Formation</em>. University of Chicago Press, 1993.</li>
+						<li><span class="ref-author">Jackson, Virginia.</span> <em>Dickinson&rsquo;s Misery: A Theory of Lyric Reading</em>. Princeton University Press, 2005.</li>
+						<li><span class="ref-author">Karlin, Daniel.</span> &ldquo;Introduction.&rdquo; <em>English Poetry: A Bibliography of the English Poetry Full-Text Database</em>, Chadwyck-Healey, 1995.</li>
+						<li><span class="ref-author">Koeser, Rebecca Sutton, et al.</span> <em>Princeton Prosody, from Archive to Dataset</em>. 2026. [forthcoming]</li>
+						<li><span class="ref-author">Koeser, Rebecca Sutton, et al.</span> <em>Visualizing the Collections</em>. 2020.</li>
+						<li><span class="ref-author">LeGette, Casie.</span> <em>Remaking Romanticism: The Radical Politics of the Excerpt</em>. Palgrave Macmillan, 2017. Palgrave Studies in the Enlightenment, Romanticism and the Cultures of Print.</li>
+						<li><span class="ref-author">Martin, Meredith.</span> <em>Poetry&rsquo;s Data: Digital Humanities and the History of Prosody</em>. Princeton University Press, 2025.</li>
+						<li><span class="ref-author">Martin, Meredith.</span> <em>The Rise and Fall of Meter: Poetry and English National Culture, 1860&ndash;1930</em>. Princeton University Press, 2012.</li>
+						<li><span class="ref-author">McCutcheon, Mark A.</span> &ldquo;The Cento, Romanticism, and Copyright.&rdquo; <em>ESC: English Studies in Canada</em>, 2012.</li>
+						<li><span class="ref-author">McElreath, Richard.</span> <em>Statistical Rethinking: A Bayesian Course with Examples in R and Stan</em>. 2nd ed., Chapman &amp; Hall/CRC, 2020.</li>
+						<li><span class="ref-author">Prins, Yopie.</span> <em>Victorian Sappho</em>. Princeton University Press, 1999.</li>
+						<li><span class="ref-author">Rosen, Sherwin.</span> &ldquo;The Economics of Superstars.&rdquo; <em>The American Economic Review</em>, 1981.</li>
+						<li><span class="ref-author">Smith, David A., et al.</span> &ldquo;Detecting and Modeling Local Text Reuse.&rdquo; <em>IEEE/ACM Joint Conference on Digital Libraries</em>, 2014.</li>
+						<li><span class="ref-author">Thompson, Laure, et al.</span> &ldquo;Princeton Prosody Archive Found Poems Dataset.&rdquo; <em>Zenodo</em>, 2026.</li>
+					</ul>
+				<aside class="notes">
+					[Holding slide for discussion — the fuller reference list is in the paper.]
+				</aside>
+				</section>
+
+				<section class="closing-slide closing-slide--animated">
+					<div class="title-slide__zone" aria-hidden="true"></div>
+					<div class="closing-slide__main">
+						<p class="closing-slide__eyebrow">Thank you</p>
+						<h2 class="closing-slide__heading">Questions <em>&amp;</em> conversation</h2>
+						<p class="closing-slide__contact">
+							<a href="mailto:wouter.haverals@princeton.edu">wouter.haverals@princeton.edu</a>
+							<a
+								class="closing-slide__icon"
+								href="https://bsky.app/profile/wouterhaverals.bsky.social"
+								aria-label="Bluesky"
+								target="_blank"
+								rel="noopener"
+							>
+								<svg viewBox="0 0 600 530" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+									<path
+										d="m135.72 44.03c66.496 49.921 138.02 151.14 164.28 205.46 26.262-54.316 97.782-155.54 164.28-205.46 47.98-36.021 125.72-63.892 125.72 24.795 0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.092 82.697 152.22-122.39 125.59-175.91-31.511-189.63-71.766-2.514-7.3797-3.6904-10.832-3.7077-7.8964-0.0174-2.9357-1.1937 0.51669-3.7077 7.8964-13.714 40.255-67.233 197.36-189.63 71.766-64.444-66.128-34.605-132.26 82.697-152.22-67.108 11.421-142.55-7.4491-163.25-81.433-5.9562-21.282-16.111-152.36-16.111-170.07 0-88.687 77.742-60.816 125.72-24.795z"
+									/>
+								</svg>
+							</a>
+							<a
+								class="closing-slide__icon"
+								href="https://github.com/WHaverals/"
+								aria-label="GitHub"
+								target="_blank"
+								rel="noopener"
+							>
+								<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+									<path
+										d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+									/>
+								</svg>
+							</a>
+						</p>
+					</div>
+
+					<footer class="slide-footer">
+						<div class="slide-footer__presenter">
+							<p class="slide-footer__name">Wouter Haverals</p>
+							<p class="slide-footer__affiliation">
+								Princeton University · Center for Digital Humanities
+							</p>
+						</div>
+
+						<div class="slide-footer__logos">
+							<img
+								src="../../assets/logos/princeton-mark-black.svg"
+								alt="Princeton University"
+								class="logo-princeton"
+							/>
+							<span class="slide-footer__divider" aria-hidden="true"></span>
+							<img
+								src="../../assets/logos/cdh-black.svg"
+								alt="Center for Digital Humanities at Princeton"
+								class="logo-cdh"
+							/>
+						</div>
+					</footer>
+				<aside class="notes">
+					So, to sum up: the canon you see in how people actually taught poetry is both remarkably stable at the very top and genuinely turning over underneath — away from the neoclassical, toward the Romantic and the medieval. Thank you — I’d love to take your questions.
+				</aside>
+				</section>
+			</div>
+		</div>
+
+		<script src="../../reveal/dist/reveal.js"></script>
+		<script src="../../reveal/dist/plugin/markdown.js"></script>
+		<script src="../../reveal/dist/plugin/highlight.js"></script>
+		<script src="../../reveal/dist/plugin/notes.js"></script>
+		<script src="../../reveal/dist/plugin/math.js"></script>
+		<script src="../../plugins/matter/matter.min.js"></script>
+		<script src="../../assets/scripts/floating-verses.js"></script>
+		<script src="../../plugins/d3/d3.min.js"></script>
+		<script src="../../plugins/d3/reveald3.js"></script>
+
+		<script>
+			Reveal.initialize({
+				hash: true,
+				slideNumber: 'c/t',
+				transition: 'fade',
+				center: false,
+				plugins: [RevealMarkdown, RevealHighlight, RevealNotes, Reveald3, RevealMath.KaTeX],
+				katex: {
+					// vendored locally (offline-safe for the conference)
+					local: '../../plugins/katex',
+					delimiters: [
+						{ left: '\\(', right: '\\)', display: false },
+						{ left: '\\[', right: '\\]', display: true },
+					],
+				},
+			});
+
+			// race-slide controls: delegate clicks into the race iframe and keep
+			// the play/pause icon in sync with the iframe's reported state.
+			window.syncRacePauseUI = function (isPlaying) {
+				document
+					.querySelectorAll('.race-ctl--toggle')
+					.forEach((b) => b.classList.toggle('is-paused', !isPlaying));
+			};
+			document.addEventListener('click', (event) => {
+				const btn = event.target.closest('.race-ctl');
+				if (!btn) return;
+				event.stopPropagation();
+				const slide = btn.closest('.race-slide');
+				const iframe = slide && slide.querySelector('.race-slide__fig iframe');
+				const rc = iframe && iframe.contentWindow && iframe.contentWindow.raceControl;
+				if (!rc) return;
+				const action = btn.dataset.race;
+				if (action === 'prev') rc.prevDecade();
+				else if (action === 'next') rc.nextDecade();
+				else rc.toggle();
+				btn.blur();
+			});
+
+			// Only show the up arrow when there is a slide above (a down-slide);
+			// the theme hides .navigate-up unless .reveal has .can-up.
+			function updateUpControl() {
+				const hasUp = (Reveal.getIndices().v || 0) > 0;
+				revealEl().classList.toggle('can-up', hasUp);
+			}
+			Reveal.on('ready', updateUpControl);
+			Reveal.on('slidechanged', updateUpControl);
+
+			// Draw the "widening practice" curve in whenever its slide becomes active.
+			// reveald3 loads the iframe lazily, so poll briefly for playRate().
+			function playRateCurve(slide) {
+				if (!slide || !slide.classList.contains('rate-slide')) return;
+				let tries = 0;
+				const tick = () => {
+					const ifr = slide.querySelector('iframe');
+					const win = ifr && ifr.contentWindow;
+					if (win && typeof win.playRate === 'function') {
+						setTimeout(() => win.playRate(), 220);
+					} else if (tries++ < 40) {
+						setTimeout(tick, 80);
+					}
+				};
+				tick();
+			}
+			Reveal.on('ready', (e) => playRateCurve(e.currentSlide));
+			Reveal.on('slidechanged', (e) => playRateCurve(e.currentSlide));
+
+			let verses = null;
+			let titleSlideTimer = null;
+
+			// must match reveal.css transition durations (.8s/.4s/1.2s) — if the
+			// fallback timer fires early it activates scrims mid-cross-fade
+			const TRANSITION_MS = { default: 800, fast: 400, slow: 1200 };
+
+			function revealEl() {
+				return Reveal.getRevealElement();
+			}
+
+			function transitionDurationMs() {
+				const config = Reveal.getConfig();
+				if (config.transition === 'none') return 0;
+				const speed = config.transitionSpeed;
+				if (typeof speed === 'number' && speed >= 0) return speed;
+				if (typeof speed === 'string' && speed in TRANSITION_MS) {
+					return TRANSITION_MS[speed];
+				}
+				return TRANSITION_MS.default;
+			}
+
+			function stripAllTitleScrims() {
+				document
+					.querySelectorAll('.title-slide--scrims')
+					.forEach((slide) => slide.classList.remove('title-slide--scrims'));
+			}
+
+			function stopFloatingVerses() {
+				if (verses) {
+					verses.stop();
+					verses = null;
+				}
+			}
+
+			function startFloatingVerses(slide) {
+				stopFloatingVerses();
+				const zone = slide?.querySelector('.title-slide__zone');
+				if (!zone) return;
+
+				const start = () => {
+					if (Reveal.getCurrentSlide() !== slide) return;
+					verses = FloatingVerses.start(zone);
+				};
+
+				if (document.fonts && document.fonts.ready) {
+					document.fonts.ready.then(start);
+				} else {
+					start();
+				}
+			}
+
+			function activateTitleSlide(slide) {
+				const animated =
+					slide?.classList.contains('title-slide--animated') ||
+					slide?.classList.contains('closing-slide--animated');
+				if (!animated) return;
+				if (Reveal.getCurrentSlide() !== slide) return;
+
+				slide.classList.add('title-slide--scrims');
+				startFloatingVerses(slide);
+			}
+
+			function finishSlideTransition() {
+				clearTimeout(titleSlideTimer);
+				titleSlideTimer = null;
+				revealEl().classList.remove('is-transitioning');
+				activateTitleSlide(Reveal.getCurrentSlide());
+			}
+
+			function beginSlideTransition() {
+				revealEl().classList.add('is-transitioning');
+				clearTimeout(titleSlideTimer);
+				stopFloatingVerses();
+				stripAllTitleScrims();
+
+				// slidetransitionend is the primary signal; this fallback only covers
+				// transition: none or browsers that skip transitionend.
+				const ms = transitionDurationMs();
+				if (ms === 0) {
+					finishSlideTransition();
+					return;
+				}
+				titleSlideTimer = setTimeout(finishSlideTransition, ms + 50);
+			}
+
+			Reveal.on('ready', () => activateTitleSlide(Reveal.getCurrentSlide()));
+			Reveal.on('slidechanged', () => beginSlideTransition());
+			Reveal.on('slidetransitionend', () => finishSlideTransition());
+		</script>
+	</body>
+</html>

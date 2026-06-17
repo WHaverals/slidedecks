@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<script src="../../../plugins/d3/d3.min.js"></script>
+		<style>
+			body {
+				margin: 0;
+				background: transparent;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+		<script>
+			const data = [12, 26, 9, 30, 18, 22, 7];
+			const width = 860;
+			const height = 420;
+			const pad = 30;
+
+			const svg = d3
+				.select('body')
+				.append('svg')
+				.attr('width', width)
+				.attr('height', height);
+
+			const x = d3
+				.scaleBand()
+				.domain(d3.range(data.length))
+				.range([pad, width - pad])
+				.padding(0.25);
+
+			const y = d3
+				.scaleLinear()
+				.domain([0, d3.max(data)])
+				.range([height - pad, pad]);
+
+			const bars = svg
+				.selectAll('rect')
+				.data(data)
+				.join('rect')
+				.attr('x', (d, i) => x(i))
+				.attr('width', x.bandwidth())
+				.attr('y', height - pad)
+				.attr('height', 0)
+				.attr('rx', 4)
+				.attr('fill', '#b5341c');
+
+			// reveald3 reads this from the iframe: one entry per fragment step
+			var _transitions = [
+				{
+					transitionForward: () =>
+						bars
+							.transition()
+							.duration(900)
+							.delay((d, i) => i * 80)
+							.attr('y', (d) => y(d))
+							.attr('height', (d) => height - pad - y(d)),
+					transitionBackward: () =>
+						bars.transition().duration(400).attr('y', height - pad).attr('height', 0),
+					index: 0,
+				},
+				{
+					transitionForward: () =>
+						bars
+							.transition()
+							.duration(900)
+							.attr('fill', (d) => (d === d3.max(data) ? '#b5341c' : '#d8cfc4')),
+					transitionBackward: () =>
+						bars.transition().duration(400).attr('fill', '#b5341c'),
+					index: 1,
+				},
+			];
+		</script>
+	</body>
+</html>

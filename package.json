@@ -1,0 +1,37 @@
+{
+  "name": "slidedecks",
+  "version": "1.0.0",
+  "description": "Homebase for reveal.js slide decks",
+  "private": true,
+  "scripts": {
+    "sync-reveal": "node scripts/sync-reveal.mjs",
+    "sync-vendor": "node scripts/sync-vendor.mjs",
+    "build:theme": "sass theme/source/wouter.scss theme/wouter.css --load-path=node_modules/reveal.js/css/theme",
+    "build:index": "node scripts/build-index.mjs",
+    "build": "npm run sync-reveal && npm run sync-vendor && npm run build:theme && npm run build:index",
+    "prepare:pages": "node scripts/prepare-pages.mjs",
+    "new": "node scripts/new-deck.mjs",
+    "export:ppa-ribbon": "node scripts/export-ppa-pages-ribbon.mjs",
+    "start": "node scripts/start.mjs",
+    "postinstall": "npm run sync-reveal"
+  },
+  "keywords": [
+    "reveal.js",
+    "slides",
+    "presentations"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chart.js": "^4.5.1",
+    "d3": "^7.9.0",
+    "katex": "^0.17.0",
+    "matter-js": "^0.20.0",
+    "reveal.js": "^6.0.1",
+    "reveal.js-mermaid-plugin": "^11.15.0",
+    "sass": "^1.100.0"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}

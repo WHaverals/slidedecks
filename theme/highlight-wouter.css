@@ -1,0 +1,120 @@
+/*
+ * Warm syntax highlighting for the Wouter light theme.
+ */
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	padding: 0.75em 1em;
+	background: #ebe6de;
+	color: #1c1917;
+	border-radius: 6px;
+}
+
+.hljs-comment,
+.hljs-quote {
+	color: #78716c;
+	font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-literal,
+.hljs-type {
+	color: var(--w-accent, #a63b1c);
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition {
+	color: #4a6741;
+}
+
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet {
+	color: #95572b;
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-name {
+	color: #1c1917;
+	font-weight: 600;
+}
+
+.hljs-attribute,
+.hljs-variable,
+.hljs-template-variable {
+	color: #7d4a33;
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+	color: #8a4029;
+}
+
+.hljs-meta,
+.hljs-deletion {
+	color: #57534e;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: 600;
+}
+
+/* Dark contrast slides */
+section.has-dark-background .hljs {
+	background: #3a322c;
+	color: #f0ebe3;
+}
+
+section.has-dark-background .hljs-comment,
+section.has-dark-background .hljs-quote {
+	color: #a8a29e;
+}
+
+section.has-dark-background .hljs-keyword,
+section.has-dark-background .hljs-selector-tag,
+section.has-dark-background .hljs-literal,
+section.has-dark-background .hljs-type {
+	color: var(--w-accent-light, #eda584);
+}
+
+section.has-dark-background .hljs-string,
+section.has-dark-background .hljs-regexp,
+section.has-dark-background .hljs-addition {
+	color: #a8c4a0;
+}
+
+section.has-dark-background .hljs-number,
+section.has-dark-background .hljs-symbol,
+section.has-dark-background .hljs-bullet {
+	color: #e3bb9d;
+}
+
+section.has-dark-background .hljs-title,
+section.has-dark-background .hljs-section,
+section.has-dark-background .hljs-name {
+	color: #f0ebe3;
+}
+
+section.has-dark-background .hljs-attribute,
+section.has-dark-background .hljs-variable,
+section.has-dark-background .hljs-template-variable {
+	color: #f2d4c2;
+}
+
+section.has-dark-background .hljs-built_in,
+section.has-dark-background .hljs-builtin-name {
+	color: var(--w-accent-light, #eda584);
+}
+
+section.has-dark-background .hljs-meta,
+section.has-dark-background .hljs-deletion {
+	color: #a8a29e;
+}

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		/>
+		<title><!-- PRESENTATION_TITLE -->Plugin Showcase</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap"
+		/>
+
+		<link rel="stylesheet" href="../../reveal/dist/reset.css" />
+		<link rel="stylesheet" href="../../reveal/dist/reveal.css" />
+		<link rel="stylesheet" href="../../theme/wouter.css" />
+		<link rel="stylesheet" href="../../theme/highlight-wouter.css" />
+		<link rel="stylesheet" href="../../plugins/railroad/railroad.css" />
+
+		<style>
+			/* reveald3 sizes its iframe with 100vw, which under reveal's scale
+			   transform is too narrow — fill the fig-container instead */
+			.reveal .fig-container iframe {
+				width: 100% !important;
+				height: 100% !important;
+			}
+
+			/* Railroad diagrams, retoned to the theme */
+			svg.railroad-diagram {
+				background: transparent;
+				width: 100%;
+				max-width: 760px;
+				height: auto;
+			}
+			svg.railroad-diagram path {
+				stroke: #1c1917;
+				stroke-width: 2;
+			}
+			svg.railroad-diagram rect {
+				stroke: #1c1917;
+				stroke-width: 2;
+				fill: #ebe6de;
+			}
+			svg.railroad-diagram text {
+				font: bold 14px 'JetBrains Mono', ui-monospace, monospace;
+				fill: #1c1917;
+			}
+			svg.railroad-diagram g.non-terminal rect {
+				fill: #b5341c;
+			}
+			svg.railroad-diagram g.non-terminal text {
+				fill: #faf8f5;
+			}
+		</style>
+	</head>
+	<!-- Accent palette: rubric (default) | lapis | verdigris | tyrian -->
+	<body data-palette="rubric">
+		<div class="reveal">
+			<div class="slides">
+				<section class="title-slide">
+					<div class="title-slide__main">
+						<p class="title-slide__eyebrow">
+							<span class="title-slide__event"><!-- CONFERENCE -->Slidedeck Toolkit</span>
+							<span class="title-slide__date"><!-- DATE -->June 2026</span>
+						</p>
+						<h1 class="title-slide__presentation"><!-- PRESENTATION_TITLE -->Plugin Showcase</h1>
+					</div>
+
+					<footer class="slide-footer">
+						<div class="slide-footer__presenter">
+							<p class="slide-footer__name"><!-- AUTHOR -->Your Name</p>
+							<p class="slide-footer__affiliation">
+								<!-- AFFILIATION -->Princeton University · Center for Digital Humanities
+							</p>
+						</div>
+
+						<div class="slide-footer__logos">
+							<img
+								src="../../assets/logos/princeton-mark-black.svg"
+								alt="Princeton University"
+								class="logo-princeton"
+							/>
+							<span class="slide-footer__divider" aria-hidden="true"></span>
+							<img
+								src="../../assets/logos/cdh-black.svg"
+								alt="Center for Digital Humanities at Princeton"
+								class="logo-cdh"
+							/>
+						</div>
+					</footer>
+				</section>
+
+				<section data-state="draw-talks-chart">
+					<h2>Chart.js</h2>
+					<p>Canvas charts, animated on slide entry.</p>
+					<canvas id="talks-chart" width="880" height="400"></canvas>
+				</section>
+
+				<section>
+					<h2>Mermaid</h2>
+					<p>Diagrams from text, rendered at load.</p>
+					<div class="mermaid">
+						<pre>
+							%%{init: {"theme": "base", "themeVariables": {
+								"primaryColor": "#ebe6de",
+								"primaryTextColor": "#1c1917",
+								"primaryBorderColor": "#1c1917",
+								"lineColor": "#57534e",
+								"fontFamily": "Source Sans 3, sans-serif"
+							}}}%%
+							flowchart LR
+								A[Sources] --> B(Corpus)
+								B --> C{Model}
+								C -->|topics| D[Analysis]
+								C -->|embeddings| E[Maps]
+						</pre>
+					</div>
+				</section>
+
+				<section>
+					<h2>Animated d3 figures</h2>
+					<p>Fragments step through transitions inside the embedded figure.</p>
+					<div
+						class="fig-container"
+						data-file="assets/d3-bars.html"
+						data-scroll="no"
+						style="height: 440px"
+					></div>
+				</section>
+
+				<section>
+					<h2>Word cloud</h2>
+					<div
+						wordcloud='{"gridSize": 16, "weightFactor": 3.2, "color": "#b5341c", "fontFamily": "Fraunces, Georgia, serif"}'
+						style="width: 100%; height: 440px"
+					>
+						30 digital humanities
+						24 archives
+						20 text mining
+						18 corpora
+						16 metadata
+						14 annotation
+						13 manuscripts
+						12 visualization
+						11 modeling
+						10 maps
+						9 networks
+						8 provenance
+						7 OCR
+						6 IIIF
+						5 stylometry
+					</div>
+				</section>
+
+				<section>
+					<h2>Railroad diagrams</h2>
+					<p>Deck naming grammar: <code>YYYY-MM-topic</code></p>
+					<div id="railroad"></div>
+				</section>
+
+				<section class="closing-slide">
+					<div class="closing-slide__main">
+						<p class="closing-slide__eyebrow">Thank you</p>
+						<h2 class="closing-slide__heading">Questions <em>&amp;</em> conversation</h2>
+						<p class="closing-slide__contact">
+							<a href="mailto:wouter.haverals@princeton.edu"><!-- EMAIL -->wouter.haverals@princeton.edu</a>
+							<a
+								class="closing-slide__icon"
+								href="https://bsky.app/profile/wouterhaverals.bsky.social"
+								aria-label="Bluesky"
+								target="_blank"
+								rel="noopener"
+							>
+								<svg viewBox="0 0 600 530" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+									<path
+										d="m135.72 44.03c66.496 49.921 138.02 151.14 164.28 205.46 26.262-54.316 97.782-155.54 164.28-205.46 47.98-36.021 125.72-63.892 125.72 24.795 0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.092 82.697 152.22-122.39 125.59-175.91-31.511-189.63-71.766-2.514-7.3797-3.6904-10.832-3.7077-7.8964-0.0174-2.9357-1.1937 0.51669-3.7077 7.8964-13.714 40.255-67.233 197.36-189.63 71.766-64.444-66.128-34.605-132.26 82.697-152.22-67.108 11.421-142.55-7.4491-163.25-81.433-5.9562-21.282-16.111-152.36-16.111-170.07 0-88.687 77.742-60.816 125.72-24.795z"
+									/>
+								</svg>
+							</a>
+							<a
+								class="closing-slide__icon"
+								href="https://github.com/WHaverals/"
+								aria-label="GitHub"
+								target="_blank"
+								rel="noopener"
+							>
+								<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+									<path
+										d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+									/>
+								</svg>
+							</a>
+						</p>
+					</div>
+
+					<footer class="slide-footer">
+						<div class="slide-footer__presenter">
+							<p class="slide-footer__name"><!-- AUTHOR -->Your Name</p>
+							<p class="slide-footer__affiliation">
+								<!-- AFFILIATION -->Princeton University · Center for Digital Humanities
+							</p>
+						</div>
+
+						<div class="slide-footer__logos">
+							<img
+								src="../../assets/logos/princeton-mark-black.svg"
+								alt="Princeton University"
+								class="logo-princeton"
+							/>
+							<span class="slide-footer__divider" aria-hidden="true"></span>
+							<img
+								src="../../assets/logos/cdh-black.svg"
+								alt="Center for Digital Humanities at Princeton"
+								class="logo-cdh"
+							/>
+						</div>
+					</footer>
+				</section>
+			</div>
+		</div>
+
+		<script src="../../reveal/dist/reveal.js"></script>
+		<script src="../../reveal/dist/plugin/markdown.js"></script>
+		<script src="../../reveal/dist/plugin/highlight.js"></script>
+		<script src="../../reveal/dist/plugin/notes.js"></script>
+		<script src="../../plugins/chartjs/chart.umd.js"></script>
+		<script src="../../plugins/mermaid/mermaid.js"></script>
+		<script src="../../plugins/d3/d3.min.js"></script>
+		<script src="../../plugins/d3/reveald3.js"></script>
+
+		<script>
+			Reveal.initialize({
+				hash: true,
+				slideNumber: 'c/t',
+				transition: 'fade',
+				center: false,
+				plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMermaid, Reveald3],
+			});
+
+			// Chart.js — drawn the first time its slide's data-state fires
+			let talksChart;
+			Reveal.on('draw-talks-chart', () => {
+				if (talksChart) return;
+				Chart.defaults.font.family = "'Source Sans 3', system-ui, sans-serif";
+				Chart.defaults.font.size = 18;
+				Chart.defaults.color = '#57534e';
+				talksChart = new Chart(document.getElementById('talks-chart'), {
+					type: 'bar',
+					data: {
+						labels: ['2021', '2022', '2023', '2024', '2025', '2026'],
+						datasets: [
+							{
+								label: 'Talks',
+								data: [3, 5, 4, 7, 8, 6],
+								backgroundColor: '#b5341c',
+								borderRadius: 4,
+							},
+							{
+								label: 'Workshops',
+								data: [1, 2, 4, 3, 5, 4],
+								backgroundColor: '#d8cfc4',
+								borderRadius: 4,
+							},
+						],
+					},
+					options: {
+						responsive: false,
+						animation: { duration: 1100, easing: 'easeOutQuart' },
+						scales: {
+							x: { grid: { display: false } },
+							y: { grid: { color: 'rgba(28, 25, 23, 0.08)' }, ticks: { stepSize: 2 } },
+						},
+					},
+				});
+			});
+		</script>
+
+		<!-- Word cloud plugin listens on Reveal events: load after Reveal.initialize() -->
+		<script src="../../plugins/wordcloud/reveal-wordcloud.js"></script>
+
+		<script type="module">
+			import rr from '../../plugins/railroad/railroad.js';
+			const { Diagram, Sequence, Terminal, NonTerminal, OneOrMore } = rr;
+			Diagram(
+				Sequence(
+					NonTerminal('year'),
+					Terminal('-'),
+					NonTerminal('month'),
+					Terminal('-'),
+					OneOrMore(NonTerminal('word'), Terminal('-'))
+				)
+			).addTo(document.getElementById('railroad'));
+		</script>
+	</body>
+</html>

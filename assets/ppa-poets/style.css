@@ -1,0 +1,277 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  background: #fff;
+}
+
+#container {
+  position: fixed;
+  inset: 0;
+}
+
+#ui {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 10;
+  width: 320px;
+  max-width: calc(100vw - 24px);
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+  backdrop-filter: blur(6px);
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.titleActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.title {
+  font-weight: 750;
+  font-size: 22px;
+  margin-bottom: 0;
+}
+
+#search {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 9px 11px;
+  border: 1px solid rgba(0,0,0,0.14);
+  border-radius: 12px;
+  font-size: 15px;
+  outline: none;
+  margin-top: 10px;
+}
+
+#search:focus {
+  border-color: rgba(0,0,0,0.25);
+}
+
+#timeControls {
+  margin-top: 10px;
+  padding: 9px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.78);
+}
+
+.controlHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.controlHeader label {
+  font-size: 12px;
+  font-weight: 700;
+}
+
+#sliceLabel {
+  font-size: 12px;
+  font-weight: 600;
+  opacity: 0.78;
+  white-space: nowrap;
+}
+
+#sliceSlider {
+  width: 100%;
+  margin: 0;
+  accent-color: #222;
+}
+
+#sliceStats {
+  margin-top: 8px;
+  font-size: 12px;
+  line-height: 1.35;
+  opacity: 0.82;
+}
+
+.toggleRow {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 9px;
+  font-size: 12px;
+  line-height: 1.25;
+  opacity: 0.86;
+  user-select: none;
+}
+
+.toggleRow input {
+  margin: 0;
+  accent-color: #c0392b;
+}
+
+.filterRow {
+  margin-top: 9px;
+  font-size: 12px;
+  line-height: 1.25;
+  opacity: 0.86;
+}
+
+.filterRow label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.filterRow input {
+  width: 100%;
+  margin: 0;
+  accent-color: #222;
+}
+
+.topPanel {
+  margin-top: 10px;
+  padding: 9px 10px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.78);
+  font-size: 12px;
+}
+
+.topPanel summary {
+  cursor: pointer;
+  font-weight: 700;
+  user-select: none;
+}
+
+#topPoetsList {
+  margin: 8px 0 0 18px;
+  padding: 0;
+}
+
+#topPoetsList li {
+  margin: 3px 0;
+}
+
+.topPoetName {
+  font-weight: 600;
+}
+
+.topPoetMeta {
+  opacity: 0.72;
+}
+
+#aboutBtn,
+#resetBtn {
+  flex: 0 0 auto;
+  border: 1px solid rgba(0,0,0,0.14);
+  background: rgba(255,255,255,0.9);
+  border-radius: 12px;
+  padding: 8px 10px;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+#aboutBtn:hover,
+#resetBtn:hover {
+  border-color: rgba(0,0,0,0.22);
+}
+
+#aboutBtn:active,
+#resetBtn:active {
+  transform: translateY(1px);
+}
+
+#aboutPanel {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: rgba(255,255,255,0.85);
+}
+
+.aboutTitle {
+  font-weight: 700;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+.aboutBody {
+  font-size: 12px;
+  line-height: 1.35;
+  opacity: 0.9;
+}
+
+.aboutStats {
+  display: inline;
+  margin-left: 0;
+  opacity: 0.75;
+  white-space: normal;
+}
+
+.aboutLink {
+  display: inline-block;
+  margin-top: 8px;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.aboutLink:hover {
+  text-decoration: underline;
+}
+
+#hint {
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+#status {
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: 0.85;
+  white-space: pre-wrap;
+}
+
+#details {
+  position: static;
+  margin-top: 10px;
+  font-size: 13px;
+  line-height: 1.3;
+  max-height: 40vh;
+  overflow: auto;
+}
+
+.detailBlock {
+  margin-top: 10px;
+  padding-top: 8px;
+  border-top: 1px solid rgba(0,0,0,0.08);
+}
+
+.detailHeading {
+  margin-bottom: 3px;
+  font-weight: 700;
+  opacity: 0.78;
+}
+
+.detailSubtle {
+  margin-top: 2px;
+  opacity: 0.7;
+}
+
+.detailLink {
+  display: inline;
+  margin-top: 0;
+  font-size: inherit;
+  text-decoration: none;
+}
+
+.detailLink:hover {
+  text-decoration: underline;
+}

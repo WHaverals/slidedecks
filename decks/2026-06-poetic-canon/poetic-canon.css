@@ -1,0 +1,2122 @@
+/* Deck-local: PPA intro + Gray Elegy stack (2026-06-poetic-canon) */
+
+.reveal .slides section.ppa-intro-slide {
+	padding-top: 0.35em;
+}
+
+.reveal .slides section.ppa-intro-slide::before {
+	content: "";
+	display: block;
+	width: 2.8rem;
+	height: 5px;
+	background: var(--w-accent);
+	margin-bottom: 1.1rem;
+}
+
+/* archive slide: title spans full width, then a [table + ribbon] | logo row */
+.reveal .ppa-intro__layout {
+	--ppa-logo-h: 6.6em;
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	align-items: center;
+	gap: 2.25em;
+	width: 100%;
+	margin-top: 0.35em;
+}
+
+/* left column groups the spec table and the pages ribbon as one block */
+.reveal .ppa-intro__col {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+}
+
+.reveal .ppa-intro__brand {
+	align-self: stretch; /* divider rule spans the full table + ribbon height */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	margin: 0;
+	padding: 0 0 0 2em;
+	border-left: 1px solid rgba(70, 98, 172, 0.14);
+}
+
+.reveal .ppa-intro__brand-link {
+	margin-top: 0.4em;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.4em;
+	letter-spacing: 0.04em;
+}
+
+.reveal .ppa-intro__brand-link a {
+	color: #78716c;
+	text-decoration: none;
+	border-bottom: 1px solid color-mix(in srgb, var(--w-accent) 30%, transparent);
+}
+
+.reveal .ppa-intro__brand-link a:hover {
+	color: var(--w-accent);
+}
+
+.reveal .ppa-intro__brand img {
+	display: block;
+	width: calc(var(--ppa-logo-h) * 730 / 1164);
+	height: var(--ppa-logo-h);
+	margin-top: calc(var(--ppa-logo-h) * -53 / 1164);
+	object-fit: contain;
+	object-position: top center;
+	filter: drop-shadow(0 10px 28px rgba(70, 98, 172, 0.1));
+}
+
+.reveal .ppa-intro-slide h2 {
+	max-width: 14em;
+	margin: 0 0 0.85em;
+	font-size: 1.65em;
+	line-height: 1.12;
+	letter-spacing: -0.025em;
+}
+
+.reveal .ppa-intro-slide--archive h2 {
+	max-width: 12em;
+	margin-bottom: 0.45em;
+	font-size: 1.32em;
+}
+
+.reveal .ppa-intro-slide h2 em {
+	font-style: italic;
+	font-weight: 500;
+}
+
+.reveal .ppa-intro__lede {
+	max-width: 30em;
+	margin: 0 0 1.1em;
+	font-family: Fraunces, Georgia, serif;
+	font-size: 0.72em;
+	font-style: italic;
+	font-weight: 500;
+	line-height: 1.42;
+	color: #57534e;
+}
+
+/* Spec-sheet definition list: a label column + value, one fact per row */
+.reveal .ppa-intro__facts {
+	width: 100%;
+	margin: 1em 0 0;
+	padding: 0;
+}
+
+.reveal .ppa-intro__fact {
+	display: grid;
+	grid-template-columns: 8rem 1fr;
+	align-items: baseline;
+	gap: 1.4rem;
+	padding: 0.34em 0;
+	border-top: 1px solid rgba(70, 98, 172, 0.16);
+}
+
+.reveal .ppa-intro__fact:last-child {
+	border-bottom: 1px solid rgba(70, 98, 172, 0.16);
+}
+
+.reveal .ppa-intro__fact-label {
+	margin: 0;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.42em;
+	font-weight: 600;
+	line-height: 1.5;
+	letter-spacing: 0.07em;
+	text-transform: uppercase;
+	color: var(--w-accent);
+}
+
+.reveal .ppa-intro__fact-value {
+	margin: 0;
+	font-size: 0.55em;
+	line-height: 1.4;
+	color: #44403c;
+}
+
+/* Host-work pages ribbon (RevealD3) under the PPA intro spec sheet */
+.reveal .ppa-intro__exposure {
+	width: 100%;
+	margin-top: 1em;
+}
+
+.reveal .ppa-intro__exposure-label {
+	margin: 0 0 0.25em;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.38em;
+	font-weight: 600;
+	line-height: 1.4;
+	letter-spacing: 0.07em;
+	text-transform: uppercase;
+	color: var(--w-accent);
+}
+
+.reveal .ppa-intro__exposure .fig-container {
+	width: 100%;
+	height: 3.5em;
+	overflow: hidden;
+}
+
+.reveal .ppa-intro__exposure .fig-container iframe {
+	width: 100% !important;
+	height: 100% !important;
+	border: 0;
+}
+
+.reveal .ppa-intro__exposure-caption {
+	max-width: 36em;
+	margin: 0.55em 0 0;
+	font-size: 0.52em;
+	line-height: 1.45;
+	color: #57534e;
+}
+
+.reveal .ppa-intro__points {
+	display: grid;
+	gap: 0.95em;
+	width: 100%;
+	max-width: 38em;
+	margin: 0;
+}
+
+.reveal .ppa-intro__points p {
+	max-width: none;
+	margin: 0;
+	padding: 0.75em 0 0.75em 0.95em;
+	border-left: 3px solid rgba(70, 98, 172, 0.34);
+	font-size: 0.68em;
+	line-height: 1.45;
+	color: #44403c;
+}
+
+.reveal .ppa-intro__points strong {
+	display: block;
+	margin-bottom: 0.2em;
+	font-size: 1.05em;
+	color: color-mix(in srgb, var(--w-accent) 88%, #1c1917);
+}
+
+@media (max-width: 900px) {
+	.reveal .ppa-intro__layout {
+		--ppa-logo-h: 5.5em;
+		grid-template-columns: 1fr;
+		gap: 1.1em;
+	}
+
+	.reveal .ppa-intro__brand {
+		order: -1;
+		padding: 0 0 0.75em;
+		border-left: none;
+		border-bottom: 1px solid rgba(70, 98, 172, 0.14);
+	}
+
+	.reveal .ppa-intro__brand img {
+		margin-top: 0;
+	}
+
+	.reveal .ppa-intro__fact {
+		grid-template-columns: 6.5rem 1fr;
+		gap: 1rem;
+	}
+
+	.reveal .ppa-intro-slide h2 {
+		font-size: 1.45em;
+	}
+
+	.reveal .ppa-intro__exposure {
+		margin-top: 0.85em;
+		padding-top: 0.65em;
+	}
+
+	.reveal .ppa-intro__exposure .fig-container {
+		height: 5.5em;
+	}
+}
+
+@media print {
+	.reveal .ppa-intro__layout {
+		grid-template-columns: 1fr auto;
+		--ppa-logo-h: 8em;
+	}
+
+	.reveal .ppa-intro__facts {
+		break-inside: avoid;
+	}
+
+	.reveal .ppa-intro__exposure {
+		break-inside: avoid;
+	}
+}
+
+/* Gray Elegy snippet stack */
+
+.reveal .slides section.elegy-stack-slide {
+	padding-top: 0.3em;
+}
+
+.reveal .elegy-stack-slide__header {
+	width: 100%;
+}
+
+/* accent ribbon above the header — matches the ppa-intro slides */
+.reveal .elegy-stack-slide__header::before {
+	content: "";
+	display: block;
+	width: 2.8rem;
+	height: 5px;
+	background: var(--w-accent);
+	margin-bottom: 1.1rem;
+}
+
+.reveal .elegy-stack-slide h2 {
+	margin-bottom: 0.15em;
+	font-size: 1.5em;
+}
+
+.reveal .elegy-stack-slide h2 em {
+	font-style: italic;
+	font-weight: 500;
+}
+
+.reveal .elegy-stack-slide__lede {
+	max-width: 34em;
+	margin: 0;
+	font-size: 0.68em;
+	line-height: 1.35;
+	color: #57534e;
+}
+
+.reveal .elegy-stack-slide__stage {
+	width: 100%;
+	margin: 2.4em 0 0;
+}
+
+.reveal .elegy-stack-slide__showcase {
+	--elegy-card-w: min(480px, 50vw);
+	width: min(900px, 96vw);
+	margin: 0 auto;
+}
+
+.reveal .elegy-stack-slide__layout {
+	position: relative;
+	width: 100%;
+	min-height: calc(var(--elegy-card-w) / 1.14 + 3.5rem);
+	max-height: min(520px, 62vh);
+}
+
+.reveal .elegy-stack-column {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: var(--elegy-card-w);
+	transform: translateX(-50%);
+	transition:
+		left 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+		transform 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reveal .elegy-stack-slide__layout:has(.elegy-stack-slide__hint.visible) .elegy-stack-column {
+	left: 0;
+	transform: translateX(0);
+}
+
+@keyframes elegy-hint-reveal {
+	from {
+		opacity: 0;
+		transform: translateY(-50%) translateX(1.5rem);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(-50%) translateX(0);
+	}
+}
+
+.reveal .elegy-stack {
+	position: relative;
+	width: 100%;
+	height: calc(var(--elegy-card-w) / 1.14 + 3.5rem);
+	max-height: min(520px, 62vh);
+}
+
+.reveal .elegy-snippet {
+	position: absolute;
+	inset: 0;
+	display: grid;
+	grid-template-rows: minmax(0, 1fr) auto;
+	gap: 0.5em;
+	margin: 0;
+	padding: 8px 6px 10px;
+	overflow: hidden;
+	background: #fff;
+	border: 1px solid rgba(70, 98, 172, 0.28);
+	border-radius: 8px;
+	box-shadow:
+		0 1px 2px rgba(28, 25, 23, 0.06),
+		0 8px 28px rgba(28, 25, 23, 0.11);
+	transform-origin: center center;
+	transition: box-shadow 0.35s ease;
+}
+
+.reveal .elegy-snippet.visible.current-fragment {
+	box-shadow:
+		0 2px 4px rgba(28, 25, 23, 0.08),
+		0 12px 36px rgba(70, 98, 172, 0.16);
+}
+
+.reveal .elegy-snippet__media {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 0;
+	overflow: hidden;
+}
+
+.reveal .elegy-snippet img {
+	display: block;
+	max-width: 100%;
+	max-height: 100%;
+	width: auto;
+	height: auto;
+	object-fit: contain;
+	object-position: center center;
+}
+
+.reveal .elegy-snippet figcaption {
+	margin: 0;
+	padding: 0.6em 0.25em 0.1em;
+	border-top: 1px solid rgba(70, 98, 172, 0.16);
+	font-size: 0.44em;
+	line-height: 1.35;
+	letter-spacing: 0.01em;
+	color: #57534e;
+	text-align: center;
+}
+
+.reveal .elegy-snippet figcaption strong {
+	font-weight: 600;
+	color: #4662ac;
+}
+
+.reveal .elegy-snippet--1 {
+	z-index: 1;
+	transform: rotate(-1.6deg) translate(-4px, -2px);
+}
+
+.reveal .elegy-snippet--2 {
+	z-index: 2;
+	transform: rotate(1.3deg) translate(5px, 3px);
+}
+
+.reveal .elegy-snippet--3 {
+	z-index: 3;
+	transform: rotate(-0.7deg) translate(-2px, 5px);
+}
+
+.reveal .elegy-snippet--4 {
+	z-index: 4;
+	transform: rotate(1.8deg) translate(6px, -2px);
+}
+
+.reveal .elegy-snippet--5 {
+	z-index: 5;
+	transform: rotate(-1.1deg) translate(-5px, 4px);
+}
+
+.reveal .elegy-snippet--6 {
+	z-index: 6;
+	transform: rotate(0.9deg) translate(3px, 5px);
+}
+
+.reveal .elegy-stack-slide__hint {
+	position: absolute;
+	top: 50%;
+	left: calc(var(--elegy-card-w) + 2.5rem);
+	width: min(16em, calc(100% - var(--elegy-card-w) - 2.5rem));
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+	text-align: left;
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(-50%) translateX(1.5rem);
+}
+
+/* Stacked epigraph: observation -> claim -> citation, each with an accent rule */
+.reveal .elegy-epigraph__line {
+	margin: 0;
+	padding: 0.08em 0 0.08em 0.9em;
+	border-left: 3px solid color-mix(in srgb, var(--w-accent) 55%, #faf8f5);
+	font-family: Fraunces, Georgia, serif;
+	font-size: 0.6em;
+	font-style: italic;
+	font-weight: 500;
+	line-height: 1.4;
+	letter-spacing: 0.01em;
+	color: #44403c;
+}
+
+.reveal .elegy-epigraph__line--cite {
+	color: #57534e;
+}
+
+.reveal .elegy-epigraph__source {
+	display: block;
+	margin-top: 0.3em;
+	font-style: normal;
+	font-size: 0.8em;
+	letter-spacing: 0.02em;
+	color: #78716c;
+}
+
+/* Wait for the stack to finish sliding left before revealing the epigraph. */
+.reveal .slides section.elegy-stack-slide .elegy-stack-slide__hint.fragment.visible {
+	visibility: visible;
+	opacity: 0;
+	animation: elegy-hint-reveal 0.5s cubic-bezier(0.4, 0, 0.2, 1) 0.58s forwards;
+}
+
+.reveal .slides section.elegy-stack-slide .elegy-stack-slide__hint.fragment:not(.visible) {
+	animation: none;
+}
+
+@media (max-width: 900px) {
+	.reveal .elegy-stack-slide__showcase {
+		--elegy-card-w: min(440px, 78vw);
+		width: min(820px, 98vw);
+	}
+
+	.reveal .elegy-stack-slide__hint {
+		left: calc(var(--elegy-card-w) + 1.75rem);
+		width: min(14em, calc(100% - var(--elegy-card-w) - 1.75rem));
+	}
+
+	.reveal .elegy-epigraph__line {
+		font-size: 0.56em;
+	}
+}
+
+@media print {
+	.reveal .elegy-stack-slide__showcase {
+		--elegy-card-w: 460px;
+	}
+
+	.reveal .elegy-stack-column {
+		left: 0;
+		transform: none;
+	}
+
+	.reveal .elegy-stack {
+		max-height: none;
+	}
+
+	.reveal .elegy-stack-slide__hint {
+		opacity: 1;
+		visibility: visible;
+		transform: translateY(-50%);
+		animation: none;
+	}
+}
+
+/* References slide */
+.reveal .slides section.references-slide {
+	padding-top: 0.35em;
+}
+
+.reveal .slides section.references-slide::before {
+	content: "";
+	display: block;
+	width: 2.8rem;
+	height: 5px;
+	background: var(--w-accent);
+	margin-bottom: 1.1rem;
+}
+
+.reveal .references-slide h2 {
+	margin: 0 0 0.7em;
+	font-size: 1.5em;
+	letter-spacing: -0.02em;
+}
+
+.reveal .references-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	max-width: 62em;
+}
+
+.reveal .references-list li {
+	margin: 0 0 0.4em;
+	padding-left: 1.5em;
+	text-indent: -1.5em; /* hanging indent for citations */
+	font-size: 0.37em;
+	line-height: 1.35;
+	color: #8a8378; /* publisher / year sit back in muted grey */
+}
+
+/* author leads each entry in the archive blue — makes the alphabetical list scan */
+.reveal .ref-author {
+	color: var(--w-accent);
+	font-weight: 600;
+}
+
+/* the work title, with a delicate teal underline */
+.reveal .references-list em {
+	font-style: italic;
+	color: #1c1917;
+	text-decoration: underline;
+	text-decoration-color: color-mix(in srgb, #58c3c4 90%, transparent);
+	text-decoration-thickness: 1.5px;
+	text-underline-offset: 0.16em;
+}
+
+/* floating-verses overlay on the closing slide (mirrors the title slide).
+   NB: do NOT set position:relative here — reveal already positions the slide
+   absolutely, and overriding it flows the last slide off-screen. */
+.reveal .slides section.closing-slide.closing-slide--animated {
+	overflow: hidden;
+}
+.reveal .slides section.closing-slide.closing-slide--animated .title-slide__zone {
+	position: absolute;
+	inset: 0;
+	z-index: 0;
+	overflow: hidden;
+	pointer-events: none;
+}
+.reveal .slides section.closing-slide.closing-slide--animated .closing-slide__main,
+.reveal .slides section.closing-slide.closing-slide--animated .slide-footer {
+	position: relative;
+	z-index: 1;
+}
+.reveal .slides section.closing-slide.closing-slide--animated .closing-slide__main::after {
+	content: "";
+	position: absolute;
+	inset: -2.5rem -4rem;
+	z-index: -1;
+	pointer-events: none;
+	opacity: 0;
+	background: radial-gradient(ellipse 80% 76% at 32% 46%, rgba(250, 248, 245, 0.92) 42%, rgba(250, 248, 245, 0) 78%);
+}
+.reveal .slides section.closing-slide.closing-slide--animated .slide-footer::after {
+	content: "";
+	position: absolute;
+	inset: -1.6rem -2rem -2.5rem;
+	z-index: -1;
+	pointer-events: none;
+	opacity: 0;
+	background: linear-gradient(to top, rgba(250, 248, 245, 0.92) 60%, rgba(250, 248, 245, 0) 100%);
+}
+.reveal .slides section.closing-slide.closing-slide--animated.present.title-slide--scrims .closing-slide__main::after,
+.reveal .slides section.closing-slide.closing-slide--animated.present.title-slide--scrims .slide-footer::after {
+	opacity: 1;
+	transition: opacity 0.35s ease;
+}
+.reveal.is-transitioning .slides section.closing-slide.closing-slide--animated .title-slide__zone {
+	opacity: 0;
+	visibility: hidden;
+}
+
+/* ===== §3.1 Counting names ===== */
+
+/* shared accent ribbon for the new content slides */
+.reveal .slides section.names-slide,
+.reveal .slides section.chart-slide,
+.reveal .slides section.race-slide,
+.reveal .slides section.reuse-slide,
+.reveal .slides section.funnel-slide,
+.reveal .slides section.pound-slide,
+.reveal .slides section.hosted-slide,
+.reveal .slides section.rate-slide,
+.reveal .slides section.traj-slide,
+.reveal .slides section.backup-slide {
+	padding-top: 0.35em;
+}
+
+.reveal .slides section.names-slide::before,
+.reveal .slides section.chart-slide::before,
+.reveal .slides section.race-slide::before,
+.reveal .slides section.reuse-slide::before,
+.reveal .slides section.funnel-slide::before,
+.reveal .slides section.pound-slide::before,
+.reveal .slides section.hosted-slide::before,
+.reveal .slides section.rate-slide::before,
+.reveal .slides section.traj-slide::before,
+.reveal .slides section.backup-slide::before {
+	content: "";
+	display: block;
+	width: 2.8rem;
+	height: 5px;
+	background: var(--w-accent);
+	margin-bottom: 1.1rem;
+}
+
+/* --- Q&A backup (down-slide) methods detail --- */
+.reveal .backup-slide__kicker {
+	margin: 0 0 0.5em;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.4em;
+	letter-spacing: 0.16em;
+	text-transform: uppercase;
+	color: var(--w-accent);
+}
+
+.reveal .backup-slide h2 {
+	margin: 0;
+	font-size: 1.3em;
+	letter-spacing: -0.02em;
+}
+
+.reveal .backup-slide__lede {
+	max-width: 50em;
+	margin: 0.55em 0 0;
+	font-family: Fraunces, Georgia, serif;
+	font-size: 0.6em;
+	font-style: italic;
+	font-weight: 500;
+	line-height: 1.5;
+	color: #57534e;
+}
+
+.reveal .backup-slide__lede em {
+	font-style: normal;
+	color: var(--w-accent);
+}
+
+.reveal .backup-eq {
+	margin: 1.2em auto 0.3em;
+	text-align: center;
+	font-size: 0.58em;
+	color: #1c1917;
+}
+
+.reveal .backup-eq .katex {
+	color: inherit;
+}
+
+.reveal .backup-grid {
+	list-style: none;
+	display: grid;
+	gap: 1.1em 1.7em;
+	margin: 1.3em 0 0;
+	padding: 0;
+}
+
+.reveal .backup-grid--3 {
+	grid-template-columns: repeat(3, 1fr);
+}
+
+.reveal .backup-grid--2 {
+	grid-template-columns: repeat(2, 1fr);
+}
+
+.reveal .backup-grid li {
+	padding-left: 1em;
+	border-left: 3px solid color-mix(in srgb, var(--w-accent) 30%, transparent);
+	font-size: 0.48em;
+	line-height: 1.55;
+	color: #44403c;
+}
+
+.reveal .backup-grid strong {
+	color: #1c1917;
+	font-weight: 600;
+}
+
+.reveal .backup-grid em {
+	font-style: italic;
+	color: #1c1917;
+}
+
+.reveal .backup-tag {
+	display: block;
+	margin-bottom: 0.3em;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.66em;
+	letter-spacing: 0.07em;
+	text-transform: uppercase;
+	color: var(--w-accent);
+}
+
+.reveal .backup-slide__foot {
+	margin: 1.7em 0 0;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.36em;
+	letter-spacing: 0.02em;
+	line-height: 1.55;
+	color: #78716c;
+}
+
+/* --- caveat backup: two minimal poem examples (cento + Pound), no cards --- */
+.reveal .caveat-grid {
+	display: grid;
+	grid-template-columns: 1.12fr 0.88fr;
+	gap: 2.4em;
+	margin: 1.4em 0 0;
+	text-align: left;
+}
+
+.reveal .caveat__label {
+	margin: 0 0 0.7em;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.4em;
+	letter-spacing: 0.07em;
+	text-transform: uppercase;
+	color: #78716c;
+}
+
+.reveal .caveat__label em {
+	font-style: italic;
+	text-transform: none;
+	color: #1c1917;
+}
+
+.reveal .cento__lines {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.reveal .cento__lines li {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	gap: 0.7em;
+	padding: 0.12em 0;
+}
+
+.reveal .cento__verse,
+.reveal .caveat__verse p {
+	margin: 0;
+	font-family: Fraunces, Georgia, serif;
+	font-style: italic;
+	font-size: 0.47em;
+	line-height: 1.28;
+	color: #292524;
+}
+
+.reveal .caveat__verse p {
+	padding: 0.12em 0;
+}
+
+.reveal .caveat__indent {
+	padding-left: 1.8em !important;
+}
+
+.reveal .cento__src {
+	flex: none;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.34em;
+	letter-spacing: 0.02em;
+	white-space: nowrap;
+}
+
+/* one colour per borrowed source (cento lines + Pound's quoted line) */
+.reveal .cento__lines li.src-milton .cento__verse,
+.reveal .cento__lines li.src-milton .cento__src { color: #2e4fa3; }
+.reveal .cento__lines li.src-pope .cento__verse,
+.reveal .cento__lines li.src-pope .cento__src { color: #1d7368; }
+.reveal .cento__lines li.src-shakespeare .cento__verse,
+.reveal .cento__lines li.src-shakespeare .cento__src,
+.reveal .caveat__verse p.src-shakespeare,
+.reveal .caveat__verse p.src-shakespeare .cento__src { color: #b5341c; }
+.reveal .cento__lines li.src-johnson .cento__verse,
+.reveal .cento__lines li.src-johnson .cento__src { color: #8a5a2b; }
+
+.reveal .caveat__verse p.src-shakespeare .cento__src {
+	margin-left: 0.6em;
+}
+
+.reveal .caveat-slide .backup-slide__foot {
+	width: 100%;
+	max-width: none;
+}
+
+/* --- "A canon in motion" bar-chart race --- */
+.reveal .slides section.race-slide {
+	display: flex;
+	flex-direction: column;
+}
+
+.reveal .race-slide__head h2 {
+	margin: 0;
+	font-size: 1.5em;
+	letter-spacing: -0.02em;
+}
+
+.reveal .race-slide__lede {
+	max-width: 34em;
+	margin: 0.3em 0 0;
+	font-family: Fraunces, Georgia, serif;
+	font-size: 0.7em;
+	font-style: italic;
+	font-weight: 500;
+	color: #57534e;
+}
+
+.reveal .race-slide__fig {
+	width: 100%;
+	height: 12.2em;
+	margin: 0.6em 0 0;
+}
+
+.reveal .race-slide__foot {
+	margin: 0.5em 0 0;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.38em;
+	letter-spacing: 0.04em;
+	white-space: nowrap;
+	color: #78716c;
+}
+
+.reveal .race-slide__controls {
+	display: flex;
+	gap: 0.45em;
+	margin: 0.55em 0 0;
+}
+
+.reveal .race-ctl {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 1.15em;
+	height: 1.15em;
+	padding: 0;
+	border: 1px solid color-mix(in srgb, var(--w-accent) 38%, transparent);
+	border-radius: 50%;
+	background: transparent;
+	color: var(--w-accent);
+	cursor: pointer;
+	transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.reveal .race-ctl:hover {
+	background: var(--w-accent);
+	border-color: var(--w-accent);
+	color: #faf8f5;
+}
+
+.reveal .race-ctl svg {
+	width: 0.6em;
+	height: 0.6em;
+	display: block;
+	fill: currentColor;
+}
+
+.reveal .race-ctl__chevron {
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2.2;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+}
+
+.reveal .race-ctl__icon-play {
+	display: none;
+}
+
+.reveal .race-ctl--toggle.is-paused .race-ctl__icon-play {
+	display: block;
+}
+
+.reveal .race-ctl--toggle.is-paused .race-ctl__icon-pause {
+	display: none;
+}
+
+/* --- "Who gets named?" entity-linking slide --- */
+.reveal .names-slide__head {
+	display: flex;
+	align-items: baseline;
+	gap: 1em;
+	flex-wrap: wrap;
+}
+
+.reveal .names-slide h2 {
+	margin: 0;
+	font-size: 1.5em;
+	letter-spacing: -0.02em;
+}
+
+/* emphasised verb in the "Who gets named?" / "What gets quoted?" heads */
+.reveal .names-slide__head h2 em,
+.reveal .reuse-slide__head h2 em {
+	font-style: italic;
+	color: #f05c6a;
+}
+
+/* credit line under a section-divider title (dark background) */
+.reveal .section-slide__credit {
+	margin: 1.4rem 0 0;
+	white-space: nowrap;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.42em;
+	letter-spacing: 0.03em;
+	line-height: 1.5;
+	color: #58c3c4;
+}
+
+.reveal .names-slide__credit {
+	margin: 0;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.4em;
+	letter-spacing: 0.04em;
+	color: #78716c;
+}
+
+.reveal .names-slide__lede {
+	max-width: 30em;
+	margin: 0.9em 0 0;
+	font-family: Fraunces, Georgia, serif;
+	font-size: 0.72em;
+	font-style: italic;
+	font-weight: 500;
+	line-height: 1.4;
+	color: #57534e;
+}
+
+/* the railroad: surface forms -> linking -> KB -> countable signal */
+.reveal .names-pipeline {
+	list-style: none;
+	margin: 1.9em 0 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+}
+
+.reveal .names-pipeline__stage {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+}
+
+/* fragments fade straight in (no slide) so the railroad builds in place */
+.reveal .names-pipeline__stage.fragment {
+	transition: opacity 0.35s ease;
+}
+
+.reveal .names-pipeline__label {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.45em;
+	margin: 0 0 1em;
+	padding: 0 0.3em;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.36em;
+	line-height: 1.15;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	white-space: nowrap; /* number + name each stay one line, so dots stay level */
+	color: #78716c;
+}
+
+.reveal .names-pipeline__label span {
+	color: var(--w-accent);
+}
+
+/* the track + station dot live in one row so the line auto-aligns */
+.reveal .names-pipeline__rail {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 1.3em;
+}
+
+/* each stage draws the connector that arrives from the PREVIOUS station,
+   so the line grows left-to-right one segment per click (no dangling stub) */
+.reveal .names-pipeline__rail::before {
+	content: "";
+	position: absolute;
+	top: 50%;
+	/* stop the track at each dot's outer edge (radius 9px) rather than
+	   running under the dot to its centre — so it touches, never overlaps */
+	left: calc(-50% + 9px);
+	right: calc(50% + 9px);
+	height: 2.5px;
+	transform: translateY(-50%);
+	background: color-mix(in srgb, var(--w-accent) 42%, #ddd6cc);
+}
+
+.reveal .names-pipeline__stage:first-child .names-pipeline__rail::before {
+	display: none;
+}
+
+.reveal .names-pipeline__dot {
+	position: relative;
+	z-index: 1;
+	width: 13px;
+	height: 13px;
+	border-radius: 50%;
+	background: #faf8f5;
+	border: 2.5px solid color-mix(in srgb, var(--w-accent) 55%, #faf8f5);
+	transition: background-color 0.3s ease, border-color 0.3s ease,
+		width 0.3s ease, height 0.3s ease;
+}
+
+/* the blue marker rides the railroad: only the current step is filled */
+.reveal .names-pipeline__stage.current-fragment .names-pipeline__dot {
+	background: var(--w-accent);
+	border-color: var(--w-accent);
+	width: 17px;
+	height: 17px;
+}
+
+.reveal .names-pipeline__body {
+	margin-top: 1em;
+	padding: 0 0.4em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.25em;
+	min-height: 4.4em;
+}
+
+.reveal .names-pipeline__variants {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.reveal .names-pipeline__variants li {
+	font-family: Fraunces, Georgia, serif;
+	font-style: italic;
+	font-size: 0.48em;
+	line-height: 1.55;
+	white-space: nowrap;
+	color: #78716c;
+}
+
+
+.reveal .names-pipeline__engine {
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.72em;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	color: #1c1917;
+}
+
+.reveal .names-pipeline__name {
+	font-family: Fraunces, Georgia, serif;
+	font-size: 0.78em;
+	font-weight: 600;
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+	color: #1c1917;
+}
+
+.reveal .names-pipeline__qid {
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.4em;
+	letter-spacing: 0.06em;
+	color: var(--w-accent);
+}
+
+.reveal .names-pipeline__metric {
+	font-family: Fraunces, Georgia, serif;
+	font-size: 1.15em;
+	font-weight: 600;
+	letter-spacing: -0.02em;
+	color: var(--w-accent);
+}
+
+.reveal .names-pipeline__note {
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.38em;
+	letter-spacing: 0.04em;
+	color: #78716c;
+}
+
+/* --- "A superstar economy" chart slide --- */
+.reveal .chart-slide__head h2 {
+	margin: 0;
+	font-size: 1.5em;
+	letter-spacing: -0.02em;
+}
+
+.reveal .chart-slide__lede {
+	max-width: 32em;
+	margin: 0.35em 0 0;
+	font-family: Fraunces, Georgia, serif;
+	font-size: 0.7em;
+	font-style: italic;
+	font-weight: 500;
+	color: #57534e;
+}
+
+.reveal .chart-slide__figure {
+	margin: 1em 0 0;
+}
+
+.reveal .conc-chart {
+	display: block;
+	width: 100%;
+	height: auto;
+	max-height: 9.6em;
+}
+
+.reveal .conc-base {
+	stroke: color-mix(in srgb, var(--w-accent) 22%, #d8d2c8);
+	stroke-width: 1.5;
+}
+
+.reveal .conc-bar {
+	fill: var(--w-accent);
+	transform: scaleY(0);
+	transform-origin: bottom;
+	transform-box: fill-box;
+}
+
+.reveal .slides section.chart-slide.present .conc-bar {
+	animation: conc-grow 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+@keyframes conc-grow {
+	to {
+		transform: scaleY(1);
+	}
+}
+
+.reveal .conc-value {
+	fill: #1c1917;
+	font-family: Fraunces, Georgia, serif;
+	font-weight: 600;
+	font-size: 25px;
+	text-anchor: middle;
+	opacity: 0;
+}
+
+.reveal .slides section.chart-slide.present .conc-value {
+	animation: conc-fade 0.5s ease 0.4s both;
+}
+
+@keyframes conc-fade {
+	to {
+		opacity: 1;
+	}
+}
+
+.reveal .conc-cat {
+	fill: #57534e;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 16px;
+	letter-spacing: 0.02em;
+	text-anchor: middle;
+}
+
+.reveal .chart-slide__takeaway {
+	max-width: 40em;
+	margin: 1.1em 0 0;
+	font-size: 0.6em;
+	line-height: 1.5;
+	color: #44403c;
+}
+
+.reveal .chart-slide__takeaway strong {
+	color: var(--w-accent);
+}
+
+/* --- pivot to counting lines --- */
+.reveal .slides section.pivot-slide {
+	box-sizing: border-box;
+	height: 100%;
+	display: flex !important;
+	flex-direction: column;
+	justify-content: center;
+	text-align: left;
+	padding: 3rem 3.25rem;
+}
+
+.reveal .pivot-slide__kicker {
+	margin: 0 0 1.2rem;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.5em;
+	letter-spacing: 0.2em;
+	text-transform: uppercase;
+	color: var(--w-accent);
+}
+
+.reveal .pivot-slide__line {
+	margin: 0;
+	max-width: 18em;
+	font-size: 2em;
+	font-weight: 500;
+	line-height: 1.18;
+	letter-spacing: -0.02em;
+}
+
+.reveal .pivot-slide__line em {
+	font-style: italic;
+	font-weight: 500;
+	color: var(--w-accent);
+}
+
+/* ===== §3.2 Counting lines ===== */
+
+/* shared head treatment for the §3.2 content slides */
+.reveal .reuse-slide__head h2,
+.reveal .funnel-slide__head h2 {
+	margin: 0;
+	font-size: 1.5em;
+	letter-spacing: -0.02em;
+}
+
+.reveal .reuse-slide__lede,
+.reveal .funnel-slide__lede {
+	max-width: 34em;
+	margin: 0.35em 0 0;
+	font-family: Fraunces, Georgia, serif;
+	font-size: 0.7em;
+	font-style: italic;
+	font-weight: 500;
+	color: #57534e;
+}
+
+/* --- 3.2a: text-reuse pipeline, built from both ends --- */
+.reveal .qpipe {
+	list-style: none;
+	margin: 1.7em 0 0;
+	padding: 0;
+	display: grid;
+	/* col 4 (countable signal) stays collapsed until the final click */
+	grid-template-columns: 1fr 1fr 1fr 0fr;
+	transition: grid-template-columns 0.55s ease;
+}
+
+.reveal .qpipe:has(.qpipe__stage--signal.fragment.visible) {
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.reveal .qpipe__stage {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	min-width: 0;
+}
+
+.reveal .qpipe__stage.fragment {
+	transition: opacity 0.35s ease;
+}
+
+/* delay the signal fade so its content doesn't spill while the column grows */
+.reveal .qpipe__stage--signal.fragment {
+	transition: opacity 0.4s ease 0.2s;
+}
+
+.reveal .qpipe__label {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.45em;
+	margin: 0 0 1em;
+	padding: 0 0.3em;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.36em;
+	line-height: 1.15;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	white-space: nowrap;
+	color: #78716c;
+}
+
+.reveal .qpipe__label > span:first-child {
+	color: var(--w-accent);
+}
+
+/* step 3 (corpus named) zooms both ends out from the worked example to the
+   two full corpora: labels, the 01 body, and the 03 name all swap together,
+   keyed on the corpus name fragment becoming visible. */
+.reveal .qpipe__lbl--b {
+	display: none;
+}
+
+.reveal .qpipe:has(.qpipe__name--corpus.visible) .qpipe__lbl--a {
+	display: none;
+}
+
+.reveal .qpipe:has(.qpipe__name--corpus.visible) .qpipe__lbl--b {
+	display: inline;
+}
+
+/* 01 body: quoted-fragment snippet -> the source archive */
+.reveal .qpipe__corpus-view {
+	display: none;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.3em;
+}
+
+.reveal .qpipe:has(.qpipe__name--corpus.visible) .qpipe__frag-view {
+	display: none;
+}
+
+.reveal .qpipe:has(.qpipe__name--corpus.visible) .qpipe__corpus-view {
+	display: flex;
+}
+
+/* 03 name: the resolved poem -> the reference corpus */
+.reveal .qpipe__name--corpus {
+	display: none;
+}
+
+.reveal .qpipe__stage--ref:has(.qpipe__name--corpus.visible) .qpipe__name--poem {
+	display: none;
+}
+
+.reveal .qpipe__stage--ref:has(.qpipe__name--corpus.visible) .qpipe__name--corpus {
+	display: block;
+}
+
+.reveal .qpipe__rail {
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 1.3em;
+}
+
+.reveal .qpipe__rail::before,
+.reveal .qpipe__rail::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	height: 2.5px;
+	transform: translateY(-50%);
+	background: color-mix(in srgb, var(--w-accent) 42%, #ddd6cc);
+	display: none;
+}
+
+/* passim links both ends: left to 01, right to 03 */
+.reveal .qpipe__stage--reuse .qpipe__rail::before {
+	display: block;
+	left: calc(-50% + 9px);
+	right: calc(50% + 9px);
+}
+
+.reveal .qpipe__stage--reuse .qpipe__rail::after {
+	display: block;
+	left: calc(50% + 9px);
+	right: calc(-50% + 9px);
+}
+
+/* the signal extends the line leftward to 03 as its column grows */
+.reveal .qpipe__stage--signal .qpipe__rail::before {
+	display: block;
+	left: calc(-50% + 9px);
+	right: calc(50% + 9px);
+}
+
+.reveal .qpipe__dot {
+	position: relative;
+	z-index: 1;
+	width: 13px;
+	height: 13px;
+	border-radius: 50%;
+	background: #faf8f5;
+	border: 2.5px solid color-mix(in srgb, var(--w-accent) 55%, #faf8f5);
+	transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* the filled marker follows the active stage as you click through */
+.reveal .qpipe__stage:first-child .qpipe__dot,
+.reveal .qpipe__stage--reuse.current-fragment .qpipe__dot,
+.reveal .qpipe__stage--ref.current-fragment .qpipe__dot,
+.reveal .qpipe__stage--ref:has(.qpipe__name--corpus.current-fragment) .qpipe__dot,
+.reveal .qpipe__stage--signal.current-fragment .qpipe__dot {
+	background: var(--w-accent);
+	border-color: var(--w-accent);
+}
+
+/* once the build starts, 01 is no longer the active stage */
+.reveal .qpipe:has(.fragment.current-fragment) .qpipe__stage:first-child .qpipe__dot {
+	background: #faf8f5;
+	border-color: color-mix(in srgb, var(--w-accent) 55%, #faf8f5);
+}
+
+.reveal .qpipe__body {
+	margin-top: 1em;
+	padding: 0 0.4em;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.3em;
+	min-height: 4.4em;
+}
+
+/* 01 — the PPA snippet, with the matched line highlighted on passim */
+.reveal .qpipe__snippet {
+	margin: 0;
+	max-width: 15em;
+	font-family: Fraunces, Georgia, serif;
+	font-style: italic;
+	font-size: 0.46em;
+	line-height: 1.5;
+	color: #57534e;
+}
+
+.reveal .qpipe__snippet em {
+	font-style: normal;
+}
+
+.reveal .qpipe__hit.fragment {
+	opacity: 1 !important;
+	visibility: visible !important;
+	background: transparent;
+	border-radius: 3px;
+	padding: 0.02em 0.12em;
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+	transition: background-color 0.45s ease, color 0.45s ease;
+}
+
+.reveal .qpipe__hit.fragment.visible {
+	background: color-mix(in srgb, var(--w-accent) 24%, transparent);
+	color: #1c1917;
+}
+
+.reveal .qpipe__cite {
+	margin: 0.55em 0 0;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.34em;
+	letter-spacing: 0.03em;
+	color: #78716c;
+}
+
+/* 02 — passim */
+.reveal .qpipe__engine {
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.72em;
+	font-weight: 600;
+	letter-spacing: 0.02em;
+	color: #1c1917;
+}
+
+/* 03 — resolved poem + corpus */
+.reveal .qpipe__name {
+	font-family: Fraunces, Georgia, serif;
+	font-size: 0.78em;
+	font-weight: 600;
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+	color: #1c1917;
+}
+
+.reveal .qpipe__name em {
+	font-style: italic;
+}
+
+.reveal .qpipe__src {
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.4em;
+	line-height: 1.35;
+	letter-spacing: 0.06em;
+	text-align: center;
+	color: var(--w-accent);
+}
+
+/* the reference-corpus count appears with the corpus name (step 3) */
+.reveal .qpipe__src--corpus {
+	display: none;
+}
+
+.reveal .qpipe__stage--ref:has(.qpipe__name--corpus.visible) .qpipe__src--corpus {
+	display: block;
+}
+
+/* 04 — countable signal */
+.reveal .qpipe__metric {
+	font-family: Fraunces, Georgia, serif;
+	font-size: 1.15em;
+	font-weight: 600;
+	letter-spacing: -0.02em;
+	color: var(--w-accent);
+}
+
+.reveal .qpipe__note {
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.38em;
+	letter-spacing: 0.04em;
+	color: #78716c;
+}
+
+/* --- 3.2b: filtering funnel --- */
+.reveal .funnel {
+	list-style: none;
+	margin: 1.5em 0 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.7em;
+}
+
+.reveal .funnel-row {
+	display: grid;
+	grid-template-columns: 15em 1fr auto;
+	align-items: center;
+	column-gap: 1.1em;
+}
+
+.reveal .funnel-row__label {
+	margin: 0;
+	font-family: "Source Sans 3", system-ui, sans-serif;
+	font-size: 0.5em;
+	line-height: 1.3;
+	color: #44403c;
+	text-align: right;
+}
+
+.reveal .funnel-row__label em {
+	font-style: italic;
+}
+
+.reveal .funnel-row__label span {
+	color: #a8a29e;
+}
+
+.reveal .funnel-row__track {
+	display: block;
+	width: 100%;
+}
+
+.reveal .funnel-bar {
+	display: block;
+	height: 1.5em;
+	border-radius: 3px;
+	background: var(--w-accent);
+	transform: scaleX(0);
+	transform-origin: left;
+}
+
+.reveal .slides section.funnel-slide.present .funnel-bar {
+	animation: funnel-grow 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.reveal .funnel-row:nth-child(2) .funnel-bar {
+	animation-delay: 0.1s;
+}
+.reveal .funnel-row:nth-child(3) .funnel-bar {
+	animation-delay: 0.2s;
+}
+.reveal .funnel-row:nth-child(4) .funnel-bar {
+	animation-delay: 0.3s;
+}
+
+@keyframes funnel-grow {
+	to {
+		transform: scaleX(1);
+	}
+}
+
+.reveal .funnel-row__count {
+	margin: 0;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.5em;
+	font-variant-numeric: tabular-nums;
+	color: var(--w-accent);
+}
+
+.reveal .funnel-slide__foot {
+	margin: 1.4em 0 0;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.42em;
+	letter-spacing: 0.02em;
+	color: #78716c;
+}
+
+.reveal .funnel-slide__foot strong {
+	color: #1c1917;
+	font-weight: 600;
+}
+
+/* --- 3.2c: the Pound / shared-substrate slide --- */
+.reveal .pound-slide__kicker {
+	margin: 0;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.42em;
+	letter-spacing: 0.12em;
+	text-transform: uppercase;
+	color: var(--w-accent);
+}
+
+.reveal .pound-slide__phrase {
+	/* reset reveal's default blockquote box */
+	width: auto;
+	padding: 0;
+	background: none;
+	box-shadow: none;
+	border: 0;
+	margin: 0.5em 0 0;
+	max-width: 24em;
+	font-family: Fraunces, Georgia, serif;
+	font-size: 1.5em;
+	font-weight: 600;
+	font-style: italic;
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+	color: #1c1917;
+}
+
+.reveal .pound-slide__found {
+	margin: 0.9em 0 0;
+	max-width: 34em;
+	font-family: "Source Sans 3", system-ui, sans-serif;
+	font-size: 0.56em;
+	line-height: 1.45;
+	color: #57534e;
+}
+
+.reveal .pound-slide__found em {
+	font-style: italic;
+}
+
+.reveal .pound-slide__verse {
+	margin: 1em 0 0;
+	padding-left: 1em;
+	border-left: 3px solid color-mix(in srgb, var(--w-accent) 45%, #faf8f5);
+}
+
+.reveal .pound-slide__verse p {
+	margin: 0.1em 0;
+	font-family: Fraunces, Georgia, serif;
+	font-style: italic;
+	font-size: 0.66em;
+	line-height: 1.4;
+	color: #44403c;
+}
+
+.reveal .pound-slide__verse-indent {
+	padding-left: 2em;
+}
+
+.reveal .pound-slide__point {
+	margin: 1.2em 0 0;
+	max-width: 38em;
+	font-size: 0.58em;
+	line-height: 1.5;
+	color: #44403c;
+}
+
+/* --- 3.2c2: a widening practice (descriptive rate curve) --- */
+.reveal .rate-slide__head h2 {
+	margin: 0;
+	font-size: 1.5em;
+	letter-spacing: -0.02em;
+}
+
+.reveal .rate-slide__lede {
+	max-width: 40em;
+	margin: 0.35em 0 0;
+	font-family: Fraunces, Georgia, serif;
+	font-size: 0.7em;
+	font-style: italic;
+	font-weight: 500;
+	color: #57534e;
+}
+
+.reveal .rate-slide__lede em {
+	font-style: normal;
+	color: var(--w-accent);
+}
+
+.reveal .rate-slide__fig {
+	width: 100%;
+	height: 13.6em;
+	margin: 1.1em 0 0;
+}
+
+.reveal .rate-slide__fig iframe {
+	width: 100% !important;
+	height: 100% !important;
+	border: 0;
+}
+
+.reveal .traj-slide__fig {
+	width: 100%;
+	height: 13.8em;
+	margin: 1em 0 0;
+}
+
+.reveal .traj-slide__fig iframe {
+	width: 100% !important;
+	height: 100% !important;
+	border: 0;
+}
+
+/* cohort ridgeplot has no lede — give it the freed vertical space */
+.reveal .cohort-fig {
+	height: 15em;
+	margin-top: 1.2em;
+}
+
+/* --- 3.2b2: the shape of the record (most/least-hosted poems) --- */
+.reveal .hosted-slide__head h2 {
+	margin: 0;
+	font-size: 1.5em;
+	letter-spacing: -0.02em;
+}
+
+.reveal .hosted-slide__lede {
+	max-width: 34em;
+	margin: 0.3em 0 0;
+	font-family: Fraunces, Georgia, serif;
+	font-size: 0.7em;
+	font-style: italic;
+	font-weight: 500;
+	color: #57534e;
+}
+
+.reveal .hosted {
+	width: 100%;
+	margin: 1.1em 0 0;
+	border-collapse: collapse;
+	font-size: 0.42em;
+	line-height: 1.2;
+}
+
+.reveal .hosted th {
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.82em;
+	font-weight: 400;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	color: #78716c;
+	text-align: left;
+	padding: 0 0.7em 0.5em;
+	border-bottom: 1.5px solid color-mix(in srgb, var(--w-accent) 45%, #ddd6cc);
+}
+
+.reveal .hosted td {
+	padding: 0.32em 0.7em;
+	border-bottom: 1px solid #e7e2da;
+	vertical-align: baseline;
+}
+
+.reveal .hosted tbody tr:last-child td {
+	border-bottom: 0;
+}
+
+.reveal .t-rank,
+.reveal th.t-rank {
+	width: 3.2em;
+	text-align: right;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-variant-numeric: tabular-nums;
+	color: #a8a29e;
+}
+
+.reveal .t-work em {
+	font-family: Fraunces, Georgia, serif;
+	font-style: italic;
+	font-weight: 600;
+	color: #1c1917;
+}
+
+.reveal .t-auth {
+	font-family: "Source Sans 3", system-ui, sans-serif;
+	color: #57534e;
+}
+
+.reveal .t-app,
+.reveal th.t-app {
+	width: 8.5em;
+	text-align: right;
+	position: relative;
+}
+
+.reveal .t-num {
+	position: relative;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-variant-numeric: tabular-nums;
+	font-weight: 600;
+	color: var(--w-accent);
+}
+
+/* magnitude bar beneath each count — the heavy tail made visible */
+.reveal .t-bar {
+	position: absolute;
+	right: 0.7em;
+	bottom: 0.15em;
+	height: 2px;
+	max-width: calc(100% - 1.4em);
+	background: color-mix(in srgb, var(--w-accent) 32%, #ddd6cc);
+}
+
+/* ranked risers / decliners — vertically centred via an inner wrapper
+   (reveal forces display:block on the section, so we centre a child) */
+.reveal .slides section.ranks-slide::before {
+	display: none;
+}
+
+.reveal .ranks-center {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.reveal .ranks-center::before {
+	content: "";
+	display: block;
+	width: 2.8rem;
+	height: 5px;
+	background: var(--w-accent);
+	margin-bottom: 1.1rem;
+}
+
+/* roomier rows so 15 entries fill the slide (centred, not touching the edges) */
+.reveal .ranks-slide .hosted td {
+	padding-top: 0.52em;
+	padding-bottom: 0.52em;
+}
+
+/* anchors: near-zero slope, so colour the value steady blue (no magnitude bar) */
+.reveal .ranks-slide--steady .t-num {
+	color: #4662ac;
+}
+
+.reveal .t-year {
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-style: normal;
+	font-size: 0.82em;
+	color: #a8a29e;
+	white-space: nowrap;
+}
+
+.reveal .ranks-slide--rising .t-bar {
+	background: color-mix(in srgb, #2f9e9b 48%, #ddd6cc);
+}
+.reveal .ranks-slide--rising .t-num {
+	color: #2f9e9b;
+}
+.reveal .ranks-slide--falling .t-bar {
+	background: color-mix(in srgb, #f05c6a 48%, #ddd6cc);
+}
+.reveal .ranks-slide--falling .t-num {
+	color: #f05c6a;
+}
+
+.reveal .t-span,
+.reveal th.t-span {
+	width: 8.6em;
+	text-align: right;
+	white-space: nowrap;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-variant-numeric: tabular-nums;
+	color: #a8a29e;
+}
+
+/* years slightly smaller in the body; header matches the other column heads */
+.reveal td.t-span {
+	font-size: 0.92em;
+}
+
+.reveal .hosted__gap td {
+	text-align: center;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.86em;
+	letter-spacing: 0.02em;
+	color: #8a8378;
+	padding: 0.55em 0;
+	border-bottom: 1px solid #e7e2da;
+}
+
+/* --- 3.2d–f: Poetry's Trajectories (Model 2) --- */
+.reveal .traj-slide__head h2 {
+	margin: 0;
+	font-size: 1.5em;
+	letter-spacing: -0.02em;
+}
+
+.reveal .traj-slide__lede {
+	max-width: 36em;
+	margin: 0.3em 0 0;
+	font-family: Fraunces, Georgia, serif;
+	font-size: 0.7em;
+	font-style: italic;
+	font-weight: 500;
+	color: #57534e;
+}
+
+/* the model: likelihood + annotated linear predictor */
+.reveal .traj-model {
+	margin: 1.5em 0 0;
+	text-align: center;
+}
+
+/* arrival hook: a question (hero) + one quiet bridge line that sets up the
+   model. Once the formula starts building, the whole intro fades AND collapses
+   (smoothly, ~0.6s) so the slide stays calm while the equation assembles. */
+.reveal .traj-intro {
+	margin: 3em auto 0;
+	overflow: hidden;
+	max-height: 16em;
+	transition: opacity 0.55s ease, max-height 0.65s ease, margin 0.65s ease;
+}
+
+.reveal .traj-slide:has(.traj-eq__lhs.visible) .traj-intro {
+	opacity: 0;
+	max-height: 0;
+	margin-top: 0;
+}
+
+.reveal .traj-question {
+	max-width: 28em;
+	margin: 0 auto;
+	text-align: center;
+	font-family: Fraunces, Georgia, serif;
+	font-style: italic;
+	font-size: 1.3em;
+	font-weight: 500;
+	line-height: 1.28;
+	letter-spacing: -0.01em;
+	color: #1c1917;
+}
+
+.reveal .traj-bridge {
+	max-width: 32em;
+	margin: 1.3em auto 0;
+	text-align: center;
+	font-family: "Source Sans 3", system-ui, sans-serif;
+	font-size: 0.62em;
+	line-height: 1.5;
+	color: #57534e;
+}
+
+.reveal .traj-model {
+	margin-top: 2.9em;
+}
+
+.reveal .traj-model__eq {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	justify-content: center;
+	gap: 0.5em 0.7em;
+}
+
+/* the equation builds term by term: hidden terms drop out of layout so the
+   expression grows and re-centres as each click adds a piece */
+.reveal .traj-model__eq .fragment:not(.visible) {
+	display: none;
+}
+
+/* what the model predicts (always shown) and how it is counted (revealed
+   with the beta-binomial beat) — small glosses under the equation */
+.reveal .traj-gloss,
+.reveal .traj-response {
+	margin: 1.5em auto 0;
+	max-width: 44em;
+	font-size: 0.56em;
+	line-height: 1.5;
+	color: #57534e;
+}
+
+.reveal .traj-response {
+	margin-top: 0.7em;
+}
+
+.reveal .traj-eq__lhs {
+	font-size: 0.9em;
+	color: #1c1917;
+	padding-top: 0.1em;
+}
+
+.reveal .traj-grp {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5em;
+}
+
+.reveal .traj-grp__math {
+	font-size: 0.9em;
+	color: #1c1917;
+	padding: 0 0.5em 0.4em;
+	border-bottom: 2px solid color-mix(in srgb, var(--w-accent) 45%, #ddd6cc);
+}
+
+.reveal .traj-grp__lbl {
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.42em;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--w-accent);
+}
+
+.reveal .traj-op {
+	font-size: 0.9em;
+	color: #a8a29e;
+	padding-top: 0.1em;
+}
+
+/* KaTeX inherits the container colour and scales with its font-size */
+.reveal .traj-model .katex {
+	color: inherit;
+}
+
+/* design-choice notes */
+.reveal .traj-notes {
+	list-style: none;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 1.6em;
+	margin: 2.7em 0 0;
+	padding: 0;
+}
+
+.reveal .traj-notes li {
+	padding-left: 1em;
+	border-left: 3px solid color-mix(in srgb, var(--w-accent) 34%, transparent);
+	font-size: 0.54em;
+	line-height: 1.5;
+	color: #57534e;
+}
+
+.reveal .traj-notes strong {
+	display: block;
+	margin-bottom: 0.15em;
+	font-weight: 600;
+	color: #1c1917;
+}
+
+.reveal .traj-slide__foot {
+	margin: 2.6em 0 0;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.42em;
+	letter-spacing: 0.02em;
+	white-space: nowrap;
+	color: #78716c;
+}
+
+/* reusable figure placeholder (interactive plot to be embedded later) */
+.reveal .fig-placeholder {
+	margin: 1.1em 0 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.4em;
+	height: 9.6em;
+	border: 1.5px dashed color-mix(in srgb, var(--w-accent) 40%, #d8d2c8);
+	border-radius: 10px;
+	background: color-mix(in srgb, var(--w-accent) 4%, transparent);
+}
+
+.reveal .fig-placeholder__label {
+	font-family: Fraunces, Georgia, serif;
+	font-style: italic;
+	font-size: 0.7em;
+	color: #57534e;
+}
+
+.reveal .fig-placeholder__note {
+	margin: 0;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.4em;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: #a8a29e;
+}
