@@ -1,5 +1,13 @@
 /* Deck-local: PPA intro + Gray Elegy stack (2026-06-poetic-canon) */
 
+/* title-slide eyebrow: venue in PPA pink, dates in PPA teal */
+.reveal .slides section.title-slide .title-slide__date--venue {
+	color: #f05c6a;
+}
+.reveal .slides section.title-slide .title-slide__date--when {
+	color: #58c3c4;
+}
+
 .reveal .slides section.ppa-intro-slide {
 	padding-top: 0.35em;
 }
@@ -564,9 +572,16 @@
 	font-weight: 600;
 }
 
-/* the work title, with a delicate teal underline */
+/* italics mark the container (journal, series, repository) as MLA requires —
+   kept muted so they sit back with the rest of the bibliographic apparatus */
 .reveal .references-list em {
 	font-style: italic;
+}
+
+/* the teal underline marks the WORK being cited, not whatever happens to be
+   italic: an italic book title OR a roman, quoted article title. That puts the
+   accent on the intellectually salient bit in every entry. */
+.reveal .references-list .ref-title {
 	color: #1c1917;
 	text-decoration: underline;
 	text-decoration-color: color-mix(in srgb, #58c3c4 90%, transparent);
