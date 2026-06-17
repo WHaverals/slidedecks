@@ -1,5 +1,11 @@
 /* Deck-local: PPA intro + Gray Elegy stack (2026-06-poetic-canon) */
 
+/* Gray Elegy opening: let the provenance line run wider so it fits on two
+   lines instead of three (theme default is 38em) */
+.reveal .slides section.image-slide .image-slide__caption--wide {
+	max-width: 52em;
+}
+
 /* title-slide eyebrow: venue in PPA pink, dates in PPA teal */
 .reveal .slides section.title-slide .title-slide__date--venue {
 	color: #f05c6a;
@@ -154,7 +160,7 @@
 .reveal .ppa-intro__exposure-label {
 	margin: 0 0 0.25em;
 	font-family: "JetBrains Mono", ui-monospace, monospace;
-	font-size: 0.38em;
+	font-size: 0.42em; /* match the fact-label rows above */
 	font-weight: 600;
 	line-height: 1.4;
 	letter-spacing: 0.07em;
@@ -299,7 +305,7 @@
 
 .reveal .elegy-stack-slide__stage {
 	width: 100%;
-	margin: 2.4em 0 0;
+	margin: 1.9em 0 0;
 }
 
 .reveal .elegy-stack-slide__showcase {
@@ -469,7 +475,7 @@
 }
 
 .reveal .elegy-epigraph__line--cite {
-	color: #57534e;
+	color: #f05c6a; /* PPA pink accent */
 }
 
 .reveal .elegy-epigraph__source {
