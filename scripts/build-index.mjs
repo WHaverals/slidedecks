@@ -252,7 +252,8 @@ const html = `<!DOCTYPE html>
   <main>
     <header class="masthead">
       <h1>Slidedecks</h1>
-      <p>Talks and lectures by Wouter Haverals.</p>
+      <p>Oh, hello, you found my secret stash of slidedecks! ;-)</p>
+      <p>Too bad there is currently only one deck here.</p>
     </header>
     <ul>
 ${deckItems}
