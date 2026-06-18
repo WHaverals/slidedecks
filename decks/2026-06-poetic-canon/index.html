@@ -277,6 +277,7 @@
 								<div
 									class="fig-container"
 									data-file="assets/ppa-pages-ribbon.html"
+									data-preload
 									data-scroll="no"
 								></div>
 							</div>
@@ -514,6 +515,7 @@
 					<div
 						class="fig-container race-slide__fig"
 						data-file="assets/poet-race.html"
+						data-preload
 						data-scroll="no"
 					></div>
 
@@ -833,7 +835,7 @@
 						</p>
 					</div>
 
-					<div class="fig-container rate-slide__fig" data-file="assets/quotation-rate.html" data-scroll="no"></div>
+					<div class="fig-container rate-slide__fig" data-file="assets/quotation-rate.html" data-preload data-scroll="no"></div>
 
 					<aside class="notes">
 						<li>Before we look at trajectories of individual poems, one big-picture fact.</li>
@@ -960,7 +962,7 @@
 						</p>
 					</div>
 
-					<div class="fig-container traj-slide__fig" data-file="assets/poem-trajectories.html" data-scroll="no"></div>
+					<div class="fig-container traj-slide__fig" data-file="assets/poem-trajectories.html" data-preload data-scroll="no"></div>
 
 					<aside class="notes">
 						<li>Poems fall into three shapes &mdash; risers, anchors, decliners. I&rsquo;ll draw one of each.</li>
@@ -1143,7 +1145,7 @@
 						<h2>Which eras gained ground</h2>
 					</div>
 
-					<div class="fig-container traj-slide__fig cohort-fig" data-file="assets/cohort-slopes.html" data-scroll="no"></div>
+					<div class="fig-container traj-slide__fig cohort-fig" data-file="assets/cohort-slopes.html" data-preload data-scroll="no"></div>
 
 					<aside class="notes">
 						And it isn’t just individual poems — it holds for whole eras. Each ridge is a literary period; left of the line means losing ground, right means gaining. [Reveal.] The Restoration and early-eighteenth-century cohorts sit clearly on the left — the neoclassical decline. Up top, leaning right, the medieval and Romantic periods. So the same story — away from neoclassical translation, toward the medieval and the Romantic — shows up at every scale: the line, the poem, the period.
@@ -1359,6 +1361,43 @@
 			}
 			Reveal.on('ready', (e) => playRateCurve(e.currentSlide));
 			Reveal.on('slidechanged', (e) => playRateCurve(e.currentSlide));
+
+			// Multi-step reveald3 plots (poem trajectories, cohort ridges) only catch
+			// up to their LAST step when you navigate back to them — reveald3's
+			// triggerLastState fires the max-index transition only, leaving earlier
+			// steps undrawn. On slide entry we re-render the plot to its CUMULATIVE
+			// state for the current fragment index, so returning shows every step.
+			// (Forward stepping is still handled by reveald3 on each fragmentshown;
+			// this runs only on slidechanged/ready, never mid-step.)
+			function syncStepPlot(slide) {
+				if (!slide) return;
+				const fig = slide.querySelector(
+					'.fig-container[data-file*="poem-trajectories"], .fig-container[data-file*="cohort-slopes"]'
+				);
+				if (!fig) return;
+				const isTraj = fig.getAttribute('data-file').includes('poem-trajectories');
+				const steps = isTraj ? 3 : 2;
+				let tries = 0;
+				const tick = () => {
+					if (Reveal.getCurrentSlide() !== slide) return;
+					const ifr = slide.querySelector('iframe');
+					const win = ifr && ifr.contentWindow;
+					const resetFn = win && (isTraj ? win.trajReset : win.cohortReset);
+					const stepFn = win && (isTraj ? win.trajStep : win.cohortStep);
+					const spans = slide.querySelectorAll('.fragment.visualizationStep').length;
+					if (typeof resetFn === 'function' && typeof stepFn === 'function' && spans >= steps) {
+						const f = Reveal.getIndices().f;
+						const target = typeof f === 'number' && f >= 0 ? f : -1;
+						resetFn();
+						for (let i = 0; i <= target && i < steps; i++) stepFn(i);
+						return;
+					}
+					if (tries++ < 60) setTimeout(tick, 80);
+				};
+				tick();
+			}
+			Reveal.on('ready', (e) => syncStepPlot(e.currentSlide));
+			Reveal.on('slidechanged', (e) => syncStepPlot(e.currentSlide));
 
 			let verses = null;
 			let titleSlideTimer = null;
