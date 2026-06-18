@@ -13,3 +13,6 @@ decks/**/articles/
 # Scratch helpers (e.g. the bar-chart-race video exporter)
 decks/**/_*.html
 scripts/_*.mjs
+
+# Exported media (mp4/gif renders) — regenerable, keep out of the repo
+decks/**/exports/
