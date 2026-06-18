@@ -2,3 +2,14 @@ node_modules/
 .DS_Store
 *.log
 _site/
+
+# Unpublished manuscript working copies — never publish (co-authored, under review).
+# The deck embeds only the figures it needs, copied into each deck's own figures/.
+decks/**/articles/
+
+# Editor / local tooling
+.claude/
+
+# Scratch helpers (e.g. the bar-chart-race video exporter)
+decks/**/_*.html
+scripts/_*.mjs
