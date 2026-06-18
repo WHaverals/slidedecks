@@ -762,8 +762,11 @@
 	color: var(--w-accent);
 }
 
-.reveal .backup-slide__foot {
+/* extra class in the selector out-specifies the theme's
+   `.reveal .slides section p { max-width: 42em }`, so the foot runs full width */
+.reveal .backup-slide .backup-slide__foot {
 	margin: 1.7em 0 0;
+	max-width: none;
 	font-family: "JetBrains Mono", ui-monospace, monospace;
 	font-size: 0.36em;
 	letter-spacing: 0.02em;

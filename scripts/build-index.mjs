@@ -71,7 +71,11 @@ function listDecks() {
 	return readdirSync(decksDir)
 		.filter((name) => {
 			const deckPath = join(decksDir, name);
-			return statSync(deckPath).isDirectory() && exists(join(deckPath, 'index.html'));
+			if (!statSync(deckPath).isDirectory() || !exists(join(deckPath, 'index.html'))) {
+				return false;
+			}
+			// Decks with .no-homepage stay deployable but off the public index.
+			return !exists(join(deckPath, '.no-homepage'));
 		})
 		.sort()
 		.reverse()

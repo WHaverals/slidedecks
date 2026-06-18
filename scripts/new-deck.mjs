@@ -39,3 +39,4 @@ const port = process.env.DEV_PORT ?? '8080';
 console.log(`Created deck: decks/${deckName}/`);
 console.log(`Edit title slide fields in decks/${deckName}/index.html`);
 console.log(`Open: http://127.0.0.1:${port}/decks/${deckName}/`);
+console.log(`To list on the homepage, delete decks/${deckName}/.no-homepage and run npm run build:index`);
