@@ -36,6 +36,34 @@
 				font-weight: 600;
 			}
 
+			/* Title slide: small follow-along link, right side of the footer */
+			.reveal .title-slide .slide-footer__name {
+				white-space: nowrap;
+			}
+			.reveal .title-slide .title-link {
+				position: absolute;
+				top: 42px;
+				right: 0;
+				max-width: none;
+				margin: 0;
+				text-align: right;
+				font-size: 0.44em;
+				line-height: 1.7;
+				color: #a8a29e;
+				white-space: nowrap;
+			}
+			.reveal .title-slide .title-link .tl-break {
+				display: block;
+			}
+			.reveal .title-slide .title-link a,
+			.reveal .title-slide .title-link a:hover {
+				font-family: 'JetBrains Mono', monospace;
+				font-size: 0.95em;
+				color: #b5341c;
+				border-bottom-color: rgba(181, 52, 28, 0.35);
+				text-decoration-color: rgba(181, 52, 28, 0.35);
+			}
+
 			/* Accented word inside dark section-slide headings */
 			.section-slide .accent-word {
 				color: var(--w-accent-light);
@@ -550,6 +578,7 @@
 							<p class="slide-footer__name">Wouter Haverals, Nooshin Shahidzadeh Asadi &amp; Lamyk Bekius</p>
 						</div>
 					</footer>
+					<p class="title-link">slides at <span class="tl-break"><a href="https://tinyurl.com/publishingdigitaledition">tinyurl.com/publishingdigitaledition</a></span></p>
 
 					<aside class="notes">
 						<ul>
