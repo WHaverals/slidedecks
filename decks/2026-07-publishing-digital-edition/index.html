@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		/>
+		<title>Publishing a Digital Edition</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&display=swap"
+		/>
+
+		<link rel="stylesheet" href="../../reveal/dist/reset.css" />
+		<link rel="stylesheet" href="../../reveal/dist/reveal.css" />
+		<link rel="stylesheet" href="../../theme/wouter.css" />
+		<link rel="stylesheet" href="../../theme/highlight-wouter.css" />
+
+		<style>
+			/* Roadmap slide: keyword-anchored agenda, no bullet dots, roomy rhythm */
+			.roadmap ul {
+				list-style: none;
+				margin: 1em 0 0;
+				max-width: none;
+			}
+			.roadmap ul li {
+				margin-bottom: 1.05em;
+				font-size: 1.04em;
+			}
+			.roadmap .kw {
+				color: var(--w-accent);
+				font-weight: 600;
+			}
+
+			/* Accented word inside dark section-slide headings */
+			.section-slide .accent-word {
+				color: var(--w-accent-light);
+			}
+
+			/* "The XML is not the edition": statement + equation of chips */
+			.reveal .xml-not__claim {
+				margin-top: 90px;
+				max-width: none;
+				font-size: 1.1em;
+				line-height: 1.4;
+			}
+			.xml-not__eq {
+				display: flex;
+				align-items: center;
+				gap: 20px;
+				margin-top: 100px;
+			}
+			.xml-not__lhs {
+				white-space: nowrap;
+				font-size: 0.9em;
+				color: #57534e;
+				margin-right: 6px;
+			}
+			.xml-not .chip {
+				display: inline-block;
+				padding: 0.3em 0.8em;
+				border: 2px solid #1c1917;
+				border-radius: 999px;
+				background: #ebe6de;
+				font-weight: 600;
+				font-size: 0.82em;
+				color: var(--w-accent);
+			}
+
+			/* FAIR: four letter-cards */
+			.fair .accent-ink {
+				color: var(--w-accent);
+			}
+			.fair-cards {
+				display: flex;
+				gap: 26px;
+				margin-top: 80px;
+			}
+			.fair-card {
+				flex: 1;
+				border: 2px solid #1c1917;
+				border-radius: 4px;
+				background: #ebe6de;
+				padding: 26px 22px 20px;
+				text-align: center;
+			}
+			.fair-card p {
+				max-width: none;
+				margin: 0;
+			}
+			.fair-letter {
+				font-family: 'Fraunces', serif;
+				font-size: 2.1em;
+				font-weight: 700;
+				line-height: 1;
+				color: var(--w-accent);
+			}
+			.fair-word {
+				margin-top: 0.25em !important;
+				font-weight: 600;
+				font-size: 0.85em;
+			}
+			.fair-gloss {
+				margin-top: 0.55em !important;
+				font-size: 0.56em;
+				line-height: 1.45;
+				color: #57534e;
+			}
+			.fair-status {
+				margin-top: 0.85em !important;
+				font-size: 0.56em;
+				font-weight: 600;
+				color: var(--w-accent);
+			}
+			.fair-status--done {
+				color: #1d7368;
+			}
+			.reveal .fair-src {
+				position: absolute;
+				top: 42px;
+				right: 0;
+				max-width: none;
+				margin: 0;
+				text-align: right;
+				font-size: 0.44em;
+				line-height: 1.55;
+				color: #a8a29e;
+				white-space: nowrap;
+			}
+
+			/* "Rights in, rights out": title builds in two colours, columns follow */
+			.rights h2 .t-in {
+				color: var(--w-accent);
+			}
+			.rights h2 .t-out {
+				color: #1d7368;
+			}
+			.rights-cols {
+				display: flex;
+				gap: 56px;
+				margin-top: 42px;
+			}
+			.rights-col {
+				flex: 1;
+			}
+			.rights-col ul {
+				list-style: none;
+				margin: 0;
+				max-width: none;
+			}
+			.rights-col li {
+				font-size: 0.66em;
+				line-height: 1.5;
+				margin-bottom: 1.15em;
+			}
+			.rights .kw-in {
+				color: var(--w-accent);
+				font-weight: 600;
+			}
+			.rights .kw-out {
+				color: #1d7368;
+				font-weight: 600;
+			}
+
+			/* "Pick a license": chips per layer */
+			.reveal .lic-src {
+				position: absolute;
+				top: 42px;
+				right: 0;
+				max-width: none;
+				margin: 0;
+				text-align: right;
+				font-size: 0.44em;
+				line-height: 1.55;
+				color: #a8a29e;
+				white-space: nowrap;
+			}
+			.license .lic-col-h {
+				font-size: 0.78em;
+				margin-bottom: 0.8em;
+			}
+			.zen .lic-col-h {
+				margin-bottom: 0.15em;
+			}
+			.reveal .col-role {
+				max-width: none;
+				margin: 0 0 1.4em;
+				font-size: 0.5em;
+				letter-spacing: 0.18em;
+				text-transform: uppercase;
+				color: #78716c;
+			}
+			.license .lic-list {
+				list-style: none;
+				margin: 0;
+				max-width: none;
+			}
+			.license .lic-list li {
+				display: flex;
+				align-items: baseline;
+				gap: 0.55em;
+				font-size: 0.62em;
+				line-height: 1.45;
+				margin-bottom: 1em;
+			}
+			.license .chip {
+				display: inline-block;
+				flex: none;
+				min-width: 3.4em;
+				padding: 0.22em 0.7em;
+				border: 2px solid #1c1917;
+				border-radius: 999px;
+				background: #ebe6de;
+				font-weight: 600;
+				text-align: center;
+				color: #6d597a;
+				text-decoration: none;
+			}
+			.license .chip--code {
+				color: #b5341c;
+			}
+			.license .chip--warn {
+				color: #78716c;
+				border-color: #a8a29e;
+				background: transparent;
+				text-decoration: line-through;
+			}
+			.license .lic-warn {
+				color: #57534e;
+			}
+			.license .chip-stack {
+				display: flex;
+				flex-direction: column;
+				gap: 9px;
+				flex: none;
+			}
+			.license .lic-warn--stack {
+				align-items: center;
+			}
+			/* keep chip geometry stable on hover (theme strips borders on a:hover);
+			   feedback = fill change only */
+			.reveal .license a.chip,
+			.reveal .license a.chip:hover {
+				border: 2px solid #1c1917;
+				text-decoration: none;
+			}
+			.reveal .license a.chip {
+				transition: background-color 0.15s ease;
+			}
+			.reveal .license a.chip:hover {
+				background: #ddd3c2;
+			}
+			.reveal .license a.chip--warn,
+			.reveal .license a.chip--warn:hover {
+				border: 2px solid #a8a29e;
+				text-decoration: line-through;
+			}
+			.reveal .license a.chip--warn:hover {
+				background: #ece7df;
+			}
+			.reveal .lic-bottom {
+				max-width: none;
+				margin: 55px 0 0;
+				font-size: 0.72em;
+				text-align: center;
+				color: #1c1917;
+			}
+
+			/* Section 04: statements, DOI diagram, flow, metadata, badge */
+			.reveal .stmt-claim {
+				margin-top: 55px;
+				max-width: none;
+				font-size: 1.05em;
+				line-height: 1.4;
+			}
+			.reveal .kw-list {
+				list-style: none;
+				margin: 45px 0 0;
+				max-width: none;
+			}
+			.reveal .kw-list li {
+				font-size: 0.68em;
+				line-height: 1.5;
+				margin-bottom: 1.05em;
+			}
+			.kw-list .kw {
+				color: var(--w-accent);
+				font-weight: 600;
+			}
+			.reveal .doi-src {
+				position: absolute;
+				top: 42px;
+				right: 0;
+				max-width: none;
+				margin: 0;
+				text-align: right;
+				font-size: 0.44em;
+				line-height: 1.55;
+				color: #a8a29e;
+				white-space: nowrap;
+			}
+			svg.doi-map {
+				display: block;
+				width: 900px;
+				height: auto;
+				margin: 30px auto 0;
+				font-family: 'Source Sans 3', sans-serif;
+			}
+			.flowshot .flowshot-img {
+				display: block;
+				width: 920px;
+				margin: 150px auto 0;
+				border: 2px solid #1c1917;
+				border-radius: 6px;
+				background: #ffffff;
+			}
+			svg.flow-map {
+				display: block;
+				width: 940px;
+				height: auto;
+				margin: 45px auto 0;
+				font-family: 'Source Sans 3', sans-serif;
+			}
+			.meta-row {
+				display: flex;
+				gap: 44px;
+				align-items: center;
+				margin-top: 24px;
+			}
+			.meta-row pre {
+				flex: 0 0 54%;
+				margin: 0;
+				font-size: 0.48em;
+			}
+			.reveal .meta-row .meta-txt {
+				flex: 1;
+				margin: 0;
+				max-width: none;
+				font-size: 0.62em;
+				line-height: 1.5;
+			}
+			.meta .kw {
+				color: var(--w-accent);
+				font-weight: 600;
+			}
+			.reveal .meta-span {
+				max-width: none;
+				margin: 28px 0 0;
+				font-size: 0.62em;
+				line-height: 1.5;
+			}
+			.reveal .meta-span--tight {
+				margin-top: 10px;
+			}
+			.badge-wrap {
+				margin-top: 85px;
+				text-align: center;
+			}
+			.badge-wrap svg {
+				width: 470px;
+				height: auto;
+			}
+			.reveal pre.badge-code {
+				margin: 60px auto 0;
+				font-size: 0.5em;
+			}
+			.reveal pre.badge-code code {
+				white-space: pre-wrap;
+				word-break: break-all;
+			}
+			.reveal .slides .badge-note {
+				max-width: none;
+				margin: 40px auto 0;
+				text-align: center;
+				font-size: 0.58em;
+				font-style: italic;
+				color: #78716c;
+			}
+
+			/* Aside slide: roomier rhythm */
+			.aside-anon .stmt-claim {
+				margin-top: 70px;
+			}
+			.aside-anon .kw-list {
+				margin-top: 60px;
+			}
+			.aside-anon .kw-list li {
+				font-size: 0.72em;
+				margin-bottom: 1.5em;
+			}
+
+			/* Hands-on steps: numbered list with air */
+			.reveal .steps ol {
+				margin: 50px 0 0 1.3em;
+				max-width: none;
+			}
+			.reveal .steps ol li {
+				font-size: 0.92em;
+				line-height: 1.45;
+				margin-bottom: 0.9em;
+			}
+
+			/* Discussion question slides: one centred serif question */
+			.reveal .slides section.qslide,
+			.reveal .slides section.qslide h2,
+			.reveal .slides section.qslide p {
+				text-align: center;
+			}
+			.reveal .q-num {
+				margin: 150px auto 0;
+				max-width: none;
+				font-family: 'JetBrains Mono', monospace;
+				font-size: 0.5em;
+				letter-spacing: 0.22em;
+				color: #a8a29e;
+			}
+			.reveal .q-text {
+				max-width: 15.5em;
+				margin: 0.5em auto 0;
+				font-style: italic;
+				font-weight: 500;
+				font-size: 1.28em;
+				line-height: 1.38;
+			}
+
+			/* Finale: the week-map chain resolved, then the closing question */
+			.reveal .finale .q-num {
+				margin-top: 120px;
+				text-align: center;
+			}
+			.finale svg.finale-chain {
+				display: block;
+				width: 880px;
+				height: auto;
+				margin: 75px auto 0;
+				font-family: 'Source Sans 3', sans-serif;
+			}
+			.reveal .finale-q {
+				max-width: none;
+				margin: 150px auto 0;
+				text-align: center;
+				font-style: italic;
+				font-weight: 500;
+				font-size: 1.7em;
+				line-height: 1.35;
+			}
+			.reveal .finale-q .fin {
+				font-style: italic;
+				color: var(--w-accent);
+			}
+
+			/* "The spectrum": tool families on a minimal-to-heavy axis */
+			.spectrum svg.spec-map {
+				display: block;
+				width: 920px;
+				height: auto;
+				margin: 18px auto 0;
+				font-family: 'Source Sans 3', sans-serif;
+			}
+			.spectrum svg a {
+				cursor: pointer;
+			}
+			.spec-info-zone {
+				position: relative;
+				height: 178px;
+				margin-top: 14px;
+			}
+			.spec-info {
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+			}
+			.spec-info p {
+				max-width: 42em;
+				margin: 0 auto 0.6em;
+				font-size: 0.74em;
+				line-height: 1.55;
+				text-align: center;
+			}
+			.spec-info .si-links {
+				font-size: 0.64em;
+				color: #78716c;
+			}
+			.reveal .spec-portals {
+				position: absolute;
+				top: 42px;
+				right: 0;
+				max-width: none;
+				margin: 0;
+				text-align: right;
+				font-size: 0.44em;
+				line-height: 1.55;
+				color: #a8a29e;
+				white-space: nowrap;
+			}
+
+			/* "Ground we covered": hand-drawn SVG map of the week, sized to the slide */
+			.ground svg.week-map {
+				display: block;
+				width: 900px;
+				height: auto;
+				margin: 55px auto 0;
+				font-family: 'Source Sans 3', sans-serif;
+			}
+
+			/* Mermaid label clipping fix: reveal scales slides with CSS zoom, which
+			   re-rasterizes text wider than mermaid measured it. Let labels paint
+			   beyond their measured box (they're centered, so overflow is symmetric)
+			   and render them a touch smaller than measured for slack. */
+			.mermaid svg foreignObject {
+				overflow: visible;
+			}
+			.mermaid svg foreignObject div,
+			.mermaid svg foreignObject span {
+				white-space: nowrap;
+			}
+			.mermaid .nodeLabel,
+			.mermaid .edgeLabel {
+				font-size: 0.95em;
+			}
+			.mermaid .nodeLabel small {
+				font-size: 0.72em;
+				opacity: 0.75;
+			}
+		</style>
+	</head>
+	<!-- Accent palette: rubric (default) | lapis | verdigris | tyrian -->
+	<body data-palette="lapis">
+		<div class="reveal">
+			<div class="slides">
+				<!-- ============================================================ -->
+				<!-- TITLE                                                        -->
+				<!-- ============================================================ -->
+				<section class="title-slide">
+					<div class="title-slide__main">
+						<p class="title-slide__eyebrow">
+							<span class="title-slide__event">Antwerp DH Summer School 2026</span>
+							<span class="title-slide__date">3 July 2026</span>
+						</p>
+						<h1 class="title-slide__presentation">Publishing a Digital Edition</h1>
+					</div>
+
+					<footer class="slide-footer">
+						<div class="slide-footer__presenter">
+							<p class="slide-footer__name">Wouter Haverals &amp; Lamyk Bekius</p>
+						</div>
+					</footer>
+
+					<aside class="notes">
+						Friday afternoon, final teaching session of the week. Students have built
+						their own Digital Edition Light on GitHub Pages this morning. This session
+						closes the pipeline: from "it exists" to "it is published".
+					</aside>
+				</section>
+
+				<!-- GROUND WE COVERED: the week's building blocks, conceptually -->
+				<section class="ground">
+					<h2>Ground covered</h2>
+					<svg class="week-map" viewBox="0 0 960 470" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The week: manuscripts and born-digital writing converge on TEI-XML, then a digital edition; publishing is the missing step">
+						<defs>
+							<marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+								<path d="M 0 1 L 9 5 L 0 9 z" fill="#1c1917" />
+							</marker>
+							<marker id="arr-soft" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+								<path d="M 0 1 L 9 5 L 0 9 z" fill="#78716c" />
+							</marker>
+						</defs>
+						<style>
+							.wm-halo {
+								paint-order: stroke;
+								stroke: #faf8f5;
+								stroke-width: 10px;
+								stroke-linejoin: round;
+							}
+						</style>
+
+						<!-- source cards -->
+						<g>
+							<rect x="30" y="45" width="240" height="120" rx="4" fill="#ebe6de" stroke="#1c1917" stroke-width="2" />
+							<text x="150" y="99" text-anchor="middle" font-size="27" font-weight="600" fill="#1c1917">manuscript</text>
+							<text x="150" y="131" text-anchor="middle" font-size="17" fill="#78716c">medieval · modern</text>
+						</g>
+						<g>
+							<rect x="30" y="305" width="240" height="120" rx="4" fill="#ebe6de" stroke="#1c1917" stroke-width="2" />
+							<text x="150" y="359" text-anchor="middle" font-size="27" font-weight="600" fill="#1c1917">writing process</text>
+							<text x="150" y="391" text-anchor="middle" font-size="17" fill="#78716c">born-digital</text>
+						</g>
+
+						<!-- hub + chain -->
+						<g>
+							<rect x="390" y="175" width="170" height="120" rx="4" fill="var(--w-accent)" stroke="#1c1917" stroke-width="2" />
+							<text x="475" y="243" text-anchor="middle" font-size="27" font-weight="600" fill="#faf8f5">TEI-XML</text>
+						</g>
+						<g>
+							<rect x="640" y="175" width="160" height="120" rx="4" fill="var(--w-accent)" stroke="#1c1917" stroke-width="2" />
+							<text x="720" y="228" text-anchor="middle" font-size="26" font-weight="600" fill="#faf8f5">digital</text>
+							<text x="720" y="260" text-anchor="middle" font-size="26" font-weight="600" fill="#faf8f5">edition</text>
+						</g>
+						<g>
+							<rect x="840" y="199" width="112" height="72" rx="36" fill="none" stroke="#78716c" stroke-width="2" stroke-dasharray="6 5" />
+							<text x="896" y="243" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">publish?</text>
+						</g>
+
+						<!-- edges: manuscript in by two routes, writing process by one -->
+						<path d="M 272 80 C 350 62, 430 95, 466 170" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#arr)" />
+						<text text-anchor="middle" font-size="19" fill="#1c1917" class="wm-halo"><tspan x="368" y="52">manual</tspan><tspan x="368" y="76">transcription</tspan></text>
+
+						<path d="M 272 135 C 322 152, 352 185, 384 218" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#arr)" />
+						<text x="330" y="180" text-anchor="middle" font-size="19" fill="#1c1917" class="wm-halo">HTR</text>
+
+						<path d="M 272 363 C 340 352, 366 300, 390 268" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#arr)" />
+						<text x="352" y="349" text-anchor="middle" font-size="19" fill="#1c1917" class="wm-halo">keystroke logging</text>
+
+						<path d="M 560 235 L 634 235" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#arr)" />
+						<text x="600" y="332" text-anchor="middle" font-size="19" fill="#1c1917">XPath · XSLT · HTML/CSS</text>
+
+						<path d="M 800 235 L 833 235" fill="none" stroke="#78716c" stroke-width="2" stroke-dasharray="5 5" marker-end="url(#arr-soft)" />
+					</svg>
+					<aside class="notes">
+						~1 min. The week, conceptually: analogue manuscripts (medieval or modern)
+						reach TEI by transcription or HTR; born-digital writing gets there by
+						keystroke logging. Everything converged on TEI-XML, and Thursday/Friday
+						turned that into an edition with XPath/XSLT and HTML/CSS. The dashed
+						arrow is the one step nobody has taken yet: publish. That is this session.
+					</aside>
+				</section>
+
+				<!-- ============================================================ -->
+				<!-- 01 · WHAT "PUBLISHING" ACTUALLY MEANS  (~7-8 min)            -->
+				<!-- ============================================================ -->
+				<section class="section-slide" data-background-color="#242b3d">
+					<p class="section-slide__number">01</p>
+					<h2>What does it mean to publish a <span class="accent-word">digital</span> edition?</h2>
+				</section>
+
+				<section class="xml-not">
+					<h2>The XML is not the edition</h2>
+					<p class="xml-not__claim fragment fade-up">
+						An edition sitting in a repo is not published.
+					</p>
+					<div class="xml-not__eq">
+						<span class="xml-not__lhs fragment fade-up">published&thinsp;=</span>
+						<span class="chip fragment fade-up">viewable</span>
+						<span class="chip fragment fade-up">findable</span>
+						<span class="chip fragment fade-up">citable</span>
+						<span class="chip fragment fade-up">durable</span>
+					</div>
+					<aside class="notes">
+						~2-3 min. The provocation, right after their answers: encoding is not
+						publishing. The four chips are the working definition the rest of the
+						session hangs on — reveal them one by one, tying each back to something
+						a participant said.
+					</aside>
+				</section>
+
+				<section class="roadmap">
+					<h2>Published means…</h2>
+					<ul>
+						<li>
+							<span class="kw">viewable</span> — a human can read it, not just a parser
+						</li>
+						<li>
+							<span class="kw">findable</span> — metadata and a place where people discover it
+						</li>
+						<li>
+							<span class="kw">citable</span> — a stable, versioned reference to point at
+						</li>
+						<li>
+							<span class="kw">durable</span> — it outlives the server, the grant, the laptop
+						</li>
+					</ul>
+					<aside class="notes">
+						~2 min. These four adjectives are the map of the session: display gives
+						viewable; metadata + DOI give findable and citable; archiving gives durable.
+						FAIR is the through-line (Findable, Accessible, Interoperable, Reusable):
+						interoperable you already have — TEI all week; today supplies the rest.
+					</aside>
+				</section>
+
+				<!-- FAIR: the formal yardstick behind the four adjectives -->
+				<section class="fair">
+					<h2>The yardstick: <span class="accent-ink">FAIR</span></h2>
+					<p class="fair-src">
+						<a href="https://www.go-fair.org/fair-principles/" target="_blank" rel="noopener">GO FAIR principles</a><br />
+						Wilkinson et al. 2016, <em>Scientific Data</em>
+					</p>
+					<div class="fair-cards">
+						<div class="fair-card fragment fade-up">
+							<p class="fair-letter">F</p>
+							<p class="fair-word">Findable</p>
+							<p class="fair-gloss">rich metadata and a persistent identifier</p>
+							<p class="fair-status">→ today: a DOI</p>
+						</div>
+						<div class="fair-card fragment fade-up">
+							<p class="fair-letter">A</p>
+							<p class="fair-word">Accessible</p>
+							<p class="fair-gloss">retrievable by humans and machines</p>
+							<p class="fair-status">→ today: open hosting</p>
+						</div>
+						<div class="fair-card fragment fade-up">
+							<p class="fair-letter">I</p>
+							<p class="fair-word">Interoperable</p>
+							<p class="fair-gloss">standard formats others can parse</p>
+							<p class="fair-status fair-status--done">✓ all week: TEI-XML</p>
+						</div>
+						<div class="fair-card fragment fade-up">
+							<p class="fair-letter">R</p>
+							<p class="fair-word">Reusable</p>
+							<p class="fair-gloss">clear licence, provenance, versions</p>
+							<p class="fair-status">→ today: licence + release</p>
+						</div>
+					</div>
+					<aside class="notes">
+						~2 min. The four adjectives were the intuitive version; FAIR is the
+						formal one (born for research data, Wilkinson et al. 2016, now the
+						funders' standard — also for editions). The satisfying mapping: I is
+						already done — a week of TEI gave them interoperability. F, A and R are
+						exactly what this session adds: DOI, hosting, licence, versioned release.
+					</aside>
+				</section>
+
+				<!-- THE FINAL PART: agenda -->
+				<section class="roadmap">
+					<h2>The final part</h2>
+					<ul>
+						<li>
+							<span class="kw">Display</span> — from TEI to something people can actually read
+						</li>
+						<li>
+							<span class="kw">Rights</span> — whose edition is it, and what may others do with it?
+						</li>
+						<li>
+							<span class="kw">Preservation</span> — hosting is not archiving: Zenodo + GitHub
+						</li>
+						<li>
+							<span class="kw">Hands-on</span> — archive your edition, walk out with a DOI
+						</li>
+					</ul>
+					<aside class="notes">
+						~1 min. Arc of the talk: viewable → reusable → citable → durable.
+						The hands-on cashes out the whole week: this morning you made an edition,
+						by 15:00 it has a DOI.
+					</aside>
+				</section>
+
+				<!-- ============================================================ -->
+				<!-- 02 · FROM TEI TO READABLE: THE DISPLAY SPECTRUM  (~12-15 min) -->
+				<!-- ============================================================ -->
+				<section class="section-slide" data-background-color="#242b3d">
+					<p class="section-slide__number">02</p>
+					<h2>From TEI to something <span class="accent-word">human</span>-readable</h2>
+				</section>
+
+				<section class="spectrum">
+					<h2>The spectrum</h2>
+					<p class="spec-portals">
+						browse editions:<br />
+						<a href="https://www.digitale-edition.de/" target="_blank" rel="noopener">Catalog of Digital Scholarly Editions</a> ·
+						<a href="https://dig-ed-cat.acdh.oeaw.ac.at/" target="_blank" rel="noopener">Catalogue of Digital Editions</a>
+					</p>
+					<svg class="spec-map" viewBox="0 0 960 352" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Display options for TEI, from minimal to heavy infrastructure">
+						<defs>
+							<marker id="spec-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+								<path d="M 0 1 L 9 5 L 0 9 z" fill="#1c1917" />
+							</marker>
+						</defs>
+
+						<!-- group cards -->
+						<g class="fragment fade-up" data-fragment-index="0">
+							<rect x="40" y="60" width="210" height="150" rx="4" fill="#ebe6de" stroke="#1c1917" stroke-width="2" />
+							<text x="145" y="92" text-anchor="middle" font-size="13" letter-spacing="2" fill="#78716c">IN THE BROWSER</text>
+							<a href="https://github.com/TEIC/CETEIcean" target="_blank" rel="noopener">
+								<text x="145" y="128" text-anchor="middle" font-size="20" font-weight="600" fill="var(--w-accent)" text-decoration="underline">CETEIcean</text>
+							</a>
+							<text x="145" y="160" text-anchor="middle" font-size="15" fill="#57534e">TEI rendered client-side,</text>
+							<text x="145" y="182" text-anchor="middle" font-size="15" fill="#57534e">zero build step</text>
+							<line x1="145" y1="210" x2="145" y2="262" stroke="#78716c" stroke-width="2" />
+							<circle cx="145" cy="268" r="6" fill="#1c1917" />
+						</g>
+						<g class="fragment fade-up" data-fragment-index="1">
+							<rect x="270" y="60" width="210" height="150" rx="4" fill="#ebe6de" stroke="#1c1917" stroke-width="2" />
+							<text x="375" y="92" text-anchor="middle" font-size="13" letter-spacing="2" fill="#78716c">STATIC SITES</text>
+							<text x="375" y="128" text-anchor="middle" font-size="20" font-weight="600" fill="#1c1917">Edition Light</text>
+							<a href="https://github.com/SSLIS/DIY-frankensTEIn" target="_blank" rel="noopener">
+								<text x="375" y="158" text-anchor="middle" font-size="20" font-weight="600" fill="var(--w-accent)" text-decoration="underline">DIY-frankensTEIn</text>
+							</a>
+							<a href="https://github.com/minicomp/wax" target="_blank" rel="noopener">
+								<text x="375" y="188" text-anchor="middle" font-size="20" font-weight="600" fill="var(--w-accent)" text-decoration="underline">Wax</text>
+							</a>
+							<line x1="375" y1="210" x2="375" y2="262" stroke="#78716c" stroke-width="2" />
+							<circle cx="375" cy="268" r="6" fill="#1c1917" />
+						</g>
+						<g class="fragment fade-up" data-fragment-index="2">
+							<rect x="500" y="60" width="210" height="150" rx="4" fill="#ebe6de" stroke="#1c1917" stroke-width="2" />
+							<text x="605" y="92" text-anchor="middle" font-size="13" letter-spacing="2" fill="#78716c">EDITION VIEWERS</text>
+							<a href="https://evt-project.github.io/" target="_blank" rel="noopener">
+								<text x="605" y="128" text-anchor="middle" font-size="20" font-weight="600" fill="var(--w-accent)" text-decoration="underline">EVT</text>
+							</a>
+							<a href="http://v-machine.org/" target="_blank" rel="noopener">
+								<text x="605" y="158" text-anchor="middle" font-size="20" font-weight="600" fill="var(--w-accent)" text-decoration="underline">Versioning Machine</text>
+							</a>
+							<a href="https://lera.uzi.uni-halle.de/" target="_blank" rel="noopener">
+								<text x="605" y="188" text-anchor="middle" font-size="20" font-weight="600" fill="var(--w-accent)" text-decoration="underline">LERA</text>
+							</a>
+							<line x1="605" y1="210" x2="605" y2="262" stroke="#78716c" stroke-width="2" />
+							<circle cx="605" cy="268" r="6" fill="#1c1917" />
+						</g>
+						<g class="fragment fade-up" data-fragment-index="3">
+							<rect x="730" y="60" width="210" height="150" rx="4" fill="#ebe6de" stroke="#1c1917" stroke-width="2" />
+							<text x="835" y="92" text-anchor="middle" font-size="13" letter-spacing="2" fill="#78716c">SERVER PLATFORMS</text>
+							<a href="https://teipublisher.com/" target="_blank" rel="noopener">
+								<text x="835" y="128" text-anchor="middle" font-size="20" font-weight="600" fill="var(--w-accent)" text-decoration="underline">TEI Publisher</text>
+							</a>
+							<a href="https://exist-db.org/" target="_blank" rel="noopener">
+								<text x="835" y="158" text-anchor="middle" font-size="20" font-weight="600" fill="var(--w-accent)" text-decoration="underline">eXist-db</text>
+							</a>
+							<text x="835" y="188" text-anchor="middle" font-size="15" fill="#57534e">database, search, API</text>
+							<line x1="835" y1="210" x2="835" y2="262" stroke="#78716c" stroke-width="2" />
+							<circle cx="835" cy="268" r="6" fill="#1c1917" />
+						</g>
+
+						<!-- axis -->
+						<line x1="30" y1="268" x2="925" y2="268" stroke="#1c1917" stroke-width="2.5" marker-end="url(#spec-arr)" />
+						<text x="40" y="312" font-size="19" font-weight="600" fill="#1c1917">minimal</text>
+						<text x="40" y="338" font-size="15" fill="#78716c">just a browser</text>
+						<text x="915" y="312" text-anchor="end" font-size="19" font-weight="600" fill="#1c1917">heavy</text>
+						<text x="915" y="338" text-anchor="end" font-size="15" fill="#78716c">your own server to run</text>
+					</svg>
+
+					<div class="spec-info-zone">
+						<div class="spec-info fragment current-visible" data-fragment-index="0">
+							<p>
+								The TEI file <em>is</em> the website: a small JavaScript library teaches the
+								browser to display TEI tags directly, styled with plain CSS. One source, no
+								transformation pipeline &mdash; and anything beyond display is yours to build.
+							</p>
+							<p class="si-links">
+								<a href="https://frankensteinvariorum.org/" target="_blank" rel="noopener">Frankenstein Variorum</a> ·
+								<a href="https://teic.github.io/CETEIcean/" target="_blank" rel="noopener">CETEIcean live examples</a>
+							</p>
+						</div>
+						<div class="spec-info fragment current-visible" data-fragment-index="1">
+							<p>
+								Transform once, serve forever: a generator bakes the TEI into plain HTML pages
+								that any host can serve &mdash; GitHub Pages, for free. No moving parts after
+								the build: <s>nothing</s> very little to patch, and <s>nothing</s> very little left to break.
+							</p>
+							<p class="si-links">
+								<a href="https://sslis.github.io/DIY-frankensTEIn/" target="_blank" rel="noopener">DIY-frankensTEIn</a> ·
+								<a href="https://endings.uvic.ca/projects.html" target="_blank" rel="noopener">Endings-compliant editions (UVic)</a> ·
+								<a href="https://go-dh.github.io/mincomp/" target="_blank" rel="noopener">minimal computing</a>
+							</p>
+						</div>
+						<div class="spec-info fragment current-visible" data-fragment-index="2">
+							<p>
+								Edition-shaped software: ready-made reading environments &mdash; facsimile beside
+								transcription, edition levels, critical apparatus, witness comparison. You
+								configure instead of program, and the result is still just files on a web server.
+							</p>
+							<p class="si-links">
+								<a href="http://pelavicino.labcd.unipi.it/evt/" target="_blank" rel="noopener">Codice Pelavicino (EVT)</a> ·
+								<a href="http://v-machine.org/samples/" target="_blank" rel="noopener">Versioning Machine samples</a> ·
+								<a href="https://lera.uzi.uni-halle.de/" target="_blank" rel="noopener">LERA demos</a>
+							</p>
+						</div>
+						<div class="spec-info fragment current-visible" data-fragment-index="3">
+							<p>
+								The edition as an application: an XML database answers readers&rsquo; queries
+								live: full-text search, filtering, views on demand, etc. The most powerful
+								end of the axis. Somebody must run, patch and migrate the server.
+							</p>
+							<p class="si-links">
+								<a href="https://edition-humboldt.de/" target="_blank" rel="noopener">edition humboldt digital</a> ·
+								<a href="https://www.e-editiones.org/map/" target="_blank" rel="noopener">TEI Publisher registry</a> ·
+								<a href="https://teipublisher.com/exist/apps/tei-publisher/index.html" target="_blank" rel="noopener">TEI Publisher demos</a>
+							</p>
+						</div>
+					</div>
+					<aside class="notes">
+						~2 min for the overview, then one slide per family. Axis = infrastructure
+						required, from "a browser" to "a server somebody must run and update".
+						Anchor on the static-sites card: Edition Light is what they built this
+						morning; DIY-frankensTEIn is the worked example that flows into Zenodo;
+						Wax shows the same philosophy for collections (minimal computing).
+						Tool names are clickable links in the deck.
+						Version-comparison ecosystem beyond EVT/VM: LERA (Halle, actively
+						maintained — equal-ranking comparison of versions, coloured word-level
+						differences, shared apparatus); CATview (coloured aligned-texts strip,
+						embeddable); TRAViz (variant-graph visualization). These consume output
+						of collation engines like CollateX / HyperCollate — tie back to Elli
+						Bleeker's keynote on Tuesday. Juxta is retired.
+						Theory anchors for the axis: Turska/Cummings/Rahtz, "Challenging the
+						Myth of Presentation in Digital Editions" (jTEI 2016) — the data, not the
+						interface, is the edition; Gil &amp; Ortega's minimal computing ("what do we
+						need?"); the Endings Project principles (Holmes &amp; Takeda, UVic) — static,
+						dependency-free, archivable; Sahle's DSE catalog for the empirical landscape.
+						State of the art (checked July 2026): CETEIcean still the standard for
+						client-side TEI; TEI Publisher is at v10; the field's direction of travel
+						is static — even TEI Publisher now ships a static-site generator, and
+						ACDH-CH publishes editions from a static cookiecutter. Emerging: LEAF
+						Commons (semantic editions toolchain). Showcases: edition humboldt
+						digital (eXist-db/ediarum, BBAW, v12 June 2026); the powered-by-TEI-Publisher
+						list collects dozens of live editions.
+					</aside>
+				</section>
+
+				<!-- ============================================================ -->
+				<!-- 03 · WHOSE EDITION IS IT? RIGHTS & LICENSING  (~5 min)       -->
+				<!-- ============================================================ -->
+				<section class="section-slide" data-background-color="#242b3d">
+					<p class="section-slide__number">03</p>
+					<h2>Whose edition is it?</h2>
+				</section>
+
+				<section class="rights">
+					<h2><span class="t-in">Rights in</span><span class="fragment" data-fragment-index="3"><span class="t-out">, rights out</span></span></h2>
+					<div class="rights-cols">
+						<div class="rights-col">
+							<ul>
+								<li class="fragment fade-up" data-fragment-index="0">
+									<span class="kw-in">the text</span> — copyright runs until 70 years after
+									the author&rsquo;s death. Your medieval scribe is safe; modern and
+									born-digital authors usually are not.
+								</li>
+								<li class="fragment fade-up" data-fragment-index="1">
+									<span class="kw-in">the images</span> — in the EU, a faithful scan of a
+									public-domain work is itself public domain
+									(<a href="https://eur-lex.europa.eu/eli/dir/2019/790/oj" target="_blank" rel="noopener">DSM art.&nbsp;14</a>).
+									But your contract with the holding institution can still restrict use.
+								</li>
+								<li class="fragment fade-up" data-fragment-index="2">
+									<span class="kw-in">the process</span> — keystroke logs of a living writer
+									are personal data under EU law: you need consent, not just copyright.
+								</li>
+							</ul>
+						</div>
+						<div class="rights-col">
+							<ul>
+								<li class="fragment fade-up" data-fragment-index="3">
+									<span class="kw-out">your copyright is thin</span> — a faithful
+									transcription adds no <em>original</em> creation, so it earns little or
+									no copyright of its own.
+								</li>
+								<li class="fragment fade-up" data-fragment-index="4">
+									<span class="kw-out">…but some countries step in</span> — Germany gives
+									the editor a 25-year exclusive right in the edited text
+									(<a href="https://www.gesetze-im-internet.de/urhg/__70.html" target="_blank" rel="noopener">§&nbsp;70 UrhG</a>): others may not simply republish it.
+								</li>
+								<li class="fragment fade-up" data-fragment-index="5">
+									<span class="kw-out">declare it</span> — a LICENSE file in the repo,
+									<code>&lt;licence&gt;</code> in the teiHeader. Undeclared = all rights
+									reserved.
+								</li>
+							</ul>
+						</div>
+					</div>
+					<aside class="notes">
+						~3 min. Build: title starts as "Rights in", the three source questions
+						appear; then ", rights out" joins the title in green with the second
+						column. Nuances to say out loud: life+70 is the EU/US baseline — Conan
+						Doyle (d. 1930) is out of copyright, but a 1990s notebook is not. GDPR
+						applies to living persons only and has no direct US equivalent; for the
+						keystroke-logged poems from Tuesday, participants consented. Art. 14 DSM
+						(2019) stopped museums claiming copyright on faithful scans of
+						public-domain works — contract law is the remaining lever, so read the
+						institution's terms (Plantin-Moretus). § 70 UrhG: a neighbouring right —
+						for 25 years nobody may reproduce the edited text without permission,
+						even though the underlying work is public domain.
+					</aside>
+				</section>
+
+				<section class="license">
+					<h2>Pick a license</h2>
+					<p class="lic-src">
+						<a href="https://chooser-beta.creativecommons.org/" target="_blank" rel="noopener">CC license chooser</a><br />
+						<a href="https://choosealicense.com/" target="_blank" rel="noopener">choosealicense.com</a>
+					</p>
+					<div class="rights-cols">
+						<div class="rights-col">
+							<h3 class="lic-col-h"><span class="kw-in">the edition</span> — text, encoding, images</h3>
+							<ul class="lic-list">
+								<li>
+									<a class="chip" href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener">CC BY</a>
+									reuse with attribution — the scholarly default
+								</li>
+								<li>
+									<a class="chip" href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA</a>
+									…and derivatives must share alike
+								</li>
+								<li>
+									<a class="chip" href="https://creativecommons.org/publicdomain/zero/1.0/" target="_blank" rel="noopener">CC0</a>
+									no conditions at all — the norm for metadata
+								</li>
+								<li class="lic-warn lic-warn--stack">
+									<span class="chip-stack">
+										<a class="chip chip--warn" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener">NC</a>
+										<a class="chip chip--warn" href="https://creativecommons.org/licenses/by-nd/4.0/" target="_blank" rel="noopener">ND</a>
+									</span>
+									avoid: they block teaching, anthologies, derivatives
+								</li>
+							</ul>
+						</div>
+						<div class="rights-col">
+							<h3 class="lic-col-h"><span class="kw-out">the code</span> — XSLT, scripts</h3>
+							<ul class="lic-list">
+								<li>
+									<a class="chip chip--code" href="https://choosealicense.com/licenses/mit/" target="_blank" rel="noopener">MIT</a>
+									do anything, keep the notice — short and permissive
+								</li>
+								<li>
+									<a class="chip chip--code" href="https://choosealicense.com/licenses/gpl-3.0/" target="_blank" rel="noopener">GPL-3.0</a>
+									derivatives must stay open (copyleft)
+								</li>
+								<li class="lic-warn">
+									<a class="chip chip--warn" href="https://creativecommons.org/faq/#can-i-apply-a-creative-commons-license-to-software" target="_blank" rel="noopener">CC</a>
+									not for code — Creative Commons says so itself
+								</li>
+							</ul>
+						</div>
+					</div>
+					<p class="lic-bottom">
+						No license&thinsp;=&thinsp;all rights reserved — reuse is legally blocked, and the
+						<strong>R</strong> of FAIR fails.
+					</p>
+					<aside class="notes">
+						~3 min. Two layers, two license families. Content: CC BY is the scholarly
+						default (edition humboldt digital uses CC BY-SA); CC0 for metadata is the
+						Europeana norm. Why avoid NC/ND: "non-commercial" is legally ambiguous
+						(a paid summer school? a university press anthology?) and ND forbids
+						exactly what editions exist for — building on the text. OpenGLAM and the
+						open definition don't count NC/ND as open. Code: MIT if you want maximum
+						uptake, GPL if you want improvements shared back; CC licenses lack the
+						patent/source-code language software needs. Zenodo will ask for a license
+						at deposit — deciding now saves the awkward moment this afternoon.
+					</aside>
+				</section>
+
+				<!-- ============================================================ -->
+				<!-- 04 · CITABLE & DURABLE: ZENODO + GITHUB  (~10-12 min)        -->
+				<!-- ============================================================ -->
+				<section class="section-slide" data-background-color="#242b3d">
+					<p class="section-slide__number">04</p>
+					<h2>Citable &amp; <span class="accent-word">durable</span>: Zenodo + GitHub</h2>
+				</section>
+
+				<!-- Hosting ≠ preservation: the evidence -->
+				<section>
+					<h2>Hosting ≠ preservation</h2>
+					<p class="stmt-claim">
+						GitHub Pages is a website. A website is not an archive.
+					</p>
+					<ul class="kw-list">
+						<li>
+							<span class="kw">links rot</span> — roughly one in five scholarly articles
+							suffers <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0115253" target="_blank" rel="noopener">reference rot</a>;
+							half the web links in U.S. Supreme Court opinions are dead
+							(hence <a href="https://perma.cc/" target="_blank" rel="noopener">Perma.cc</a>)
+						</li>
+						<li>
+							<span class="kw">platforms die</span> — GeoCities, Google Code,
+							Bitbucket&rsquo;s Mercurial repos: all gone. GitHub is a company,
+							not a memory institution
+						</li>
+						<li>
+							<span class="kw">preservation is a promise</span> — an institution&rsquo;s
+							commitment, redundant storage, and a persistent identifier. Not a
+							feature you toggle
+						</li>
+					</ul>
+					<aside class="notes">
+						~2 min. The money slide. Numbers: Klein et al. 2014 (PLOS ONE) found
+						~20% of STM articles affected by reference rot; Zittrain, Albert &amp;
+						Lessig 2014 found ~50% of links in Supreme Court opinions broken —
+						Harvard built Perma.cc in response. Ask: what survives your GitHub
+						account, your funding, your career?
+					</aside>
+				</section>
+
+				<!-- The DOI trick: identity vs location, versions -->
+
+				<!-- Zenodo + the belt-and-braces extras -->
+				<section class="rights zen">
+					<h2>The archive layer</h2>
+					<div class="rights-cols">
+						<div class="rights-col">
+							<h3 class="lic-col-h"><a href="https://zenodo.org/" target="_blank" rel="noopener"><span class="kw-in">Zenodo</span></a></h3>
+							<p class="col-role">the deposit</p>
+							<ul>
+								<li>
+									<span class="kw-in">CERN-run</span> — stored in the CERN Data Centre;
+									<a href="https://about.zenodo.org/policies/" target="_blank" rel="noopener">retained for the lifetime of the lab</a>
+								</li>
+								<li>
+									<span class="kw-in">free</span> — up to 50&nbsp;GB per record; the DOI
+									registers within seconds
+								</li>
+								<li>
+									<span class="kw-in">GitHub-aware</span> — one switch: every release
+									archived, each with its own version DOI
+								</li>
+							</ul>
+						</div>
+						<div class="rights-col">
+							<h3 class="lic-col-h"><span class="kw-out">belts and braces</span></h3>
+							<p class="col-role">free extras</p>
+							<ul>
+								<li>
+									<span class="kw-out"><a href="https://www.softwareheritage.org/" target="_blank" rel="noopener">Software Heritage</a></span> —
+									already archives every public GitHub repo, automatically
+								</li>
+								<li>
+									<span class="kw-out"><a href="https://web.archive.org/" target="_blank" rel="noopener">Wayback Machine</a></span> —
+									snapshots the <em>rendered site</em>; Zenodo keeps files, not web pages
+								</li>
+								<li>
+									<span class="kw-out">your library</span> — institutional repositories
+									add an institutional commitment
+								</li>
+							</ul>
+						</div>
+					</div>
+					<aside class="notes">
+						~2 min. Zenodo: built at CERN, backed by OpenAIRE and the EU, runs on
+						InvenioRDM; policy commits to retention for the lifetime of the
+						laboratory (funded for decades) with migration guarantees. The extras
+						cost nothing: Software Heritage crawls public forges continuously
+						(SWHIDs identify source code; your students' repos are probably already
+						in it); the Wayback Machine covers the one thing a deposit doesn't —
+						how the edition looked in a browser.
+					</aside>
+				</section>
+
+				<!-- GitHub → Zenodo flow -->
+				<section class="flow">
+					<h2>The GitHub → Zenodo flow</h2>
+					<svg class="flow-map" viewBox="0 0 960 430" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Flip the Zenodo switch on your repo, publish a release, and the release is archived with a DOI; every new release mints a new version DOI">
+						<defs>
+							<marker id="f-arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+								<path d="M 0 1 L 9 5 L 0 9 z" fill="#1c1917" />
+							</marker>
+							<marker id="f-acc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+								<path d="M 0 1 L 9 5 L 0 9 z" fill="var(--w-accent)" />
+							</marker>
+						</defs>
+
+						<g>
+							<rect x="20" y="170" width="220" height="115" rx="5" fill="#ebe6de" stroke="#1c1917" stroke-width="2.5" />
+							<text x="130" y="220" text-anchor="middle" font-size="26" font-weight="600" fill="#1c1917">your repo</text>
+							<text x="130" y="256" text-anchor="middle" font-size="15.5" font-family="'JetBrains Mono', monospace" fill="#78716c">github.com/you/edition</text>
+						</g>
+
+						<g class="fragment fade-up">
+							<path d="M 243 227 L 366 227" fill="none" stroke="#1c1917" stroke-width="2.5" marker-end="url(#f-arr)" />
+							<text x="304" y="205" text-anchor="middle" font-size="18" fill="#1c1917" class="wm-halo">flip the switch</text>
+							<rect x="370" y="170" width="220" height="115" rx="5" fill="#ebe6de" stroke="#1c1917" stroke-width="2.5" />
+							<text x="480" y="220" text-anchor="middle" font-size="26" font-weight="600" fill="#1c1917">release v1.0.0</text>
+							<text x="480" y="256" text-anchor="middle" font-size="16" fill="#78716c">a frozen, citable state</text>
+						</g>
+
+						<g class="fragment fade-up">
+							<path d="M 593 227 L 716 227" fill="none" stroke="#1c1917" stroke-width="2.5" marker-end="url(#f-arr)" />
+							<text x="654" y="205" text-anchor="middle" font-size="18" fill="#1c1917" class="wm-halo">publish it</text>
+							<rect x="720" y="170" width="220" height="115" rx="5" fill="var(--w-accent)" stroke="#1c1917" stroke-width="2.5" />
+							<text x="830" y="220" text-anchor="middle" font-size="26" font-weight="600" fill="#faf8f5">archived + DOI</text>
+							<text x="830" y="256" text-anchor="middle" font-size="15.5" font-family="'JetBrains Mono', monospace" fill="#faf8f5">10.5281/zenodo.…</text>
+						</g>
+
+						<g class="fragment fade-up">
+							<path d="M 838 166 C 798 58, 528 58, 484 164" fill="none" stroke="var(--w-accent)" stroke-width="2.5" stroke-dasharray="7 6" marker-end="url(#f-acc)" />
+							<text x="660" y="64" text-anchor="middle" font-size="19" font-style="italic" fill="var(--w-accent)" class="wm-halo">every new release mints a new version DOI</text>
+						</g>
+
+						<text x="480" y="394" text-anchor="middle" font-size="20" font-style="italic" fill="#57534e">
+							name versions like software — v1.0.0
+							(<a href="https://semver.org/" target="_blank" rel="noopener"><tspan fill="var(--w-accent)" text-decoration="underline">semver.org</tspan></a>),
+							not
+							<tspan font-family="'JetBrains Mono', monospace" font-style="normal" font-size="17" text-decoration="line-through">final_FINAL_v2</tspan>
+						</text>
+					</svg>
+					<aside class="notes">
+						~3 min. The full loop, no command line: authorize Zenodo once, flip the
+						toggle next to the repo, then make a release on GitHub (tag = version
+						number). Zenodo picks it up within minutes; green deposit = success,
+						failed deposits usually mean a JSON syntax error in .zenodo.json.
+						Emphasize what a release is: a frozen state with a name — this
+						afternoon's hands-on walks every step on the sandbox
+						(sandbox.zenodo.org). Versioning for an edition, semver-style:
+						MAJOR = the text or structure changes (new reading, re-encoding),
+						MINOR = content added (new letters, new witness), PATCH = corrections
+						(typos, metadata). Git convention: tag "v1.0.0", the semantic version
+						is 1.0.0.
+					</aside>
+				</section>
+
+				<section class="flowshot">
+					<h2>The GitHub → Zenodo flow</h2>
+					<img class="flowshot-img" src="assets/zenodo-get-started.png" alt="Zenodo's GitHub settings page: 1 Flip the switch, 2 Create a release, 3 Get the badge" />
+					<aside class="notes">
+						The real interface: Zenodo's own onboarding panel mirrors the diagram —
+						flip the switch, create a release, get the badge. Shown live during the
+						hands-on; this is the page they'll see after linking GitHub.
+					</aside>
+				</section>
+
+				<!-- Metadata: .zenodo.json + CITATION.cff -->
+				<section class="meta">
+					<h2>Declare yourself</h2>
+					<div class="meta-row">
+						<pre><code class="hljs json" data-trim>
+{
+  "title": "My Digital Edition",
+  "creators": [
+    { "name": "Last, First",
+      "orcid": "0000-0000-0000-0000" }
+  ],
+  "license": "cc-by-4.0"
+}
+						</code></pre>
+						<p class="meta-txt">
+							<span class="kw"><code>.zenodo.json</code></span> — what Zenodo reads
+							at deposit time. Without it, Zenodo guesses
+						</p>
+					</div>
+					<div class="meta-row fragment fade-up">
+						<pre><code class="hljs yaml" data-trim>
+cff-version: 1.2.0
+message: "If you use this edition, cite it."
+title: "My Digital Edition"
+authors:
+  - family-names: Last
+    given-names: First
+license: CC-BY-4.0
+						</code></pre>
+						<p class="meta-txt">
+							<span class="kw"><code>CITATION.cff</code></span> — what GitHub reads:
+							adds a <em>&ldquo;Cite this repository&rdquo;</em> button
+							(<a href="https://citation-file-format.github.io/" target="_blank" rel="noopener">citation-file-format.github.io</a>)
+						</p>
+					</div>
+					<p class="meta-span fragment fade-up">
+						<span class="kw">the license</span> — the choice you just made, written where
+						machines can read it: the deposit displays it, and reuse is unambiguous
+					</p>
+					<p class="meta-span meta-span--tight fragment fade-up">
+						<span class="kw">your identity</span> — an
+						<a href="https://orcid.org/" target="_blank" rel="noopener">ORCID</a> is a
+						persistent identifier for <em>you</em>: it survives name changes and moves,
+						and ties the edition to its editor
+					</p>
+					<aside class="notes">
+						~3 min. Both files live in the repo root, dot included for .zenodo.json.
+						Careful: "contributors" (unlike "creators") require a "type" field — the
+						classic silent failure that turns a deposit red. CITATION.cff is the
+						GitHub-native sibling (message and cff-version are required fields);
+						both can coexist. ORCID: two minutes, free, permanent.
+					</aside>
+				</section>
+
+				<!-- Badge -->
+				<section class="badge">
+					<h2>Wear the badge</h2>
+					<div class="badge-wrap">
+						<svg viewBox="0 0 232 32" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="DOI badge">
+							<rect x="0" y="0" width="232" height="32" rx="6" fill="#555555" />
+							<rect x="46" y="0" width="186" height="32" rx="6" fill="#1682D4" />
+							<rect x="46" y="0" width="12" height="32" fill="#1682D4" />
+							<text x="23" y="21" text-anchor="middle" font-size="14" font-weight="600" font-family="'Source Sans 3', sans-serif" fill="#faf8f5">DOI</text>
+							<text x="139" y="21" text-anchor="middle" font-size="13" font-family="'JetBrains Mono', monospace" fill="#faf8f5">10.5281/zenodo.6366713</text>
+						</svg>
+					</div>
+					<pre class="badge-code"><code class="hljs markdown" data-trim>
+[![DOI](https://img.shields.io/badge/DOI-&lt;doi&gt;-blue)](https://doi.org/&lt;doi&gt;)
+					</code></pre>
+					<p class="lic-bottom">
+						One line in the README: the edition announces its own citable, archived self.
+					</p>
+					<p class="badge-note">
+						<a href="https://shields.io/" target="_blank" rel="noopener">shields.io</a> renders
+						badges for anything — DOI, license, release — as simple, reliable images
+					</p>
+					<aside class="notes">
+						~1 min. Zenodo offers a badge on the deposit page, but GitHub loads
+						README images through its camo proxy, and Zenodo's badge service is
+						rate-limited (~120/min) — camo caches the failure and you get a broken
+						icon. The shields.io static badge avoids the round-trip entirely (a DOI
+						never changes, so nothing needs to be live). Note the %2F: the slash in
+						the DOI must be URL-encoded. Closes the FAIR loop: findable, accessible,
+						interoperable, reusable.
+					</aside>
+				</section>
+
+				<!-- Aside: anonymous for review -->
+				<section class="aside-anon">
+					<h2>Aside: anonymous, for now</h2>
+					<p class="stmt-claim">
+						Sometimes the repo must <em>not</em> name you — yet.
+					</p>
+					<ul class="kw-list">
+						<li>
+							<span class="kw">double-blind review</span> — the journal wants the
+							edition, without the editor
+						</li>
+						<li>
+							<span class="kw"><a href="https://anonymous.4open.science/" target="_blank" rel="noopener">Anonymous GitHub</a></span> —
+							an anonymized mirror of your repo: names, links and paths scrubbed,
+							one shareable URL, with an expiration date
+						</li>
+						<li>
+							<span class="kw">after acceptance</span> — de-anonymize, release, deposit:
+							the DOI takes over the identity work
+						</li>
+					</ul>
+					<aside class="notes">
+						~1 min. anonymous.4open.science, built for double-blind software review.
+						Nice symmetry to end the section on: identity is something you manage —
+						claim it forever with a DOI, withhold it for a while with a mirror.
+					</aside>
+				</section>
+
+				<!-- ============================================================ -->
+				<!-- 05 · HANDS-ON: ARCHIVE YOUR OWN EDITION  (~15-20 min)        -->
+				<!-- ============================================================ -->
+				<section class="section-slide" data-background-color="#242b3d">
+					<p class="section-slide__number">05</p>
+					<h2>Hands-on: archive your edition</h2>
+				</section>
+
+				<section class="steps">
+					<h2>This morning you made an edition. Now make it citable.</h2>
+					<ol>
+						<li class="fragment fade-up">Sign up at <a href="https://sandbox.zenodo.org" target="_blank" rel="noopener">sandbox.zenodo.org</a> (via GitHub)</li>
+						<li class="fragment fade-up">Flip the switch on your edition repo</li>
+						<li class="fragment fade-up">Add a <code>.zenodo.json</code> to the repo root</li>
+						<li class="fragment fade-up">Create a release (tag = version number)</li>
+						<li class="fragment fade-up">Admire your DOI — and grab the badge</li>
+					</ol>
+					<aside class="notes">
+						~15-20 min with Nooshin and Lamyk supporting. Sandbox = safe playground,
+						real Zenodo later at home. Most common failure: JSON syntax error →
+						deposit fails → fix and draft a new release. Fallback if time is short:
+						live demo in 5 min, students replicate afterwards.
+					</aside>
+				</section>
+
+				<!-- ============================================================ -->
+				<!-- CLOSING                                                      -->
+				<!-- ============================================================ -->
+
+				<!-- ============================================================ -->
+				<!-- 06 · DISCUSSION                                              -->
+				<!-- ============================================================ -->
+				<section class="section-slide" data-background-color="#242b3d">
+					<p class="section-slide__number">06</p>
+					<h2>Discussion</h2>
+				</section>
+
+				<section class="qslide">
+					<p class="q-num">01 / 04</p>
+					<h2 class="q-text">
+						We made a very simple digital edition. For your own material — or dream
+						project — would you need an entirely different approach, or which
+						functionalities would you add?
+					</h2>
+					<aside class="notes">
+						Open floor. Push on: what does your material demand — facsimiles?
+						apparatus? search? collaboration? Where on the spectrum does that land you?
+					</aside>
+				</section>
+
+				<section class="qslide">
+					<p class="q-num">02 / 04</p>
+					<h2 class="q-text">
+						Who is the target audience of your edition — and would different
+						audiences need different functionalities?
+					</h2>
+					<aside class="notes">
+						Scholars vs students vs the public vs machines (APIs, TDM). One
+						edition, several interfaces? Tie back to FAIR's "accessible to humans
+						and machines".
+					</aside>
+				</section>
+
+				<section class="qslide">
+					<p class="q-num">03 / 04</p>
+					<h2 class="q-text">
+						For which parts of making an edition would you consider using AI?
+					</h2>
+					<aside class="notes">
+						They used HTR all week — that is already AI. Transcription vs encoding
+						vs translation vs interface generation vs quality control: where does
+						editorial responsibility sit? Good bridge into the closing roundtable.
+					</aside>
+				</section>
+
+				<!-- FINALE: the opening map, resolved -->
+				<section class="finale">
+					<p class="q-num">04 / 04</p>
+					<svg class="finale-chain" viewBox="0 0 960 190" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="The chain completed: your material, TEI-XML, digital edition, published with a DOI">
+						<defs>
+							<marker id="arrF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+								<path d="M 0 1 L 9 5 L 0 9 z" fill="#1c1917" />
+							</marker>
+						</defs>
+
+						<g>
+							<rect x="22" y="40" width="200" height="100" rx="4" fill="#ebe6de" stroke="#1c1917" stroke-width="2" />
+							<text x="122" y="86" text-anchor="middle" font-size="26" font-weight="600" fill="#1c1917">your material</text>
+							<text x="122" y="116" text-anchor="middle" font-size="16" fill="#78716c">manuscript · born-digital</text>
+						</g>
+						<path d="M 226 90 L 284 90" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#arrF)" />
+
+						<g>
+							<rect x="290" y="40" width="160" height="100" rx="4" fill="var(--w-accent)" stroke="#1c1917" stroke-width="2" />
+							<text x="370" y="98" text-anchor="middle" font-size="26" font-weight="600" fill="#faf8f5">TEI-XML</text>
+						</g>
+						<path d="M 454 90 L 512 90" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#arrF)" />
+
+						<g>
+							<rect x="518" y="40" width="180" height="100" rx="4" fill="var(--w-accent)" stroke="#1c1917" stroke-width="2" />
+							<text x="608" y="82" text-anchor="middle" font-size="26" font-weight="600" fill="#faf8f5">digital</text>
+							<text x="608" y="112" text-anchor="middle" font-size="26" font-weight="600" fill="#faf8f5">edition</text>
+						</g>
+						<path d="M 702 90 L 760 90" fill="none" stroke="#1c1917" stroke-width="2" marker-end="url(#arrF)" />
+
+						<g>
+							<rect x="766" y="40" width="175" height="100" rx="4" fill="var(--w-accent)" stroke="#1c1917" stroke-width="2" />
+							<text x="853" y="98" text-anchor="middle" font-size="27" font-weight="600" fill="#faf8f5">published.</text>
+							<text x="853" y="172" text-anchor="middle" font-family="'JetBrains Mono', monospace" font-size="15" fill="#57534e">doi 10.5281/zenodo.…</text>
+						</g>
+					</svg>
+					<h2 class="finale-q">When is a digital edition <span class="fin">finished</span>?</h2>
+					<aside class="notes">
+						The bookend: the map from slide two, but the dashed "publish?" node is
+						now solid — which is literally what they did this afternoon. Leave the
+						question hanging; it is the bridge into the closing roundtable. There
+						is no right answer: editions are versioned, corrected, extended — maybe
+						"finished" just means "released, citable, and honest about its state".
+					</aside>
+				</section>
+
+			</div>
+		</div>
+
+		<script src="../../reveal/dist/reveal.js"></script>
+		<script src="../../reveal/dist/plugin/markdown.js"></script>
+		<script src="../../reveal/dist/plugin/highlight.js"></script>
+		<script src="../../reveal/dist/plugin/notes.js"></script>
+		<script src="../../plugins/mermaid/mermaid.js"></script>
+
+		<script>
+			// Wait for webfonts before initializing: mermaid measures text at render
+			// time, and measuring with fallback fonts clips every label.
+			document.fonts.ready.then(() => {
+				Reveal.initialize({
+					hash: true,
+					slideNumber: 'c/t',
+					transition: 'fade',
+					center: false,
+					plugins: [RevealMarkdown, RevealHighlight, RevealNotes, RevealMermaid],
+				});
+			});
+		</script>
+	</body>
+</html>
