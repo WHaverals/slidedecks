@@ -55,7 +55,7 @@ function getDeckMeta(deckPath) {
 	// conference + venue/date from the eyebrow spans
 	const eventMatch = html.match(/class="title-slide__event"[^>]*>([\s\S]*?)<\/span>/i);
 	const event = eventMatch ? clean(eventMatch[1]) : null;
-	const dates = [...html.matchAll(/class="title-slide__date"[^>]*>([\s\S]*?)<\/span>/gi)]
+	const dates = [...html.matchAll(/class="title-slide__date[^"]*"[^>]*>([\s\S]*?)<\/span>/gi)]
 		.map((m) => clean(m[1]))
 		.filter(Boolean);
 	const meta = dates.length ? dates.join(' · ') : null;

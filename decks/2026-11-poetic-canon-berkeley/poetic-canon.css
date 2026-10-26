@@ -14,6 +14,25 @@
 	color: #58c3c4;
 }
 
+/* Two-part title: short headline + subtitle that reads as the title's second
+   half, not a caption (~2.5:1 scale instead of the theme's ~3.4:1) */
+.reveal .slides section.title-slide.title-slide--animated .title-slide__presentation {
+	font-size: 3.3em;
+	line-height: 1;
+	letter-spacing: -0.04em;
+}
+.reveal .slides section.title-slide .title-slide__eyebrow {
+	margin-bottom: 1.6rem;
+}
+.reveal .slides section.title-slide .title-slide__subtitle {
+	font-size: 1.3em;
+	font-weight: 400;
+	line-height: 1.15;
+	letter-spacing: -0.02em;
+	margin-top: 1.1rem;
+	max-width: none;
+}
+
 .reveal .slides section.ppa-intro-slide {
 	padding-top: 0.35em;
 }
@@ -639,6 +658,44 @@
 .reveal.is-transitioning .slides section.closing-slide.closing-slide--animated .title-slide__zone {
 	opacity: 0;
 	visibility: hidden;
+}
+
+/* closing contact: one column per speaker, handles spelled out because the
+   audience reads them off the screen rather than clicking */
+.reveal .slides section.closing-slide .closing-contact {
+	display: flex;
+	gap: 3.5rem;
+	margin-top: 1.6rem;
+}
+.reveal .slides section.closing-slide .closing-contact__person {
+	padding-left: 1.1rem;
+	border-left: 2px solid rgba(28, 25, 23, 0.12);
+}
+.reveal .slides section.closing-slide .closing-contact__name {
+	font-size: 0.78em;
+	font-weight: 600;
+	line-height: 1.25;
+	margin: 0 0 0.45rem;
+}
+.reveal .slides section.closing-slide .closing-contact__line {
+	font-size: 0.66em;
+	line-height: 1.5;
+	margin: 0;
+}
+.reveal .slides section.closing-slide .closing-contact__line a {
+	color: #1c1917;
+}
+.reveal .slides section.closing-slide .closing-contact__bsky {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.45em;
+	text-decoration: none;
+}
+.reveal .slides section.closing-slide .closing-contact__bsky svg {
+	width: 0.95em;
+	height: 0.95em;
+	fill: #1185fe;
+	flex-shrink: 0;
 }
 
 /* ===== §3.1 Counting names ===== */
