@@ -1,0 +1,113 @@
+/* ===== §3.2 Counting lines: layout overrides =====
+   Owned by the §3.2 block of index.html. Loaded after poetic-canon.css and
+   section-conference.css. Every rule is scoped to a §3.2-only class or to the
+   `backup-slide--fill` modifier, so shared classes elsewhere are untouched. */
+
+/* --- 3.2 divider: the journal title stays in the credit's mono face --- */
+.reveal .section-slide--lines .section-slide__credit em {
+	font-family: inherit;
+	font-style: italic;
+}
+
+/* --- full-height flex column: the body fills the canvas, the foot sits at the bottom --- */
+.reveal .slides section.reuse-slide,
+.reveal .slides section.funnel-slide,
+.reveal .slides section.backup-slide--fill {
+	height: 100%;
+	box-sizing: border-box;
+	display: flex !important;
+	flex-direction: column;
+	padding-bottom: 0.5em;
+}
+
+.reveal .slides section.reuse-slide::before,
+.reveal .slides section.funnel-slide::before,
+.reveal .slides section.backup-slide--fill::before {
+	flex: none;
+}
+
+/* --- 3.2a "What gets quoted?": the pipeline is the main visual, so make it bigger.
+   Labels and rail grow 1.3×, the stage bodies ~1.55×; the count is held back so
+   "252,893" still fits its quarter-width column on the last click. --- */
+.reveal .reuse-slide .qpipe {
+	margin-top: 1.3em;
+	font-size: 1.3em;
+}
+
+.reveal .reuse-slide .qpipe__body {
+	font-size: 1.2em;
+}
+
+.reveal .reuse-slide .qpipe__metric {
+	font-size: 0.92em;
+}
+
+/* --- 3.2b funnel: rows spread over the canvas, foot on the bottom margin --- */
+.reveal .funnel-slide .funnel {
+	flex: 1;
+	justify-content: space-evenly;
+	gap: 0;
+}
+
+.reveal .funnel-slide .funnel-slide__foot {
+	margin-top: 0.6em;
+}
+
+/* --- backups: the foot sits on the bottom margin --- */
+.reveal .backup-slide--fill .backup-slide__foot {
+	margin-top: auto;
+	padding-top: 1em;
+}
+
+/* rate model: a bigger equation; the free space is shared above and below it */
+.reveal .backup-slide--rate .backup-eq {
+	margin: auto 0;
+	font-size: 0.78em;
+}
+
+.reveal .backup-slide--rate .backup-grid li,
+.reveal .backup-slide--periods .backup-grid li {
+	font-size: 0.52em;
+}
+
+/* periods: the 2 × 2 grid takes the free height, rows spaced evenly */
+.reveal .backup-slide--periods .backup-grid {
+	flex: 1;
+	align-content: space-evenly;
+}
+
+/* cento / Pound: the two excerpts stacked, each at full width and larger,
+   spaced evenly down the slide */
+.reveal .caveat-slide .caveat-grid {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	gap: 0;
+	margin-top: 0.6em;
+}
+
+.reveal .caveat-slide .cento__lines {
+	display: grid;
+	grid-template-columns: max-content max-content;
+	column-gap: 1.4em;
+	align-items: baseline;
+}
+
+.reveal .caveat-slide .cento__lines li {
+	display: contents;
+}
+
+.reveal .caveat-slide .cento__verse,
+.reveal .caveat-slide .caveat__verse p {
+	font-size: 0.62em;
+	padding: 0.14em 0;
+}
+
+.reveal .caveat-slide .cento__src {
+	font-size: 0.38em;
+}
+
+.reveal .caveat-slide .caveat__verse p .cento__src {
+	font-size: 0.62em;
+}

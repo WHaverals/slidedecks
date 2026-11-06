@@ -1033,10 +1033,16 @@
 	margin: 1.4rem 0 0;
 	white-space: nowrap;
 	font-family: "JetBrains Mono", ui-monospace, monospace;
-	font-size: 0.42em;
+	font-size: 0.5em;
 	letter-spacing: 0.03em;
 	line-height: 1.5;
 	color: #58c3c4;
+}
+
+/* a journal title in the credit stays in the mono face, italic */
+.reveal .section-slide__credit em {
+	font-family: inherit;
+	font-style: italic;
 }
 
 .reveal .names-slide__credit {
@@ -2201,3 +2207,1003 @@
 	text-transform: uppercase;
 	color: #a8a29e;
 }
+
+/* ===== names game: "You are the entity linker" =====
+   Front of each card = the real sentence, with the linked span marked.
+   Fragment beats: 1 flip · 2 machine verdict (the archive detail lives in the
+   speaker notes). The flip and
+   the meter are driven by reveal's .visible class, so backward navigation
+   unflips cleanly. All card text is set in IM Fell English. */
+.reveal .slides section.namegame-slide {
+	height: 100%;
+	box-sizing: border-box;
+	display: flex !important;
+	flex-direction: column;
+	padding: 0.4em 0.1em 1em;
+	text-align: left;
+}
+.reveal .namegame__stage {
+	flex: 1;
+	display: grid;
+	grid-template-columns: 50% 1fr;
+	gap: 1.4em;
+	align-items: center;
+	align-content: center;
+}
+
+/* the card: a paper slip that flips */
+.reveal .namecard {
+	perspective: 1400px;
+	width: 100%;
+	aspect-ratio: 0.86;
+}
+.reveal .namecard__inner {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	transform-style: preserve-3d;
+	transform: rotate(-1.2deg);
+	transition: transform 0.85s cubic-bezier(0.4, 0.1, 0.2, 1);
+}
+.reveal section.namegame-slide:has(.namegame__flip.visible) .namecard__inner {
+	transform: rotate(-1.2deg) rotateY(180deg);
+}
+.reveal .namecard__face {
+	position: absolute;
+	inset: 0;
+	box-sizing: border-box;
+	backface-visibility: hidden;
+	-webkit-backface-visibility: hidden;
+	background: #fff;
+	border: 1px solid rgba(70, 98, 172, 0.55);
+	border-radius: 4px;
+	padding: 0.8em 0.85em;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	font-family: 'IM Fell English', 'Fraunces', Georgia, serif;
+	color: #1c1917;
+}
+.reveal .namecard__face--back {
+	transform: rotateY(180deg);
+	border-color: rgba(70, 98, 172, 0.55);
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 0.4em;
+	padding: 0.55em;
+	text-align: center;
+}
+.reveal .namecard__context {
+	margin: 0;
+	font-size: 0.88em;
+	line-height: 1.38;
+	hyphens: none;
+	text-wrap: pretty;
+}
+/* quoted verse: one line per row, run-overs hang-indented */
+.reveal .namecard__context--verse .vl {
+	display: block;
+	padding-left: 1.2em;
+	text-indent: -1.2em;
+}
+/* long passages get slightly smaller type so they stay inside the card */
+.reveal .namecard__context--long {
+	font-size: 0.76em;
+}
+/* short sentences get larger type so the card does not look empty */
+.reveal .namecard__context--short {
+	font-size: 1.02em;
+}
+.reveal .namecard__context mark {
+	background: rgba(70, 98, 172, 0.12);
+	box-shadow: inset 0 -2px 0 #4662ac;
+	color: inherit;
+	padding: 0 0.04em;
+	border-radius: 2px;
+}
+/* the source sits inside the front of the card, at the foot, so it shares
+   the card's slant and flips away with it */
+.reveal .namecard__face--front {
+	justify-content: flex-start;
+}
+.reveal .namecard__face--front .namecard__context {
+	margin: auto 0;
+}
+.reveal .namecard__source {
+	flex: none;
+	margin: 0.7em 0 0;
+	padding-top: 0.5em;
+	border-top: 1px solid rgba(70, 98, 172, 0.22);
+	font-family: 'IM Fell English', 'Fraunces', Georgia, serif;
+	font-size: 0.5em;
+	line-height: 1.4;
+	color: #57534e;
+}
+.reveal .namecard__portrait {
+	height: 74%;
+	width: auto;
+	aspect-ratio: 0.8;
+	object-fit: cover;
+	object-position: 50% 18%;
+	border-radius: 2px;
+	margin: 0;
+	flex-shrink: 0;
+}
+.reveal .namecard__id {
+	min-width: 0;
+}
+.reveal .namecard__who {
+	margin: 0;
+	font-size: 0.78em;
+	line-height: 1.1;
+}
+.reveal .namecard__meta {
+	margin: 0.3em 0 0;
+	font-size: 0.42em;
+	line-height: 1.5;
+	color: #57534e;
+}
+.reveal .namegame-slide code {
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 0.85em;
+	color: #57534e;
+}
+.reveal .namegame__flip {
+	display: block;
+	width: 0;
+	height: 0;
+}
+
+/* what the machine said: a result panel as tall as the card.
+   by-line -> entity (with the wrong person's portrait, if any) -> big score ->
+   bar with the 0.9 line -> stamp */
+.reveal .namegame__right {
+	align-self: stretch;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+.reveal .namegame__machine {
+	--hue: #57534e;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+.reveal .namegame__by {
+	margin: 0;
+	font-size: 0.42em;
+	font-weight: 600;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: #57534e;
+}
+.reveal .namegame__by code {
+	text-transform: none;
+	letter-spacing: 0;
+}
+.reveal .namegame__entity {
+	display: flex;
+	align-items: center;
+	gap: 0.4em;
+	margin: 0.3em 0 0;
+	font-size: 1.12em;
+	line-height: 1.1;
+}
+.reveal .namegame__ent {
+	display: flex;
+	flex-direction: column;
+	min-width: 0;
+}
+.reveal .namegame__entity strong {
+	font-family: Fraunces, Georgia, serif;
+	font-weight: 600;
+	letter-spacing: -0.01em;
+	color: #4662ac;
+}
+.reveal .namegame__entity code {
+	align-self: flex-start;
+	margin-top: 0.4em;
+	font-size: 0.4em;
+}
+.reveal .namegame__entity--none strong {
+	font-style: italic;
+	font-weight: 500;
+	color: #78716c;
+}
+/* the wrong person the machine picked, shown next to the name */
+.reveal .namegame__thumb {
+	height: 2.3em;
+	width: auto;
+	aspect-ratio: 0.8;
+	object-fit: cover;
+	object-position: 50% 15%;
+	border-radius: 2px;
+	margin: 0;
+	flex-shrink: 0;
+}
+.reveal .namegame__ocr {
+	color: #c23d4b !important;
+	background: rgba(240, 92, 106, 0.1);
+	padding: 0 0.25em;
+}
+.reveal .meter-row {
+	align-self: stretch;
+}
+.reveal .meter__val {
+	display: block;
+	margin-top: 0.6em;
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 1.75em;
+	font-weight: 600;
+	line-height: 1;
+	color: var(--hue);
+	opacity: 0;
+	transition: opacity 0.3s ease 1.2s;
+}
+.reveal .namegame__machine.visible .meter__val {
+	opacity: 1;
+}
+.reveal .meter {
+	position: relative;
+	display: block;
+	height: 0.5em;
+	margin-top: 0.3em;
+	background: #ece6dd;
+	border-radius: 3px;
+}
+.reveal .meter__fill {
+	position: absolute;
+	inset: 0 auto 0 0;
+	width: 0;
+	background: var(--hue);
+	border-radius: 3px;
+	transition: width 1.1s cubic-bezier(0.3, 0.1, 0.2, 1) 0.25s;
+}
+.reveal .namegame__machine.visible .meter__fill {
+	width: calc(var(--score) * 100%);
+}
+.reveal .meter__line {
+	position: absolute;
+	left: 90%;
+	top: -0.22em;
+	bottom: -0.22em;
+	width: 3px;
+	margin-left: -1px;
+	background: #1c1917;
+}
+.reveal .meter__scale {
+	position: relative;
+	height: 1.3em;
+	margin-top: 0.3em;
+	font-size: 0.42em;
+	color: #57534e;
+}
+.reveal .meter__thr {
+	position: absolute;
+	left: 90%;
+	transform: translateX(-50%);
+	font-family: 'JetBrains Mono', monospace;
+}
+.reveal .stamp {
+	display: inline-block;
+	margin: 0.9em 0 0;
+	padding: 0.22em 0.65em;
+	font-size: 0.54em;
+	font-weight: 600;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	border: 2px solid var(--hue);
+	color: var(--hue);
+	transform: rotate(-3deg) scale(1.25);
+	opacity: 0;
+	transition: opacity 0.2s ease 1.45s, transform 0.25s cubic-bezier(0.3, 1.6, 0.5, 1) 1.45s;
+}
+.reveal .namegame__machine.visible .stamp {
+	opacity: 1;
+	transform: rotate(-3deg) scale(1);
+}
+
+/* below the 0.9 line = not counted: the bar is outlined, not filled
+   (same code as the stamps and the explainer slide) */
+.reveal .namegame__machine--ok-below .meter__fill,
+.reveal .namegame__machine--bad-below .meter__fill,
+.reveal .meter-row--ok-below .meter__fill,
+.reveal .meter-row--bad-below .meter__fill {
+	background: #fff;
+	box-shadow: inset 0 0 0 2px var(--hue);
+}
+
+/* labelled meter rows (cards with more than one linked span): smaller scores */
+.reveal .meter__label {
+	display: block;
+	margin: 0.9em 0 0;
+	font-size: 0.44em;
+	color: #57534e;
+}
+.reveal .meter-row + .meter-row .meter__label {
+	margin-top: 0.6em;
+}
+.reveal .meter__label + .meter__val {
+	margin-top: 0.1em;
+	font-size: 1.1em;
+}
+
+/* names game: pair cards (two people on one card) and photo credits */
+.reveal .namecard__context--pair {
+	font-size: 0.66em;
+	line-height: 1.36;
+}
+.reveal .namecard__year {
+	display: inline-block;
+	margin-right: 0.35em;
+	font-family: 'Source Sans 3', sans-serif;
+	font-size: 0.62em;
+	font-weight: 600;
+	letter-spacing: 0.1em;
+	color: #4662ac;
+}
+.reveal .namecard__face--back.namecard__face--pair {
+	flex-direction: row;
+	gap: 0.5em;
+	justify-content: center;
+}
+.reveal .namecard__pairfig {
+	flex: 1;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	min-width: 0;
+}
+.reveal .namecard__pairfig .namecard__portrait {
+	width: 100%;
+	height: auto;
+	max-height: 76%;
+}
+.reveal .namecard__pairfig figcaption {
+	margin-top: 0.3em;
+	text-align: center;
+	line-height: 1.15;
+}
+.reveal .namecard__pairfig .namecard__who {
+	display: block;
+	font-size: 0.5em;
+}
+.reveal .namecard__pairfig .namecard__meta {
+	display: block;
+	margin: 0.2em 0 0;
+	font-size: 0.34em;
+}
+.reveal .namecard__credit {
+	margin: 0.5em 0 0;
+	font-family: 'Source Sans 3', sans-serif;
+	font-size: 0.26em;
+	color: #a8a29e;
+}
+.reveal .namecard__face--pair { position: absolute; }
+.reveal .namecard__credit--pair {
+	position: absolute;
+	right: 0.9em;
+	bottom: 0.35em;
+	margin: 0;
+}
+
+/* names game: verdict tags. Teal = right, coral = wrong, grey = silent;
+   filled = above the 0.9 line, outlined = below it. */
+.reveal .namegame__machine--ok-above,
+.reveal .namegame__machine--ok-below,
+.reveal .meter-row--ok-above,
+.reveal .meter-row--ok-below { --hue: #2f9e9b; --ink: #237a78; }
+.reveal .namegame__machine--bad-above,
+.reveal .namegame__machine--bad-below,
+.reveal .meter-row--bad-above,
+.reveal .meter-row--bad-below { --hue: #f05c6a; --ink: #c23d4b; }
+.reveal .namegame__machine--silent,
+.reveal .meter-row--silent { --hue: #a8a29e; --ink: #78716c; }
+.reveal .namegame__machine--ambig-above { --hue: #4662ac; --ink: #4662ac; }
+.reveal .namegame__machine--mixed { --hue: #57534e; --ink: #57534e; }
+.reveal .namegame__machine .stamp { color: var(--ink); }
+.reveal .namegame__machine--ok-above .stamp,
+.reveal .namegame__machine--bad-above .stamp,
+.reveal .namegame__machine--ambig-above .stamp {
+	background: var(--hue);
+	color: #fff;
+}
+.reveal .namegame__machine--silent .stamp { border-style: dashed; }
+.reveal .rowtag {
+	margin-left: 0.6em;
+	font-size: 0.9em;
+	font-weight: 600;
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+	color: var(--ink);
+}
+
+/* names game: how ReFinED reads a page (find, link, score) and the five outcomes.
+   Before the click the marks and bars are neutral (what the machine hands back);
+   the click reveals the outcomes table and recolours them with our verdicts. */
+.reveal .slides section.refined-slide {
+	height: 100%;
+	box-sizing: border-box;
+	display: flex !important;
+	flex-direction: column;
+	padding-top: 0.35em;
+	padding-bottom: 0.5em;
+	text-align: left;
+}
+.reveal .slides section.refined-slide::before {
+	content: "";
+	display: block;
+	flex: none;
+	width: 2.8rem;
+	height: 5px;
+	background: var(--w-accent);
+	margin-bottom: 1.1rem;
+}
+.reveal .refined-slide h2 {
+	margin: 0;
+	font-size: 1.5em;
+	letter-spacing: -0.02em;
+}
+.reveal .refined-slide h2 em {
+	font-style: italic;
+	color: #f05c6a;
+}
+.reveal .refined__lede {
+	margin: 0.35em 0 0;
+	font-family: Fraunces, Georgia, serif;
+	font-size: 0.7em;
+	font-style: italic;
+	font-weight: 500;
+	line-height: 1.4;
+	color: #57534e;
+}
+.reveal .refined__body {
+	flex: 1;
+	min-height: 0;
+	display: grid;
+	grid-template-rows: minmax(0, 1fr);
+	grid-template-columns: 1.22fr 1fr;
+	gap: 1.3em;
+	margin-top: 0.9em;
+}
+.reveal .refined__left {
+	display: flex;
+	flex-direction: column;
+	gap: 0.75em;
+}
+.reveal .refined__right {
+	display: flex;
+	flex-direction: column;
+}
+
+/* the OCR card */
+.reveal .refined__card {
+	margin: 0;
+	background: #fff;
+	border: 1px solid rgba(70, 98, 172, 0.45);
+	border-radius: 4px;
+	padding: 0.6em 0.7em 0.55em;
+	transform: rotate(-0.5deg);
+}
+.reveal .refined__text {
+	margin: 0;
+	font-family: 'IM Fell English', 'Fraunces', Georgia, serif;
+	font-size: 0.86em;
+	line-height: 1.4;
+	text-wrap: pretty;
+	color: #1c1917;
+}
+.reveal .refined__source {
+	margin: 0.5em 0 0;
+	font-family: 'IM Fell English', 'Fraunces', Georgia, serif;
+	font-size: 0.38em;
+	color: #57534e;
+}
+.reveal .refined-slide {
+	--v-ok: #2f9e9b;
+	--v-ok-ink: #237a78;
+	--v-bad: #f05c6a;
+	--v-bad-ink: #c23d4b;
+	--v-nil: #a8a29e;
+	--v-nil-ink: #78716c;
+	--v-machine: #4662ac;
+}
+.reveal .refined__text .ann {
+	color: inherit;
+	padding: 0 0.08em;
+	border-radius: 2px;
+	background: rgba(70, 98, 172, 0.12);
+	box-shadow: inset 0 -2px 0 var(--v-machine);
+	transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+.reveal .refined__text .ann--silent {
+	background: none;
+	box-shadow: none;
+	border-bottom: 2px dashed var(--v-nil);
+}
+
+/* what the machine hands back: found | linked to | score */
+.reveal .refined__table {
+	flex: 1;
+	width: 100%;
+	margin: 0;
+	border-collapse: collapse;
+	font-size: 0.4em;
+	line-height: 1.3;
+}
+.reveal .refined__table th {
+	padding: 0 0.4em 0.35em 0;
+	border: none;
+	border-bottom: 1px solid rgba(28, 25, 23, 0.25);
+	font-size: 0.9em;
+	font-weight: 600;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: #57534e;
+	text-align: left;
+}
+.reveal .refined__table td {
+	padding: 0.24em 0.4em 0.24em 0;
+	border: none;
+	border-bottom: 1px solid rgba(28, 25, 23, 0.08);
+	vertical-align: middle;
+	white-space: nowrap;
+}
+.reveal .refined__table .refined__span {
+	font-family: 'IM Fell English', 'Fraunces', Georgia, serif;
+	font-size: 1.2em;
+}
+.reveal .refined__table code {
+	margin-left: 0.25em;
+	font-family: 'JetBrains Mono', monospace;
+	font-size: 0.82em;
+	color: #78716c;
+}
+.reveal .refined__nolink { color: #78716c; }
+.reveal .refined__score {
+	font-family: 'JetBrains Mono', monospace;
+	color: #3d3833;
+	transition: color 0.5s ease;
+}
+.reveal .refined__bar {
+	--bar: var(--v-machine);
+	position: relative;
+	display: inline-block;
+	width: 3.6em;
+	height: 0.55em;
+	margin-right: 0.5em;
+	vertical-align: middle;
+	border-radius: 2px;
+	background: #ece6dd;
+}
+/* the score itself: filled up to the score */
+.reveal .refined__bar::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	width: calc(var(--score) * 100%);
+	box-sizing: border-box;
+	border-radius: 2px;
+	background: var(--bar);
+	transition: background 0.5s ease, box-shadow 0.5s ease;
+}
+/* the 0.9 line */
+.reveal .refined__bar::after {
+	content: '';
+	position: absolute;
+	left: 90%;
+	top: -0.25em;
+	bottom: -0.25em;
+	width: 2px;
+	background: #1c1917;
+}
+
+/* the click: our verdicts recolour the marks and bars */
+.reveal .refined-slide:has(.refined__right.visible) .ann--ok-above {
+	background: rgba(47, 158, 155, 0.18);
+	box-shadow: inset 0 -2px 0 var(--v-ok);
+}
+/* below the line = not counted: outlined, not filled (as in the outcomes table) */
+.reveal .refined-slide:has(.refined__right.visible) .ann--ok-below {
+	background: none;
+	box-shadow: inset 0 0 0 1.5px var(--v-ok);
+}
+.reveal .refined-slide:has(.refined__right.visible) .row--ok-below .refined__bar::before {
+	background: #fff;
+	box-shadow: inset 0 0 0 1.5px var(--v-ok);
+}
+.reveal .refined-slide:has(.refined__right.visible) .ann--bad-above {
+	background: rgba(240, 92, 106, 0.18);
+	box-shadow: inset 0 -2px 0 var(--v-bad);
+}
+.reveal .refined-slide:has(.refined__right.visible) .row--ok-above .refined__bar,
+.reveal .refined-slide:has(.refined__right.visible) .row--ok-below .refined__bar { --bar: var(--v-ok); }
+.reveal .refined-slide:has(.refined__right.visible) .row--bad-above .refined__bar { --bar: var(--v-bad); }
+.reveal .refined-slide:has(.refined__right.visible) .row--ok-above .refined__score,
+.reveal .refined-slide:has(.refined__right.visible) .row--ok-below .refined__score { color: var(--v-ok-ink); }
+.reveal .refined-slide:has(.refined__right.visible) .row--bad-above .refined__score { color: var(--v-bad-ink); }
+
+/* score distribution (Canon Dynamics, Fig. 2) under the card; on the first
+   click it fades out and the results table takes its place */
+.reveal .refined__swap {
+	flex: 1;
+	min-height: 0;
+	display: grid;
+	grid-template-rows: minmax(0, 1fr);
+}
+.reveal .refined__swap > * {
+	grid-area: 1 / 1;
+	min-height: 0;
+}
+.reveal .refined__swap > .refined__table {
+	height: 100%;
+}
+.reveal .refined__plot {
+	margin: 0;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	min-height: 0;
+}
+.reveal .hist {
+	display: block;
+	flex: 1;
+	min-height: 0;
+	width: 100%;
+	height: 100%;
+}
+.reveal .hist-grid {
+	stroke: rgba(28, 25, 23, 0.07);
+	stroke-width: 1;
+}
+.reveal .hist-base {
+	stroke: color-mix(in srgb, var(--w-accent) 22%, #d8d2c8);
+	stroke-width: 1.5;
+}
+.reveal .hist-bar {
+	transform-origin: bottom;
+	transform-box: fill-box;
+}
+.reveal .hist-bar--in {
+	fill: #4662ac;
+}
+.reveal .hist-bar--out {
+	fill: #fff;
+	stroke: #4662ac;
+	stroke-width: 1;
+}
+.reveal .hist-key {
+	transform: none !important;
+	animation: none !important;
+}
+.reveal .slides section.refined-slide.present .hist-bar:not(.hist-key) {
+	animation: hist-grow 0.6s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+@keyframes hist-grow {
+	from { transform: scaleY(0); }
+	to { transform: scaleY(1); }
+}
+.reveal .hist-mark {
+	stroke: #78716c;
+	stroke-width: 1.2;
+	stroke-dasharray: 4 3;
+}
+.reveal .hist-mark--mean {
+	stroke-dasharray: 1.5 2.5;
+}
+.reveal .hist-cut {
+	stroke: #1c1917;
+	stroke-width: 2.5;
+}
+.reveal .hist-mlab,
+.reveal .hist-xlab,
+.reveal .hist-ylab {
+	font-family: 'JetBrains Mono', ui-monospace, monospace;
+	font-size: 13px;
+	fill: #57534e;
+}
+.reveal .hist-mlab--v {
+	font-weight: 600;
+	fill: #3d3833;
+}
+.reveal .hist-ylab {
+	text-anchor: end;
+	font-size: 11px;
+	fill: #a8a29e;
+}
+.reveal .hist-xlab {
+	text-anchor: middle;
+}
+.reveal .hist-xlab--cut {
+	font-weight: 700;
+	fill: #1c1917;
+}
+.reveal .hist-legend {
+	font-family: 'Source Sans 3', sans-serif;
+	font-size: 15px;
+	fill: #3d3833;
+}
+.reveal .hist-legend__n {
+	font-family: 'JetBrains Mono', ui-monospace, monospace;
+	font-weight: 600;
+	fill: #4662ac;
+}
+
+/* the plot's title and key sit in the (still empty) right column, level with
+   the plot, and leave with it on the first click */
+.reveal .refined__body > .refined__plotkey,
+.reveal .refined__body > .refined__right {
+	grid-column: 2;
+	grid-row: 1;
+}
+.reveal .refined__plotkey {
+	align-self: end;
+	margin-bottom: 2.2em;
+}
+.reveal .refined__plotkey-title {
+	margin: 0;
+	max-width: 13em;
+	font-family: Fraunces, Georgia, serif;
+	font-size: 0.66em;
+	font-weight: 500;
+	line-height: 1.3;
+	color: #3d3833;
+}
+.reveal .refined__plotkey-title strong {
+	font-family: 'JetBrains Mono', monospace;
+	font-weight: 600;
+	color: #4662ac;
+}
+.reveal .refined__plotkey-legend {
+	list-style: none;
+	margin: 0.8em 0 0;
+	padding: 0;
+	font-size: 0.54em;
+	line-height: 1.3;
+	color: #3d3833;
+}
+.reveal .refined__plotkey-legend li {
+	display: flex;
+	align-items: center;
+	gap: 0.5em;
+	margin: 0 0 0.45em;
+}
+.reveal .refined__plotkey-legend b {
+	font-family: 'JetBrains Mono', monospace;
+	font-weight: 600;
+	color: #4662ac;
+}
+.reveal .refined__swatch {
+	flex: none;
+	width: 0.85em;
+	height: 0.85em;
+	border-radius: 2px;
+	box-sizing: border-box;
+}
+.reveal .refined__swatch--in {
+	background: #4662ac;
+}
+.reveal .refined__swatch--out {
+	background: #fff;
+	border: 1.5px solid #4662ac;
+}
+
+/* the five outcomes: right/wrong x above/below the 0.9 line, plus silent.
+   Filled = above the line, outlined = below it (same code as the game's stamps). */
+.reveal table.outcomes {
+	flex: 1;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	table-layout: fixed;
+	border-collapse: separate;
+	border-spacing: 0.4em;
+	font-size: 0.42em;
+	line-height: 1.3;
+}
+.reveal .outcomes th,
+.reveal .outcomes td {
+	border: none;
+	padding: 0;
+	text-align: left;
+}
+.reveal .outcomes thead th {
+	height: 1px;
+	vertical-align: bottom;
+	padding-bottom: 0.25em;
+	font-size: 0.9em;
+	font-weight: 600;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: #3d3833;
+}
+.reveal .outcomes thead th:first-child { width: 6em; }
+.reveal .outcomes tbody th {
+	vertical-align: middle;
+	white-space: nowrap;
+	font-size: 0.9em;
+	font-weight: 600;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: #3d3833;
+}
+.reveal .outcomes .oc {
+	vertical-align: middle;
+	padding: 0.55em 0.75em;
+	border: 2px solid var(--hue);
+	color: var(--ink);
+}
+.reveal .outcomes .oc b {
+	display: block;
+	font-size: 1.3em;
+	font-weight: 600;
+	line-height: 1.15;
+}
+.reveal .outcomes .oc span {
+	display: block;
+	margin-top: 0.2em;
+}
+.reveal .oc--ok-above,
+.reveal .oc--ok-below { --hue: var(--v-ok); --ink: var(--v-ok-ink); }
+.reveal .oc--bad-above,
+.reveal .oc--bad-below { --hue: var(--v-bad); --ink: var(--v-bad-ink); }
+.reveal .oc--silent { --hue: var(--v-nil); --ink: var(--v-nil-ink); border-style: dashed !important; }
+.reveal .outcomes .oc--ok-above,
+.reveal .outcomes .oc--bad-above {
+	background: var(--hue);
+	color: #fff;
+}
+
+/* closing synthesis: why names are hard to link. The five confusions of the paper,
+   each drawn as strings (period voice) -> Wikidata persons; dashed = no name on the page. */
+.reveal .slides section.namekinds-slide {
+	height: 100%;
+	box-sizing: border-box;
+	display: flex !important;
+	flex-direction: column;
+	padding-top: 0.35em;
+	padding-bottom: 0.5em;
+	text-align: left;
+}
+.reveal .slides section.namekinds-slide::before {
+	content: "";
+	display: block;
+	flex: none;
+	width: 2.8rem;
+	height: 5px;
+	background: var(--w-accent);
+	margin-bottom: 1.1rem;
+}
+.reveal .namekinds-slide h2 {
+	margin: 0;
+	font-size: 1.5em;
+	letter-spacing: -0.02em;
+}
+.reveal .namekinds-slide h2 em {
+	font-style: italic;
+	color: #f05c6a;
+}
+.reveal .namekinds__lede {
+	margin: 0.35em 0 0;
+	font-family: Fraunces, Georgia, serif;
+	font-size: 0.7em;
+	font-style: italic;
+	font-weight: 500;
+	line-height: 1.4;
+	color: #57534e;
+}
+.reveal .namekinds__map {
+	flex: 1;
+	min-height: 0;
+	width: 100%;
+	margin-top: 0.6em;
+}
+.reveal .namekinds__label {
+	font-family: 'Source Sans 3', sans-serif;
+	font-weight: 600;
+	font-size: 15px;
+	letter-spacing: 1.8px;
+	fill: #4662ac;
+}
+.reveal .namekinds__string {
+	font-family: 'IM Fell English', Georgia, serif;
+	font-size: 27px;
+	fill: #3d3833;
+}
+.reveal .namekinds__person {
+	font-family: Fraunces, Georgia, serif;
+	font-weight: 600;
+	font-size: 22px;
+	fill: #1c1917;
+}
+.reveal .namekinds__qid {
+	font-family: 'JetBrains Mono', ui-monospace, monospace;
+	font-size: 14px;
+	fill: #78716c;
+}
+.reveal .namekinds__edge {
+	fill: none;
+	stroke: #4662ac;
+	stroke-width: 2;
+	opacity: 0.85;
+}
+.reveal .namekinds__edge--none { stroke-dasharray: 5 5; }
+.reveal .namekinds__dot { fill: #4662ac; }
+.reveal .namekinds__rule {
+	stroke: rgba(28, 25, 23, 0.12);
+	stroke-width: 1;
+}
+
+/* names game: the quiz-show opener (dark). A flat homage to a TV quiz-show logo,
+   drawn in the deck palette: coral apple, cream banners, teal orbits, no glow. */
+.reveal .slides section.quizshow-slide {
+	height: 100%;
+	box-sizing: border-box;
+	display: flex !important;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 0.4em 0 0.6em;
+	text-align: center;
+}
+.reveal .quizshow__logo {
+	flex: 1 1 auto;
+	min-height: 0;
+	width: 100%;
+	max-height: 560px;
+	overflow: visible;
+}
+.reveal .quizshow__orbit path {
+	fill: none;
+	stroke: #58c3c4;
+	stroke-width: 3.5;
+	stroke-linecap: round;
+}
+.reveal .quizshow__electron {
+	fill: #f3efe6;
+}
+.reveal .quizshow__apple-body { fill: #f05c6a; }
+.reveal .quizshow__apple-shade { fill: #d94a58; }
+.reveal .quizshow__apple-shine { fill: rgba(255, 255, 255, 0.28); }
+.reveal .quizshow__stem {
+	fill: none;
+	stroke: #5b3a29;
+	stroke-width: 10;
+	stroke-linecap: round;
+}
+.reveal .quizshow__leaf { fill: #2f9e9b; }
+.reveal .quizshow__banner { fill: #f3efe6; }
+.reveal .quizshow__edge { fill: #58c3c4; }
+.reveal .quizshow__logo text {
+	font-family: 'Fraunces', Georgia, serif;
+	font-weight: 700;
+	fill: #262b3c;
+}
+.reveal .quizshow__small { font-size: 36px; letter-spacing: 0.02em; }
+.reveal .quizshow__big { font-size: 62px; letter-spacing: 0.01em; }
+.reveal .quizshow__small--b2 { font-size: 30px; }
+.reveal .quizshow__mid { font-size: 42px; letter-spacing: 0.01em; }
+.reveal .quizshow__end { font-size: 50px; letter-spacing: 0.01em; }
+.reveal .slides section p.quizshow__credit {
+	margin: 0.5em 0 0;
+	max-width: 56em;
+	line-height: 1.5;
+	text-wrap: balance;
+	font-family: 'JetBrains Mono', ui-monospace, monospace;
+	font-size: 0.42em;
+	letter-spacing: 0.03em;
+	color: #58c3c4;
+}
+/* the venue stays in the credit's mono face, italic */
+.reveal .quizshow__credit em {
+	font-family: inherit;
+	font-style: italic;
+}
+/* the footnote gag: a coral asterisk after the long name, and again before the reference */
+.reveal .quizshow__logo .quizshow__ast { fill: #f05c6a; font-size: 38px; }
+.reveal .quizshow__credit .quizshow__ast { color: #f05c6a; font-weight: 600; }
