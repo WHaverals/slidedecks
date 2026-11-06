@@ -4,6 +4,13 @@
    `backup-slide--fill` modifier, so shared classes elsewhere are untouched. */
 
 /* --- 3.2 divider: the journal title stays in the credit's mono face --- */
+/* The full article title runs to 86 characters on one line. At the shared 0.5em
+   it would overflow the 960px canvas, so this credit is set a little smaller and
+   its right margin mirrors the left one. */
+.reveal .section-slide--lines .section-slide__credit {
+	font-size: 0.44em;
+}
+
 .reveal .section-slide--lines .section-slide__credit em {
 	font-family: inherit;
 	font-style: italic;

@@ -2340,8 +2340,9 @@
 }
 .reveal .namecard__meta {
 	margin: 0.3em 0 0;
-	font-size: 0.42em;
+	font-size: 0.56em;
 	line-height: 1.5;
+	text-wrap: balance;
 	color: #57534e;
 }
 .reveal .namegame-slide code {
@@ -2569,12 +2570,12 @@
 }
 .reveal .namecard__pairfig .namecard__who {
 	display: block;
-	font-size: 0.5em;
+	font-size: 0.56em;
 }
 .reveal .namecard__pairfig .namecard__meta {
 	display: block;
 	margin: 0.2em 0 0;
-	font-size: 0.34em;
+	font-size: 0.46em;
 }
 .reveal .namecard__credit {
 	margin: 0.5em 0 0;

@@ -5,8 +5,9 @@
      peach  = the database and the scholars of prosody & poetics who use it
      blue   = the dataset and the computational scholars who use it
    The peach is the sunset of the Ends of Prosody banner (04 divider). Like the deck's teal and
-   coral, it has a fill (blocks, boxes, labels) and a darker ink (wires, rules, kickers): the
-   fill is too pale for thin lines or type; the ink passes 4.5:1 on the paper. */
+   coral, it has a fill (blocks, boxes, labels, and the wires and bars, drawn 3px or more so it
+   reads) and a darker ink for type (the kickers): the fill is too pale for text; the ink passes
+   4.5:1 on the paper. */
 
 .reveal .slides section.conf-slide {
 	--conf-db: #3d3833; /* neutral ink, for text on beige and peach */
@@ -295,12 +296,14 @@
 	margin: 0.55em 0 0;
 }
 
+/* the two references on 04b (Recht, top left; the quotes' source, bottom right): darker than
+   the usual credit grey, so the thin mono strokes hold up */
 .reveal .conf-credit {
 	margin: 0;
 	font-family: "JetBrains Mono", ui-monospace, monospace;
 	font-size: 0.4em;
 	letter-spacing: 0.03em;
-	color: #78716c;
+	color: #3d3833;
 }
 
 .reveal .conf-credit em {
@@ -346,10 +349,13 @@
 	padding: 0;
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: 1fr auto auto; /* the days, the quote row, the source line */
 	column-gap: 0.7em;
+	row-gap: 0.5em;
 }
 
 .reveal .conf-day {
+	grid-row: 1;
 	min-width: 0;
 	display: flex;
 	flex-direction: column;
@@ -416,40 +422,43 @@
 	line-height: 1.25;
 }
 
-/* every quote gets three lines, so the four block columns end level */
+/* the quote row (grid row 2): the maxim spans Wed-Thu, the Fri and Sat quotes sit under their days */
 .reveal .conf-day__rule {
-	margin: 0.2em 0 0;
-	min-height: 3.75em;
+	grid-row: 2;
+	margin: 0;
 	font-family: Fraunces, Georgia, serif;
-	font-size: 0.6em;
+	font-size: 0.55em; /* the size at which the maxim runs the full Wed-Thu width on one line */
 	font-style: italic;
 	font-weight: 500;
 	line-height: 1.25;
 	color: #1c1917;
+	text-align: center; /* each quote sits centred under its block(s) */
+	text-wrap: balance;
 }
 
-.reveal .conf-maxim {
-	margin: 0.7em 0 0;
-	padding: 0.55em 0 0;
-	border-top: 1px solid var(--conf-rule);
-	display: flex;
-	justify-content: space-between;
-	align-items: baseline;
-	gap: 1em;
-	font-family: Fraunces, Georgia, serif;
-	font-size: 0.7em;
-	font-weight: 500;
-	line-height: 1.3;
-	color: #1c1917;
+.reveal .conf-day__rule--maxim {
+	grid-column: 1 / span 2;
+	white-space: nowrap;
 }
 
-.reveal .conf-maxim cite {
-	flex: none;
+.reveal .conf-day__rule--fri {
+	grid-column: 3;
+}
+
+.reveal .conf-day__rule--sat {
+	grid-column: 4;
+}
+
+/* one source line for all three quotes, lower right: mirrors the Recht credit at top left */
+.reveal .conf-week__source {
+	grid-row: 3;
+	grid-column: 1 / -1;
+	margin-top: -0.2em;
+	text-align: right;
 	font-family: "JetBrains Mono", ui-monospace, monospace;
-	font-size: 0.57em;
-	font-style: normal;
+	font-size: 0.4em;
 	letter-spacing: 0.03em;
-	color: #78716c;
+	color: #3d3833; /* matches the Recht credit */
 }
 
 /* ---------- 04c: one room, two issues ---------- */
@@ -521,22 +530,24 @@
 
 .reveal .conf-wire path {
 	fill: none;
-	stroke-width: 2;
+	stroke-width: 3; /* the peach needs the weight; blue matches it */
 	vector-effect: non-scaling-stroke;
 }
 
 .reveal .conf-wire .conf-wire--db {
-	stroke: var(--conf-db-ink);
+	stroke: var(--conf-db-fill);
 }
 
 .reveal .conf-wire .conf-wire--ds {
 	stroke: var(--conf-ds);
 }
 
+/* the room's bar is the two strands that meet in it: peach over blue, in the wires' order */
 .reveal .conf-room {
 	align-self: center;
 	padding: 0.8em 0.6em 0.9em;
-	border-top: 5px solid var(--w-accent);
+	border-top: 5px solid var(--conf-db-fill);
+	box-shadow: inset 0 5px 0 var(--conf-ds);
 	background: #f1ede6;
 	text-align: center;
 }
@@ -569,7 +580,7 @@
 }
 
 .reveal .conf-issue--db {
-	color: var(--conf-db-ink);
+	color: var(--conf-db-fill); /* the rule; its kicker keeps the ink */
 }
 
 .reveal .conf-issue--ds {
