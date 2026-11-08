@@ -462,9 +462,11 @@
 }
 
 /* ---------- 04b2: the week in photographs ----------
-   A 4 x 3 grid. The data play is the large photo with three more around it (the student talk sits
-   top left); the bottom row runs Thursday's panels to Saturday's caucus. One label per event, in
-   the 04b block colours: blue = data play, peach = panels, beige = host sessions and the caucus. */
+   A 4 x 3 grid, one photo per block of 04b. The data play fills 3 x 2. The bottom row runs Wed to
+   Thu (student talk, PPA intro, panels) and the right column Fri to Sat (data presentations,
+   keynote); both end on the caucus in the bottom-right corner. One label per
+   event, in the 04b block colours: blue = data play and data presentations, peach = panels and
+   keynote, beige = host sessions and the caucus. */
 .reveal .conf-photos {
 	flex: 1;
 	min-height: 0;
@@ -473,9 +475,9 @@
 	grid-template-columns: repeat(4, minmax(0, 1fr));
 	grid-template-rows: repeat(3, minmax(0, 1fr));
 	grid-template-areas:
-		"talk hero hero dp1"
-		"dp2  hero hero dp3"
-		"pan1 pan2 caucus caucus";
+		"hero  hero  hero dpres"
+		"hero  hero  hero key"
+		"talk  intro pan  caucus";
 	gap: 6px;
 }
 
@@ -490,11 +492,10 @@
 
 .reveal .conf-photo--talk { grid-area: talk; }
 .reveal .conf-photo--hero { grid-area: hero; }
-.reveal .conf-photo--dp1 { grid-area: dp1; }
-.reveal .conf-photo--dp2 { grid-area: dp2; }
-.reveal .conf-photo--dp3 { grid-area: dp3; }
-.reveal .conf-photo--pan1 { grid-area: pan1; }
-.reveal .conf-photo--pan2 { grid-area: pan2; }
+.reveal .conf-photo--intro { grid-area: intro; }
+.reveal .conf-photo--pan { grid-area: pan; }
+.reveal .conf-photo--dpres { grid-area: dpres; }
+.reveal .conf-photo--key { grid-area: key; }
 .reveal .conf-photo--caucus { grid-area: caucus; }
 
 .reveal .conf-photo img {
@@ -510,8 +511,8 @@
 	object-position: 50% 50%;
 }
 
-/* the caucus is cropped to a wide band: the screen title, the speaker and the panel */
-.reveal .conf-photo--caucus img { object-position: 50% 56%; }
+/* keep the screen in frame where the cell crops the sides */
+.reveal .conf-photo--caucus img { object-position: 65% 50%; }
 
 .reveal .conf-chip {
 	position: absolute;
