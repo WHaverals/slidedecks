@@ -621,16 +621,16 @@
 
 /* Backup: "What Wikidata says they did" (top-25 occupations of the linked humans) */
 .reveal .occ-chart {
-	margin: 0.5em 0 0;
+	margin: 0.6em 0 0;
 }
 .reveal .occ-svg {
 	display: block;
 	width: 100%;
-	height: 470px;
+	height: 490px;
 }
 .reveal .occ-lab {
 	font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
-	font-size: 15px;
+	font-size: 16px;
 	fill: #57534e;
 }
 .reveal .occ-lab--lit {
@@ -646,7 +646,7 @@
 .reveal .occ-bar--odd { fill: #e2525f; }
 .reveal .occ-val {
 	font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
-	font-size: 13px;
+	font-size: 14px;
 	font-variant-numeric: lining-nums tabular-nums;
 	fill: #57534e;
 }
@@ -654,7 +654,4 @@
 .reveal .occ-note {
 	font-style: italic;
 	font-weight: 400;
-}
-.reveal .occ-slide .backup-slide__foot {
-	margin-top: 0.2em;
 }
