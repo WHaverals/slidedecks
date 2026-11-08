@@ -1,19 +1,94 @@
 /* ===== §3.2 Counting lines: layout overrides =====
    Owned by the §3.2 block of index.html. Loaded after poetic-canon.css and
    section-conference.css. Every rule is scoped to a §3.2-only class or to the
-   `backup-slide--fill` modifier, so shared classes elsewhere are untouched. */
+   `backup-slide--fill` modifier, so shared classes elsewhere are untouched.
+   One exception: the §3.1 superstar chart block below, which Wouter asked for. */
 
-/* --- 3.2 divider: the journal title stays in the credit's mono face --- */
-/* The full article title runs to 86 characters on one line. At the shared 0.5em
-   it would overflow the 960px canvas, so this credit is set a little smaller and
-   its right margin mirrors the left one. */
-.reveal .section-slide--lines .section-slide__credit {
-	font-size: 0.44em;
+/* --- §3.1 "A superstar economy" (chart-slide), added at Wouter's request 2026-11-06.
+   It lives here because poetic-canon.css is off limits. The slide becomes a
+   full-height column, the bar chart takes the free height, and the source sits on
+   the bottom margin. --- */
+.reveal .slides section.chart-slide {
+	height: 100%;
+	box-sizing: border-box;
+	display: flex !important;
+	flex-direction: column;
+	padding-bottom: 0.5em;
 }
 
-.reveal .section-slide--lines .section-slide__credit em {
-	font-family: inherit;
-	font-style: italic;
+.reveal .slides section.chart-slide::before {
+	flex: none;
+}
+
+.reveal .chart-slide .chart-slide__figure {
+	flex: 1;
+	min-height: 0;
+	margin: 0.9em 0 0;
+}
+
+.reveal .chart-slide .conc-chart {
+	width: 100%;
+	height: 100%;
+	max-height: none;
+}
+
+.reveal .chart-slide .conc-cat {
+	font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+	letter-spacing: 0;
+}
+
+.reveal .chart-slide .chart-slide__takeaway {
+	max-width: none;
+	margin-top: 0.9em;
+}
+
+.reveal .chart-slide__foot {
+	margin: 0.9em 0 0;
+	font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+	font-size: 0.46em;
+	color: #78716c;
+}
+
+/* --- §01 "Gray's Elegy, in pieces" (elegy-stack-slide), added at Wouter's request
+   2026-11-06. The stack uses the full canvas width, so the cards line up with the
+   title, and the text column beside the cards is wider and set larger. --- */
+.reveal .elegy-stack-slide .elegy-stack-slide__showcase {
+	width: 100%;
+}
+
+.reveal .elegy-stack-slide .elegy-stack-slide__hint {
+	width: calc(100% - var(--elegy-card-w) - 2.5rem - 40px);
+	gap: 1.6em;
+}
+
+.reveal .elegy-stack-slide .elegy-epigraph__line {
+	font-size: 0.8em;
+	line-height: 1.32;
+}
+
+.reveal .elegy-stack-slide .elegy-epigraph__source {
+	font-size: 0.72em;
+}
+
+/* --- §02 "An archive of use" (ppa-intro-slide--concept), added at Wouter's request
+   2026-11-06: a clear accent rule over each column instead of the grey hairline.
+   The higher specificity beats the !important hairline in overrides.css. --- */
+.reveal .slides section.ppa-intro-slide--concept .ppa-intro__points p {
+	border-top: 4px solid var(--w-accent) !important;
+	padding-top: 0.8em !important;
+	font-size: 0.86em !important;
+	text-wrap: pretty;
+}
+
+/* --- 3.2 pivot: the two halves of the talk in two inks. "named" (3.1) is in archive
+   blue, "words" (3.2) in PPA pink. The higher specificity beats the uncolouring
+   !important in overrides.css. --- */
+.reveal .slides section.pivot-slide .pivot-slide__line em:nth-of-type(1) {
+	color: var(--w-accent) !important;
+}
+
+.reveal .slides section.pivot-slide .pivot-slide__line em:nth-of-type(2) {
+	color: #f05c6a !important;
 }
 
 /* --- full-height flex column: the body fills the canvas, the foot sits at the bottom --- */
@@ -49,11 +124,69 @@
 	font-size: 0.92em;
 }
 
-/* --- 3.2b funnel: rows spread over the canvas, foot on the bottom margin --- */
+/* the quoted fragment sits on a white card, like the names-game cards */
+.reveal .reuse-slide .qpipe__snippet {
+	box-sizing: border-box;
+	padding: 0.75em 0.9em;
+	background: #fff;
+	border: 1px solid rgba(70, 98, 172, 0.55);
+	border-radius: 4px;
+	color: #44403c;
+}
+
+/* --- 3.2b funnel: one left edge. Each row is a label over a bar; the bars use the
+   full width, and each count sits at the end of its bar. The earlier stages are
+   a tint and the kept set is full accent. Rows run from under the title to the
+   bottom margin. --- */
 .reveal .funnel-slide .funnel {
 	flex: 1;
-	justify-content: space-evenly;
+	justify-content: space-between;
 	gap: 0;
+	margin-top: 1.1em;
+}
+
+.reveal .funnel-slide .funnel-row {
+	display: flex;
+	flex-direction: column;
+	align-items: stretch;
+	gap: 0.3em;
+}
+
+.reveal .funnel-slide .funnel-row__label {
+	font-size: 0.68em;
+	line-height: 1.25;
+	text-align: left;
+	color: #3d3833;
+}
+
+.reveal .funnel-slide .funnel-row__track {
+	display: flex;
+	align-items: center;
+	gap: 0.45em;
+	width: calc(100% - 4.6em);
+}
+
+.reveal .funnel-slide .funnel-bar {
+	flex: none;
+	height: 1.3em;
+	background: color-mix(in srgb, var(--w-accent) 38%, #faf8f5);
+}
+
+.reveal .funnel-slide .funnel-row:last-child .funnel-bar {
+	background: var(--w-accent);
+}
+
+.reveal .funnel-slide .funnel-row__count {
+	flex: none;
+	font-family: Alegreya, Georgia, serif;
+	font-size: 0.8em;
+	font-weight: 600;
+	font-variant-numeric: lining-nums tabular-nums;
+	color: #57534e;
+}
+
+.reveal .funnel-slide .funnel-row:last-child .funnel-row__count {
+	color: var(--w-accent);
 }
 
 .reveal .funnel-slide .funnel-slide__foot {
@@ -77,14 +210,27 @@
 	font-size: 0.52em;
 }
 
+/* method ("Finding quotations at scale"): the 2 × 2 grid takes the free height,
+   with larger text */
+.reveal .backup-slide--method .backup-grid {
+	flex: 1;
+	align-content: space-evenly;
+}
+
+.reveal .backup-slide--method .backup-grid li {
+	font-size: 0.6em;
+	text-wrap: pretty;
+}
+
 /* periods: the 2 × 2 grid takes the free height, rows spaced evenly */
 .reveal .backup-slide--periods .backup-grid {
 	flex: 1;
 	align-content: space-evenly;
 }
 
-/* cento / Pound: the two excerpts stacked, each at full width and larger,
-   spaced evenly down the slide */
+/* cento / Pound: two rows across the full width, spaced evenly down the slide.
+   Each row has the source on the left (poet / title / year) and the verse on the
+   right, set larger. A hairline sits over each row. */
 .reveal .caveat-slide .caveat-grid {
 	flex: 1;
 	display: flex;
@@ -92,6 +238,25 @@
 	justify-content: space-evenly;
 	gap: 0;
 	margin-top: 0.6em;
+}
+
+.reveal .caveat-slide .caveat {
+	display: grid;
+	grid-template-columns: 6.2em 1fr;
+	column-gap: 1.2em;
+	align-items: baseline;
+	padding-top: 0.5em;
+	border-top: 1px solid #d6d3d1;
+}
+
+.reveal .slides section.caveat-slide .caveat__label {
+	margin: 0;
+	font-size: 0.5em !important;
+	line-height: 1.4;
+}
+
+.reveal .caveat-slide .caveat__label em {
+	display: block;
 }
 
 .reveal .caveat-slide .cento__lines {
@@ -107,14 +272,71 @@
 
 .reveal .caveat-slide .cento__verse,
 .reveal .caveat-slide .caveat__verse p {
-	font-size: 0.62em;
+	font-size: 0.78em;
 	padding: 0.14em 0;
 }
 
 .reveal .caveat-slide .cento__src {
-	font-size: 0.38em;
+	font-size: 0.46em;
 }
 
 .reveal .caveat-slide .caveat__verse p .cento__src {
-	font-size: 0.62em;
+	font-size: 0.6em;
+	font-style: normal;
+}
+
+/* --- 3.2e "Risers, decliners, anchors" (traj-slide--plot), added at Wouter's
+   request 2026-11-06: the slide is a full-height column and the plot frame takes
+   all the height under the title. The plot's own viewBox matches this frame. --- */
+.reveal .slides section.traj-slide--plot {
+	height: 100%;
+	box-sizing: border-box;
+	display: flex !important;
+	flex-direction: column;
+	padding-bottom: 0.5em;
+}
+
+.reveal .slides section.traj-slide--plot::before {
+	flex: none;
+}
+
+.reveal .traj-slide--plot .traj-slide__fig {
+	flex: 1;
+	min-height: 0;
+	height: auto;
+	margin: 0.7em 0 0;
+}
+
+/* --- 3.2e backup "Reading each poem against the corpus" (backup-slide--model),
+   added at Wouter's request 2026-11-06: a larger equation, then the 2 × 2 grid
+   takes the free height with larger text, and the foot sits on the bottom
+   margin (via backup-slide--fill). --- */
+.reveal .backup-slide--model .backup-eq {
+	margin: 0.7em auto 0;
+	font-size: 0.66em;
+}
+
+.reveal .backup-slide--model .backup-grid {
+	flex: 1;
+	align-content: space-evenly;
+	margin-top: 0.4em;
+}
+
+.reveal .backup-slide--model .backup-grid li {
+	font-size: 0.54em;
+	text-wrap: pretty;
+}
+
+/* --- §3.1 backup "From name strings to poets" (backup-slide--linking), added at
+   Wouter's request 2026-11-06: the 2 × 2 grid takes the free height with slightly
+   larger text, and the foot sits on the bottom margin (via backup-slide--fill). --- */
+.reveal .backup-slide--linking .backup-grid {
+	flex: 1;
+	align-content: space-evenly;
+	margin-top: 0.8em;
+}
+
+.reveal .backup-slide--linking .backup-grid li {
+	font-size: 0.55em;
+	text-wrap: pretty;
 }

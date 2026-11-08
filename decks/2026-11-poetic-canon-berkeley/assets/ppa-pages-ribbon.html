@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&display=swap" />
 		<meta charset="utf-8" />
 		<script src="../../../plugins/d3/d3.min.js"></script>
 		<style>
@@ -27,7 +28,7 @@
 			};
 
 			const width = 920;
-			const height = 170;
+			const height = 285;
 			const padL = 4;
 			const padR = 8;
 			const padTop = 12;
@@ -85,7 +86,7 @@
 				.attr('width', barW)
 				.attr('y', (d) => y(d.pages))
 				.attr('height', (d) => plotBottom - y(d.pages))
-				.attr('fill', COLORS.bar);
+				.attr('fill', COLORS.barHighlight);
 
 			const refRule = svg
 				.append('line')
@@ -105,7 +106,7 @@
 				.attr('x', padL + 4)
 				.attr('y', y(refY) - 4)
 				.attr('fill', COLORS.label)
-				.attr('font-family', "'JetBrains Mono', ui-monospace, monospace")
+				.attr('font-family', "'Source Sans 3', 'Source Sans Pro', sans-serif")
 				.attr('font-size', 19)
 				.attr('opacity', 1)
 				.text(`${refY.toLocaleString('en-US')} pages`);
@@ -120,27 +121,13 @@
 					.attr('y', height - 4)
 					.attr('text-anchor', yr === meta.year_lo ? 'start' : 'middle')
 					.attr('fill', COLORS.axis)
-					.attr('font-family', "'JetBrains Mono', ui-monospace, monospace")
+					.attr('font-family', "'Source Sans 3', 'Source Sans Pro', sans-serif")
 					.attr('font-size', 19)
 					.text(String(yr));
 			});
 
-			// The full chart (axes, bars, reference line) is drawn on arrival. The only
-			// click step highlights the nineteenth-century surge.
-			var _transitions = [
-				{
-					transitionForward: () =>
-						bars
-							.transition()
-							.duration(650)
-							.attr('fill', (d) =>
-								isHighlit(d.year) ? COLORS.barHighlight : COLORS.bar
-							),
-					transitionBackward: () =>
-						bars.transition().duration(350).attr('fill', COLORS.bar),
-					index: 0,
-				},
-			];
+			// The full chart is drawn on arrival, with no click steps.
+			var _transitions = [];
 		</script>
 	</body>
 </html>

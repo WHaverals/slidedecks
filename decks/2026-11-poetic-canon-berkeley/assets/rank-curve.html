@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,600;1,400;1,600&display=swap"
+		/>
+		<script src="../../../plugins/d3/d3.min.js"></script>
+		<style>
+			html,
+			body {
+				margin: 0;
+				width: 100%;
+				height: 100%;
+				background: transparent;
+				overflow: hidden;
+			}
+			svg {
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+			text {
+				font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+				font-variant-numeric: lining-nums tabular-nums;
+			}
+			.lab,
+			.tip text {
+				fill: #1c1917;
+				font-size: 21px;
+			}
+			.lab .t,
+			.tip .t {
+				font-style: italic;
+				font-weight: 600;
+			}
+			.lab .n {
+				fill: #57534e;
+			}
+			.lead {
+				stroke: #a8a29e;
+				stroke-width: 1.2;
+			}
+			.mark {
+				fill: #4662ac;
+				stroke: #faf8f5;
+				stroke-width: 2;
+			}
+		</style>
+	</head>
+	<body>
+		<script src="rank-curve-data.js"></script>
+		<script>
+			// CHR "The quotable canon", Fig. 3, for the slide: every poem in the full dated
+			// PPA record (38,914), ranked by the number of distinct PPA works that quote it.
+			// Log–log. The curve is drawn from the 276 count tiers, so it is exact.
+			const ACCENT = '#4662ac';
+			const D = window.PPA_RANK_CURVE;
+			const fmt = d3.format(',');
+
+			const W = 1000,
+				H = 580; // matches the 960×557 plot frame under a slide title
+			const m = { l: 100, r: 36, t: 18, b: 84 };
+			const plotW = W - m.l - m.r;
+			const x = d3.scaleLog().domain([0.82, 47000]).range([m.l, W - m.r]);
+			const y = d3.scaleLog().domain([0.8, 1700]).range([H - m.b, m.t]);
+
+			const svg = d3
+				.select('body')
+				.append('svg')
+				.attr('viewBox', `0 0 ${W} ${H}`)
+				.attr('preserveAspectRatio', 'xMinYMin meet')
+				.attr('role', 'img')
+				.attr(
+					'aria-label',
+					'Log–log plot of 38,914 poems ranked by the number of PPA works that quote them, from Paradise Lost at 1,326 works down to 16,378 poems quoted in a single work'
+				);
+
+			// --- grid + ticks ---
+			const grid = svg.append('g');
+			[1, 10, 100, 1000].forEach((t) => {
+				grid.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(t)).attr('y2', y(t))
+					.attr('stroke', '#e3ddd3').attr('stroke-width', 1);
+				grid.append('text').attr('x', m.l - 14).attr('y', y(t)).attr('text-anchor', 'end')
+					.attr('dominant-baseline', 'middle').attr('fill', '#57534e').attr('font-size', 21).text(fmt(t));
+			});
+			[1, 10, 100, 1000, 10000].forEach((t) => {
+				grid.append('line').attr('x1', x(t)).attr('x2', x(t)).attr('y1', m.t).attr('y2', H - m.b)
+					.attr('stroke', '#ece7df').attr('stroke-width', 1);
+				grid.append('text').attr('x', x(t)).attr('y', H - m.b + 30).attr('text-anchor', 'middle')
+					.attr('fill', '#57534e').attr('font-size', 21).text(fmt(t));
+			});
+			grid.append('text').attr('x', x(D.nPoems)).attr('y', H - m.b + 30).attr('text-anchor', 'middle')
+				.attr('fill', '#57534e').attr('font-size', 21).text(fmt(D.nPoems));
+			svg.append('text').attr('x', m.l + plotW / 2).attr('y', H - 9).attr('text-anchor', 'middle')
+				.attr('fill', '#292524').attr('font-size', 22).attr('font-weight', 600)
+				.text('Poems, ranked from most to least quoted');
+			svg.append('text').attr('transform', `translate(24, ${m.t + (H - m.b - m.t) / 2}) rotate(-90)`)
+				.attr('text-anchor', 'middle').attr('fill', '#292524').attr('font-size', 22).attr('font-weight', 600)
+				.text('PPA works quoting the poem');
+
+			// --- step 3 band (drawn under the curve): the single-work floor ---
+			const once = D.tiers[D.tiers.length - 1]; // [1, 22537, 38914]
+			const gFloor = svg.append('g').attr('opacity', 0);
+			gFloor.append('rect').attr('x', x(once[1])).attr('width', x(once[2]) - x(once[1]))
+				.attr('y', y(1) - 11).attr('height', 22).attr('rx', 3).attr('fill', 'rgba(70, 98, 172, 0.18)');
+
+			// --- the curve: through each tier's first and last rank ---
+			const pts = [];
+			D.tiers.forEach(([n, r0, r1]) => {
+				pts.push([r0, n]);
+				if (r1 > r0) pts.push([r1, n]);
+			});
+			const clip = svg.append('clipPath').attr('id', 'rcclip').append('rect')
+				.attr('x', 0).attr('y', 0).attr('width', W).attr('height', H);
+			svg.append('path')
+				.attr('d', d3.line().x((d) => x(d[0])).y((d) => y(d[1]))(pts))
+				.attr('fill', 'none').attr('stroke', ACCENT).attr('stroke-width', 3.2)
+				.attr('stroke-linejoin', 'round').attr('clip-path', 'url(#rcclip)');
+
+			// --- annotation helpers ---
+			const byRank = new Map(D.head.map((h) => [h[0], h]));
+			function dot(g, r, n) {
+				g.append('circle').attr('class', 'mark').attr('cx', x(r)).attr('cy', y(n)).attr('r', 7);
+			}
+			function label(g, tx, ty, title, note, anchor = 'start') {
+				const t = g.append('text').attr('class', 'lab').attr('x', tx).attr('y', ty).attr('text-anchor', anchor);
+				t.append('tspan').attr('class', 't').text(title);
+				if (note) t.append('tspan').attr('class', 'n').attr('dx', 8).text(note);
+				return t;
+			}
+			function lead(g, x1, y1, x2, y2) {
+				g.append('line').attr('class', 'lead').attr('x1', x1).attr('y1', y1).attr('x2', x2).attr('y2', y2);
+			}
+
+			// step 1: the head (the table's top three, and Gray's Elegy from the opening)
+			const gHead = svg.append('g').attr('opacity', 0);
+			[1, 2, 3].forEach((r) => dot(gHead, r, byRank.get(r)[1]));
+			lead(gHead, x(1), y(1326) + 9, x(1), 96);
+			['Paradise Lost', 'Hamlet', 'Psalms'].forEach((t, i) =>
+				label(gHead, x(1) - 4, 118 + i * 27, t, fmt(byRank.get(i + 1)[1]))
+			);
+			dot(gHead, 9, 735);
+			lead(gHead, x(9) + 6, y(735) - 6, x(9) + 20, 40);
+			label(gHead, x(9) + 24, 44, 'Gray’s Elegy', '735');
+
+			// step 2: the middle
+			const gMid = svg.append('g').attr('opacity', 0);
+			dot(gMid, 117, 191);
+			lead(gMid, x(117) + 6, y(191) - 6, x(117) + 20, y(191) - 32);
+			label(gMid, x(117) + 24, y(191) - 28, 'Tintern Abbey', '191');
+			const tyger = 2251; // Blake, “The Tyger”: 21 works (ranks 2,132–2,255 tie at 21)
+			dot(gMid, tyger, 21);
+			lead(gMid, x(tyger) + 6, y(21) - 6, x(tyger) + 20, y(21) - 32);
+			label(gMid, x(tyger) + 24, y(21) - 28, 'The Tyger', '21');
+
+			// step 3: the long floor
+			const gTail = svg.append('g').attr('opacity', 0);
+			const fx = (x(once[1]) + x(once[2])) / 2;
+			// label sits in the empty space above the staircase; a leader drops to the floor
+			lead(gTail, fx, y(1) - 14, fx, 210);
+			gTail.append('text').attr('class', 'lab').attr('x', W - m.r).attr('y', 166).attr('text-anchor', 'end')
+				.attr('font-weight', 600).text(`${fmt(D.nOnce)} poems (42%)`);
+			gTail.append('text').attr('class', 'lab').attr('x', W - m.r).attr('y', 193).attr('text-anchor', 'end')
+				.text('quoted in a single work');
+
+			const layers = [gHead, gMid, gTail];
+			function setStep(k, ms = 450) {
+				layers.forEach((g, i) => g.interrupt().transition().duration(ms).attr('opacity', i <= k ? 1 : 0));
+				gFloor.interrupt().transition().duration(ms).attr('opacity', k >= 2 ? 1 : 0);
+				step = k;
+			}
+			let step = -1;
+
+			// --- arrival: draw the curve in from the head to the tail ---
+			const DRAW_MS = 1600;
+			function playDraw() {
+				if (step >= 0) return clip.interrupt().attr('width', W);
+				clip.interrupt().attr('width', 0).transition().duration(DRAW_MS).ease(d3.easeCubicInOut).attr('width', W);
+			}
+			// self-contained: watch the host <section> for reveal's "present" class.
+			// On arrival, match the build to the fragments reveal shows (all of them when
+			// you come back from a later slide, none when you come from an earlier one;
+			// reveald3 does not reset the plot in that case), then draw the curve in only
+			// if no step is showing.
+			(function watchSlide() {
+				let sec = null;
+				try {
+					sec = window.frameElement && window.frameElement.closest('section');
+				} catch (e) {}
+				if (!sec) return;
+				let on = false;
+				const check = () => {
+					const now = sec.classList.contains('present');
+					if (now && !on) {
+						setStep(sec.querySelectorAll('.fragment.visualizationStep.visible').length - 1, 0);
+						playDraw();
+					}
+					on = now;
+				};
+				new MutationObserver(check).observe(sec, { attributes: true, attributeFilter: ['class'] });
+				check();
+			})();
+
+			// --- hover: the poem under the pointer, or its tie group ---
+			const focus = svg.append('circle').attr('r', 6.5).attr('fill', ACCENT).attr('stroke', '#faf8f5')
+				.attr('stroke-width', 2).attr('opacity', 0).style('pointer-events', 'none');
+			const tip = svg.append('g').attr('class', 'tip').attr('opacity', 0).style('pointer-events', 'none');
+			const tipBg = tip.append('rect').attr('rx', 4).attr('fill', '#fffdf9').attr('stroke', '#d6d3d1');
+			const tipText = tip.append('text');
+			const tierOf = (r) => D.tiers.find(([, r0, r1]) => r >= r0 && r <= r1);
+
+			function show(lines, px, py) {
+				tipText.selectAll('tspan').remove();
+				lines.forEach(([txt, cls], i) =>
+					tipText.append('tspan').attr('x', 14).attr('y', 26 + i * 25).attr('class', cls || null)
+						.attr('font-size', 19).attr('fill', cls === 'n' ? '#57534e' : '#1c1917').text(txt)
+				);
+				const bb = tipText.node().getBBox();
+				const tw = bb.width + 28, th = lines.length * 25 + 14;
+				tipBg.attr('width', tw).attr('height', th);
+				let tx = px + 16, ty = py - th - 14;
+				if (tx + tw > W - 4) tx = px - tw - 16;
+				if (ty < 4) ty = py + 18;
+				tip.attr('transform', `translate(${tx},${ty})`).attr('opacity', 1);
+			}
+			svg.append('rect').attr('x', m.l).attr('y', m.t).attr('width', plotW).attr('height', H - m.b - m.t)
+				.attr('fill', 'transparent')
+				.on('mousemove', (ev) => {
+					const [mx] = d3.pointer(ev, svg.node());
+					const r = Math.max(1, Math.min(D.nPoems, Math.round(x.invert(mx))));
+					const h = byRank.get(r);
+					if (h) {
+						const [rank, n, title, author, f, l] = h;
+						focus.attr('cx', x(rank)).attr('cy', y(n)).attr('opacity', 1);
+						show([[title, 't'], [author], [`${fmt(n)} works, ${f}–${l}`, 'n'], [`rank ${fmt(rank)}`, 'n']], x(rank), y(n));
+					} else {
+						const [n, r0, r1] = tierOf(r);
+						const k = r1 - r0 + 1;
+						focus.attr('cx', x(r)).attr('cy', y(n)).attr('opacity', 1);
+						const head = k > 1 ? `${fmt(k)} poems, ${fmt(n)} ${n === 1 ? 'work' : 'works'} each` : `${fmt(n)} works`;
+						const ex = (D.ex[n] || []).map(([t, a]) => [`${t} (${a})`]);
+						show([[head, 't'], [`ranks ${fmt(r0)}–${fmt(r1)}`, 'n'], ...ex.slice(0, 3)], x(r), y(n));
+					}
+				})
+				.on('mouseleave', () => {
+					focus.attr('opacity', 0);
+					tip.attr('opacity', 0);
+				});
+
+			window.rankStep = setStep; // for testing
+			var _transitions = [
+				{ transitionForward: () => setStep(0), transitionBackward: () => setStep(-1), index: 0 },
+				{ transitionForward: () => setStep(1), transitionBackward: () => setStep(0), index: 1 },
+				{ transitionForward: () => setStep(2), transitionBackward: () => setStep(1), index: 2 },
+			];
+		</script>
+	</body>
+</html>

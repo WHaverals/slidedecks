@@ -13,7 +13,7 @@
 			html,
 			body { margin: 0; background: transparent; overflow: hidden; }
 			svg { display: block; }
-			text { font-family: "JetBrains Mono", ui-monospace, monospace; }
+			text { font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif; font-variant-numeric: lining-nums tabular-nums; }
 		</style>
 	</head>
 	<body>
@@ -24,8 +24,8 @@
 			const periods = data.periods; // ascending mean (index 0 = most declining)
 			const grid = data.grid;
 
-			const W = 1000, H = 560;
-			const m = { l: 250, r: 30, t: 70, b: 56 };
+			const W = 1000, H = 580; // same shape as the slide's plot frame (960 × 557)
+			const m = { l: 216, r: 24, t: 60, b: 70 };
 			const x = d3.scaleLinear().domain(data.x_domain).range([m.l, W - m.r]);
 			const plotTop = m.t, plotBot = H - m.b;
 			const rowStep = (plotBot - plotTop) / periods.length;
@@ -37,7 +37,7 @@
 
 			const svg = d3
 				.select("body").append("svg")
-				.attr("viewBox", `0 0 ${W} ${H}`).attr("preserveAspectRatio", "xMidYMid meet");
+				.attr("viewBox", `0 0 ${W} ${H}`).attr("preserveAspectRatio", "xMinYMin meet");
 			function fitToFrame() {
 				const el = window.frameElement;
 				svg.attr("width", el ? el.clientWidth : W).attr("height", el ? el.clientHeight : H);
@@ -59,19 +59,19 @@
 			[-0.3, -0.2, -0.1, 0.1, 0.2, 0.3].forEach((t) => {
 				gx.append("line").attr("x1", x(t)).attr("x2", x(t)).attr("y1", plotTop).attr("y2", plotBot)
 					.attr("stroke", "#ece7df").attr("stroke-width", 1);
-				gx.append("text").attr("x", x(t)).attr("y", plotBot + 22).attr("text-anchor", "middle")
-					.attr("fill", "#a8a29e").attr("font-size", 14).text(t.toFixed(1));
+				gx.append("text").attr("x", x(t)).attr("y", plotBot + 26).attr("text-anchor", "middle")
+					.attr("fill", "#78716c").attr("font-size", 18).text(t.toFixed(1));
 			});
 			// zero rule
 			svg.append("line").attr("x1", x(0)).attr("x2", x(0)).attr("y1", plotTop - 4).attr("y2", plotBot)
 				.attr("stroke", "#bdb6a9").attr("stroke-width", 1.3).attr("stroke-dasharray", "5 5");
-			gx.append("text").attr("x", x(0)).attr("y", plotBot + 22).attr("text-anchor", "middle")
-				.attr("fill", "#78716c").attr("font-size", 14).text("0");
+			gx.append("text").attr("x", x(0)).attr("y", plotBot + 26).attr("text-anchor", "middle")
+				.attr("fill", "#57534e").attr("font-size", 18).text("0");
 			// axis annotations
-			svg.append("text").attr("x", x(-0.16)).attr("y", H - 12).attr("text-anchor", "middle")
-				.attr("fill", COL.declining).attr("font-size", 14).attr("letter-spacing", "0.05em").text("← DECLINING");
-			svg.append("text").attr("x", x(0.16)).attr("y", H - 12).attr("text-anchor", "middle")
-				.attr("fill", COL.rising).attr("font-size", 14).attr("letter-spacing", "0.05em").text("RISING →");
+			svg.append("text").attr("x", x(-0.16)).attr("y", H - 10).attr("text-anchor", "middle")
+				.attr("fill", COL.declining).attr("font-size", 19).attr("font-weight", 600).text("← declining");
+			svg.append("text").attr("x", x(0.16)).attr("y", H - 10).attr("text-anchor", "middle")
+				.attr("fill", COL.rising).attr("font-size", 19).attr("font-weight", 600).text("rising →");
 
 			// --- ridges (one per period) ---
 			const area = (rank, t) =>
@@ -95,11 +95,11 @@
 				const name = mt ? mt[1] : p.label;
 				const dates = mt ? mt[2].replace("-", "–") : "";
 				const lab = g.append("g");
-				lab.append("text").attr("x", m.l - 16).attr("y", baselineY(rank) - 4).attr("text-anchor", "end")
-					.attr("fill", "#3f3a34").attr("font-size", 15).attr("font-weight", 600)
+				lab.append("text").attr("x", m.l - 16).attr("y", baselineY(rank) - 5).attr("text-anchor", "end")
+					.attr("fill", "#3f3a34").attr("font-size", 18).attr("font-weight", 600)
 					.attr("font-family", '"Source Sans 3", system-ui, sans-serif').text(name);
-				lab.append("text").attr("x", m.l - 16).attr("y", baselineY(rank) + 12).attr("text-anchor", "end")
-					.attr("fill", col).attr("font-size", 12).text(`${dates} · n=${p.n}`);
+				lab.append("text").attr("x", m.l - 16).attr("y", baselineY(rank) + 15).attr("text-anchor", "end")
+					.attr("fill", col).attr("font-size", 14.5).text(`${dates} · n=${p.n}`);
 				return { g, path, rank, p };
 			});
 

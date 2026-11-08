@@ -12,7 +12,7 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&family=IM+Fell+English:ital@0;1&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;600&family=IM+Fell+English:ital@0;1&display=swap"
 		/>
 
 		<link rel="stylesheet" href="../../reveal/dist/reset.css" />
@@ -22,6 +22,7 @@
 		<link rel="stylesheet" href="poetic-canon.css" />
 		<link rel="stylesheet" href="section-conference.css" />
 		<link rel="stylesheet" href="section-lines.css" />
+		<link rel="stylesheet" href="overrides.css" />
 
 		<style>
 			/* reveald3 sizes its iframe with 100vw; fill the fig-container instead */
@@ -39,11 +40,7 @@
 
 					<div class="title-slide__main">
 						<p class="title-slide__eyebrow">
-							<span class="title-slide__event"><!-- CONFERENCE -->Cultural Analytics Series</span>
-							<span class="title-slide__sep" aria-hidden="true">·</span>
-							<span class="title-slide__date title-slide__date--venue">UC Berkeley</span>
-							<span class="title-slide__sep" aria-hidden="true">·</span>
-							<span class="title-slide__date title-slide__date--when">November 9, 2026</span>
+							<span class="title-slide__event"><!-- CONFERENCE -->Cultural Analytics Series, UC Berkeley, November 9, 2026</span>
 						</p>
 						<h1 class="title-slide__presentation">
 							Ends of Prosody
@@ -57,7 +54,7 @@
 						<div class="slide-footer__presenter">
 							<p class="slide-footer__name">Meredith Martin &amp; Wouter Haverals</p>
 							<p class="slide-footer__affiliation">
-								Princeton University · Center for Digital Humanities
+								Center for Digital Humanities, Princeton University
 							</p>
 						</div>
 
@@ -85,8 +82,8 @@
 				</section>
 
 				<section class="section-slide" data-background-color="#262b3c">
-					<p class="section-slide__number">01</p>
-					<h2>Canonicity through <em>use</em></h2>
+					<p class="section-slide__number">1</p>
+					<h2>Canonicity through use</h2>
 				<aside class="notes">
 					<ul>
 						<li>&ldquo; So: canonicity through <em>use</em>&rdquo; &mdash; a poet earns a place in a poetry manual; can be quoted, taught, and repurposed.</li>
@@ -102,7 +99,7 @@
 							alt="Illustrated opening of Gray's Elegy Written in a Country Church-Yard, 1766 edition"
 						/>
 						<figcaption class="image-slide__caption image-slide__caption--wide">
-							<em>Designs by Mr. R. Bentley for Six Poems by Mr T. Gray</em> (London, 1766) &mdash; Gray&rsquo;s <em>Elegy Written in a Country Churchyard</em> opening. Library collection, Anglesey Abbey, Cambridgeshire &middot; 12.J.23
+							<em>Designs by Mr. R. Bentley for Six Poems by Mr T. Gray</em> (London, 1766), opening of Gray&rsquo;s <em>Elegy Written in a Country Churchyard</em>. Library collection, Anglesey Abbey, Cambridgeshire, 12.J.23
 						</figcaption>
 					</figure>
 				<aside class="notes">
@@ -134,7 +131,7 @@
 										/>
 									</div>
 									<figcaption>
-										<strong>Sheridan &amp; Henderson</strong> (1796), p.&nbsp;3 &mdash; elocution
+										<strong>Sheridan &amp; Henderson</strong> (1796), p.&nbsp;3, elocution
 									</figcaption>
 								</figure>
 
@@ -148,7 +145,7 @@
 										/>
 									</div>
 									<figcaption>
-										<strong>Gardiner</strong> (1856), p.&nbsp;51 &mdash; set to notation
+										<strong>Gardiner</strong> (1856), p.&nbsp;51, set to notation
 									</figcaption>
 								</figure>
 
@@ -162,7 +159,7 @@
 										/>
 									</div>
 									<figcaption>
-										<strong>Breen</strong> (1857), p.&nbsp;231 &mdash; plagiarism
+										<strong>Breen</strong> (1857), p.&nbsp;231, plagiarism
 									</figcaption>
 								</figure>
 
@@ -176,7 +173,7 @@
 										/>
 									</div>
 									<figcaption>
-										<strong>Brooke</strong> (1880), p.&nbsp;22 &mdash; lines rewritten
+										<strong>Brooke</strong> (1880), p.&nbsp;22, lines rewritten
 									</figcaption>
 								</figure>
 
@@ -190,7 +187,7 @@
 										/>
 									</div>
 									<figcaption>
-										<strong>Skeat</strong> (1898), p.&nbsp;488 &mdash; scansion
+										<strong>Skeat</strong> (1898), p.&nbsp;488, scansion
 									</figcaption>
 								</figure>
 
@@ -204,18 +201,15 @@
 										/>
 									</div>
 									<figcaption>
-										<strong>Hyde</strong> (1906), p.&nbsp;87 &mdash; grammar exercise
+										<strong>Hyde</strong> (1906), p.&nbsp;87, grammar exercise
 									</figcaption>
 								</figure>
 									</div>
 								</div>
 
 								<div class="elegy-stack-slide__hint fragment">
-									<p class="elegy-epigraph__line">
-										Rarely the whole poem&mdash;usually a line someone can teach with.
-									</p>
-									<p class="elegy-epigraph__line">
-										Authority made through use&mdash;lines cut, copied, and repurposed.
+									<p class="elegy-epigraph__line elegy-epigraph__line--plain">
+										None of these six books prints the whole poem. Most take a stanza or a single line.
 									</p>
 									<p class="elegy-epigraph__line elegy-epigraph__line--cite">
 										&ldquo;le jeu du d&eacute;coupage et du collage&rdquo;
@@ -238,7 +232,7 @@
 				</section>
 
 				<section class="section-slide" data-background-color="#262b3c">
-					<p class="section-slide__number">02</p>
+					<p class="section-slide__number">2</p>
 					<h2>The Princeton Prosody Archive</h2>
 				<aside class="notes">
 					<li>Every example here comes from the Princeton Prosody Archive.</li>
@@ -260,19 +254,19 @@
 								<div class="ppa-intro__fact">
 									<dt class="ppa-intro__fact-label">Span</dt>
 									<dd class="ppa-intro__fact-value">
-										1532&ndash;1929 · searchable · public domain
+										1532&ndash;1929, in the public domain
 									</dd>
 								</div>
 								<div class="ppa-intro__fact">
 									<dt class="ppa-intro__fact-label">Scale</dt>
 									<dd class="ppa-intro__fact-value">
-										~7,000 works · ~2&nbsp;million pages · full text
+										About 7,000 works and 2&nbsp;million pages, searchable&nbsp;in&nbsp;full&nbsp;text
 									</dd>
 								</div>
 								<div class="ppa-intro__fact">
 									<dt class="ppa-intro__fact-label">Collections</dt>
 									<dd class="ppa-intro__fact-value">
-										Six, hand-curated &mdash; chiefly Literary &amp; Linguistic
+										Six, hand-curated (chiefly Literary &amp; Linguistic)
 									</dd>
 								</div>
 							</dl>
@@ -289,12 +283,24 @@
 						</div>
 
 						<figure class="ppa-intro__brand">
-							<img
-								src="../../assets/logos/PPALogo_Web.svg"
-								alt="Princeton Prosody Archive"
-								width="730"
-								height="1164"
-							/>
+							<div class="ppa-intro__brand-stack">
+								<img
+									class="ppa-intro__logo fragment fade-out"
+									data-fragment-index="1"
+									src="../../assets/logos/PPALogo_Web.svg"
+									alt="Princeton Prosody Archive"
+									width="730"
+									height="1164"
+								/>
+								<img
+									class="ppa-intro__cover fragment fade-in"
+									data-fragment-index="1"
+									src="assets/poetrys-data-cover.jpg"
+									alt="Cover of Meredith Martin, Poetry&rsquo;s Data: Digital Humanities and the History of Prosody"
+									width="1325"
+									height="2000"
+								/>
+							</div>
 							<figcaption class="ppa-intro__brand-link">
 								<a href="https://prosody.princeton.edu/" target="_blank" rel="noopener">prosody.princeton.edu</a>
 							</figcaption>
@@ -306,11 +312,12 @@
 						<li>All in all, the PPA contains around seven thousand works, two million pages, all full text.</li>
 						<li>That little graph shows the number of pages per year in this archive.</li>
 						<li>There are relatively few works in the 16th century and 17th century, but the number of works and thus pages increases rapidly in the 18th century.</li>
+						<li>[Click] The logo gives way to Meredith&rsquo;s book, <em>Poetry&rsquo;s Data: Digital Humanities and the History of Prosody</em>.</li>
 					</aside>
 				</section>
 
 				<section class="section-slide" data-background-color="#262b3c">
-					<p class="section-slide__number">03</p>
+					<p class="section-slide__number">3</p>
 					<h2>Canonicity traced in the PPA</h2>
 				<aside class="notes">
 					<li>Now, how to actually trace a poetic canon in this material?</li>
@@ -318,27 +325,25 @@
 				</section>
 
 				<section class="ppa-intro-slide ppa-intro-slide--concept">
-					<h2>An archive of <em>use</em></h2>
-					<p class="ppa-intro__lede">
-						Not an anthology of great literature&mdash;books that make verse legible,
-						audible, and teachable.
-					</p>
+					<h2>An archive of use</h2>
+					<p class="ppa-intro__statement">The PPA is not an anthology of great literature. Its books teach readers how to scan, pronounce and hear verse.</p>
 
 					<div class="ppa-intro__points">
 						<p>
 							<strong>Poets as instruments.</strong>
-							Names invoked to settle a rule&mdash;which poets become usable, repeatable
-							common ground when writers explain how verse works.
+							Manuals name a poet to explain a rule, show a metre or set up a comparison.
+							The same few names come back in book after book.
 						</p>
 						<p>
 							<strong>Their lines.</strong>
-							Lines quoted to make a point concrete&mdash;cut into couplets and stanzas,
-							made to do explanatory work, and able to travel without their poems.
+							Manuals quote a single line or stanza to show how verse works. Later manuals
+							copy the same line and leave the rest of the poem behind.
 						</p>
 					</div>
 
 					<aside class="notes">
 						<li>As I said, I think of this as a canon of <em>use</em>. How does that show up in the PPA?</li>
+						<li>These books were not built to curate &ldquo;great literature&rdquo; the way anthologies are. Their work is to make verse legible, audible, and reproducible (JCA paper).</li>
 						<li>First as names: which poets get invoked as authorities.</li>
 						<li>Then as lines: the actual verse that gets quoted; the verses that are being cut into couplets and stanzas to do explanatory work.</li>
 						<li>In this presentation, I will present on those two dimensions of canonicity: first, how names are used to invoke poets as authorities; and second, exactly which poems are being quoted.</li>
@@ -348,7 +353,10 @@
 				<section class="section-slide" data-background-color="#262b3c">
 					<p class="section-slide__number">3.1</p>
 					<h2>Counting names</h2>
-					<p class="section-slide__credit">Wouter Haverals, Petr Plecháč &amp; Artjoms Šeļa<br />&ldquo;Canon Dynamics in the Princeton Prosody Archive, 1559&ndash;1929,&rdquo;<br /><em>Journal of Cultural Analytics</em> (forthcoming 2026)</p>
+					<div class="section-slide__ref">
+						<p class="section-slide__ref-title">Canon Dynamics in the Princeton Prosody Archive, 1559&ndash;1929</p>
+						<p class="section-slide__ref-by">Wouter&nbsp;Haverals, Petr&nbsp;Plecháč &amp; Artjoms&nbsp;Šeļa. <em>Journal of Cultural&nbsp;Analytics</em>, forthcoming&nbsp;2026.</p>
+					</div>
 				<aside class="notes">
 					<li>First, poet's names in the PPA.</li>
 					<li>This is joint work with Artjoms Šeļa and Petr Plecháč.</li>
@@ -360,17 +368,13 @@
 				<!-- 3.1a: entity linking + the "what's in a name" problem -->
 				<section class="names-slide">
 					<div class="names-slide__head">
-						<h2>Who gets <em>named</em>?</h2>
+						<h2>Who gets named?</h2>
 					</div>
-
-					<p class="names-slide__lede">
-						A poet&rsquo;s name is not a stable search object &mdash; so we resolve every
-						mention to one identity.
-					</p>
+					<p class="names-slide__statement">A poet&rsquo;s name is not a very stable search term.<br />So we try to link each mention to a person in Wikidata.</p>
 
 					<ol class="names-pipeline" aria-label="From name to countable signal">
 						<li class="names-pipeline__stage fragment" data-fragment-index="1">
-							<p class="names-pipeline__label"><span>01</span> surface forms</p>
+							<p class="names-pipeline__label">Surface forms</p>
 							<div class="names-pipeline__rail"><span class="names-pipeline__dot"></span></div>
 							<div class="names-pipeline__body">
 								<ul class="names-pipeline__variants">
@@ -378,20 +382,20 @@
 									<li>&ldquo;Schakespeyr&rdquo;</li>
 									<li>&ldquo;Shaxpere&rdquo;</li>
 									<li>&ldquo;Shakpeare&rdquo;</li>
-									<li class="names-pipeline__epithet">&ldquo;the sweet swan of Avon&rdquo;</li>
+									<li class="names-pipeline__epithet">&ldquo;the Bard&rdquo;</li>
 								</ul>
 							</div>
 						</li>
 						<li class="names-pipeline__stage fragment" data-fragment-index="2">
-							<p class="names-pipeline__label"><span>02</span> neural linking</p>
+							<p class="names-pipeline__label">Neural linking</p>
 							<div class="names-pipeline__rail"><span class="names-pipeline__dot"></span></div>
 							<div class="names-pipeline__body">
 								<span class="names-pipeline__engine">ReFinED</span>
-								<span class="names-pipeline__note">mention &times; context</span>
+								<span class="names-pipeline__note">mention in context</span>
 							</div>
 						</li>
 						<li class="names-pipeline__stage fragment" data-fragment-index="3">
-							<p class="names-pipeline__label"><span>03</span> knowledge base</p>
+							<p class="names-pipeline__label">Knowledge base</p>
 							<div class="names-pipeline__rail"><span class="names-pipeline__dot"></span></div>
 							<div class="names-pipeline__body">
 								<span class="names-pipeline__name">William Shakespeare</span>
@@ -399,18 +403,18 @@
 							</div>
 						</li>
 						<li class="names-pipeline__stage fragment" data-fragment-index="4">
-							<p class="names-pipeline__label"><span>04</span> countable signal</p>
+							<p class="names-pipeline__label">Countable signal</p>
 							<div class="names-pipeline__rail"><span class="names-pipeline__dot"></span></div>
 							<div class="names-pipeline__body">
 								<span class="names-pipeline__metric">737,194</span>
-								<span class="names-pipeline__note">mentions &rarr; 3,164 poets</span>
+								<span class="names-pipeline__note">mentions of 3,164 poets</span>
 							</div>
 						</li>
 					</ol>
 
 					<aside class="notes">
 						<li>The question is basically: who gets named when a versification wants to explain how verse works?</li> 
-						<li>The problem: a poet’s name is a moving target — Shakespeare alone shows up spelled a dozen ways, plus ‘the bard’, or ‘the sweet swan of Avon.’</li>
+						<li>The problem: a poet’s name is a moving target — Shakespeare alone shows up spelled a dozen ways, plus ‘the Bard’.</li>
 						<li>So we can't really do a simple text search, because then we might miss all of these variants, let alone artifacts of OCR.</li>
 						<li>What we did instead: we used a neural entity linker -- ReFinED -- that reads each mention in context [click] and ties it to one identity in Wikidata.</li>
 						<li>[Click.] Do that across the whole PPA and the names collapse into countable people</li>
@@ -420,38 +424,38 @@
 				</section>
 
 				<!-- backup ▸ method: entity linking -->
-				<section class="backup-slide">
-					<p class="backup-slide__kicker">Method</p>
+				<section class="backup-slide backup-slide--fill backup-slide--linking">
 					<h2>From name strings to poets</h2>
 					<p class="backup-slide__lede">
-						Named-entity recognition only says &ldquo;<em>Shelley</em> is a person.&rdquo; <em>Entity linking</em> says <em>which</em> Shelley &mdash; Mary or Percy Bysshe &mdash; and pulls &ldquo;Mrs. Shelley,&rdquo; &ldquo;Mary Wollstonecraft Shelley,&rdquo; and the bare surname onto one identity across two centuries.
+						Entity linking decides which Shelley a page means, Mary or Percy Bysshe.
 					</p>
 
 					<ul class="backup-grid backup-grid--2">
 						<li>
-							<span class="backup-tag">the linker</span>
-							<strong>ReFinED, zero-shot.</strong> A neural model that detects and disambiguates each mention jointly from context, mapping it to a Wikidata QID (Dante &rarr; Q1067) with a 0&ndash;1 confidence. No corpus-specific training; ~1&nbsp;day on an A100 over 1.68M pages.
+							<span class="backup-tag">Linker</span>
+							<strong>ReFinED, zero-shot.</strong> A neural model that detects and disambiguates each mention jointly from context, mapping it to a Wikidata QID (Q1067 for Dante) with a 0&ndash;1 confidence. No corpus-specific training; ~1&nbsp;day on an A100 over 1.68M pages.
 						</li>
 						<li>
-							<span class="backup-tag">the Wikidata trap</span>
-							<strong>Linking is only as clean as the knowledge base.</strong> Wikidata files Friedrich Fröbel (the kindergarten founder) and Elizabeth Barrett Browning (d.&nbsp;1861) among &ldquo;soccer players&rdquo; and &ldquo;screenwriters&rdquo; &mdash; so the poet set must be <em>filtered</em>, not taken raw.
+							<span class="backup-tag">Wikidata</span>
+							<strong>Wikidata&rsquo;s labels are noisy.</strong> It files Friedrich Fröbel (the kindergarten founder) and Elizabeth Barrett Browning (d.&nbsp;1861) among &ldquo;soccer players&rdquo; and &ldquo;screenwriters.&rdquo; The poet set has to be filtered before counting.
 						</li>
 						<li>
-							<span class="backup-tag">how accurate?</span>
-							<strong>~98% at the 0.90 threshold.</strong> On 50 hand-annotated pages (3 annotators), 56 of 57 high-confidence links were correct. The system errs toward <em>silence</em>: its misses are hard OCR forms (&ldquo;Bobert Bums&rdquo;&nbsp;&rarr;&nbsp;Burns, &ldquo;THEOCRITUS&rdquo;), not fabricated poets.
+							<span class="backup-tag">Accuracy</span>
+							<strong>~98% at the 0.90 threshold.</strong> On 50 hand-annotated pages (3 annotators), 56 of 57 high-confidence links were correct. The system errs on the side of silence. Its misses are hard OCR forms such as &ldquo;THEOCRITUS&rdquo; and &ldquo;Bobert Bums&rdquo; for Burns.
 						</li>
 						<li>
-							<span class="backup-tag">the cascade</span>
-							<strong>From spans to a poet universe.</strong> 23.9M mention spans &rarr; 11.6M linked &rarr; 92,823 humans &rarr; poet-flagged (Q49757) &rarr; conf.&nbsp;&ge;0.90 &rarr; seen in &ge;2 works &rarr; born &le;1900. Noise lives in singletons &mdash; the stability gate drops 34% of names but only 0.4% of mentions.
+							<span class="backup-tag">Filters</span>
+							<strong>From spans to a poet universe.</strong> Of 23.9M mention spans, 11.6M were linked, and 92,823 of the linked entities are humans. We keep poet-flagged humans (Q49757) with conf.&nbsp;&ge;0.90, seen in &ge;2 works, born &le;1900. The stability gate drops 34% of names but only 0.4% of mentions.
 						</li>
 					</ul>
 
 					<p class="backup-slide__foot">
-						Final poet universe: <strong>3,164 poets &middot; 737,194 mentions</strong> across 3,149 works, 1559&ndash;1929
+						The final poet universe has <strong>3,164 poets</strong> and <strong>737,194 mentions</strong> in 3,149 works, 1559&ndash;1929.
 					</p>
 
 					<aside class="notes">
 						<li>The linker is ReFinED: neural, no training needed (though one can finetune!); it reads each name in context and picks the right Wikidata person.</li>
+						<li>Named-entity recognition only finds that &ldquo;Shelley&rdquo; is a person. Entity linking also picks which Shelley, with a Wikidata identifier.</li>
 						<li>We checked it by hand on fifty pages — about 98% correct at our confidence cutoff, and when it’s unsure it stays silent rather than inventing poets.</li>
 						<li>The funnel runs from 24 million raw name-spans down to about 3,000 poets.</li>
 						<li>The one trap: Wikidata sometimes mislabels people, so we don't take the raw 'poet' tag on faith.</li>
@@ -464,7 +468,7 @@
 				<!-- ===== names game: "What's in a name?" ===== -->
 				<!-- generated by scratchpad/names/build_game.py · lineup: DOCS/names-game-discussion-guide.md -->
 				<section class="section-slide namegame-title" data-background-color="#262b3c">
-					<h2>What&rsquo;s in a <em>name</em>?</h2>
+					<h2>What&rsquo;s in a name?</h2>
 					<aside class="notes">
 						<li>Before the numbers, a game. But first, thirty seconds on what the machine actually does.</li>
 					</aside>
@@ -473,8 +477,7 @@
 				<!-- names game: how ReFinED reads a page, and the five outcomes -->
 				<section class="refined-slide">
 					<div class="refined__head">
-						<h2>Find, link, <em>score</em></h2>
-						<p class="refined__lede">ReFinED does all three in one pass, linking each name to Wikidata or to nothing.</p>
+						<h2>Find, link, score</h2>
 					</div>
 					<div class="refined__body">
 						<div class="refined__left">
@@ -589,8 +592,8 @@
 						<div class="refined__plotkey fragment fade-out" data-fragment-index="1">
 							<p class="refined__plotkey-title">ReFinED scores for <strong>1,445,174</strong> links in our 3,149 works</p>
 							<ul class="refined__plotkey-legend">
-								<li><span class="refined__swatch refined__swatch--in"></span><b>66%</b> at 0.9 or above: counted</li>
-								<li><span class="refined__swatch refined__swatch--out"></span><b>34%</b> below: not counted</li>
+								<li><span class="refined__swatch refined__swatch--in"></span><b>66%</b> score 0.9 or above and are counted</li>
+								<li><span class="refined__swatch refined__swatch--out"></span><b>34%</b> score lower and are not counted</li>
 							</ul>
 						</div>
 						<div class="refined__right fragment" data-fragment-index="2">
@@ -598,12 +601,12 @@
 									<thead><tr><th></th><th>score &ge; 0.9</th><th>score &lt; 0.9</th></tr></thead>
 									<tbody>
 										<tr>
-											<th>&check; correct</th>
+											<th>&check; Correct</th>
 											<td class="oc oc--ok-above"><b>counted</b><span>the poet gets the credit</span></td>
 											<td class="oc oc--ok-below"><b>not counted</b><span>a real mention is lost</span></td>
 										</tr>
 										<tr>
-											<th>&cross; wrong</th>
+											<th>&cross; Wrong</th>
 											<td class="oc oc--bad-above"><b>counted</b><span>the wrong poet gets the credit</span></td>
 											<td class="oc oc--bad-below"><b>not counted</b><span>the mistake is filtered out</span></td>
 										</tr>
@@ -810,56 +813,6 @@
 							<div class="namecard">
 								<div class="namecard__inner">
 									<div class="namecard__face namecard__face--front">
-										<p class="namecard__context">… J. M. Kennedy, English Literature, Lond. (Sampson Low), $2.00. Includes Shaw, Wells, Yeats, <mark>Fiona Macleod</mark>, Binyon, Le Gallienne, Gissing. R. Le Gallienne, Rudyard Kipling; a criticism, N. Y. (Lane), $1.50.</p>
-										<p class="namecard__source">A. S. Mackenzie, <em>History of English Literature</em> (1914), reading list</p>
-									</div>
-									<div class="namecard__face namecard__face--back">
-										<img class="namecard__portrait" src="assets/names-game/portrait-sharp.jpg" alt="Photograph of William Sharp" />
-										<div class="namecard__id">
-											<p class="namecard__who">William Sharp</p>
-											<p class="namecard__meta">1855–1905 · wrote as “Fiona Macleod” &middot; <code>Q1575288</code></p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="namegame__right">
-							<span class="namegame__flip fragment" data-fragment-index="1" aria-hidden="true"></span>
-							<div class="namegame__machine namegame__machine--ok-above fragment" data-fragment-index="2">
-								<p class="namegame__by">ReFinED links it to</p>
-								<p class="namegame__entity"><span class="namegame__ent"><strong>William Sharp</strong><code>Q1575288</code></span></p>
-								<div class="meter-row" style="--score: 0.9633">
-									<span class="meter__val">0.96</span>
-									<div class="meter" aria-hidden="true"><span class="meter__fill"></span><span class="meter__line"></span></div>
-									<div class="meter__scale"><span class="meter__thr">0.9</span></div>
-								</div>
-								<p class="stamp">✓ Correct · above 0.9</p>
-							</div>
-						</div>
-					</div>
-					<aside class="notes">
-						<li>A 1914 reading list: “Includes Shaw, Wells, Yeats, Fiona Macleod, Binyon, Le Gallienne, Gissing.” Who is Fiona Macleod? Phones allowed.</li>
-						<li>[Click] William Sharp, a Scottish critic who published Celtic poetry and romances as a Highland woman and kept the secret until his death. [Click] The machine: 0.96.</li>
-						<li>Question: should Fiona’s mentions count toward Sharp’s place in the canon? And should the count know what period readers did not?</li>
-						<li>The linker unmasks pseudonyms with modern hindsight: an encyclopedia has already decided whose canon a persona feeds, and which personae exist at all. Sylvander, yes; Clarinda, no. That pair leads to women’s names later.</li>
-						<li>The Highland poetess was a Scottish man.</li>
-						<li>ReFinED on “Fiona Macleod”: found, linked to William Sharp (Q1575288) at 0.9633. Correct, and above 0.9, so counted.</li>
-						<li>Other names on the card: “J. M. Kennedy” found, not linked; “Shaw” → George Bernard Shaw (Q19185) at 0.9937, correct; “Wells” → H. G. Wells (Q42511) at 0.6107, correct but below 0.9; “Yeats” → William Butler Yeats (Q40213) at 0.9342, correct; “Binyon” → Laurence Binyon (Q1807972) at 0.9862, correct; “Le Gallienne” found, not linked; “Gissing” → George Gissing (Q369790) at 0.8154, correct but below 0.9; “R. Le Gallienne” found, not linked; “Rudyard Kipling” (in a book title) → Rudyard Kipling (Q34743) at 0.9997, correct.</li>
-						<li>From the archive:<ul>
-							<li>· The machine is surer of the persona than the man: “William Sharp” 113 links, only 46 above 0.9</li>
-							<li>✓ “Peter Pindar” → John Wolcot 178 times (139 above 0.9), never Pindar · “Barry Cornwall” → Procter 312 (306)</li>
-							<li>✓ “Lawrence Hope”, Adela Nicolson’s male pen name, misspelled → her 5 times · “Emanuel Morgan” (the Spectra hoax) → Witter Bynner 19 of 19</li>
-							<li>✗ “Sylvander” → Burns 24 times, but his “Clarinda”, Agnes McLehose: 184 times silent</li>
-						</ul></li>
-					</aside>
-				</section>
-
-				<section class="namegame-slide">
-					<div class="namegame__stage">
-						<div class="namegame__left">
-							<div class="namecard">
-								<div class="namecard__inner">
-									<div class="namecard__face namecard__face--front">
 										<p class="namecard__context namecard__context--short">… A second will soon appear. “<mark>H. D</mark>.”, one of the Imagistes, is also a young American poet resident abroad.</p>
 										<p class="namecard__source"><em>Poetry: A Magazine of Verse</em> (1914)</p>
 									</div>
@@ -951,7 +904,7 @@
 							<div class="namecard">
 								<div class="namecard__inner">
 									<div class="namecard__face namecard__face--front">
-										<p class="namecard__context">… What right had Josiah Walker to repress any remarks made, in the confidence of friendship, by <mark>Bobert Bums</mark>? And what power? Had Burns chosen it, he could as easily have squabashed Josiah as thrown him into the Nith. …</p>
+										<p class="namecard__context">… What right had Josiah Walker to repress any remarks made, in the confidence of friendship, by <mark>Bobert Bums</mark>? …</p>
 										<p class="namecard__source">John Wilson, <em>Essays Critical and Imaginative</em> (1856)</p>
 									</div>
 									<div class="namecard__face namecard__face--back">
@@ -1297,7 +1250,7 @@
 							<div class="namecard">
 								<div class="namecard__inner">
 									<div class="namecard__face namecard__face--front">
-										<p class="namecard__context namecard__context--long">The professed imitators of Scott have been numerous, but not successful. […] multiplying instead of retrenching those similes which, even in the original, were so obtrusively frequent, as to remind us of <mark>Bayes</mark>’ rule for writing dialogue, “ever make a simile when you are sur- prised;” and overlaying the plot with minute descriptions of dress and scenery …</p>
+										<p class="namecard__context namecard__context--long">The professed imitators of Scott have been numerous, but not successful. […] multiplying instead of retrenching those similes which, even in the original, were so obtrusively frequent, as to remind us of <mark>Bayes</mark>’ rule for writing dialogue, “ever make a simile when you are sur- prised;” …</p>
 										<p class="namecard__source"><em>Treatises on Poetry, Modern Romance, and Rhetoric</em> (1839)</p>
 									</div>
 									<div class="namecard__face namecard__face--back">
@@ -1345,12 +1298,11 @@
 				<!-- names game: what makes a name hard to link (the five confusions of the Canon Dynamics paper, "What's in a Name?") -->
 				<section class="namekinds-slide">
 					<div class="namekinds__head">
-						<h2>Why names are hard to <em>link</em></h2>
-						<p class="namekinds__lede">Too many names for one person, one name for too many people, or no name at all.</p>
+						<h2>Why names are hard to link</h2>
 					</div>
-					<svg class="namekinds__map" viewBox="0 0 880 516" preserveAspectRatio="xMinYMid meet" role="img" aria-label="Five confusions, each drawn from strings to Wikidata persons. Orthographic variation: Shakspeare, Shaxpere, Schakespeyr, all William Shakespeare. Alternative names: Miss Barrett and Mrs. Browning, both Elizabeth Barrett Browning. Homonymy: Shelley, either Percy Bysshe Shelley or Mary Shelley. Indirect references: the sweet swan of Avon, William Shakespeare. Derivative forms: Baconian, Francis Bacon.">
-						<text class="namekinds__label" x="0" y="59.5">ORTHOGRAPHIC</text>
-						<text class="namekinds__label" x="0" y="78.5">VARIATION</text>
+					<svg class="namekinds__map" viewBox="0 0 880 516" preserveAspectRatio="xMinYMid meet" role="img" aria-label="Five confusions, each drawn from strings to Wikidata persons. Orthographic variation: Shakspeare, Shaxpere, Schakespeyr, all William Shakespeare. Alternative names: Miss Barrett and Mrs. Browning, both Elizabeth Barrett Browning. Homonymy: Rossetti, either Dante Gabriel Rossetti or Christina Georgina Rossetti. Indirect references: the sweet swan of Avon, William Shakespeare. Derivative forms: Baconian, Francis Bacon.">
+						<text class="namekinds__label" x="0" y="59.5">Orthographic</text>
+						<text class="namekinds__label" x="0" y="78.5">variation</text>
 						<path class="namekinds__edge" d="M464,30.0 C518.0,30.0 518.0,64.0 572,64.0" />
 						<path class="namekinds__edge" d="M464,64.0 C518.0,64.0 518.0,64.0 572,64.0" />
 						<path class="namekinds__edge" d="M464,98.0 C518.0,98.0 518.0,64.0 572,64.0" />
@@ -1361,8 +1313,8 @@
 						<text class="namekinds__person" x="586" y="68.0">William Shakespeare</text>
 						<text class="namekinds__qid" x="586" y="85.0">Q692</text>
 						<line class="namekinds__rule" x1="0" x2="880" y1="128" y2="128" />
-						<text class="namekinds__label" x="0" y="170.5">ALTERNATIVE</text>
-						<text class="namekinds__label" x="0" y="189.5">NAMES</text>
+						<text class="namekinds__label" x="0" y="170.5">Alternative</text>
+						<text class="namekinds__label" x="0" y="189.5">names</text>
 						<path class="namekinds__edge" d="M464,158.0 C518.0,158.0 518.0,175.0 572,175.0" />
 						<path class="namekinds__edge" d="M464,192.0 C518.0,192.0 518.0,175.0 572,175.0" />
 						<circle class="namekinds__dot" cx="572" cy="175.0" r="3.5" />
@@ -1371,27 +1323,27 @@
 						<text class="namekinds__person" x="586" y="179.0">Elizabeth Barrett Browning</text>
 						<text class="namekinds__qid" x="586" y="196.0">Q228494</text>
 						<line class="namekinds__rule" x1="0" x2="880" y1="222" y2="222" />
-						<text class="namekinds__label" x="0" y="294.0">HOMONYMY</text>
+						<text class="namekinds__label" x="0" y="294.0">Homonymy</text>
 						<path class="namekinds__edge" d="M464,289.0 C518.0,289.0 518.0,262.0 572,262.0" />
 						<path class="namekinds__edge" d="M464,289.0 C518.0,289.0 518.0,316.0 572,316.0" />
 						<circle class="namekinds__dot" cx="572" cy="262.0" r="3.5" />
 						<circle class="namekinds__dot" cx="572" cy="316.0" r="3.5" />
-						<text class="namekinds__string" x="450" y="297.0" text-anchor="end">&ldquo;Shelley&rdquo;</text>
-						<text class="namekinds__person" x="586" y="266.0">Percy Bysshe Shelley</text>
-						<text class="namekinds__qid" x="586" y="283.0">Q93343</text>
-						<text class="namekinds__person" x="586" y="320.0">Mary Shelley</text>
-						<text class="namekinds__qid" x="586" y="337.0">Q47152</text>
+						<text class="namekinds__string" x="450" y="297.0" text-anchor="end">&ldquo;Rossetti&rdquo;</text>
+						<text class="namekinds__person" x="586" y="266.0">Dante Gabriel Rossetti</text>
+						<text class="namekinds__qid" x="586" y="283.0">Q186748</text>
+						<text class="namekinds__person" x="586" y="320.0">Christina Georgina Rossetti</text>
+						<text class="namekinds__qid" x="586" y="337.0">Q236596</text>
 						<line class="namekinds__rule" x1="0" x2="880" y1="356" y2="356" />
-						<text class="namekinds__label" x="0" y="391.5">INDIRECT</text>
-						<text class="namekinds__label" x="0" y="410.5">REFERENCES</text>
+						<text class="namekinds__label" x="0" y="391.5">Indirect</text>
+						<text class="namekinds__label" x="0" y="410.5">references</text>
 						<path class="namekinds__edge namekinds__edge--none" d="M464,396.0 C518.0,396.0 518.0,396.0 572,396.0" />
 						<circle class="namekinds__dot" cx="572" cy="396.0" r="3.5" />
 						<text class="namekinds__string" x="450" y="404.0" text-anchor="end">&ldquo;the sweet swan of Avon&rdquo;</text>
 						<text class="namekinds__person" x="586" y="400.0">William Shakespeare</text>
 						<text class="namekinds__qid" x="586" y="417.0">Q692</text>
 						<line class="namekinds__rule" x1="0" x2="880" y1="436" y2="436" />
-						<text class="namekinds__label" x="0" y="471.5">DERIVATIVE</text>
-						<text class="namekinds__label" x="0" y="490.5">FORMS</text>
+						<text class="namekinds__label" x="0" y="471.5">Derivative</text>
+						<text class="namekinds__label" x="0" y="490.5">forms</text>
 						<path class="namekinds__edge namekinds__edge--none" d="M464,476.0 C518.0,476.0 518.0,476.0 572,476.0" />
 						<circle class="namekinds__dot" cx="572" cy="476.0" r="3.5" />
 						<text class="namekinds__string" x="450" y="484.0" text-anchor="end">&ldquo;Baconian&rdquo;</text>
@@ -1401,8 +1353,8 @@
 					<aside class="notes">
 						<li>Behind the game sit five ways a name resists linking. They are the five confusions we lay out in the paper: too many names for one person, one name for too many people, and sometimes no name at all.</li>
 						<li>Orthographic variation: Shakspeare, Shaxpere, Schakespeyr, one poet. In the game: Caxton&rsquo;s &ldquo;Vyrgyle&rdquo;. OCR adds variants of its own: &ldquo;Bobert Bums&rdquo;, and &ldquo;Johnfon&rdquo;, the long s, 6,939 times and never linked.</li>
-						<li>Alternative names: Miss Barrett becomes Mrs. Browning in 1846, and her mentions split across the two. In the game: Fiona Macleod, H. D., S. T. C.</li>
-						<li>Homonymy: &ldquo;Shelley&rdquo; is Percy or Mary. In the game, &ldquo;Mrs. Shelley&rdquo; went to Percy: 104 counted for him, against Mary&rsquo;s own 94.</li>
+						<li>Alternative names: Miss Barrett becomes Mrs. Browning in 1846, and her mentions split across the two. In the game: H. D., S. T. C.</li>
+						<li>Homonymy: &ldquo;Rossetti&rdquo; could be Dante Gabriel or Christina, and the family has more poets than fit on the slide: their brother William Michael and their father Gabriele. In our data the bare &ldquo;Rossetti&rdquo; gets linked to all four. In the game, &ldquo;Mrs. Shelley&rdquo; went to Percy: 104 counted for him, against Mary&rsquo;s own 94.</li>
 						<li>Indirect references: the swan of Avon names no one, and still means Shakespeare. In the game: the swan of Avon, the morning star of song, England&rsquo;s M&aelig;onides. &ldquo;The Laureate&rdquo; changes with the year.</li>
 						<li>Derivative forms: &ldquo;Baconian&rdquo; invokes Bacon without naming him. Whether that counts as a mention is our decision, not the machine&rsquo;s.</li>
 						<li>The pattern across the game: rarely wrong, often silent, and neither the silences nor the errors are random. They follow print, marriage, Latin, praise, and today&rsquo;s fame. (Benchmark: of 69 names three annotators agreed on, 50 linked right, 3 to the wrong person, 16 missed; above 0.9, 56 of 57 right.)</li>
@@ -1663,20 +1615,68 @@
 						</ul></li>
 					</aside>
 				</section>
+				<section class="namegame-slide" data-visibility="hidden">
+					<div class="namegame__stage">
+						<div class="namegame__left">
+							<div class="namecard">
+								<div class="namecard__inner">
+									<div class="namecard__face namecard__face--front">
+										<p class="namecard__context">… J. M. Kennedy, English Literature, Lond. (Sampson Low), $2.00. Includes Shaw, Wells, Yeats, <mark>Fiona Macleod</mark>, Binyon, Le Gallienne, Gissing. R. Le Gallienne, Rudyard Kipling; a criticism, N. Y. (Lane), $1.50.</p>
+										<p class="namecard__source">A. S. Mackenzie, <em>History of English Literature</em> (1914), reading list</p>
+									</div>
+									<div class="namecard__face namecard__face--back">
+										<img class="namecard__portrait" src="assets/names-game/portrait-sharp.jpg" alt="Photograph of William Sharp" />
+										<div class="namecard__id">
+											<p class="namecard__who">William Sharp</p>
+											<p class="namecard__meta">1855–1905 · wrote as “Fiona Macleod” &middot; <code>Q1575288</code></p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="namegame__right">
+							<span class="namegame__flip fragment" data-fragment-index="1" aria-hidden="true"></span>
+							<div class="namegame__machine namegame__machine--ok-above fragment" data-fragment-index="2">
+								<p class="namegame__by">ReFinED links it to</p>
+								<p class="namegame__entity"><span class="namegame__ent"><strong>William Sharp</strong><code>Q1575288</code></span></p>
+								<div class="meter-row" style="--score: 0.9633">
+									<span class="meter__val">0.96</span>
+									<div class="meter" aria-hidden="true"><span class="meter__fill"></span><span class="meter__line"></span></div>
+									<div class="meter__scale"><span class="meter__thr">0.9</span></div>
+								</div>
+								<p class="stamp">✓ Correct · above 0.9</p>
+							</div>
+						</div>
+					</div>
+					<aside class="notes">
+						<li>A 1914 reading list: “Includes Shaw, Wells, Yeats, Fiona Macleod, Binyon, Le Gallienne, Gissing.” Who is Fiona Macleod? Phones allowed.</li>
+						<li>[Click] William Sharp, a Scottish critic who published Celtic poetry and romances as a Highland woman and kept the secret until his death. [Click] The machine: 0.96.</li>
+						<li>Question: should Fiona’s mentions count toward Sharp’s place in the canon? And should the count know what period readers did not?</li>
+						<li>The linker unmasks pseudonyms with modern hindsight: an encyclopedia has already decided whose canon a persona feeds, and which personae exist at all. Sylvander, yes; Clarinda, no. That pair leads to women’s names later.</li>
+						<li>The Highland poetess was a Scottish man.</li>
+						<li>ReFinED on “Fiona Macleod”: found, linked to William Sharp (Q1575288) at 0.9633. Correct, and above 0.9, so counted.</li>
+						<li>Other names on the card: “J. M. Kennedy” found, not linked; “Shaw” → George Bernard Shaw (Q19185) at 0.9937, correct; “Wells” → H. G. Wells (Q42511) at 0.6107, correct but below 0.9; “Yeats” → William Butler Yeats (Q40213) at 0.9342, correct; “Binyon” → Laurence Binyon (Q1807972) at 0.9862, correct; “Le Gallienne” found, not linked; “Gissing” → George Gissing (Q369790) at 0.8154, correct but below 0.9; “R. Le Gallienne” found, not linked; “Rudyard Kipling” (in a book title) → Rudyard Kipling (Q34743) at 0.9997, correct.</li>
+						<li>From the archive:<ul>
+							<li>· The machine is surer of the persona than the man: “William Sharp” 113 links, only 46 above 0.9</li>
+							<li>✓ “Peter Pindar” → John Wolcot 178 times (139 above 0.9), never Pindar · “Barry Cornwall” → Procter 312 (306)</li>
+							<li>✓ “Lawrence Hope”, Adela Nicolson’s male pen name, misspelled → her 5 times · “Emanuel Morgan” (the Spectra hoax) → Witter Bynner 19 of 19</li>
+							<li>✗ “Sylvander” → Burns 24 times, but his “Clarinda”, Agnes McLehose: 184 times silent</li>
+						</ul></li>
+					</aside>
+				</section>
 				<!-- ===== /names game ===== -->
 
 				<!-- 3.1b: concentration / superstar economy -->
 				<section class="chart-slide">
 					<div class="chart-slide__head">
-						<h2>A superstar economy</h2>
-						<p class="chart-slide__lede">A handful of poets carry most of the attention.</p>
+						<h2>A superstar economy<span class="faint-ast" aria-hidden="true">*</span></h2>
 					</div>
 
 					<figure class="chart-slide__figure">
 						<svg
 							class="conc-chart"
-							viewBox="0 0 720 330"
-							preserveAspectRatio="xMidYMid meet"
+							viewBox="72 12 616 306"
+							preserveAspectRatio="xMinYMid meet"
 							role="img"
 							aria-label="Cumulative share of all poet mentions held by the top 1, 5, 10 and 25 percent of poets: 58.9, 82.7, 90.0 and 96.3 percent"
 						>
@@ -1700,8 +1700,12 @@
 					</figure>
 
 					<p class="chart-slide__takeaway">
-						The top 1% &mdash; just 32 poets &mdash; account for <strong>59%</strong> of all
-						mentions (Gini&nbsp;0.92). Shakespeare, Milton, Chaucer, Homer, Virgil at the head.
+						The 32 poets in the top 1% account for <strong>59%</strong> of all
+						mentions (Gini&nbsp;0.92). The five most mentioned are Shakespeare, Milton, Chaucer, Homer, and Virgil.
+					</p>
+
+					<p class="chart-slide__foot">
+						<span class="faint-ast" aria-hidden="true">*</span>&#8202;After Sherwin Rosen, &ldquo;The Economics of Superstars,&rdquo; <em>American Economic Review</em> (1981).
 					</p>
 
 					<aside class="notes">
@@ -1709,6 +1713,7 @@
 						<li>The top five percent (so roughly 160 poets), over eighty percent of the mentions.</li>
 						<li>A Gini of point-nine-two: about as concentrated as it gets. Gini is a measure of inequality; operationalized here as the degree to which mentions are distributed unevenly across poets. A Gini of zero would mean that every poet gets an equal number of mentions; a Gini of one would mean that all mentions belong to a single poet.</li>
 						<li>Of course, this is just one snapshot -- with all 3,164 poets in the pool.</li>
+						<li>&ldquo;Superstar economy&rdquo; is Sherwin Rosen&rsquo;s term, from economics (1981): when one performer can serve the whole market at almost no extra cost, small differences in talent turn into very large differences in reward.</li>
 					</aside>
 				</section>
 
@@ -1717,7 +1722,7 @@
 					<div class="race-slide__head">
 						<h2>A canon in motion</h2>
 						<p class="race-slide__lede">
-							The leaderboard reshuffles for two centuries &mdash; yet a few anchors never leave the head.
+							Homer and Virgil hold the top two places until Milton passes them after 1900.
 						</p>
 					</div>
 
@@ -1729,7 +1734,7 @@
 					></div>
 
 					<p class="race-slide__foot">
-						Cumulative distinct works, by decade &middot; top&nbsp;10 &middot; PPA Literary collection
+						Cumulative distinct works per poet in the PPA Literary collection, top&nbsp;10 by decade
 					</p>
 
 					<div class="race-slide__controls" aria-label="Race controls">
@@ -1771,21 +1776,23 @@
 
 				<!-- pivot to counting lines -->
 				<section class="pivot-slide">
-					<p class="pivot-slide__kicker">but a name isn&rsquo;t a line</p>
 					<h2 class="pivot-slide__line">
 						Being <em>named</em> is not the same as having your <em>words</em> travel.
 					</h2>
 
 					<aside class="notes">
 						<li>Now, being named is one thing. Having your actual words, lines travel and be used as examples to explain versification is another.</li> 
-						<li></li>You can be invoked constantly without anyone quoting a single line of you.</li>
+						<li>You can be invoked constantly without anyone quoting a single line of you.</li>
 					</aside>
 				</section>
 
 				<section class="section-slide section-slide--lines" data-background-color="#262b3c">
 					<p class="section-slide__number">3.2</p>
 					<h2>Counting lines</h2>
-					<p class="section-slide__credit">Wouter Haverals, Meredith Martin, Rebecca Sutton Koeser &amp; Laure Thompson<br />&ldquo;The quotable canon: Poetry as example in the Princeton Prosody Archive (1532&ndash;1929),&rdquo;<br /><em>Computational Humanities Research</em> 2:e28 (2026)</p>
+					<div class="section-slide__ref">
+						<p class="section-slide__ref-title">The quotable canon: Poetry as example in the Princeton Prosody Archive (1532&ndash;1929)</p>
+						<p class="section-slide__ref-by">Wouter&nbsp;Haverals, Meredith&nbsp;Martin, Rebecca&nbsp;Sutton&nbsp;Koeser &amp; Laure&nbsp;Thompson.<br /><em>Computational Humanities&nbsp;Research</em> 2:e28&nbsp;(2026).</p>
+					</div>
 				<aside class="notes">
 					<li>So for the rest of the talk I'm going to stop counting names and start counting lines.</li>
 					<li>This is joint work with Meredith, Rebecca Sutton Koeser and Laure Thompson, just out in <em>Computational Humanities Research</em>.</li>
@@ -1797,16 +1804,12 @@
 				<!-- 3.2a: the text-reuse method (two corpora) -->
 				<section class="reuse-slide">
 					<div class="reuse-slide__head">
-						<h2>What gets <em>quoted</em>?</h2>
-						<p class="reuse-slide__lede">
-							A quoted poem is not a search object &mdash; so instead of searching, we let the
-							archive collide with nearly all of English poetry, and see what aligns.
-						</p>
+						<h2>What gets quoted?</h2>
 					</div>
 
 					<ol class="qpipe" aria-label="From a quoted fragment to a matched poem">
 						<li class="qpipe__stage qpipe__stage--frag">
-							<p class="qpipe__label"><span>01</span><span class="qpipe__swap"><span class="qpipe__lbl--a">quoted fragment</span><span class="qpipe__lbl--b">source corpus</span></span></p>
+							<p class="qpipe__label"><span class="qpipe__swap"><span class="qpipe__lbl--a">Quoted fragment</span><span class="qpipe__lbl--b">Source corpus</span></span></p>
 							<div class="qpipe__rail"><span class="qpipe__dot"></span></div>
 							<div class="qpipe__body">
 								<div class="qpipe__frag-view">
@@ -1823,7 +1826,7 @@
 						</li>
 
 						<li class="qpipe__stage qpipe__stage--reuse fragment" data-fragment-index="2">
-							<p class="qpipe__label"><span>02</span> text reuse</p>
+							<p class="qpipe__label">Text reuse</p>
 							<div class="qpipe__rail"><span class="qpipe__dot"></span></div>
 							<div class="qpipe__body">
 								<span class="qpipe__engine">passim</span>
@@ -1832,7 +1835,7 @@
 						</li>
 
 						<li class="qpipe__stage qpipe__stage--ref fragment" data-fragment-index="1">
-							<p class="qpipe__label"><span>03</span><span class="qpipe__swap"><span class="qpipe__lbl--a">reference poem</span><span class="qpipe__lbl--b">reference corpus</span></span></p>
+							<p class="qpipe__label"><span class="qpipe__swap"><span class="qpipe__lbl--a">Reference poem</span><span class="qpipe__lbl--b">Reference corpus</span></span></p>
 							<div class="qpipe__rail"><span class="qpipe__dot"></span></div>
 							<div class="qpipe__body">
 								<span class="qpipe__name qpipe__name--poem">Gray&rsquo;s <em>Elegy Written in a Country Churchyard</em></span>
@@ -1842,7 +1845,7 @@
 						</li>
 
 						<li class="qpipe__stage qpipe__stage--signal fragment" data-fragment-index="4">
-							<p class="qpipe__label"><span>04</span> countable signal</p>
+							<p class="qpipe__label">Countable signal</p>
 							<div class="qpipe__rail"><span class="qpipe__dot"></span></div>
 							<div class="qpipe__body">
 								<span class="qpipe__metric">252,893</span>
@@ -1868,86 +1871,104 @@
 				<!-- 3.2b: the filtering pipeline (funnel) -->
 				<section class="funnel-slide">
 					<div class="funnel-slide__head">
-						<h2>A million alignments &rarr; an analytic corpus</h2>
-						<p class="funnel-slide__lede">
-							passim finds far too much. Most of the method is deciding what counts.
-						</p>
+						<h2>Filtering the alignments</h2>
 					</div>
 
 					<ol class="funnel">
 						<li class="funnel-row">
 							<p class="funnel-row__label">Raw <em>passim</em> alignments</p>
-							<span class="funnel-row__track"><span class="funnel-bar" style="width: 100%"></span></span>
-							<p class="funnel-row__count">1,263,587</p>
+							<span class="funnel-row__track"><span class="funnel-bar" style="width: 100%"></span><span class="funnel-row__count">1,263,587</span></span>
 						</li>
 						<li class="funnel-row">
 							<p class="funnel-row__label">Poem appearances <span>(poem × host work)</span></p>
-							<span class="funnel-row__track"><span class="funnel-bar" style="width: 40.3%"></span></span>
-							<p class="funnel-row__count">509,030</p>
+							<span class="funnel-row__track"><span class="funnel-bar" style="width: 40.3%"></span><span class="funnel-row__count">509,030</span></span>
 						</li>
 						<li class="funnel-row">
-							<p class="funnel-row__label">Literary + Linguistic · reprints collapsed · 1694–1920</p>
-							<span class="funnel-row__track"><span class="funnel-bar" style="width: 21.7%"></span></span>
-							<p class="funnel-row__count">274,206</p>
+							<p class="funnel-row__label">Literary &amp; Linguistic, reprints collapsed, 1694–1920</p>
+							<span class="funnel-row__track"><span class="funnel-bar" style="width: 21.7%"></span><span class="funnel-row__count">274,206</span></span>
 						</li>
 						<li class="funnel-row">
 							<p class="funnel-row__label">Implausible &amp; misattributed matches removed</p>
-							<span class="funnel-row__track"><span class="funnel-bar" style="width: 20%"></span></span>
-							<p class="funnel-row__count">252,893</p>
+							<span class="funnel-row__track"><span class="funnel-bar" style="width: 20%"></span><span class="funnel-row__count">252,893</span></span>
 						</li>
 					</ol>
 
-					<p class="funnel-slide__foot">
-						252,893 poem appearances · <strong>37,406 poems</strong> · 3,962 host works
-					</p>
-
 					<aside class="notes">
 						<li>One honest caveat: passim finds far too much — over a million raw matches. </li>
-						<li>Honestly, most of the method is deciding what actually counts. We collapse duplicates, keep only the teaching collections and a clean date window, and drop matches that can’t be real.<li>
+						<li>Honestly, most of the method is deciding what actually counts. We collapse duplicates, keep only the teaching collections and a clean date window, and drop matches that can’t be real.</li>
 						<li>What’s left — about 253,000 solid appearances of 37,000 poems — is what everything after this rests on.</li>
 					</aside>
 				</section>
 
 				<!-- backup ▸ method: text-reuse detection + validation -->
-				<section class="backup-slide">
-					<p class="backup-slide__kicker">Method</p>
+				<section class="backup-slide backup-slide--fill backup-slide--method">
 					<h2>Finding quotations at scale</h2>
 					<p class="backup-slide__lede">
-						A quotation is an <em>asymmetric</em> match: we align the PPA, where quotations surface, against a reference body of poetry &mdash; the Chadwyck-Healey English Poetry Database, deduplicated to <em>246,724 reference poems</em>, plus Shakespeare&rsquo;s plays, which Chadwyck-Healey leaves out.
+						We align the PPA against 246,724 reference poems, from Chadwyck-Healey plus the Shakespeare plays it omits.
 					</p>
 
 					<ul class="backup-grid backup-grid--2">
 						<li>
-							<span class="backup-tag">the tool</span>
 							<strong>passim.</strong> Built for the <em>Viral Texts</em> project to find reprinted passages across noisy newspaper OCR. It needs no prior guess about which texts align, and is robust to OCR error and ragged passage boundaries.
 						</li>
 						<li>
-							<span class="backup-tag">tuned for verse</span>
-							<strong>Short quotes, not long reprints.</strong> passim&rsquo;s defaults assume long documentary reuse, so we lowered the bar &mdash; n-gram 25&rarr;15, min length 50&rarr;25, gap 600&rarr;300, max DF 100&rarr;10,000 &mdash; with final values chosen against a hand-annotated gold set.
+							<strong>Settings for short quotations.</strong> passim&rsquo;s defaults assume long documentary reuse, so we set n-gram 15 (default 25), min length 25 (default 50), gap 300 (default 600) and max DF 10,000 (default 100), choosing final values against a hand-annotated gold set.
 						</li>
 						<li>
-							<span class="backup-tag">the unit</span>
-							<strong>Poem appearance, not raw record.</strong> OCR noise and paraphrase split one visible quotation into several alignment records, so we count a poem&rsquo;s <em>presence in a host work</em> once &mdash; the level every question here operates at.
+							<strong>Poem appearances.</strong> OCR noise and paraphrase split one visible quotation into several alignment records, so we count a poem&rsquo;s <em>presence in a host work</em> once. All our questions are asked at that level.
 						</li>
 						<li>
-							<span class="backup-tag">then filter</span>
-							<strong>Matches aren&rsquo;t yet a corpus.</strong> Host-side (Literary/Linguistic collections, collapse reprints, 1694&ndash;1920) and poem-side (hand-remove centos &amp; adaptations, a biographical-plausibility cut) filtering follow &mdash; the counts are the analytic-corpus detour one slide up.
+							<strong>Filtering.</strong> On the host side we keep the Literary/Linguistic collections, collapse reprints and restrict dates to 1694&ndash;1920. On the poem side we remove centos &amp; adaptations by hand and apply a biographical-plausibility cut.
 						</li>
 					</ul>
-
-					<p class="backup-slide__foot">
-						1,263,587 raw alignments &rarr; 509,030 appearances &rarr; <strong>252,893 appearances of 37,406 poems</strong> across 3,962 host works
-					</p>
 
 					<aside class="notes">
 						The tool is passim, from the Viral Texts newspaper project — built for messy OCR, and it needs no prior guess about which texts match. We tuned it down for short verse quotations rather than long reprints, with the settings chosen against a hand-checked gold set. And we count a poem once per book it appears in, because OCR splits one quotation into several raw matches.
 					</aside>
 				</section>
 
+				<!-- 3.2c: alignment caveats — non-original "poems" (cento, shared substrate, scripture) -->
+				<section class="backup-slide backup-slide--fill caveat-slide">
+					<h2>&ldquo;Original Poetry&rdquo;</h2>
+					<p class="backup-slide__lede">
+						Some reference &ldquo;poems&rdquo; borrow other poets&rsquo; lines, so a match can name the wrong source.
+					</p>
+
+					<div class="caveat-grid">
+						<div class="caveat">
+							<p class="caveat__label">Laman Blanchard, <em>Ode to the Human Heart</em> (1842)</p>
+							<ul class="cento__lines">
+								<li class="src-milton"><span class="cento__verse">Blind Thamyris, and blind M&aelig;onides,</span><span class="cento__src">Milton</span></li>
+								<li class="src-pope"><span class="cento__verse">Pursue the triumph and partake the gale!</span><span class="cento__src">Pope</span></li>
+								<li class="src-shakespeare"><span class="cento__verse">Drop tears as fast as the Arabian trees,</span><span class="cento__src">Shakespeare</span></li>
+								<li class="src-johnson"><span class="cento__verse">To point a moral or adorn a tale.</span><span class="cento__src">Johnson</span></li>
+							</ul>
+						</div>
+
+						<div class="caveat">
+							<p class="caveat__label">Ezra Pound, <em>Canto LXXX</em> (1948)</p>
+							<div class="caveat__verse">
+								<p class="src-shakespeare">The evil that men do lives after them&rsquo; <span class="cento__src">Shakespeare</span></p>
+								<p>well, that is from Julius Caesar</p>
+								<p class="caveat__indent">unless memory trick me</p>
+								<p>who crossed the Rubicon up near Rimini</p>
+							</div>
+						</div>
+					</div>
+
+					<p class="backup-slide__foot">
+						We remove centos and adaptations by hand. A biographical filter then drops matches in works published before the poet turned eighteen, which rules out Pound (b.&nbsp;1885).
+					</p>
+
+					<aside class="notes">
+						[Backup — only if asked about false matches.] Two lovely failure cases. On the left, a cento: every line is lifted from a different poet — Milton, Pope, Shakespeare, Johnson — and published as ‘original poetry’ by ‘Sir Fretful Plagiary.’ On the right, Pound quoting Shakespeare and naming him. passim catches both correctly — the trick is not crediting the borrowed lines to the wrong poem. That’s what the filtering is for.
+					</aside>
+				</section>
+
 				</section>
 				<!-- /vertical stack -->
 
-				<!-- vertical stack: the table + an optional "shared substrate" detour below (press down) -->
+				<!-- vertical stack: the table + two backups below (press down): every poem ranked (CHR Fig. 3), then names vs lines shares -->
 				<section>
 				<!-- 3.2b2: the shape of the record (most/least hosted poems) -->
 				<section class="hosted-slide">
@@ -1978,7 +1999,7 @@
 							<tr><td class="t-rank">10</td><td class="t-work"><em>Job</em></td><td class="t-auth">King James Bible</td><td class="t-app"><span class="t-bar" style="width: 53%"></span><span class="t-num">698</span></td><td class="t-span">1644&ndash;1927</td></tr>
 							<tr><td class="t-rank">11</td><td class="t-work"><em>Don Juan</em></td><td class="t-auth">Lord Byron</td><td class="t-app"><span class="t-bar" style="width: 52%"></span><span class="t-num">694</span></td><td class="t-span">1810&ndash;1929</td></tr>
 							<tr><td class="t-rank">12</td><td class="t-work"><em>Christus: A Mystery</em></td><td class="t-auth">Henry Wadsworth Longfellow</td><td class="t-app"><span class="t-bar" style="width: 52%"></span><span class="t-num">687</span></td><td class="t-span">1825&ndash;1929</td></tr>
-							<tr class="hosted__gap"><td colspan="5">&ctdot;&ensp; 38,898 more &nbsp;&middot;&nbsp; 42% quoted just once &nbsp;&middot;&nbsp; Gini 0.72 &ensp;&ctdot;</td></tr>
+							<tr class="hosted__gap"><td colspan="5">&ctdot;&ensp; 38,898 more, 42% quoted just once, Gini 0.72 &ensp;&ctdot;</td></tr>
 							<tr><td class="t-rank">38,911</td><td class="t-work"><em>The Mohawk</em></td><td class="t-auth">John D. M&rsquo;Kinnon</td><td class="t-app"><span class="t-num">1</span></td><td class="t-span">1909</td></tr>
 							<tr><td class="t-rank">38,912</td><td class="t-work"><em>Seldom &ldquo;can&rsquo;t&rdquo;</em></td><td class="t-auth">Christina Georgina Rossetti</td><td class="t-app"><span class="t-num">1</span></td><td class="t-span">1915</td></tr>
 							<tr><td class="t-rank">38,913</td><td class="t-work"><em>Greater Memory</em></td><td class="t-auth">Arthur William Edgar O&rsquo;Shaughnessy</td><td class="t-app"><span class="t-num">1</span></td><td class="t-span">1916</td></tr>
@@ -1994,42 +2015,88 @@
 					</aside>
 				</section>
 
-				<!-- 3.2c: alignment caveats — non-original "poems" (cento, shared substrate, scripture) -->
-				<section class="backup-slide backup-slide--fill caveat-slide">
-					<p class="backup-slide__kicker">When a match lies</p>
-					<h2>&ldquo;Original Poetry&rdquo;</h2>
-					<p class="backup-slide__lede">
-						passim finds <em>real</em> text reuse &mdash; but a reference &ldquo;poem&rdquo; isn&rsquo;t always original. Chadwyck-Healey&rsquo;s long tail of the <em>mute inglorious</em> hides centos and adaptations.
-					</p>
-
-					<div class="caveat-grid">
-						<div class="caveat">
-							<p class="caveat__label"><em>Ode to the Human Heart</em> &mdash; Laman Blanchard, 1842</p>
-							<ul class="cento__lines">
-								<li class="src-milton"><span class="cento__verse">Blind Thamyris, and blind M&aelig;onides,</span><span class="cento__src">Milton</span></li>
-								<li class="src-pope"><span class="cento__verse">Pursue the triumph and partake the gale!</span><span class="cento__src">Pope</span></li>
-								<li class="src-shakespeare"><span class="cento__verse">Drop tears as fast as the Arabian trees,</span><span class="cento__src">Shakespeare</span></li>
-								<li class="src-johnson"><span class="cento__verse">To point a moral or adorn a tale.</span><span class="cento__src">Johnson</span></li>
-							</ul>
-						</div>
-
-						<div class="caveat">
-							<p class="caveat__label"><em>Canto LXXX</em> &mdash; Ezra Pound, 1948</p>
-							<div class="caveat__verse">
-								<p class="src-shakespeare">The evil that men do lives after them&rsquo; <span class="cento__src">Shakespeare</span></p>
-								<p>well, that is from Julius Caesar</p>
-								<p class="caveat__indent">unless memory trick me</p>
-								<p>who crossed the Rubicon up near Rimini</p>
-							</div>
-						</div>
+				<!-- 3.2b3: CHR "The quotable canon", Fig. 3: all 38,914 poems of the full dated record, rank vs PPA works, log-log.
+				     Data: assets/rank-curve-data.js (paper universe, 276 count tiers + top 300 named). 3 reveald3 steps + hover. -->
+				<section class="traj-slide traj-slide--plot">
+					<div class="traj-slide__head">
+						<h2>All 38,914 poems, ranked</h2>
 					</div>
 
-					<p class="backup-slide__foot">
-						So we hand-remove centos &amp; adaptations, then apply a biographical-plausibility filter &mdash; no work can quote a poet not yet born (it discards Pound, b.&nbsp;1885, correctly).
+					<div class="fig-container traj-slide__fig" data-file="assets/rank-curve.html" data-preload data-scroll="no"></div>
+
+					<aside class="notes">
+						<li>[Backup, press down from the table, if asked about the whole distribution.]</li>
+						<li>This is the table&rsquo;s middle row, drawn out: every one of the 38,914 poems in the full dated record, 1532 to 1929, ranked from the most quoted on the left to the least quoted on the right. Up the side, how many PPA works quote each one. Both axes are logarithmic, so each gridline is ten times the last. It&rsquo;s Figure 3 in the paper.</li>
+						<li>[Click] The head is the table we just saw: <em>Paradise Lost</em> in 1,326 works, <em>Hamlet</em> in 1,287, the Psalms in 1,145. And Gray&rsquo;s <em>Elegy</em>, where we started, ninth, in 735.</li>
+						<li>[Click] The middle. <em>Tintern Abbey</em>, rank 117, is quoted in 191 works. Blake&rsquo;s <em>Tyger</em> is quoted in 21, tied with 123 other poems, and it only turns up in the PPA from 1880.</li>
+						<li>[Click] And the floor: 16,378 poems, 42 percent of the whole population, quoted in a single PPA work, ever. On a log scale that whole crowd fits into the last sliver on the right. That long flat tail is what the Gini of 0.72 measures; the top 15 poems alone take nearly 5 percent of all appearances.</li>
+						<li>[If asked] Hovering names any of the top 300 poems. Further out one pixel covers many ranks, so it shows the tie group with a few examples. A few poems appear twice because the reference catalogues hold duplicates: <em>Childe Harold</em> sits at 14 and again at 22.</li>
+						<li>[Press down, if asked] How this compares with the names.</li>
+					</aside>
+				</section>
+
+				<!-- backup ▸ names vs lines: top-k shares. Poets from the JCA paper (Fig. 3); poems computed from the same
+				     CHR paper universe as the curve above (38,914 poems, 267,237 appearances; top k% = ceil(k% of N)). -->
+				<section class="chart-slide">
+					<div class="chart-slide__head">
+						<h2>A milder superstar economy</h2>
+					</div>
+
+					<figure class="chart-slide__figure">
+						<svg
+							class="conc-chart"
+							viewBox="0 24 780 294"
+							preserveAspectRatio="xMinYMid meet"
+							role="img"
+							aria-label="Share held by the top 1, 5, 10 and 25 percent. Poets, of all mentions: 58.9, 82.7, 90.0 and 96.3 percent. Poems, of all appearances: 29.5, 53.1, 65.2 and 81.1 percent"
+						>
+							<line class="conc-base" x1="10" y1="280" x2="770" y2="280" />
+
+							<rect class="conc-bar" x="20" y="144.5" width="76" height="135.5" rx="3" style="fill: #b6bfd9; animation-delay: 0s" />
+							<rect class="conc-bar" x="213" y="89.8" width="76" height="190.2" rx="3" style="fill: #b6bfd9; animation-delay: 0.08s" />
+							<rect class="conc-bar" x="406" y="73" width="76" height="207" rx="3" style="fill: #b6bfd9; animation-delay: 0.16s" />
+							<rect class="conc-bar" x="599" y="58.5" width="76" height="221.5" rx="3" style="fill: #b6bfd9; animation-delay: 0.24s" />
+
+							<rect class="conc-bar" x="104" y="212.2" width="76" height="67.8" rx="3" style="animation-delay: 0.35s" />
+							<rect class="conc-bar" x="297" y="157.9" width="76" height="122.1" rx="3" style="animation-delay: 0.43s" />
+							<rect class="conc-bar" x="490" y="130" width="76" height="150" rx="3" style="animation-delay: 0.51s" />
+							<rect class="conc-bar" x="683" y="93.5" width="76" height="186.5" rx="3" style="animation-delay: 0.59s" />
+
+							<text class="conc-value" x="58" y="134.5" style="fill: #57534e">58.9%</text>
+							<text class="conc-value" x="251" y="79.8" style="fill: #57534e">82.7%</text>
+							<text class="conc-value" x="444" y="63" style="fill: #57534e">90.0%</text>
+							<text class="conc-value" x="637" y="48.5" style="fill: #57534e">96.3%</text>
+
+							<text class="conc-value" x="142" y="202.2" style="animation-delay: 0.75s">29.5%</text>
+							<text class="conc-value" x="335" y="147.9" style="animation-delay: 0.75s">53.1%</text>
+							<text class="conc-value" x="528" y="120" style="animation-delay: 0.75s">65.2%</text>
+							<text class="conc-value" x="721" y="83.5" style="animation-delay: 0.75s">81.1%</text>
+
+							<text class="conc-cat" x="58" y="106" style="font-size: 17px; font-weight: 600; fill: #3d3833">Poets</text>
+							<text class="conc-cat" x="142" y="174" style="font-size: 17px; font-weight: 600; fill: #3d3833">Poems</text>
+
+							<text class="conc-cat" x="100" y="306">Top 1%</text>
+							<text class="conc-cat" x="293" y="306">Top 5%</text>
+							<text class="conc-cat" x="486" y="306">Top 10%</text>
+							<text class="conc-cat" x="679" y="306">Top 25%</text>
+						</svg>
+					</figure>
+
+					<p class="chart-slide__takeaway">
+						The top 1% of poems, 390 of them, hold <strong>30%</strong> of all appearances. The top 1% of poets hold 59% of
+						mentions. Gini 0.72 for poems, 0.92 for poets.
+					</p>
+
+					<p class="chart-slide__foot">
+						Poets: 737,194 name mentions (Haverals, Plecháč &amp; Šeļa, <em>Journal of Cultural Analytics</em>, 2026, fig.&nbsp;3).
+						Poems: 267,237 appearances, one per poem per PPA work (our count).
 					</p>
 
 					<aside class="notes">
-						[Backup — only if asked about false matches.] Two lovely failure cases. On the left, a cento: every line is lifted from a different poet — Milton, Pope, Shakespeare, Johnson — and published as ‘original poetry’ by ‘Sir Fretful Plagiary.’ On the right, Pound quoting Shakespeare and naming him. passim catches both correctly — the trick is not crediting the borrowed lines to the wrong poem. That’s what the filtering is for.
+						<li>[Backup, if asked how lines compare with names.] The bars from the superstar slide, with the poems beside the poets.</li>
+						<li>The top 1% of poems, 390 of them, hold 30 percent of all appearances. The top 1% of poets, 32 names, hold 59 percent of mentions. At the bottom, half of all poems share 8 percent of appearances; half of the poets share under 3 percent of mentions.</li>
+						<li>The two counts differ: a poet counts at every mention, a poem once per book that quotes it. Counted passage by passage instead (653,361 matched passages), the top 1% of poems hold 49 percent, Gini 0.82. Closer, but still below the poets.</li>
+						<li>Neither paper makes this comparison; the poem shares are our own calculation from the CHR data.</li>
 					</aside>
 				</section>
 				</section>
@@ -2042,7 +2109,7 @@
 					<div class="rate-slide__head">
 						<h2>A widening practice</h2>
 						<p class="rate-slide__lede">
-							Distinct poems quoted per 100&nbsp;pages of prosody writing &mdash; a <em>rate</em>, so it climbs only if quotation itself broadened, not merely because the archive grew.
+							Distinct poems quoted per 100&nbsp;pages of prosody writing. As a <em>rate</em>, it climbs only if quotation itself broadened, not merely because the archive grew.
 						</p>
 					</div>
 
@@ -2059,10 +2126,9 @@
 
 				<!-- backup ▸ method: how the rate is modelled -->
 				<section class="backup-slide backup-slide--fill backup-slide--rate">
-					<p class="backup-slide__kicker">Method</p>
 					<h2>Holding the archive constant</h2>
 					<p class="backup-slide__lede">
-						A raw count of distinct poems can&rsquo;t separate a <em>widening practice</em> from a <em>thickening archive</em> &mdash; more host pages simply mean more chances to quote. So we model a <em>rate</em>, with the archive&rsquo;s size netted out.
+						A raw count of distinct poems can&rsquo;t separate a <em>widening practice</em> from a <em>thickening archive</em>. More host pages simply mean more chances to quote. So we model a <em>rate</em>: distinct poems per page of prosody writing in each year.
 					</p>
 
 					<div class="backup-eq">
@@ -2071,21 +2137,18 @@
 
 					<ul class="backup-grid backup-grid--3">
 						<li>
-							<span class="backup-tag">a rate, not a count</span>
-							<strong>The log&#8209;pages offset.</strong> Page volume enters with its coefficient fixed at&nbsp;1 &mdash; double the host pages, double the poems, by construction. The model is then free to find the <em>departures</em> from that proportionality.
+							<strong>The log&#8209;pages offset.</strong> Page volume enters with its coefficient fixed at&nbsp;1, so doubling the host pages doubles the expected poems. The model then estimates <em>departures</em> from that proportionality.
 						</li>
 						<li>
-							<span class="backup-tag">a flexible trend</span>
 							<strong>A natural cubic spline s(y).</strong> Free to bend where the evidence calls for it; 7 degrees of freedom, chosen by AIC. &ldquo;Natural&rdquo; keeps the curve from flailing at the window&rsquo;s edges.
 						</li>
 						<li>
-							<span class="backup-tag">room to wobble</span>
-							<strong>Negative Binomial, not Poisson.</strong> Yearly counts vary far more than their mean &mdash; one dense anthology spikes a year &mdash; so we relax the equal&#8209;variance assumption. &alpha;<sub>disp</sub>&nbsp;=&nbsp;0.5; post&#8209;fit dispersion &asymp;&nbsp;1.01.
+							<strong>Negative Binomial.</strong> Yearly counts vary far more than their mean (one dense anthology can spike a year), so we relax the equal&#8209;variance assumption. &alpha;<sub>disp</sub>&nbsp;=&nbsp;0.5; post&#8209;fit dispersion &asymp;&nbsp;1.01.
 						</li>
 					</ul>
 
 					<p class="backup-slide__foot">
-						Modelled window 1694&ndash;1920 &nbsp;&middot;&nbsp; 1694 = first year with &ge;5 PPA host works &nbsp;&middot;&nbsp; 1920 = the PPA&rsquo;s coverage horizon
+						Modelled window 1694&ndash;1920, from the first year with &ge;5 PPA host works to the PPA&rsquo;s coverage horizon.
 					</p>
 
 					<aside class="notes">
@@ -2104,7 +2167,7 @@
 
 					<div class="traj-intro">
 						<p class="traj-question">
-							Which poems did prosodists reach for more over time &mdash; and which did they quietly set aside?
+							Which poems gained or lost ground<br />between 1694 and&nbsp;1920?
 						</p>
 					</div>
 
@@ -2128,21 +2191,21 @@
 						</div>
 
 						<p class="traj-gloss fragment" data-fragment-index="1">
-							<span class="traj-gloss__math">\( p_{it} \)</span> &mdash; a poem&rsquo;s prevalence: the share of a decade&rsquo;s prosody works that quote it.
+							<span class="traj-gloss__math">\( p_{it} \)</span> is a poem&rsquo;s prevalence, the share of a decade&rsquo;s prosody works that quote it.
 						</p>
 						<p class="traj-response fragment" data-fragment-index="4">
-							<span class="traj-response__math">\( k_{it} \sim \text{Beta-Binomial}\,(n_t,\, p_{it}) \)</span> &mdash; counts are overdispersed, so not a plain binomial.
+							<span class="traj-response__math">\( k_{it} \sim \text{Beta-Binomial}\,(n_t,\, p_{it}) \)</span>, since the counts are overdispersed.
 						</p>
 					</div>
 
 					<ul class="traj-notes">
-						<li class="fragment" data-fragment-index="4"><strong>Partial pooling.</strong> Thin-evidence poems are pulled toward the corpus trend; well-attested ones pull it.</li>
+						<li class="fragment" data-fragment-index="4"><strong>Partial pooling.</strong> Poems with thin evidence are pulled toward the shared trend.</li>
 						<li class="fragment" data-fragment-index="4"><strong>Beta-binomial.</strong> Absorbs the superstar overdispersion a plain binomial can&rsquo;t.</li>
 						<li class="fragment" data-fragment-index="4"><strong>Eligibility window.</strong> Each poem is scored only in decades it could have been quoted (no left-truncation bias).</li>
 					</ul>
 
 					<p class="traj-slide__foot fragment" data-fragment-index="4">
-						Hierarchical Bayesian &middot; 896 sustained-presence poems (&ge;30 host works across &ge;10 decades)
+						Hierarchical Bayesian model of 896 sustained-presence poems (&ge;30 host works across &ge;10 decades)
 					</p>
 
 					<aside class="notes">
@@ -2165,12 +2228,9 @@
 				<!-- vertical stack: the trajectories + a methods backup (press down) -->
 				<section>
 				<!-- 3.2e: fig7 — selected poem trajectories -->
-				<section class="traj-slide">
+				<section class="traj-slide traj-slide--plot">
 					<div class="traj-slide__head">
 						<h2>Risers, decliners, anchors</h2>
-						<p class="traj-slide__lede">
-							Medieval and Romantic verse climbs; neoclassical translation fades; the perennials hold.
-						</p>
 					</div>
 
 					<div class="fig-container traj-slide__fig" data-file="assets/poem-trajectories.html" data-preload data-scroll="no"></div>
@@ -2186,8 +2246,7 @@
 				</section>
 
 				<!-- backup ▸ method: the per-poem trajectory model -->
-				<section class="backup-slide">
-					<p class="backup-slide__kicker">Method</p>
+				<section class="backup-slide backup-slide--fill backup-slide--model">
 					<h2>Reading each poem against the corpus</h2>
 
 					<div class="backup-eq">
@@ -2196,25 +2255,21 @@
 
 					<ul class="backup-grid backup-grid--2">
 						<li>
-							<span class="backup-tag">the input</span>
-							<strong>Prevalence per decade.</strong> For each eligible poem, p&#770;&nbsp;=&nbsp;k<sub>it</sub>/n<sub>t</sub> &mdash; the share of that decade&rsquo;s PPA host works that quote it. Fitted with a <em>beta&#8209;binomial</em> rather than a binomial, because the superstar poems are overdispersed.
+							<strong>Prevalence per decade.</strong> For each eligible poem, \( {\hat{p} = k_{it}/n_t} \) is the share of that decade&rsquo;s PPA host works that quote it. Fitted with a <em>beta&#8209;binomial</em> rather than a binomial, because the superstar poems are overdispersed.
 						</li>
 						<li>
-							<span class="backup-tag">the headline number</span>
-							<strong>The slope b&sup1;&#7522;.</strong> Gaining or losing ground <em>relative to the shared trend</em> &mdash; not in absolute terms. A positive slope outpaces the average poem; a negative one lags even as the whole practice widens around it.
+							<strong>The slope \( b^{1}_{i} \).</strong> It measures gain or loss <em>relative to the shared trend</em>, so a poem whose prevalence rises can still have a negative slope.
 						</li>
 						<li>
-							<span class="backup-tag">reading the slope</span>
 							<strong>Log&#8209;odds per decade.</strong> +0.25 &asymp; &times;1.28 odds (~28% likelier to be quoted each decade); &minus;0.20 &asymp; &times;0.82 (~18% less). &ldquo;Credibly&rdquo; rising/declining = the 95% credible interval on b&sup1; excludes&nbsp;zero.
 						</li>
 						<li>
-							<span class="backup-tag">keeping it honest</span>
-							<strong>Partial pooling + author shift.</strong> Thin&#8209;evidence poems are pulled toward the corpus trend; well&#8209;attested ones pull it. u<sub>a(i)</sub> separates a poem&rsquo;s own movement from its author&rsquo;s standing (Shakespeare: 37 works; Gray rests almost entirely on the <em>Elegy</em>).
+							<strong>Partial pooling + author shift.</strong> Poems with thin evidence are pulled toward the shared trend. u<sub>a(i)</sub> separates a poem&rsquo;s own movement from its author&rsquo;s standing (Shakespeare: 37 works; Gray rests almost entirely on the <em>Elegy</em>).
 						</li>
 					</ul>
 
 					<p class="backup-slide__foot">
-						Eligibility starts 18&nbsp;yrs after the poet&rsquo;s birth &mdash; a Tennyson zero in the 1700s is impossibility, not neglect &nbsp;&middot;&nbsp; population = &ge;30 host works across &ge;10 decades &rarr; 896 poems &nbsp;&middot;&nbsp; Bambi / PyMC (NUTS), R&#770;&nbsp;&le;&nbsp;1.02
+						Eligibility starts 18&nbsp;years after the poet&rsquo;s birth, so Tennyson is not scored in the 1700s. The 896 poems each appear in &ge;30 host works across &ge;10 decades. Fitted with Bambi / PyMC (NUTS), \( {\hat{R} \le 1.02} \).
 					</p>
 
 					<aside class="notes">
@@ -2351,7 +2406,7 @@
 				<!-- vertical stack: the ridgeplot + a methods backup (press down) -->
 				<section>
 				<!-- 3.2f: fig8 — period slope ridgeplot -->
-				<section class="traj-slide">
+				<section class="traj-slide traj-slide--plot">
 					<div class="traj-slide__head">
 						<h2>Which eras gained ground</h2>
 					</div>
@@ -2365,33 +2420,32 @@
 
 				<!-- backup ▸ method: from poems to periods -->
 				<section class="backup-slide backup-slide--fill backup-slide--periods">
-					<p class="backup-slide__kicker">Method</p>
 					<h2>From poems to periods</h2>
 					<p class="backup-slide__lede">
-						No new model &mdash; the <em>same</em> per&#8209;poem slopes b&sup1;&#7522;, re&#8209;cut by the literary period each poem belongs to. Labels are Chadwyck&#8209;Healey&rsquo;s bibliographic categories (the database&rsquo;s organizing logic).
+						We group the same per&#8209;poem slopes by Chadwyck&#8209;Healey&rsquo;s period labels.
 					</p>
 
 					<ul class="backup-grid backup-grid--2">
 						<li>
-							<span class="backup-tag">why a period can surprise</span>
+							<strong>Aggregation.</strong>
 							A period is a <em>different unit</em> from poems or authors. It can rise even when most of its authors are flat (a few rise sharply), or fall even when most of its poems hold (the high&#8209;volume ones decline). The ridge checks whether the stories aggregate.
 						</li>
 						<li>
-							<span class="backup-tag">what&rsquo;s included</span>
-							Only periods with &ge;20 modelled poems. The catch&#8209;all &ldquo;Poems &amp; Miscellanies, 1500&ndash;1900&rdquo; &mdash; for poems that fit no named period &mdash; is excluded.
+							<strong>Coverage.</strong>
+							Only periods with &ge;20 modelled poems. The catch&#8209;all &ldquo;Poems &amp; Miscellanies, 1500&ndash;1900&rdquo;, for poems that fit no named period, is excluded.
 						</li>
 						<li>
-							<span class="backup-tag">inside the Restoration ridge</span>
-							It&rsquo;s bimodal: the classical&#8209;translation and didactic&#8209;verse apparatus fell hard (&asymp;&nbsp;&minus;0.15), while Dryden&rsquo;s <em>original</em> verse declined only mildly (&asymp;&nbsp;&minus;0.05, intervals straddling&nbsp;zero).
+							<strong>The Restoration ridge.</strong>
+							It has two humps. The classical&#8209;translation and didactic&#8209;verse apparatus fell hard (&asymp;&nbsp;&minus;0.15), while Dryden&rsquo;s <em>original</em> verse declined only mildly (&asymp;&nbsp;&minus;0.05, intervals straddling&nbsp;zero).
 						</li>
 						<li>
-							<span class="backup-tag">inside Jacobean / Caroline</span>
-							Layered: short lyric and song rose, the Shakespeare plays and Milton&rsquo;s longer poems held, the heroic&#8209;narrative tradition gave way &mdash; lyricization in miniature.
+							<strong>The Jacobean/Caroline ridge.</strong>
+							Short lyric and song rose, the Shakespeare plays and Milton&rsquo;s longer poems held, and the heroic&#8209;narrative tradition gave way, as in Jackson&rsquo;s account of lyricization.
 						</li>
 					</ul>
 
 					<p class="backup-slide__foot">
-						Slopes in log&#8209;odds per decade vs the shared trend &nbsp;&middot;&nbsp; Middle English sits furthest right &mdash; Chaucer and the founders the nineteenth century canonized
+						Slopes in log&#8209;odds per decade, relative to the shared trend. Middle English, led by Chaucer, sits furthest right.
 					</p>
 
 					<aside class="notes">
@@ -2408,13 +2462,13 @@
 				<!-- 04 divider: the section layout, with the Ends of Prosody banner (live) as the title card.
 				     The card is built by slide_title.py in the banner folder. -->
 				<section class="section-slide conf-title-slide" data-background-color="#262b3c">
-					<p class="section-slide__number">04</p>
+					<p class="section-slide__number">4</p>
 					<h2 class="conf-sr">The Ends of Prosody</h2>
 					<div class="conf-title__card" aria-hidden="true">
 						<img class="conf-title__scene" src="assets/ends-of-prosody-title/scene.svg" alt="" />
 						<div class="conf-title__grain"></div>
 					</div>
-					<p class="section-slide__credit conf-title__credit">Princeton &nbsp;&middot;&nbsp; 14&ndash;17 May 2025</p>
+					<p class="section-slide__credit conf-title__credit">Princeton, 14&ndash;17 May 2025</p>
 					<aside class="notes">
 						<li>[Meredith] Let me step back from the poets and the poems to the meeting this work came out of.</li>
 						<li>The Ends of Prosody: four days at Princeton in May 2025, which Wouter, Lottie Page and I organized.</li>
@@ -2424,8 +2478,7 @@
 
 				<!-- 04a: one archive, two scholarly objects -->
 				<section class="conf-slide">
-					<h2>One archive, two <em>objects</em></h2>
-					<p class="conf-lede">The same books, read through a search box or computed as data.</p>
+					<h2>One archive, two objects</h2>
 
 					<div class="conf-objects">
 						<figure class="conf-object conf-object--db fragment" data-fragment-index="1">
@@ -2479,7 +2532,7 @@
 
 				<!-- 04b: the format, day by day -->
 				<section class="conf-slide">
-					<h2>Micro-conferences for <em>macro</em>-analysis</h2>
+					<h2>Micro-conferences for macro-analysis</h2>
 					<div class="conf-meta">
 						<p class="conf-credit">cf. Ben Recht, &ldquo;Microconferences,&rdquo; <em>arg min</em>, 2026</p>
 						<p class="conf-legend">
@@ -2502,7 +2555,7 @@
 							<div class="conf-day__blocks">
 								<p class="conf-block conf-block--ds">PPA data play</p>
 								<p class="conf-block conf-block--brief">intro to the PPA</p>
-								<p class="conf-block conf-block--db">2 panels<small>Conflicting Systems &middot; Examples, Experiments, Experience</small></p>
+								<p class="conf-block conf-block--db">2 panels<small>&ldquo;Conflicting Systems&rdquo; and &ldquo;Examples, Experiments, Experience&rdquo;</small></p>
 							</div>
 						</li>
 						<li class="conf-day fragment" data-fragment-index="3">
@@ -2519,12 +2572,12 @@
 								<p class="conf-block conf-block--all">graduate caucus</p>
 							</div>
 						</li>
-						<!-- the quote row: each quote fades in with its day; the maxim spans Wed-Thu and comes last.
+						<!-- the quote row: each quote fades in with its day; the maxim spans Wed-Thu and arrives with Thursday.
 						     All from Martin & Haverals 2026: Fri and Sat p. 4, the maxim p. 5; one source line, lower right -->
-						<li class="conf-day__rule conf-day__rule--maxim fragment" data-fragment-index="5">&ldquo;We prescribed no method, problem, or benchmark.&rdquo;</li>
+						<li class="conf-day__rule conf-day__rule--maxim fragment" data-fragment-index="2">&ldquo;We prescribed no method, problem, or benchmark.&rdquo;</li>
 						<li class="conf-day__rule conf-day__rule--fri fragment" data-fragment-index="3">&ldquo;low-stakes &lsquo;data presentations&rsquo;&rdquo;</li>
 						<li class="conf-day__rule conf-day__rule--sat fragment" data-fragment-index="4">&ldquo;an opportunity to respond&rdquo;</li>
-						<li class="conf-week__source fragment" data-fragment-index="3">quotes: Martin &amp; Haverals 2026, pp.&nbsp;4&ndash;5</li>
+						<li class="conf-week__source fragment" data-fragment-index="2">Martin &amp; Haverals 2026, pp.&nbsp;4&ndash;5</li>
 					</ol>
 
 					<aside class="notes">
@@ -2532,15 +2585,62 @@
 						<li>The name for what we did comes from Ben Recht, in EECS here at Berkeley. In a post this August he called small workshops of ten to thirty people &ldquo;microconferences.&rdquo; We did not have the word in 2025. We are borrowing it.</li>
 						<li>[Click] Wednesday. We started with an introduction to the PPA, then a student presentation: James Zhang on optical document recognition with large vision-language models. The computational participants had received a copy of the data about a month before. Here the team had set it up in shared computational environments, and they spent the rest of the day probing and playing.</li>
 						<li>[Click] Thursday morning, more data play, in teams that formed on their own. After lunch we introduced the PPA again, and then came two panels by scholars of prosody and poetics, so the data people heard what the field cares about.</li>
+						<li>With Thursday the rule appears underneath: no prescribed method, problem, or benchmark. The database itself does not say at what level it should be analyzed, and neither did we.</li>
 						<li>[Click] Friday opened with a short presentation on the data by the CDH team. Then ten low-stakes data presentations: pitches, not finished papers, made to the poetics scholars in the room. We asked the poetics scholars what they found interesting about the data, and the data people what they found interesting in the field of poetics and prosody.</li>
 						<li>[Click] Saturday, Yopie Prins gave the keynote, and a graduate caucus responded to the whole meeting.</li>
-						<li>[Click] And one rule throughout: no prescribed method, problem, or benchmark. The database itself does not say at what level it should be analyzed, and neither did we.</li>
+					</aside>
+				</section>
+
+				<!-- 04b2: the week in photographs. Sources in ~/Downloads/EOP Conference Photos:
+				     Carrie Ruddick's camera (CDH): james_presents, ppa_play_date_1, ppa_data_play date, ppadataplaydate3, PPAdataplaydate;
+				     Wouter's camera: conferencepanels, conferencepanels2, gardcaucus (the caucus screen reads 05.17.25).
+				     Web copies in figures/conference/, metadata stripped. Labels use the 04b block colours. -->
+				<section class="conf-slide conf-photos-slide">
+					<h2>Four days in May</h2>
+
+					<div class="conf-photos">
+						<figure class="conf-photo conf-photo--talk">
+							<img src="figures/conference/eop25-student-presentation.jpg" alt="James Zhang gives his student presentation at the Center for Digital Humanities" />
+							<figcaption class="conf-chip conf-chip--brief">student presentation</figcaption>
+						</figure>
+						<figure class="conf-photo conf-photo--hero">
+							<img src="figures/conference/eop25-data-play-room.jpg" alt="PPA data play: participants at laptops around the tables of the Center for Digital Humanities, a whiteboard of notes on the right" />
+							<figcaption class="conf-chip conf-chip--ds">PPA data play</figcaption>
+						</figure>
+						<figure class="conf-photo conf-photo--dp1">
+							<img src="figures/conference/eop25-data-play-table.jpg" alt="Four participants working on laptops at one table" />
+						</figure>
+						<figure class="conf-photo conf-photo--dp2">
+							<img src="figures/conference/eop25-data-play-wall.jpg" alt="A small group talking at a table next to a whiteboard covered in printed pages and sticky notes" />
+						</figure>
+						<figure class="conf-photo conf-photo--dp3">
+							<img src="figures/conference/eop25-data-play-tables.jpg" alt="Participants working at several tables at the Center for Digital Humanities" />
+						</figure>
+						<figure class="conf-photo conf-photo--pan1">
+							<img src="figures/conference/eop25-panels-1.jpg" alt="The audience during the panels, seated at long tables" />
+							<figcaption class="conf-chip conf-chip--db">2 panels</figcaption>
+						</figure>
+						<figure class="conf-photo conf-photo--pan2">
+							<img src="figures/conference/eop25-panels-2.jpg" alt="The audience during the panels, seen from the side" />
+						</figure>
+						<figure class="conf-photo conf-photo--caucus">
+							<img src="figures/conference/eop25-graduate-caucus.jpg" alt="The graduate caucus reports back; the screen reads The Ends of Prosody: Graduate Caucus Summation, 05.17.25" />
+							<figcaption class="conf-chip conf-chip--brief">graduate caucus</figcaption>
+						</figure>
+					</div>
+					<p class="conf-photos__credit">Photos by Carrie Ruddick (CDH) and Wouter Haverals</p>
+
+					<aside class="notes">
+						<li>A few photographs from those four days.</li>
+						<li>Top left, Wednesday: James Zhang&rsquo;s student presentation.</li>
+						<li>The rest of the top is the PPA data play at the Center for Digital Humanities, which ran Wednesday and Thursday morning: people working through the dataset at shared tables, and a whiteboard that filled up with printed pages and sticky notes.</li>
+						<li>Bottom row: the room during Thursday&rsquo;s two panels, and on Saturday the graduate caucus reporting back to everyone.</li>
 					</aside>
 				</section>
 
 				<!-- 04c: what came out of it: one room, two journals -->
 				<section class="conf-slide">
-					<h2>One room, two <em>journals</em></h2>
+					<h2>Two special issues</h2>
 
 					<div class="conf-flow">
 						<div class="conf-flow__in fragment" data-fragment-index="1">
@@ -2576,13 +2676,13 @@
 								<!-- titles as given in Page & Martin's introduction, VP 63(3) 2025; [&hellip;] marks a cut.
 								     Intro in full: "The Ends of Prosody: An Elegy for the Princeton Prosody Archive" -->
 								<ul>
-									<li class="conf-issue__intro"><b>Page &amp; Martin</b> &middot; &ldquo;The Ends of Prosody: An Elegy <span class="conf-cut">[&hellip;]</span>&rdquo;</li>
-									<li><b>McGill</b> &middot; &ldquo;American Poetry, British Prosody&rdquo;</li>
-									<li><b>LeGette</b> &middot; &ldquo;Trochaic Histories <span class="conf-cut">[&hellip;]</span>&rdquo;</li>
-									<li><b>Jones</b> &middot; &ldquo;<span class="conf-cut">[&hellip;]</span> Cognitive Rhythm in the Prosody Archive&rdquo;</li>
-									<li><b>Dyck &amp; Fralick</b> &middot; &ldquo;<span class="conf-cut">[&hellip;]</span> Measuring Sonnets <span class="conf-cut">[&hellip;]</span>&rdquo;</li>
-									<li><b>Roberts</b> &middot; &ldquo;Milton&rsquo;s Difficult Example&rdquo;</li>
-									<li><b>Jackson</b> &middot; &ldquo;Couplet Technology&rdquo;</li>
+									<li class="conf-issue__intro"><b>Page &amp; Martin</b>, &ldquo;The Ends of Prosody: An Elegy <span class="conf-cut">[&hellip;]</span>&rdquo;</li>
+									<li><b>McGill</b>, &ldquo;American Poetry, British Prosody&rdquo;</li>
+									<li><b>LeGette</b>, &ldquo;Trochaic Histories <span class="conf-cut">[&hellip;]</span>&rdquo;</li>
+									<li><b>Jones</b>, &ldquo;<span class="conf-cut">[&hellip;]</span> Cognitive Rhythm in the Prosody Archive&rdquo;</li>
+									<li><b>Dyck &amp; Fralick</b>, &ldquo;<span class="conf-cut">[&hellip;]</span> Measuring Sonnets <span class="conf-cut">[&hellip;]</span>&rdquo;</li>
+									<li><b>Roberts</b>, &ldquo;Milton&rsquo;s Difficult Example&rdquo;</li>
+									<li><b>Jackson</b>, &ldquo;Couplet Technology&rdquo;</li>
 								</ul>
 							</div>
 							<div class="conf-issue conf-issue--ds">
@@ -2590,22 +2690,22 @@
 								<!-- titles as given in Martin & Haverals's introduction, JCA 11(4) 2026; [&hellip;] marks a cut.
 								     Closing remarks by Bamman & Chang: per Wouter (the intro calls it a "reflective afterword") -->
 								<ul>
-									<li class="conf-issue__intro"><b>Martin &amp; Haverals</b> &middot; &ldquo;Begin Again: The Ends of Prosody&rdquo;</li>
-									<li><b>Sutton Koeser et al.</b> &middot; &ldquo;<span class="conf-cut">[&hellip;]</span> from Archive to Dataset&rdquo;</li>
-									<li><b>Ladd</b> &middot; &ldquo;Prosodic Influence <span class="conf-cut">[&hellip;]</span>&rdquo;</li>
-									<li><b>Haverals et al.</b> &middot; &ldquo;Canon Dynamics <span class="conf-cut">[&hellip;]</span>&rdquo;</li>
-									<li><b>Preus et al.</b> &middot; &ldquo;What&rsquo;s in a Song? <span class="conf-cut">[&hellip;]</span>&rdquo;</li>
-									<li><b>Bax &amp; Mimno</b> &middot; &ldquo;Reading Between the Lines <span class="conf-cut">[&hellip;]</span>&rdquo;</li>
-									<li><b>Oh</b> &middot; &ldquo;&lsquo;Undesirable&rsquo; Images and Generative Error&rdquo;</li>
-									<li><b>Bamman &amp; Chang</b> &middot; <i>closing remarks</i></li>
+									<li class="conf-issue__intro"><b>Martin &amp; Haverals</b>, &ldquo;Begin Again: The Ends of Prosody&rdquo;</li>
+									<li><b>Sutton Koeser et al.</b>, &ldquo;<span class="conf-cut">[&hellip;]</span> from Archive to Dataset&rdquo;</li>
+									<li><b>Ladd</b>, &ldquo;Prosodic Influence <span class="conf-cut">[&hellip;]</span>&rdquo;</li>
+									<li><b>Haverals et al.</b>, &ldquo;Canon Dynamics <span class="conf-cut">[&hellip;]</span>&rdquo;</li>
+									<li><b>Preus et al.</b>, &ldquo;What&rsquo;s in a Song? <span class="conf-cut">[&hellip;]</span>&rdquo;</li>
+									<li><b>Bax &amp; Mimno</b>, &ldquo;Reading Between the Lines <span class="conf-cut">[&hellip;]</span>&rdquo;</li>
+									<li><b>Oh</b>, &ldquo;&lsquo;Undesirable&rsquo; Images and Generative Error&rdquo;</li>
+									<li><b>Bamman &amp; Chang</b>, <i>closing remarks</i></li>
 								</ul>
 							</div>
 						</div>
 					</div>
 
 					<div class="conf-open fragment" data-fragment-index="4">
-						<p class="conf-open__quote">The dataset is open: &ldquo;begin to explore it.&rdquo;</p>
-						<p class="conf-open__doi">doi.org/10.34770/bze8-xk08 &nbsp;&middot;&nbsp; CC BY-NC 4.0</p>
+						<p class="conf-open__quote">Three PPA datasets are now openly available!</p>
+						<p class="conf-open__doi conf-open__sets"><a href="https://doi.org/10.34770/bze8-xk08" target="_blank" rel="noopener">Full text</a>, <a href="https://doi.org/10.5281/zenodo.20044417" target="_blank" rel="noopener">found poems</a>, <a href="https://doi.org/10.5281/zenodo.18623170" target="_blank" rel="noopener">poet mentions</a></p>
 					</div>
 
 					<aside class="notes">
@@ -2615,7 +2715,7 @@
 						<li>[Click] And the work left through two journals. The database essays are in <em>Victorian Poetry</em>; the dataset essays are in the <em>Journal of Cultural Analytics</em>. Twelve essays, most of them first presented at the conference and then revised. The canon paper Wouter just presented is one of them.</li>
 						<li>Splitting them by venue was deliberate: it shows the range of work that data about poetic discourse can support. The exchange happened in between, in the room.</li>
 						<li>What worked? Teams formed on their own. For many poetics scholars it was their first contact with computational work. And the dataset improved: the published version is a revised and expanded version of the preliminary release they played with.</li>
-						<li>[Click] That dataset is now open: seven thousand works, nearly two million pages, with text, page images and metadata. We hope you will begin to explore it. This afternoon&rsquo;s session at the AI Futures Lab is a small room too.</li>
+						<li>[Click] Three datasets are now open. The PPA itself: seven thousand works, nearly two million pages, with text, page images and metadata. The found poems: 1.26 million poetry excerpts located in those pages (still a preliminary release). And the poet mentions behind the canon paper, linked to Wikidata. We hope you will begin to explore them. This afternoon&rsquo;s session at the AI Futures Lab is a small room too.</li>
 					</aside>
 				</section>
 
@@ -2632,6 +2732,7 @@
 						<li><span class="ref-author">Compagnon, Antoine.</span> <em class="ref-title">La Seconde Main: Ou, Le Travail de la Citation</em>. Seuil, 1979.</li>
 						<li><span class="ref-author">Gini, Corrado.</span> <em class="ref-title">Variabilit&agrave; e Mutabilit&agrave;: Contributo Allo Studio Delle Distribuzioni e Relazioni Statistiche</em>. Cuppini, 1912.</li>
 						<li><span class="ref-author">Guillory, John.</span> <em class="ref-title">Cultural Capital: The Problem of Literary Canon Formation</em>. University of Chicago Press, 1993.</li>
+						<li><span class="ref-author">Haverals, Wouter, et al.</span> &ldquo;<span class="ref-title">Replication Datasets for &lsquo;Canon Dynamics in the Princeton Prosody Archive, 1559&ndash;1929&rsquo;</span>.&rdquo; <em>Zenodo</em>, 2026.</li>
 						<li><span class="ref-author">Jackson, Virginia.</span> <em class="ref-title">Dickinson&rsquo;s Misery: A Theory of Lyric Reading</em>. Princeton University Press, 2005.</li>
 						<li><span class="ref-author">Karlin, Daniel.</span> &ldquo;Introduction.&rdquo; <em class="ref-title">English Poetry: A Bibliography of the English Poetry Full-Text Database</em>, Chadwyck-Healey, 1995.</li>
 						<li><span class="ref-author">Koeser, Rebecca Sutton, et al.</span> <em class="ref-title">Princeton Prosody, from Archive to Dataset</em>. 2026. [forthcoming]</li>
@@ -2639,6 +2740,7 @@
 						<li><span class="ref-author">LeGette, Casie.</span> <em class="ref-title">Remaking Romanticism: The Radical Politics of the Excerpt</em>. Palgrave Studies in the Enlightenment, Romanticism and the Cultures of Print, 2017.</li>
 						<li><span class="ref-author">Martin, Meredith.</span> <em class="ref-title">Poetry&rsquo;s Data: Digital Humanities and the History of Prosody</em>. Princeton University Press, 2025.</li>
 						<li><span class="ref-author">Martin, Meredith.</span> <em class="ref-title">The Rise and Fall of Meter: Poetry and English National Culture, 1860&ndash;1930</em>. Princeton University Press, 2012.</li>
+						<li><span class="ref-author">Martin, Meredith, et al.</span> &ldquo;<span class="ref-title">Princeton Prosody Archive English-Language Versification and Pronunciation (1532&ndash;1930): Metadata, Full Text, and Images</span>.&rdquo; <em>Princeton Data Commons</em>, 2026.</li>
 						<li><span class="ref-author">McCutcheon, Mark A.</span> &ldquo;<span class="ref-title">The Cento, Romanticism, and Copyright</span>.&rdquo; <em>English Studies in Canada</em>, 2012.</li>
 						<li><span class="ref-author">McElreath, Richard.</span> <em class="ref-title">Statistical Rethinking: A Bayesian Course with Examples in R and Stan</em>. 2nd ed., Chapman &amp; Hall/CRC, 2020.</li>
 						<li><span class="ref-author">Prins, Yopie.</span> <em class="ref-title">Victorian Sappho</em>. Princeton University Press, 1999.</li>
@@ -2654,8 +2756,7 @@
 				<section class="closing-slide closing-slide--animated">
 					<div class="title-slide__zone" aria-hidden="true"></div>
 					<div class="closing-slide__main">
-						<p class="closing-slide__eyebrow">Thank you</p>
-						<h2 class="closing-slide__heading">Questions <em>&amp;</em> conversation</h2>
+						<h2 class="closing-slide__heading">Questions &amp; conversation</h2>
 						<div class="closing-contact">
 							<div class="closing-contact__person">
 								<p class="closing-contact__name">Meredith Martin</p>

@@ -6,7 +6,7 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link
 			rel="stylesheet"
-			href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;1,9..144,500&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400&display=swap"
+			href="https://fonts.googleapis.com/css2?family=Alegreya:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400&display=swap"
 		/>
 		<script src="../../../plugins/d3/d3.min.js"></script>
 		<style>
@@ -20,7 +20,7 @@
 				display: block;
 			}
 			text {
-				font-family: "JetBrains Mono", ui-monospace, monospace;
+				font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif; font-variant-numeric: lining-nums tabular-nums;
 			}
 		</style>
 	</head>
@@ -33,8 +33,8 @@
 			const data = window.PPA_TRAJECTORIES;
 			const heroes = data.poems.filter((p) => p.hero);
 
-			const W = 1000, H = 470;
-			const m = { l: 60, r: 280, t: 22, b: 46 };
+			const W = 1000, H = 580; // same shape as the slide's plot frame (960 × 557)
+			const m = { l: 66, r: 262, t: 14, b: 76 };
 			const x = d3.scaleLinear().domain(data.x_domain).range([m.l, W - m.r]);
 			const y = d3.scaleLinear().domain(data.y_domain).range([H - m.b, m.t]);
 
@@ -42,7 +42,7 @@
 				.select("body")
 				.append("svg")
 				.attr("viewBox", `0 0 ${W} ${H}`)
-				.attr("preserveAspectRatio", "xMidYMid meet");
+				.attr("preserveAspectRatio", "xMinYMin meet");
 
 			function fitToFrame() {
 				const el = window.frameElement;
@@ -67,19 +67,21 @@
 			grid.append("line").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y(0)).attr("y2", y(0))
 				.attr("stroke", "#bdb6a9").attr("stroke-width", 1.2).attr("stroke-dasharray", "5 5");
 			[1700, 1750, 1800, 1850, 1900].forEach((t) => {
-				grid.append("text").attr("x", x(t)).attr("y", H - 18).attr("text-anchor", "middle")
-					.attr("fill", "#78716c").attr("font-size", 15).text(t);
+				grid.append("text").attr("x", x(t)).attr("y", H - m.b + 30).attr("text-anchor", "middle")
+					.attr("fill", "#57534e").attr("font-size", 21).text(t);
 			});
-			svg.append("text").attr("x", (m.l + W - m.r) / 2).attr("y", H - 2).attr("text-anchor", "middle")
-				.attr("fill", "#57534e").attr("font-size", 15).text("Decade");
+			svg.append("text").attr("x", (m.l + W - m.r) / 2).attr("y", H - 8).attr("text-anchor", "middle")
+				.attr("fill", "#292524").attr("font-size", 22).attr("font-weight", 600).text("Decade");
 
-			// y-axis framing — what up/down means, no log-odds jargon
-			const yLab = (txt, yv, anchor) =>
-				svg.append("text").attr("transform", `translate(20, ${y(yv)}) rotate(-90)`)
-					.attr("text-anchor", anchor).attr("fill", "#a8a29e").attr("font-size", 13.5)
-					.attr("letter-spacing", "0.04em").text(txt);
-			yLab("GAINING GROUND ↑", 1.95, "end");
-			yLab("↓ LOSING GROUND", -1.95, "start");
+			// y-axis framing — what up/down means, no log-odds jargon. Each label is
+			// centred on its half of the plot. The text is rotated, so "→" points up
+			// and "←" points down on screen.
+			const yLab = (txt, yv) =>
+				svg.append("text").attr("transform", `translate(30, ${y(yv)}) rotate(-90)`)
+					.attr("text-anchor", "middle").attr("fill", "#44403c").attr("font-size", 20)
+					.attr("font-weight", 600).text(txt);
+			yLab("gaining ground →", 1);
+			yLab("← losing ground", -1);
 
 			// short display names for the end-labels
 			const SHORT = {
@@ -101,11 +103,11 @@
 					.attr("stroke-linecap", "round");
 				const last = p.points[p.points.length - 1];
 				const lab = g.append("g").attr("transform", `translate(${x(last.decade) + 10}, ${y(last.fit)})`).attr("opacity", 0);
-				lab.append("text").attr("y", -2).attr("fill", COL[p.archetype]).attr("font-size", 15.5)
+				lab.append("text").attr("y", -2).attr("fill", COL[p.archetype]).attr("font-size", 20)
 					.attr("font-weight", 600).attr("font-family", '"Source Sans 3", system-ui, sans-serif')
 					.text(SHORT[p.id] || p.label);
-				lab.append("text").attr("y", 15).attr("fill", COL[p.archetype]).attr("font-size", 12)
-					.attr("letter-spacing", "0.03em").attr("opacity", 0.85)
+				lab.append("text").attr("y", 19).attr("fill", COL[p.archetype]).attr("font-size", 15.5)
+					.attr("opacity", 0.85)
 					.text(`${p.author.includes("(") ? p.author : p.author.split(" / ")[0].split(" ").slice(-1)[0]} · ${ARCH_WORD[p.archetype]}`);
 				return { path, dots, lab, p };
 			});

@@ -20,7 +20,7 @@
 				display: block;
 			}
 			text {
-				font-family: "JetBrains Mono", ui-monospace, monospace;
+				font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif; font-variant-numeric: lining-nums tabular-nums;
 			}
 		</style>
 	</head>
@@ -35,7 +35,7 @@
 
 			const W = 1000,
 				H = 440;
-			const m = { l: 76, r: 24, t: 22, b: 64 };
+			const m = { l: 88, r: 24, t: 22, b: 80 };
 			const x = d3.scaleLinear().domain([1694, 1920]).range([m.l, W - m.r]);
 			const y = d3.scaleLinear().domain([0, 40]).range([H - m.b, m.t]);
 			const plotW = W - m.r - m.l;
@@ -69,39 +69,41 @@
 					.attr("stroke-width", 1);
 				grid
 					.append("text")
-					.attr("x", m.l - 13)
+					.attr("x", m.l - 14)
 					.attr("y", y(t))
 					.attr("text-anchor", "end")
 					.attr("dominant-baseline", "middle")
-					.attr("fill", "#78716c")
-					.attr("font-size", 16)
+					.attr("fill", "#57534e")
+					.attr("font-size", 21)
 					.text(t);
 			});
 			[1700, 1740, 1780, 1820, 1860, 1900].forEach((t) => {
 				grid
 					.append("text")
 					.attr("x", x(t))
-					.attr("y", H - 38)
+					.attr("y", H - m.b + 30)
 					.attr("text-anchor", "middle")
-					.attr("fill", "#78716c")
-					.attr("font-size", 16)
+					.attr("fill", "#57534e")
+					.attr("font-size", 21)
 					.text(t);
 			});
 			// axis titles (a touch darker, more breathing room below the year ticks)
 			svg
 				.append("text")
 				.attr("x", m.l + plotW / 2)
-				.attr("y", H - 8)
+				.attr("y", H - 9)
 				.attr("text-anchor", "middle")
-				.attr("fill", "#57534e")
-				.attr("font-size", 16)
+				.attr("fill", "#292524")
+				.attr("font-size", 22)
+				.attr("font-weight", 600)
 				.text("PPA host publication year");
 			svg
 				.append("text")
-				.attr("transform", `translate(20, ${m.t + (H - m.b - m.t) / 2}) rotate(-90)`)
+				.attr("transform", `translate(22, ${m.t + (H - m.b - m.t) / 2}) rotate(-90)`)
 				.attr("text-anchor", "middle")
-				.attr("fill", "#57534e")
-				.attr("font-size", 15)
+				.attr("fill", "#292524")
+				.attr("font-size", 22)
+				.attr("font-weight", 600)
 				.text("Distinct poems per 100 pages");
 
 			// --- band + line, wiped in left→right via a growing clip ---
@@ -193,7 +195,7 @@
 				.attr("y", y(MLY))
 				.attr("dominant-baseline", "middle")
 				.attr("fill", MARK)
-				.attr("font-size", 15.5)
+				.attr("font-size", 19)
 				.attr("font-family", '"Source Sans 3", system-ui, sans-serif')
 				.attr("font-weight", 600)
 				.attr("opacity", 0)
