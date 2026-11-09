@@ -326,7 +326,7 @@
 
 				<section class="ppa-intro-slide ppa-intro-slide--concept">
 					<h2>An archive of use</h2>
-					<p class="ppa-intro__statement">The PPA is not an anthology of great literature. Its books teach readers how to scan, pronounce and hear verse.</p>
+					<p class="ppa-intro__statement">The PPA is not an anthology of &ldquo;great&rdquo; literature. Its books and articles teach readers how to scan, pronounce and hear verse.</p>
 
 					<div class="ppa-intro__points">
 						<p>
@@ -548,7 +548,51 @@
 					</figure>
 
 					<aside class="notes">
-						<li>OCC_NOTES_PENDING</li>
+						<li>[Backup, if someone asks how far to trust Wikidata.] This is everyone the linker found in the PPA: 92,823 people. For each of them Wikidata lists what they did, and we count how many people carry each label. One person can carry several.</li>
+						<li>Writer and poet dominate. Those are the labels we use to pick the literary subset, and even those we do not take on faith: we keep people flagged as poets, linked at 0.9 or above, seen in at least two works, and born by 1900.</li>
+						<li>Now look at the bottom of the list: 1,306 football players and 1,304 screenwriters, in an archive that stops in 1929. They come from two different problems.</li>
+						<li>Problem one is the wrong person. The linker reaches for today&rsquo;s famous namesake. Of the 1,306 &ldquo;footballers&rdquo;, 1,050 were born in 1930 or later. The Latin word <em>tamen</em> (&ldquo;yet&rdquo;) in a Latin grammar becomes a Cameroonian footballer called Medrano Tamen. &ldquo;Laert.&rdquo;, short for Diogenes Laertius, becomes the Albanian player Laert Ndoni. &ldquo;S. John&rdquo;, Saint John, becomes Stern John from Trinidad and Tobago.</li>
+						<li>The screenwriters show the same thing. Thomas Nashe becomes Ogden Nash, Robert Greene becomes Graham Greene. And &ldquo;TRUMP, to win with a trump card&rdquo;, a headword in pronouncing dictionaries of 1797 and 1798, becomes Donald Trump, at full confidence.</li>
+						<li>Across all the linked people, about one in five (17,423) were born after 1929. They get 2.7% of the links to people, and 0.7% of the confident ones. So the 0.9 line removes most of this problem, not all of it.</li>
+						<li>Problem two is the right person with an odd label, and that comes from Wikidata itself.</li>
+						<li>Elizabeth Barrett Browning, screenwriter. In 1912 her poem &ldquo;The Cry of the Children&rdquo; became a silent film, and the Dutch Wikipedia page for the film lists her as its writer. In 2015 that was copied into Wikidata as &ldquo;screenwriter of the film&rdquo;. A cleanup rule says that anyone credited as a film&rsquo;s screenwriter must have the occupation screenwriter, so a batch edit added it to her, along with about 2,500 other people that same day. The film&rsquo;s credit was corrected in 2018. Her occupation was never removed, and it cites no source.</li>
+						<li>A second twist on the same bar: the bare name &ldquo;Browning&rdquo; is linked to Elizabeth 8,738 times and to Robert only 1,479 times. So most of her weight in the screenwriter bar, a quarter of the whole bar, is really Robert Browning, read as his wife.</li>
+						<li>Albert Camus, football player. Someone added that by hand in 2022, with no source. It is true in a sense: he kept goal for a junior team in Algiers as a teenager (next slide). But Wikidata gives no dates and no ranking, so a few seasons in goal weigh the same as &ldquo;novelist&rdquo;.</li>
+						<li>And none of the 39 &ldquo;Camus&rdquo; in the PPA is him. They are the river Cam, which Milton calls &ldquo;Camus, reverend sire&rdquo; in <em>Lycidas</em>; the seventeenth-century French bishop Jean-Pierre Camus; a deputy of the French Revolution who edited Aristotle; and Milton&rsquo;s <em>Comus</em> with a misprint.</li>
+						<li>Friedrich Fr&ouml;bel, who founded the kindergarten, is also listed as a footballer, again with no source. In his case the links are right and the label is wrong.</li>
+						<li>Why this matters: Wikidata is written by volunteers and bots. Labels pile up from many places, from Wikipedia categories to library catalogues. Many cite no source, and the list is flat, with no dates and no sign of which job was the main one. A label derived from a mistake can outlive the correction of that mistake, as Browning&rsquo;s did.</li>
+					</aside>
+				</section>
+
+				<!-- backup ▸ Camus in goal (photo: Collection Roger-Viollet); quote from "La belle époque", RUA, 15 April 1953 -->
+				<section class="backup-slide camus-slide">
+					<figure class="camus">
+						<div class="camus__photo">
+							<img src="assets/camus-rua.jpg" alt="Team photograph of the junior side of the Racing Universitaire d&rsquo;Alger, with the young Albert Camus seated in front, in cap and scarf" width="586" height="434" />
+							<svg class="camus__spot fragment" data-fragment-index="1" viewBox="0 0 586 434" preserveAspectRatio="none" aria-hidden="true">
+								<defs>
+									<mask id="camus-hole">
+										<rect width="586" height="434" fill="#fff" />
+										<ellipse cx="252" cy="304" rx="86" ry="110" fill="#000" />
+									</mask>
+								</defs>
+								<rect width="586" height="434" fill="rgba(28, 25, 23, 0.5)" mask="url(#camus-hole)" />
+								<ellipse class="camus__ring" cx="252" cy="304" rx="86" ry="110" />
+							</svg>
+						</div>
+						<figcaption class="camus__credit">Albert Camus with the junior team of the Racing Universitaire d&rsquo;Alger. Photo: Roger-Viollet.</figcaption>
+					</figure>
+					<blockquote class="camus__quote">&ldquo;&hellip;what I finally know about morality and the obligations of men, I owe to sport. It was at the RUA that I learned it.&rdquo;</blockquote>
+					<p class="camus__cite">Albert Camus, &ldquo;La belle &eacute;poque,&rdquo; <em>RUA</em>, 15 April 1953 (our translation)</p>
+
+					<aside class="notes">
+						<li>[Backup, after the occupations chart.] Albert Camus with the junior team of the Racing Universitaire d&rsquo;Alger, the RUA, in Algiers. He kept goal as a teenager, until tuberculosis ended it when he was seventeen.</li>
+						<li>[Click] The spotlight finds him: seated in front, in the cap and scarf.</li>
+						<li>The line comes from a short piece he wrote for the club&rsquo;s own journal in April 1953, &ldquo;La belle &eacute;poque&rdquo;. <em>France Football</em> reprinted it in December 1957, a week after his Nobel Prize.</li>
+						<li>The French: &ldquo;ce que finalement je sais sur la morale et les obligations des hommes, c&rsquo;est au sport que je le dois, c&rsquo;est au RUA que je l&rsquo;ai appris.&rdquo;</li>
+						<li>Careful with the popular English version, &ldquo;what I know most surely &hellip; I owe to football.&rdquo; Camus wrote sport, not football, and he goes on to name the club. The slide gives our own translation of what he wrote.</li>
+						<li>The line where he does say football is from a 1959 television interview about the theatre: the little morality he knew, he said, he had learned on football pitches and theatre stages, which were his true universities.</li>
+						<li>So Wikidata&rsquo;s label is not invented. What it lacks is the dates and the weight: a few seasons in goal as a teenager sit next to &ldquo;novelist&rdquo; as an equal.</li>
 					</aside>
 				</section>
 				</section>
@@ -748,6 +792,16 @@
 						<li>So: a game show. Are you smarter than a zero-shot, end-to-end neural entity linker? The mouthful is not ours. It is close to how its makers describe it, in the title of their paper (Ayoola et al. 2022).</li>
 						<li>Zero-shot means it was never trained on our archive. It read all 1.68 million pages in about a day, on one GPU.</li>
 						<li>The rules. Each card is a real sentence, exactly as the OCR handed it over. Call out who it is. [Click] flips the card: the answer. [Click] again: what ReFinED said, and its score. Phones and search engines allowed.</li>
+						<li><strong>How to play, in plain words</strong> (say it like this):<ul>
+							<li>You will see a card with a real sentence from an old book in the archive. One name in it is highlighted.</li>
+							<li>Call out who you think it is. Phones are allowed.</li>
+							<li>I click once, and the card turns over: that is the answer.</li>
+							<li>I click again, and you see what the computer said: the person it picked, and how sure it was, as a number between 0 and 1.</li>
+							<li>The mark at 0.9 is our cut-off. We only count the computer&rsquo;s answer when it is at least 0.9 sure. Below that we leave it out, even when it is right.</li>
+							<li>The stamp sums it up: right or wrong, and above or below the cut-off. &ldquo;Silent&rdquo; means the computer saw the name but did not pick anyone.</li>
+							<li>The text on the cards was read off old scans by software, so the odd typo is the computer&rsquo;s, not ours.</li>
+							<li>Halfway through, the question changes: from &ldquo;who is it?&rdquo; to &ldquo;what will the computer say?&rdquo;</li>
+						</ul></li>
 					</aside>
 				</section>
 				<section class="namegame-slide">
@@ -786,6 +840,7 @@
 					<aside class="notes">
 						<li>Warm-up. A 1909 primer: “the genius of the sweet swan of Avon, who was not of an age, but for all time.” No name on the page. Who is it?</li>
 						<li>[Click] Shakespeare, through Ben Jonson’s First Folio poem. [Click] The machine gets it, at 0.94: above our 0.9 line. (This primer is not one of the paper’s 3,149 works, so it does not enter the counts.)</li>
+						<li><strong>Background, in plain words.</strong> The phrase comes from Ben Jonson&rsquo;s poem in memory of Shakespeare, printed among the opening pages of the First Folio in 1623. That book was the first collected edition of his plays, put together seven years after his death by two fellow actors, John Heminges and Henry Condell, and called a folio because it was a large book made from sheets of paper folded once. Avon points to Stratford-upon-Avon, Shakespeare&rsquo;s home town on the River Avon in Warwickshire. Poets had been compared to swans since classical times, and the Roman poet Horace called the Greek poet Pindar a swan. The words Tucker quotes about being for all time also come from this poem.</li>
 						<li>Hands up: would you count this as a mention of Shakespeare? Is the machine reading Jonson, or recognising a stock phrase?</li>
 						<li>Epithets are erratic: across the archive “swan of Avon” is usually linked below the line, and 19 times only “Avon” is linked, to a river. Some epithets never resolve at all.</li>
 						<li>Base rate, for the data scientists: when it links “Homer”, it is right 99.85% of the time. These cards are chosen for their interest, not their typicality.</li>
@@ -835,6 +890,7 @@
 					<aside class="notes">
 						<li>Another epithet, no name. Saintsbury&rsquo;s <em>History of English Prosody</em>, 1910, quoting Tennyson&rsquo;s &ldquo;A Dream of Fair Women&rdquo;: &ldquo;The Legend of Good Women, long ago / Sung by the morning star of song.&rdquo; Who is the morning star of song?</li>
 						<li>[Click] Geoffrey Chaucer. [Click] Silent: no link.</li>
+						<li><strong>Background, in plain words.</strong> These lines open Alfred Tennyson&rsquo;s &ldquo;A Dream of Fair Women&rdquo; as he revised it for his Poems of 1842, about ten years after it first appeared. The speaker has been reading Chaucer&rsquo;s &ldquo;The Legend of Good Women&rdquo; before he falls asleep and dreams. Chaucer wrote that poem in the late 1380s as a dream vision, a poem framed as something the poet dreamed, in which the god of love and his queen Alceste set him to write about women who were true in love, such as Cleopatra, Thisbe and Dido. The morning star is the planet Venus seen just before sunrise, so the image makes Chaucer the first light of English poetry, ahead of the poets of Queen Elizabeth&rsquo;s reign in the late 1500s. In the next stanza Tennyson names him outright as &ldquo;Dan Chaucer, the first warbler,&rdquo; using an old title meaning master that Edmund Spenser had also given Chaucer in The Faerie Queene.</li>
 						<li>The same lines do get a link: &ldquo;The Legend of Good Women&rdquo; goes to the poem, at 0.98. The machine knows the poem, but not the poet behind the epithet.</li>
 						<li>Question: &ldquo;swan of Avon&rdquo; resolves, &ldquo;morning star of song&rdquo; does not. Which epithets does a linker built on today&rsquo;s Wikipedia still recognise?</li>
 						<li>ReFinED on “morning star of song”: not found (no span covers it on this page).</li>
@@ -845,55 +901,109 @@
 					</aside>
 				</section>
 
-				<section class="namegame-slide">
-					<div class="namegame__stage">
-						<div class="namegame__left">
-							<div class="namecard">
-								<div class="namecard__inner">
-									<div class="namecard__face namecard__face--front">
-										<p class="namecard__context">… Here fynyssheth the boke of Eneydos, compyled by <mark>Vyrgyle</mark>, whiche hathe be translated oute of latyne in to frenshe, and oute of frenshe reduced in to Englysshe by me Wyllm Caxton, 1490.</p>
-										<p class="namecard__source">Caxton’s colophon (1490), quoted in W. J. Harris, <em>The First Printed Translations into English of the Great Foreign Classics</em> (1909)</p>
-									</div>
-									<div class="namecard__face namecard__face--back">
-										<img class="namecard__portrait" src="assets/names-game/portrait-virgil.jpg" alt="Marble bust of Virgil" />
-										<div class="namecard__id">
-											<p class="namecard__who">Virgil</p>
-											<p class="namecard__meta">70–19 BCE &middot; <code>Q1398</code></p>
+				<section>
+					<section class="namegame-slide">
+						<div class="namegame__stage">
+							<div class="namegame__left">
+								<div class="namecard">
+									<div class="namecard__inner">
+										<div class="namecard__face namecard__face--front">
+											<p class="namecard__context">… Here fynyssheth the boke of Eneydos, compyled by <mark>Vyrgyle</mark>, whiche hathe be translated oute of latyne in to frenshe, and oute of frenshe reduced in to Englysshe by me Wyllm Caxton, 1490.</p>
+											<p class="namecard__source">Caxton’s colophon (1490), quoted in W. J. Harris, <em>The First Printed Translations into English of the Great Foreign Classics</em> (1909)</p>
+										</div>
+										<div class="namecard__face namecard__face--back">
+											<img class="namecard__portrait" src="assets/names-game/portrait-virgil.jpg" alt="Marble bust of Virgil" />
+											<div class="namecard__id">
+												<p class="namecard__who">Virgil</p>
+												<p class="namecard__meta">70–19 BCE &middot; <code>Q1398</code></p>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
-						<div class="namegame__right">
-							<span class="namegame__flip fragment" data-fragment-index="1" aria-hidden="true"></span>
-							<div class="namegame__machine namegame__machine--ok-above fragment" data-fragment-index="2">
-								<p class="namegame__by">ReFinED links it to</p>
-								<p class="namegame__entity"><span class="namegame__ent"><strong>Virgil</strong><code>Q1398</code></span></p>
-								<div class="meter-row" style="--score: 0.9904">
-									<span class="meter__val">0.99</span>
-									<div class="meter" aria-hidden="true"><span class="meter__fill"></span><span class="meter__line"></span></div>
-									<div class="meter__scale"><span class="meter__thr">0.9</span></div>
+							<div class="namegame__right">
+								<span class="namegame__flip fragment" data-fragment-index="1" aria-hidden="true"></span>
+								<div class="namegame__machine namegame__machine--ok-above fragment" data-fragment-index="2">
+									<p class="namegame__by">ReFinED links it to</p>
+									<p class="namegame__entity"><span class="namegame__ent"><strong>Virgil</strong><code>Q1398</code></span></p>
+									<div class="meter-row" style="--score: 0.9904">
+										<span class="meter__val">0.99</span>
+										<div class="meter" aria-hidden="true"><span class="meter__fill"></span><span class="meter__line"></span></div>
+										<div class="meter__scale"><span class="meter__thr">0.9</span></div>
+									</div>
+									<p class="stamp">✓ Correct · above 0.9</p>
 								</div>
-								<p class="stamp">✓ Correct · above 0.9</p>
 							</div>
 						</div>
-					</div>
-					<aside class="notes">
-						<li>Caxton’s colophon to his Eneydos, 1490: “Here fynyssheth the boke of Eneydos, compyled by Vyrgyle.” Who is it?</li>
-						<li>[Click] Virgil. [Click] The machine reads Caxton’s pre-standard spelling without trouble: 0.99.</li>
-						<li>Second beat: a 1905 sentence quoting a deed with four spellings of Shakespeare. Which one lights up? Only “Shakesphere”.</li>
-						<li>Question: why does a linker built from today’s Wikipedia know “Shakesphere”, yet read the Victorians’ own scholarly spelling, “Shakspere”, as the authorship controversy? Spelling coverage follows modern usage and fame, not what was normal at the time.</li>
-						<li>Backup: “Spencer” for Spenser gives Spenser 1,010 links but only 16 above 0.9, and Herbert Spencer gets 920.</li>
-						<li>Caxton’s spelling, five centuries old, and still resolved.</li>
-						<li>ReFinED on “Vyrgyle”: found, linked to Virgil (Q1398) at 0.9904. Correct, and above 0.9, so counted.</li>
-						<li>Other names on the card: “Wyllm Caxton” found, not linked.</li>
-						<li>From the archive:<ul>
-							<li>✓ “Vyrgyle” 6 of 6 above 0.9 · 129 spellings and forms linked to Shakespeare, 107 with confident links</li>
-							<li>· A 1905 sentence quoting a deed: “Shackesphere, Shakesphere, Shacksphare, Shaksphere”. Only “Shakesphere” is linked (0.95)</li>
-							<li>✗ “Shakspere”, the Victorian scholars’ spelling → the <em>Shakespeare authorship question</em> 5,232 times, Shakespeare 91</li>
-							<li>✗ Richard Grant White’s 1865 list of 32 spellings from the old records: 28 left silent</li>
-						</ul></li>
-					</aside>
+						<aside class="notes">
+							<li>Caxton’s colophon to his Eneydos, 1490: “Here fynyssheth the boke of Eneydos, compyled by Vyrgyle.” Who is it?</li>
+							<li>[Click] Virgil. [Click] The machine reads Caxton’s pre-standard spelling without trouble: 0.99.</li>
+							<li><strong>Background, in plain words.</strong> A colophon is the note at the end of an early printed book that names the work and says who produced it and when. This one closes Eneydos, dated 22 June 1490 by William Caxton, who had set up the first printing press in England at Westminster in 1476. Eneydos retells Virgil&rsquo;s Aeneid, the Latin epic about the Trojan hero Aeneas from the first century BC, and Caxton worked from a French prose version printed at Lyon in 1483. English spelling was not yet standardized and y and i were often used interchangeably, which is how Virgil becomes Vyrgyle. In the prologue Caxton tells of merchants waiting for wind on the Kent side of the Thames, where one of them asked a woman for &ldquo;egges&rdquo; and was told she spoke no French, until someone else said he wanted &ldquo;eyren&rdquo; and she understood.</li>
+							<li>Second beat: a 1905 sentence quoting a deed with four spellings of Shakespeare. Which one lights up? Only “Shakesphere”.</li>
+							<li>Question: why does a linker built from today’s Wikipedia know “Shakesphere”, yet read the Victorians’ own scholarly spelling, “Shakspere”, as the authorship controversy? Spelling coverage follows modern usage and fame, not what was normal at the time.</li>
+							<li>Backup: “Spencer” for Spenser gives Spenser 1,010 links but only 16 above 0.9, and Herbert Spencer gets 920.</li>
+							<li>Caxton’s spelling, five centuries old, and still resolved.</li>
+							<li>ReFinED on “Vyrgyle”: found, linked to Virgil (Q1398) at 0.9904. Correct, and above 0.9, so counted.</li>
+							<li>Other names on the card: “Wyllm Caxton” found, not linked.</li>
+							<li>From the archive:<ul>
+								<li>✓ “Vyrgyle” 6 of 6 above 0.9 · 129 spellings and forms linked to Shakespeare, 107 with confident links</li>
+								<li>· A 1905 sentence quoting a deed: “Shackesphere, Shakesphere, Shacksphare, Shaksphere”. Only “Shakesphere” is linked (0.95)</li>
+								<li>✗ “Shakspere”, the Victorian scholars’ spelling → the <em>Shakespeare authorship question</em> 5,232 times, Shakespeare 91</li>
+								<li>✗ Richard Grant White’s 1865 list of 32 spellings from the old records: 28 left silent</li>
+							</ul></li>
+						</aside>
+					</section>
+					<!-- backup ▸ "Tully" for Cicero: right, but below the line (Webbe 1586) -->
+					<section class="namegame-slide">
+						<div class="namegame__stage">
+							<div class="namegame__left">
+								<div class="namecard">
+									<div class="namecard__inner">
+										<div class="namecard__face namecard__face--front">
+											<p class="namecard__context">&hellip; Aristotle reporteth none to haue greatly flourished in Gr&eacute;ece &hellip; before the time of Homer. And <mark>Tully</mark> sayth as much, that there were none wrytt woorth the reading twyce in the Romaine tongue, before ye Poet Ennius.</p>
+											<p class="namecard__source">William Webbe, <em>A Discourse of English Poetrie</em> (1586)</p>
+										</div>
+										<div class="namecard__face namecard__face--back">
+											<img class="namecard__portrait" src="assets/names-game/portrait-cicero.jpg" alt="Bust of Cicero, Musei Capitolini" />
+											<div class="namecard__id">
+												<p class="namecard__who">Cicero</p>
+												<p class="namecard__meta">Marcus Tullius Cicero, 106&ndash;43 BCE &middot; <code>Q1541</code></p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="namegame__right">
+								<span class="namegame__flip fragment" data-fragment-index="1" aria-hidden="true"></span>
+								<div class="namegame__machine namegame__machine--ok-below fragment" data-fragment-index="2">
+									<p class="namegame__by">ReFinED links it to</p>
+									<p class="namegame__entity"><span class="namegame__ent"><strong>Cicero</strong><code>Q1541</code></span></p>
+									<div class="meter-row" style="--score: 0.6298">
+										<span class="meter__val">0.63</span>
+										<div class="meter" aria-hidden="true"><span class="meter__fill"></span><span class="meter__line"></span></div>
+										<div class="meter__scale"><span class="meter__thr">0.9</span></div>
+									</div>
+									<p class="stamp">✓ Correct · below 0.9</p>
+								</div>
+							</div>
+						</div>
+						<aside class="notes">
+							<li>[Backup, one press down from Vyrgyle.] Another Roman, another English name. William Webbe, 1586: &ldquo;And Tully sayth as much, that there were none wrytt woorth the reading twyce in the Romaine tongue, before ye Poet Ennius.&rdquo; Who is Tully?</li>
+							<li>[Click] Cicero. [Click] The machine knows it too, but only at 0.63: below the line, so this mention does not count.</li>
+							<li><strong>Background, in plain words.</strong> For centuries English writers called Marcus Tullius Cicero &ldquo;Tully&rdquo;, after his family name, Tullius. Webbe&rsquo;s <em>Discourse of English Poetrie</em> is one of the first books in English about English poetry, and it argues for writing English verse in the classical metres. Webbe even includes his own English hexameter versions of two of Virgil&rsquo;s Eclogues, and in that book he spells the poet &ldquo;Vyrgill&rdquo;. Ennius was an early Roman poet, later called the father of Roman poetry.</li>
+							<li>It is systematic. &ldquo;Tully&rdquo; appears 3,391 times in the archive. The machine links 1,769 of them to Cicero, which is right, but only 47 reach 0.9. Written &ldquo;Cicero&rdquo;, he is linked 37,299 times above the line, so his English nickname almost disappears from his count.</li>
+							<li>The older spellings fare worse: &ldquo;Tullie&rdquo; (430 times) and &ldquo;Tullies&rdquo; (102) are never linked at all.</li>
+							<li>ReFinED on &ldquo;Tully&rdquo;: found, linked to Cicero (Q1541) at 0.6298. Correct, but below 0.9, so it is not counted.</li>
+							<li>Other names on the card: &ldquo;Aristotle&rdquo; &rarr; Aristotle (Q868) at 0.9993, correct; &ldquo;Homer&rdquo; &rarr; Homer (Q6691) at 0.9976, correct; &ldquo;Romaine&rdquo; &rarr; Romaine, a village in Franche-Comt&eacute; (Q2164510), at 0.7383, wrong (it means Roman), below 0.9; &ldquo;Gr&eacute;ece&rdquo; found, not linked; &ldquo;Ennius&rdquo; not found on this page.</li>
+							<li>From the archive:<ul>
+								<li>✓ &ldquo;Tully&rdquo; &rarr; Cicero 1,769 times, only 47 at 0.9 or above (median 0.67)</li>
+								<li>✗ &ldquo;Tullie&rdquo; 430 &middot; &ldquo;Tullies&rdquo; 102: never linked</li>
+								<li>✗ &ldquo;Tully&rdquo; &rarr; James Tully, a Canadian philosopher born in 1946, 14 times (all below 0.9) &middot; &ldquo;Marcus Tullius&rdquo; &rarr; a different Roman politician, 30 times</li>
+								<li>&middot; Elyot&rsquo;s &ldquo;Tulli&rdquo; (1531) &rarr; the Polish novelist Magdalena Tulli, 8 times (the hidden spare card)</li>
+							</ul></li>
+							<li>Image credit: bust of Cicero, Musei Capitolini, photo by Jos&eacute; Luiz, CC BY-SA 4.0.</li>
+						</aside>
+					</section>
 				</section>
 
 				<section class="namegame-slide">
@@ -932,6 +1042,7 @@
 					<aside class="notes">
 						<li>Initials. <em>Poetry</em> magazine, 1914: “H. D., one of the Imagistes, is also a young American poet resident abroad.” Who is it?</li>
 						<li>[Click] Hilda Doolittle, who signed herself H.D. [Click] The machine gets her, at 0.99, above the line.</li>
+						<li><strong>Background, in plain words.</strong> Hilda Doolittle was born in Bethlehem, Pennsylvania, in 1886, met Ezra Pound in 1901 when she was fifteen, and moved to London in 1911. In 1912 Pound read her poem &ldquo;Hermes of the Ways&rdquo; and wrote &ldquo;H.D. Imagiste&rdquo; at the bottom of the page, and she kept H.D. as her pen name. Imagiste was Pound&rsquo;s French spelling for a small group of poets around him in London, at first H.D. and Richard Aldington, who wanted to treat the thing directly and use no word that did not help present it. Pound sent three of her poems to Harriet Monroe, who had founded Poetry in Chicago in 1912, and they appeared in the January 1913 issue signed &ldquo;H.D., Imagiste.&rdquo; So by 1914 the magazine&rsquo;s readers already knew her by those two letters.</li>
 						<li>Initials resolve when they became the name a poet is filed under today: H. D., A. E., B. V. And once initials work as a name, they attract everyone who shares them.</li>
 						<li>ReFinED on “H. D”: found, linked to H.D. (Q236469) at 0.9895. Correct, and above 0.9, so counted.</li>
 						<li>From the archive:<ul>
@@ -977,6 +1088,7 @@
 					<aside class="notes">
 						<li>More initials. Charles Lamb on book-borrowers, 1820: “lend thy books; but let it be to such a one as S. T. C.” Who is it?</li>
 						<li>[Click] Samuel Taylor Coleridge, who signed himself S. T. C. [Click] Silent: 211 times in the archive, never linked.</li>
+						<li><strong>Background, in plain words.</strong> Charles Lamb and Samuel Taylor Coleridge were schoolboys together at Christ&rsquo;s Hospital, a charity school in London, and stayed friends for life. Lamb published this essay in the London Magazine in December 1820 under his pen name, Elia, and in it he divides humanity into borrowers and lenders. Earlier in the essay he grumbles about a book borrower called Comberbatch, which is close to the false name Coleridge gave when he joined a cavalry regiment, the 15th Light Dragoons, in 1793. The essay ends by advising the reader to lend books to someone like S. T. C., because he returns them full of handwritten notes in the margins, which Lamb says triple their value. Those notes, known as marginalia, survive for about 450 works and fill six volumes of the Princeton edition of Coleridge&rsquo;s collected works.</li>
 						<li>Both signed with initials. Here H.D. is linked and S. T. C. is not; across the archive “S. T. C.” is never linked.</li>
 						<li>Question: every reader of Lamb knew who S. T. C. was. Whose conventions for initials is the machine following?</li>
 						<li>Initials resolve when they became the name a poet is filed under today, not when they were a signature only contemporaries could decode.</li>
@@ -1024,6 +1136,7 @@
 						<li>From now on, change the question: not “who is it?” but “what will the machine say?”</li>
 						<li>John Wilson on Burns, 1856: “by Bobert Bums”. That is exactly what the OCR handed to the machine.</li>
 						<li>[Click] Robert Burns: the R read as a B, the rn as an m. [Click] Silent. The machine found the name and linked it to nothing. This is the example in our paper’s hand check.</li>
+						<li><strong>Background, in plain words.</strong> Robert Burns was born in Alloway, in Ayrshire, in 1759, and died in Dumfries in 1796 at the age of 37. His first book, Poems, Chiefly in the Scottish Dialect, was printed in Kilmarnock in 1786 and sold out within a few weeks, and its printer happened to be called John Wilson. The John Wilson who wrote these essays was a different man, a professor of moral philosophy at Edinburgh who wrote for Blackwood&rsquo;s Edinburgh Magazine as &ldquo;Christopher North.&rdquo; He wrote a long essay called The Genius and Character of Burns, and in 1844 he was vice-chairman at the great Burns Festival at Ayr. Wilson died in 1854, and his son-in-law, the philosopher James Frederick Ferrier, chose the pieces for this collection from his magazine writing.</li>
 						<li>It is not only the OCR. Even the plain “Burns” two lines later is left unlinked. On the same page, 4 of 7 “Burns” are linked to Burns, and only 2 of those reach 0.9.</li>
 						<li>OCR mostly makes the linker silent, not wrong, but the silence has a date: every count is a lower bound, and its gaps follow print.</li>
 						<li>ReFinED on “Bobert Bums”: found as a name, but linked to nothing.</li>
@@ -1129,6 +1242,7 @@
 					<aside class="notes">
 						<li>This one is from our paper. 1847: “Miss Barrett (Mrs. Browning she is now, by the way) is apt to versify very loosely and wildly.” The two-column OCR scattered the chorus Benson was quoting further down the page.</li>
 						<li>[Click] Elizabeth Barrett Browning, married the year before. [Click] Correct twice, Barrett and Browning, but at 0.78 and 0.83: below the line, so neither counts.</li>
+						<li><strong>Background, in plain words.</strong> Carl Benson was the pen name of Charles Astor Bristed, a grandson of John Jacob Astor who studied at Yale and then at Trinity College, Cambridge. His short chapters on unusual metres, the rhythmic patterns of verse lines, ran as a series in The American Whig Review, a New York monthly. American readers knew the poet as Elizabeth Barrett through a New York edition titled A Drama of Exile, and Other Poems, and in 1845 Edgar Allan Poe dedicated The Raven and Other Poems to her. Her rhymes were already a talking point, because Poe&rsquo;s review in the Broadway Journal objected to pairings such as &ldquo;Eden&rdquo; with &ldquo;succeeding&rdquo;. In 1846 she married the poet Robert Browning in secret at St Marylebone Parish Church in London and moved with him to Italy, so by the time Benson wrote she had become Mrs. Browning.</li>
 						<li>For Barrett Browning the married name works: “Mrs. Browning” 34 of 36. Now another married name.</li>
 						<li>Correct twice, sure of neither.</li>
 						<li>ReFinED on “Barrett” and “Browning”: both found, both linked to Elizabeth Barrett Browning (Q228494), “Barrett” at 0.7801 and “Browning” at 0.8254. Correct, but below 0.9, so neither is counted.</li>
@@ -1175,6 +1289,7 @@
 					<aside class="notes">
 						<li>“The story of Frankenstein, by Mrs. Shelley, the daughter of Godwin.” Phone poll: who does the machine think Mrs. Shelley is? Mary, Harriet, or Percy?</li>
 						<li>[Click] Mary Shelley, of course. [Click] The machine: Percy, at 0.98, above the line. Turn to your neighbour for twenty seconds: which other women here will be counted under a husband’s, father’s or son’s name?</li>
+						<li><strong>Background, in plain words.</strong> Mrs. Shelley is Mary Shelley, born Mary Wollstonecraft Godwin in London in 1797. Her father was the radical philosopher William Godwin, author of Political Justice, and her mother, Mary Wollstonecraft, who wrote A Vindication of the Rights of Woman, died eleven days after the birth. Frankenstein came out anonymously on New Year&rsquo;s Day 1818 with a dedication to Godwin, and the second edition, published in London in 1823, was the first English printing to carry her name. She had become Mrs. Shelley in December 1816 by marrying the poet Percy Bysshe Shelley, less than three weeks after his first wife, Harriet, was found drowned in the Serpentine in Hyde Park. This James Baldwin is the Indiana educator and textbook writer who lived from 1841 to 1925, unrelated to the twentieth-century novelist.</li>
 						<li>It is systematic: “Mrs. Shelley” goes to Percy 221 times; when we read every one, 218 were Mary and 3 Harriet. 104 of those wrong links survive our threshold, more than Mary’s own counted total of 94.</li>
 						<li>Women are named through marriage and through men’s surnames, so these errors are not noise: their mentions fall below the line or are credited to a husband or a son.</li>
 						<li>Confident, wrong, and above the line.</li>
@@ -1226,6 +1341,7 @@
 						<li>Optional pair (this card and the next); cut both if time is short. Expect the literary scholars to beat the data scientists here.</li>
 						<li>1822, a pamphlet on English hexameters: “the feet of the Laureate’s hexameters”. Who is the Laureate?</li>
 						<li>[Click] Robert Southey, Laureate 1813–43, whose <em>A Vision of Judgement</em> (1821) is in hexameters. [Click] Silent: the machine never links “the Laureate” to a person.</li>
+						<li><strong>Background, in plain words.</strong> The Poet Laureate is a poet appointed by the monarch to an honorary royal post, held by one poet at a time, and in 1822 that poet was Robert Southey. His poem A Vision of Judgement, published in 1821, imagines the soul of the late King George III arriving in heaven, and he wrote it in English hexameters, the six-foot line of Homer and Virgil, with a preface defending the experiment. In Greek and Latin verse a foot, the basic unit of the line, was measured by quantity, meaning whether its syllables were long or short. Samuel Tillbrook, a clergyman and a Fellow of Peterhouse, Cambridge, meaning one of the scholars who governed the college, applied that test in his 1822 book Historical and Critical Remarks upon the Modern Hexametrists, and upon Mr. Southey&rsquo;s Vision of Judgment. Southey wrote back to him in June 1822, calling the objections to his own hexameters ill founded because they tested English verse by the rules of Greek and Latin prosody, the study of metre.</li>
 						<li>Who the Laureate is depends on the date. The machine has no date.</li>
 						<li>ReFinED on “Laureate’s”: not found (no span covers it on this page). Even “Southey”, named a few lines later, is linked to Robert Southey (Q216838) at only 0.8946, just under 0.9.</li>
 						<li>From the archive:<ul>
@@ -1270,6 +1386,7 @@
 					<aside class="notes">
 						<li>A century later, the same complaint, word for word: “In the Laureate’s hexameters …”. Same question: who?</li>
 						<li>[Click] Robert Bridges, Laureate 1913–30, who wrote English hexameters by quantity. [Click] Silent again.</li>
+						<li><strong>Background, in plain words.</strong> The writer is William Ralph Inge, Dean of St Paul&rsquo;s Cathedral in London from 1911 to 1934, a classical scholar by training who was nicknamed the Gloomy Dean for his pessimistic views. His essay appeared in 1922 in Essays by Divers Hands, the transactions of the Royal Society of Literature, at a time when the Poet Laureate, the poet appointed by the Crown to an honorary post held for life, was Robert Bridges. Bridges had spent years on quantitative verse, which measures lines by long and short syllables the way Greek and Latin poets did. In Ibant Obscuri (1916) he turned Aeneas&rsquo;s journey through the underworld, from Book Six of Virgil&rsquo;s Aeneid, into English hexameters, the line of six metrical feet used by Homer and Virgil, with the Latin printed between his lines. Inge&rsquo;s complaint rests on the classical rule that a vowel followed by two consonants makes a syllable long &ldquo;by position&rdquo;, so in his example &ldquo;fallen from heaven&rdquo; a syllable we say quickly has to count as long.</li>
 						<li>Question: the answer is on the title page, not in the sentence. Should a linker be allowed to read the book’s date? Which other names only resolve once you know when the book was printed?</li>
 						<li>A title names a role; the holder changes with the date or passes down a family. Without the date, the linker returns the office, the best-known holder, or the place.</li>
 						<li>ReFinED on “Laureate’s”: not found (no span covers it on this page). “Bridges”, named in the same sentence, is found twice on the page but linked to nothing.</li>
@@ -1319,6 +1436,7 @@
 					<aside class="notes">
 						<li>Longfellow’s sonnet: “O sightless bard, England’s Mæonides!” What will the machine say?</li>
 						<li>[Click] Mæonides is Homer’s patronymic; “England’s Mæonides”, the sightless bard, is Milton. Milton called Homer “blind Mæonides”; Longfellow returns the compliment.</li>
+						<li><strong>Background, in plain words.</strong> Longfellow&rsquo;s sonnet &ldquo;Milton&rdquo; first appeared in The Masque of Pandora and Other Poems in 1875. It watches waves break on a beach and then compares their rise and fall to Milton&rsquo;s verse, ending on a &ldquo;ninth wave&rdquo; that floods the soul. Milton was completely blind by 1652 and composed Paradise Lost by dictating it to friends and relatives who wrote the lines down, and ancient tradition pictured Homer as blind too. Latin poets such as Ovid called Homer Mæonides, a name read either as a patronymic, a name formed from a father&rsquo;s name, meaning &ldquo;son of Maeon&rdquo;, or as &ldquo;the man from Mæonia&rdquo;, an old name for Lydia, or part of it, in what is now western Turkey. Around 1900 American rhetoric textbooks quoted the sonnet, among them Frances Lewis&rsquo;s Inductive Lessons in Rhetoric (1901) and Rose Kavana and Arthur Beatty&rsquo;s Composition and Rhetoric (1902), a high-school course from Chicago.</li>
 						<li>[Click] The machine: Homer, 0.93, above the line. Phone poll: whose canon should this sentence feed: the poet named, the poet meant, or both?</li>
 						<li>Comparison was one of the main ways canons were built. The linker credits the yardstick and erases the poet being praised. Deciding what counts as a mention is a modelling decision, not a cleanup step.</li>
 						<li>Homer’s patronymic, used to praise Milton. Whose mention is it?</li>
@@ -1369,6 +1487,7 @@
 					<aside class="notes">
 						<li>For a data-science audience. 1839, on Scott’s imitators and their similes, “so obtrusively frequent, as to remind us of Bayes’ rule for writing dialogue: ever make a simile when you are surprised.” Hands up if you read Thomas Bayes.</li>
 						<li>[Click] So did the machine. Mr. Bayes is John Dryden, as caricatured in Buckingham’s The Rehearsal (1671). [Click] Thomas Bayes, at 0.55: below the line, so it does not count.</li>
+						<li><strong>Background, in plain words.</strong> The writer is George Moir, Professor of Rhetoric at the University of Edinburgh, and the passage comes from his article on modern romance and the novel for the seventh edition of the Encyclopaedia Britannica, which this 1839 volume reprints. Mr. Bayes is the playwright in The Rehearsal, first staged in 1671 and credited to George Villiers, Duke of Buckingham, with help from others; it is a burlesque, a comic imitation that mocks a style, aimed at the heroic plays of John Dryden. The name points to the bays, the laurel wreath of the Poet Laureate, the poet appointed by the Crown, a post Dryden then held, and it stuck: a 1682 verse attack on Dryden usually credited to Thomas Shadwell is called The Medal of John Bayes. The rule comes in Act Two, when Prince Prettyman falls asleep in the middle of a speech and Bayes explains that Cloris must now make a simile because she is surprised, since &ldquo;&rsquo;tis the new way of writing.&rdquo; The play was revived in London for about a century, and David Garrick had a famous success as Bayes in 1742.</li>
 						<li>Question: the line saved us because the model hesitated. What happens when the prior is just as wrong and the model is sure?</li>
 						<li>Then it is Heidegger, at 0.998, and a Swiss opera impresario turns Martin Heidegger into a poet. The prior is today’s fame. Mentions dated before a person was born are a free error check.</li>
 						<li>The machine’s prior: Bayes’ theorem. The line saves us, this time.</li>
@@ -2311,6 +2430,19 @@
 						<li>[ <em>b<sup>1</sup><sub>i</sub>&#8202;t</em> &mdash; poem <em>i</em>&rsquo;s own slope through time, i.e. its trajectory. This <em>b<sup>1</sup></em> is the number we read off: positive = gaining ground, negative = fading. ]</li>
 						<li>[ <em>u<sub>a(i)</sub></em> &mdash; an author-level shift: poems by the same author are pooled, so a single poem isn&rsquo;t credited (or blamed) for its author&rsquo;s general standing. ]</li>
 						<li>[ What makes it <em>beta-binomial</em>: the response, <em>k<sub>it</sub> ~ Beta-Binomial(n<sub>t</sub>, p<sub>it</sub>)</em>. The Beta layer lets <em>p<sub>it</sub></em> carry extra variance, soaking up the overdispersion a plain binomial can&rsquo;t &mdash; a few superstar poems spike far more than binomial noise allows. ]</li>
+						<li>[Plain-language walkthrough of the formula, for you or if someone asks.]</li>
+						<li><strong>What we model.</strong> For every poem <em>i</em> and every decade <em>t</em> we count two things: <em>n<sub>t</sub></em>, how many PPA works from that decade are in the analysis, and <em>k<sub>it</sub></em>, how many of those quote the poem at least once. Divide the second by the first and you get the poem&rsquo;s prevalence, <em>p<sub>it</sub></em>: the share of that decade&rsquo;s prosody books that reached for this poem. A prevalence of 0.10 in the 1850s means one in ten books from the 1850s quotes it.</li>
+						<li><strong>Why &ldquo;logit&rdquo;.</strong> A share has to stay between 0 and 1, which makes it awkward to add things to. The logit, or log-odds, stretches it onto an open scale: a share of one half becomes 0, small shares become negative numbers, large shares positive ones. On that scale we can simply add up the pieces on the right, and at the end the model turns the total back into a share, so it can never predict more than 100% or less than 0%. Odds are just &ldquo;for every book that quotes it, how many don&rsquo;t&rdquo;: a share of 0.10 is odds of one to nine.</li>
+						<li><strong>&alpha; (alpha), the starting level.</strong> One number: how much the average poem in our set gets quoted, across the board.</li>
+						<li><strong><em>s</em>(<em>t</em>), the shared time curve.</strong> A smooth line through the decades that every poem sits on: the tide of quotation rising and falling for all poems together. It is a spline, a flexible curve that can bend where the data bends instead of being forced into a straight line. Together, &alpha; + <em>s</em>(<em>t</em>) is &ldquo;what the average poem was doing in decade <em>t</em>&rdquo;.</li>
+						<li><strong><em>b</em><sup>0</sup><sub><em>i</em></sub>, the poem&rsquo;s own baseline.</strong> Does this poem usually sit above or below the average poem? Gray&rsquo;s Elegy sits far above, a minor poem below. It is one fixed offset for the poem across its whole life in the archive.</li>
+						<li><strong><em>b</em><sup>1</sup><sub><em>i</em></sub> &middot; <em>t</em>, the poem&rsquo;s own slope: the number we care about.</strong> Positive means the poem pulls ahead of the tide, decade after decade; negative means it falls behind. It is measured in log-odds per decade, so a slope of +0.25 means the odds of being quoted grow by about 28% per decade relative to the average poem. The key word is relative: a poem with a negative slope can still be quoted more often in absolute terms, if the tide rises faster than it does.</li>
+						<li><strong><em>u</em><sub><em>a</em>(<em>i</em>)</sub>, the author shift.</strong> One adjustment per author, shared by all of that author&rsquo;s poems. It keeps a poem from being credited, or blamed, for its author&rsquo;s general standing. Shakespeare brings thirty-seven plays plus the sonnets; Gray&rsquo;s presence rests almost entirely on the Elegy. Each poem still keeps its own baseline and its own slope.</li>
+						<li><strong>Beta-binomial: how much the counts may scatter.</strong> A plain binomial would be right if every book were an independent coin flip with the same chance of quoting the poem. Real quotation is lumpier: fashions, anthologies copying anthologies, a textbook reprinted, superstar poems that spike. The beta-binomial keeps the same average (<em>n<sub>t</sub></em> &times; <em>p<sub>it</sub></em>) but allows more scatter around it, controlled by one extra number fitted from the data (&kappa;, kappa). Without it the model would mistake chance spikes for real trends and be overconfident.</li>
+						<li><strong>Partial pooling, the &ldquo;hierarchical&rdquo; part.</strong> All the poems&rsquo; baselines and slopes are estimated together, as variations on a common pattern. A poem with lots of evidence speaks for itself. A poem with thin evidence is pulled gently toward what poems typically do, so one lucky decade cannot turn it into a star riser.</li>
+						<li><strong>Eligibility window.</strong> A poem is only scored in decades when it could have been quoted, starting eighteen years after the poet&rsquo;s birth. Otherwise a Tennyson poem&rsquo;s zero quotations in the 1700s would count as neglect, when the poem did not exist yet.</li>
+						<li><strong>Bayesian: a range, not a single number.</strong> The model gives each poem a distribution of plausible slopes. We call a poem a riser or a decliner only when its 95% credible interval lies entirely above or below zero. Anchors have a slope close to zero (within &plusmn;0.03) with a tight interval.</li>
+						<li><strong>Which poems.</strong> Only poems with enough evidence to show change: quoted in at least 30 PPA works, spread over at least 10 different decades, between 1694 and 1920. That leaves 896 poems. (Fitted in Python with Bambi, on top of PyMC.)</li>
 					</aside>
 				</section>
 

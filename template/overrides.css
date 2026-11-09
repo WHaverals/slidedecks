@@ -1,0 +1,56 @@
+/* Deck typography overrides, loaded last.
+ *
+ * The shared theme (theme/wouter.css) keeps its Fraunces-era defaults so
+ * published decks stay exactly as they are; this file gives a new deck the
+ * current typography from slide one. Keep it and extend it with deck-local
+ * rules as the deck grows (see decks/2026-11-poetic-canon-berkeley/overrides.css
+ * for a grown example).
+ *
+ * Heading serif here: Alegreya. Other approved choices: Spectral, Libre
+ * Caslon Text, Old Standard TT, Ibarra Real Nova, Cardo — to switch, change
+ * the Google Fonts link in index.html and the font-family rules below.
+ */
+
+/* Headings: Alegreya replaces the theme's Fraunces */
+:root {
+	--r-heading-font: 'Alegreya', Georgia, serif;
+}
+.reveal .slides section.title-slide .title-slide__subtitle,
+.reveal .floating-frag {
+	font-family: 'Alegreya', Georgia, serif;
+}
+
+/* Emphasis keeps the surrounding face: no serif accent words in running text */
+.reveal em {
+	font-family: inherit;
+}
+.reveal .slides section h2 em {
+	color: inherit;
+}
+
+/* No accent bar above the title and closing blocks */
+.reveal .slides section.title-slide .title-slide__main::before,
+.reveal .slides section.closing-slide .closing-slide__main::before {
+	background: transparent !important;
+}
+
+/* Eyebrows: sentence case, no tracking, accent ink */
+.reveal .slides section.title-slide .title-slide__eyebrow,
+.reveal .slides section.closing-slide .closing-slide__eyebrow {
+	font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+	font-weight: 600;
+	letter-spacing: 0 !important;
+	text-transform: none !important;
+}
+.reveal .slides section.title-slide .title-slide__eyebrow,
+.reveal .slides section.title-slide .title-slide__eyebrow * {
+	color: var(--w-accent) !important;
+}
+
+/* Section numbers: plain figures in the body face, not tracked mono */
+.reveal .slides section.section-slide .section-slide__number {
+	font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+	font-weight: 600;
+	font-size: 0.7em;
+	letter-spacing: 0 !important;
+}
