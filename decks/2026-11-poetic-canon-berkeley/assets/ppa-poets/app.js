@@ -37,6 +37,9 @@
   (async function main() {
     const [net, time] = await Promise.all([getJSON(`${BASE}data/network.json?v=${DATA_VERSION}`), getJSON(`${BASE}data/time.json?v=${DATA_VERSION}`)]);
     setStatus("Building the map…");
+    // Berkeley deck copy: per-community colour overrides set in embed.html (the published data stays as is).
+    const recolor = window.PPA_POETS_GROUP_COLORS || {};
+    for (const g of net.groups) if (recolor[g.id]) g.color = recolor[g.id];
 
     const ND = net.nodes;
     const ED = net.edges;
