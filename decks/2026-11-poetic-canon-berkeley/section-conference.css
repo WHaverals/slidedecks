@@ -422,6 +422,11 @@
 	line-height: 1.25;
 }
 
+/* a session that filled most of the day (Thursday's two panels): about two thirds of the column */
+.reveal .conf-block--long {
+	flex: 3.9;
+}
+
 /* the quote row (grid row 2): the maxim spans Wed-Thu, the Fri and Sat quotes sit under their days */
 .reveal .conf-day__rule {
 	grid-row: 2;
