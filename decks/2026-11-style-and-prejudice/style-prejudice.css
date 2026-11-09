@@ -1,0 +1,1646 @@
+/* Style and Prejudice: deck components.
+   Duotone on warm paper: lapis for the human side, burnt orange for the AI side,
+   carried over from the original deck's blue and orange A/B cards.
+
+   Sizes are px tokens in the 960 x 700 slide canvas (reveal scales the canvas),
+   so they never compound the way nested em values do.
+
+   Type scale
+     title     54  slide titles (Libre Caslon Text, regular), one line
+     display-m 38  big quotes, key statements
+     display-s 30  numerals and short display lines
+     lead      29  prose that carries a slide
+     verse     24  verse and short quoted lines (Caslon italic)
+     body      23  cards, tables, paragraphs
+     exhibit   20  long quoted texts shown as exhibits
+     label     18  labels, legends, table heads, chart text
+     note      15  captions, sources, footnotes (smallest size in the deck)
+   Hero numerals (76 px) and the theme's section titles (83 px) sit outside the scale. */
+
+:root {
+	--sp-human: #2e4fa3;
+	--sp-human-soft: #edf0f9;
+	--sp-human-edge: rgba(46, 79, 163, 0.55);
+	--sp-ai: #c25e2a;
+	--sp-ai-ink: #a04a18;
+	--sp-ai-soft: #faf0e6;
+	--sp-ai-edge: rgba(194, 94, 42, 0.55);
+	--sp-ink: #1c1917;
+	--sp-grey: #57534e;
+	--sp-card: #f8f3e8;
+	--sp-card-edge: rgba(28, 25, 23, 0.14);
+	--sp-mark: rgba(245, 209, 90, 0.6);
+	--sp-mark-soft: rgba(245, 209, 90, 0.38);
+	--sp-faint: #78726b;
+	--sp-serif: 'Libre Caslon Text', Georgia, serif;
+
+	/* the dark of the section slides (set per slide as data-background-color in index.html:
+	   reveal cannot read a variable there). Verdigris ink, a darker step of the accent. */
+	--sp-dark: #16352f;
+
+	/* the exercise cards: three yellows, so the stack reads as separate sheets */
+	--sp-sheet-1: #f1e5bd;
+	--sp-sheet-2: #f6edd0;
+	--sp-sheet-3: #fbf5e1;
+	--sp-sheet-edge: rgba(112, 90, 24, 0.2);
+
+	--t-title: 54px;
+	--t-title-sm: 46px;
+	--t-display-m: 38px;
+	--t-display-s: 30px;
+	--t-lead: 29px;
+	--t-verse: 24px;
+	--t-body: 23px;
+	--t-exhibit: 20px;
+	--t-label: 18px;
+	--t-note: 15px;
+}
+
+/* ---------- frame: one title position, body centred below it ---------- */
+
+.reveal .slides section.frame {
+	box-sizing: border-box;
+	height: 100%;
+	display: flex !important;
+	flex-direction: column;
+	justify-content: center;
+	padding: 118px 0 40px;
+}
+
+.reveal .slides section.frame > h2 {
+	position: absolute;
+	top: 26px;
+	left: 0;
+	right: 0;
+	margin: 0;
+	font-size: var(--t-title);
+	font-weight: 400;
+	letter-spacing: 0;
+	line-height: 1.15;
+	white-space: nowrap;
+}
+
+/* text styles, set with specificity that beats the theme's p { max-width: 42em } */
+.reveal .slides section .lead {
+	margin: 0 0 0.85em;
+	max-width: 880px;
+	font-size: var(--t-lead);
+	line-height: 1.42;
+	text-wrap: pretty;
+}
+
+.reveal .slides section .body {
+	margin: 0 0 0.8em;
+	max-width: 880px;
+	font-size: var(--t-body);
+	line-height: 1.5;
+	text-wrap: pretty;
+}
+
+.reveal .slides section .note {
+	margin: 0;
+	max-width: 820px;
+	font-size: var(--t-note);
+	line-height: 1.45;
+	color: var(--sp-grey);
+}
+
+.reveal .slides section .foot {
+	margin: 18px 0 0;
+	max-width: 840px;
+	font-size: var(--t-note);
+	line-height: 1.45;
+	color: var(--sp-grey);
+	text-wrap: pretty;
+}
+
+/* keeps a hyphenated compound on one line */
+.reveal .nobr {
+	white-space: nowrap;
+}
+
+/* ---------- statements and big quotes ---------- */
+
+.reveal .slides section.statement-slide,
+.reveal .slides section.bigquote-slide {
+	box-sizing: border-box;
+	height: 100%;
+	display: flex !important;
+	flex-direction: column;
+	justify-content: center;
+	padding: 0 52px;
+}
+
+.reveal .statement {
+	max-width: 17em;
+	margin: 0;
+	font-family: var(--sp-serif);
+	font-size: 54px;
+	font-weight: 400;
+	line-height: 1.3;
+	color: var(--sp-ink);
+	text-wrap: balance;
+}
+
+.reveal .statement--quote {
+	max-width: 15em;
+	font-style: italic;
+}
+
+.reveal .statement-src {
+	margin: 26px 0 0;
+	max-width: 760px;
+	font-size: var(--t-label);
+	color: var(--sp-grey);
+}
+
+.reveal .bigquote {
+	width: auto;
+	max-width: 840px;
+	margin: 0;
+	padding: 0;
+	border: none;
+	background: none;
+	box-shadow: none;
+}
+
+.reveal .bigquote p {
+	margin: 0;
+	max-width: none;
+	font-family: var(--sp-serif);
+	font-style: italic;
+	font-size: var(--t-display-m);
+	font-weight: 400;
+	line-height: 1.35;
+	color: var(--sp-ink);
+	text-wrap: pretty;
+}
+
+/* the opening quotation mark hangs in the margin, so the lines start flush */
+.reveal .bigquote--hang {
+	max-width: 880px;
+	padding-left: 22px;
+}
+
+.reveal .bigquote--hang p {
+	font-size: var(--t-title);
+	line-height: 1.28;
+	text-indent: -22px;
+	text-wrap: balance;
+}
+
+.reveal .bigquote footer {
+	margin-top: 22px;
+	font-style: normal;
+	font-size: var(--t-label);
+	color: var(--sp-grey);
+}
+
+.reveal .bigquote mark {
+	background: var(--sp-mark);
+	color: inherit;
+	padding: 0 0.08em;
+	border-radius: 2px;
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+.reveal .bigquote--coda p {
+	font-size: var(--t-display-s);
+}
+
+/* ---------- screenshots ---------- */
+
+.reveal .shot {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+
+.reveal .shot img {
+	box-sizing: border-box;
+	display: block;
+	max-width: 100%;
+	max-height: 480px;
+	margin: 0;
+	padding: 10px;
+	background: #fff;
+	border: 1px solid var(--sp-card-edge);
+	border-radius: 6px;
+	box-shadow: 0 4px 16px rgba(28, 25, 23, 0.08);
+}
+
+.reveal .shot figcaption {
+	max-width: 100%;
+	font-size: var(--t-note);
+	line-height: 1.4;
+	color: var(--sp-grey);
+}
+
+.reveal .shot-split {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	gap: 40px;
+	align-items: center;
+}
+
+.reveal .shot-split--rev {
+	grid-template-columns: auto minmax(0, 1fr);
+}
+
+.reveal .shot-split .shot {
+	align-items: flex-start;
+}
+
+.reveal .shot-split .shot img {
+	max-height: 440px;
+	max-width: 520px;
+}
+
+.reveal .shot-split__points .lead {
+	max-width: 440px;
+}
+
+.reveal .shot-split__points .body {
+	max-width: 440px;
+	color: var(--sp-grey);
+}
+
+.reveal .shot--wide img {
+	max-height: 500px;
+}
+
+/* ---------- humanist quotes ---------- */
+
+.reveal .qstack {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	max-width: 900px;
+}
+
+.reveal .qstack .qitem {
+	width: auto;
+	margin: 0;
+	padding: 0;
+	background: none;
+	box-shadow: none;
+	border: none;
+}
+
+.reveal .qstack .qitem p {
+	margin: 0;
+	max-width: none;
+	font-family: var(--sp-serif);
+	font-style: italic;
+	font-size: 29px;
+	line-height: 1.38;
+	color: var(--sp-ink);
+}
+
+.reveal .qstack .qitem footer {
+	margin-top: 8px;
+	font-style: normal;
+	font-size: var(--t-label);
+	color: var(--sp-grey);
+}
+
+/* key phrases: a very light highlighter band behind the words, same on every quote and label */
+.reveal .qstack mark,
+.reveal dl.lit dt mark {
+	background: linear-gradient(
+		to top,
+		transparent 0.04em,
+		var(--sp-mark-soft) 0.04em,
+		var(--sp-mark-soft) 1.08em,
+		transparent 1.08em
+	);
+	color: inherit;
+	padding: 0.02em 0.14em;
+	margin: 0 -0.14em;
+	border-radius: 3px;
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+/* ---------- Queneau: book, exercises, wall ---------- */
+
+.reveal .book {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	gap: 44px;
+	align-items: center;
+}
+
+.reveal .book__facts .body {
+	max-width: 500px;
+	margin: 0 0 1em;
+}
+
+.reveal .book__cover,
+.reveal .coda__cover {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+
+.reveal .book__cover img,
+.reveal .coda__cover img {
+	display: block;
+	height: 440px;
+	width: auto;
+	margin: 0;
+	border: 1px solid var(--sp-card-edge);
+	border-radius: 4px;
+	box-shadow:
+		0 1px 2px rgba(28, 25, 23, 0.06),
+		0 10px 28px rgba(28, 25, 23, 0.12);
+}
+
+.reveal .book__cover figcaption,
+.reveal .coda__cover figcaption {
+	max-width: 260px;
+	font-size: var(--t-note);
+	line-height: 1.4;
+	color: var(--sp-grey);
+	text-align: center;
+}
+
+.reveal .ex-stage {
+	/* the photo strip is pinned to the slide (see .ex-strip); this only clears its width */
+	padding-right: 176px;
+}
+
+.reveal .ex-card {
+	box-sizing: border-box;
+	max-width: 720px;
+	background: var(--sp-sheet-2);
+	border: 1px solid var(--sp-sheet-edge);
+	border-radius: 12px;
+	padding: 18px 24px 20px;
+	box-shadow: 0 6px 20px rgba(28, 25, 23, 0.08);
+}
+
+.reveal .ex-card h3 {
+	margin: 0 0 14px;
+	font-size: var(--t-body);
+	font-weight: 700;
+	text-align: center;
+}
+
+.reveal .ex-card p {
+	margin: 0 0 12px;
+	max-width: none;
+	font-size: var(--t-exhibit);
+	line-height: 1.5;
+}
+
+.reveal .ex-card p:last-child {
+	margin-bottom: 0;
+}
+
+.reveal .ex-card--haiku p {
+	font-family: var(--sp-serif);
+	font-style: italic;
+	text-align: center;
+	font-size: var(--t-verse);
+	line-height: 1.55;
+}
+
+/* later cards cover the bodies of earlier ones; only their headers peek out */
+.reveal .ex-stack {
+	position: relative;
+	height: 505px;
+}
+
+.reveal .ex-stack .ex-card {
+	position: absolute;
+	left: 0;
+	right: 0;
+}
+
+.reveal .ex-stack .ex-card:nth-child(1) {
+	top: 0;
+	z-index: 1;
+	background: var(--sp-sheet-1);
+	transform: rotate(-0.5deg);
+}
+
+.reveal .ex-stack .ex-card:nth-child(2) {
+	top: 150px;
+	left: 14px;
+	z-index: 2;
+	background: var(--sp-sheet-2);
+	box-shadow:
+		0 -3px 12px rgba(28, 25, 23, 0.1),
+		0 6px 20px rgba(28, 25, 23, 0.08);
+	transform: rotate(0.45deg);
+}
+
+.reveal .ex-stack .ex-card:nth-child(3) {
+	top: 300px;
+	left: 6px;
+	z-index: 3;
+	background: var(--sp-sheet-3);
+	box-shadow:
+		0 -3px 12px rgba(28, 25, 23, 0.1),
+		0 6px 20px rgba(28, 25, 23, 0.08);
+	transform: rotate(-0.3deg);
+}
+
+/* The photo strip sits at the same place on "One story" and on the stack slide after it:
+   pinned to the slide, not placed by the content beside it. Its credit runs up the right
+   edge, bottom to top, quiet and short. */
+.reveal .ex-strip {
+	position: absolute;
+	top: 104px;
+	right: 0;
+	height: 496px;
+	margin: 0;
+	display: flex;
+	flex-direction: row;
+	align-items: stretch;
+	gap: 9px;
+}
+
+.reveal .ex-strip img {
+	display: block;
+	height: 100%;
+	max-height: none;
+	width: auto;
+	margin: 0;
+	border: 1px solid var(--sp-card-edge);
+	border-radius: 3px;
+	box-shadow: 0 8px 22px rgba(28, 25, 23, 0.14);
+}
+
+.reveal .ex-strip figcaption {
+	writing-mode: vertical-rl;
+	transform: rotate(180deg);
+	font-size: var(--t-note);
+	line-height: 1.3;
+	color: var(--sp-faint);
+	white-space: nowrap;
+	text-align: start;
+}
+
+.reveal .wall {
+	display: grid;
+	grid-template-columns: repeat(5, minmax(0, 1fr));
+	gap: 0 10px;
+	padding: 0 4px;
+}
+
+.reveal .wall ul {
+	display: block;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	max-width: none;
+	min-width: 0;
+}
+
+.reveal .wall li {
+	font-size: var(--t-label);
+	line-height: 1.38;
+	color: var(--sp-grey);
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.reveal .wall li.is-picked {
+	transition: background-color 0.45s ease, color 0.45s ease;
+	border-radius: 2px;
+	padding: 0 4px;
+	margin: 0 -4px;
+	width: fit-content;
+	max-width: 100%;
+}
+
+.reveal .wall-on.visible ~ .wall li.is-picked {
+	background: color-mix(in srgb, var(--w-accent) 17%, transparent);
+	color: var(--sp-ink);
+	font-weight: 600;
+}
+
+/* ---------- matched pair ---------- */
+
+.reveal .twins {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 24px;
+	margin: 6px 0 20px;
+}
+
+.reveal .twin {
+	border-radius: 12px;
+	padding: 16px 22px 18px;
+	box-sizing: border-box;
+}
+
+.reveal .twin--q {
+	background: var(--sp-human-soft);
+	border: 2px solid var(--sp-human-edge);
+}
+
+.reveal .twin--ai {
+	background: var(--sp-ai-soft);
+	border: 2px solid var(--sp-ai-edge);
+}
+
+.reveal .twin__who {
+	margin: 0 0 10px;
+	max-width: none;
+	font-size: var(--t-label);
+	font-weight: 700;
+	line-height: 1.3;
+}
+
+.reveal .twin--q .twin__who {
+	color: var(--sp-human);
+}
+
+.reveal .twin--ai .twin__who {
+	color: var(--sp-ai-ink);
+}
+
+.reveal .twin__verse {
+	margin: 0;
+	max-width: none;
+	font-family: var(--sp-serif);
+	font-style: italic;
+	font-size: var(--t-verse);
+	line-height: 1.5;
+	white-space: nowrap;
+}
+
+/* ---------- the A/B game ---------- */
+
+.reveal .slides section.game-slide,
+.reveal .slides section.case-slide,
+.reveal .slides section.rationale-slide {
+	box-sizing: border-box;
+	height: 100%;
+	display: flex !important;
+	flex-direction: column;
+	justify-content: center;
+	padding: 36px 0 48px;
+}
+
+.reveal .game-cond {
+	display: flex;
+	align-items: baseline;
+	gap: 18px;
+	margin: 0 0 16px;
+	max-width: none;
+}
+
+.reveal .game-cond__name {
+	font-family: var(--sp-serif);
+	font-size: var(--t-display-m);
+	font-weight: 400;
+	color: var(--sp-ink);
+}
+
+.reveal .game-cond__detail {
+	font-size: var(--t-label);
+	color: var(--sp-grey);
+}
+
+.reveal .game-q {
+	margin: 0 0 40px;
+	max-width: none;
+	padding: 11px 22px;
+	background: rgba(28, 25, 23, 0.055);
+	border-radius: 6px;
+	font-size: var(--t-lead);
+	text-align: center;
+}
+
+.reveal .game-q strong {
+	font-weight: 700;
+}
+
+.reveal .game-board {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 30px;
+	align-items: start;
+}
+
+.reveal .ab-card {
+	position: relative;
+	box-sizing: border-box;
+	min-height: 110px;
+	padding: 16px 22px 18px;
+	border-radius: 12px;
+}
+
+.reveal .ab-card--q {
+	background: var(--sp-human-soft);
+	border: 2px solid var(--sp-human-edge);
+}
+
+.reveal .ab-card--ai {
+	background: var(--sp-ai-soft);
+	border: 2px solid var(--sp-ai-edge);
+}
+
+.reveal .ab-card__tag {
+	position: absolute;
+	top: -42px;
+	right: 12px;
+	margin: 0;
+	font-family: var(--sp-serif);
+	font-size: var(--t-display-m);
+	font-weight: 700;
+	color: var(--sp-human);
+}
+
+.reveal .ab-card__tag--ai {
+	color: var(--sp-ai);
+}
+
+.reveal .ab-card__text {
+	margin: 0;
+	max-width: none;
+	font-size: var(--t-body);
+	line-height: 1.5;
+	color: var(--sp-ink);
+}
+
+.reveal .ab-card__label {
+	margin: 0 0 10px;
+	max-width: none;
+	font-size: var(--t-label);
+	font-weight: 700;
+	line-height: 1.3;
+}
+
+.reveal .ab-card__label--q {
+	color: var(--sp-human);
+}
+
+.reveal .ab-card__label--ai {
+	color: var(--sp-ai-ink);
+}
+
+/* ---------- design matrix ----------
+   The table is the whole slide: rules above, under the header and below, numbers set large,
+   the unit and the headcount stacked beneath them. */
+
+.reveal .matrix {
+	width: 100%;
+	margin: 0;
+	border-collapse: collapse;
+}
+
+.reveal .matrix th,
+.reveal .matrix td {
+	padding: 38px 18px;
+	border-bottom: 1px solid rgba(28, 25, 23, 0.16);
+	text-align: left;
+	font-size: var(--t-body);
+	line-height: 1.3;
+	vertical-align: top;
+	font-variant-numeric: lining-nums tabular-nums;
+}
+
+.reveal .matrix thead th,
+.reveal .matrix thead td {
+	padding: 14px 18px;
+	border-top: 2px solid var(--sp-ink);
+	border-bottom: 1px solid var(--sp-ink);
+	font-size: var(--t-body);
+	font-weight: 700;
+	color: var(--sp-ink);
+}
+
+.reveal .matrix tbody tr:last-child th,
+.reveal .matrix tbody tr:last-child td {
+	border-bottom: 2px solid var(--sp-ink);
+}
+
+.reveal .matrix tbody th {
+	width: 292px;
+	font-weight: 700;
+}
+
+.reveal .matrix td {
+	white-space: nowrap;
+}
+
+.reveal .matrix__human {
+	color: var(--sp-human);
+}
+
+.reveal .matrix__ai {
+	color: var(--sp-ai-ink);
+}
+
+.reveal .matrix__sub {
+	display: block;
+	margin-top: 6px;
+	font-size: var(--t-label);
+	line-height: 1.35;
+	font-weight: 400;
+	color: var(--sp-grey);
+}
+
+.reveal .matrix td strong {
+	display: block;
+	font-family: var(--sp-serif);
+	font-size: var(--t-display-m);
+	font-weight: 700;
+	line-height: 1.1;
+	color: var(--sp-ink);
+}
+
+.reveal .matrix__unit {
+	display: block;
+	margin-top: 2px;
+	font-size: var(--t-body);
+	color: var(--sp-ink);
+}
+
+/* ---------- charts ---------- */
+
+.reveal .rates-stage {
+	display: grid;
+	grid-template-columns: 130px 1fr;
+	gap: 14px;
+	align-items: end;
+}
+
+.reveal .rates-chart {
+	height: 410px;
+}
+
+.reveal .rates-aside {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	gap: 16px;
+	padding-bottom: 54px;
+}
+
+.reveal .bubble-figure {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.reveal .bubble-figure img {
+	display: block;
+	height: 190px;
+	width: auto;
+	margin: 0;
+}
+
+/* the robot and its question join when the AI bars do (beat 3) */
+.reveal .bubble-figure--robot {
+	opacity: 0;
+	transition: opacity 0.5s ease 0.25s;
+}
+
+.reveal [data-beat='3'].visible ~ .rates-stage .bubble-figure--robot {
+	opacity: 1;
+}
+
+/* Three columns, so the bars sit on the centre of the slide whether or not the robot has
+   appeared: the robot takes the left margin, the right one is left to the plot's balance. */
+.reveal .bias-stage {
+	display: grid;
+	grid-template-columns: 140px minmax(0, 1fr) 200px;
+	align-items: end;
+}
+
+.reveal .bias-chart {
+	grid-column: 2;
+	grid-row: 1;
+	height: 380px;
+}
+
+.reveal .bias-aside {
+	grid-column: 1;
+	grid-row: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-end;
+	padding-bottom: 36px;
+}
+
+.reveal .bias-aside img {
+	height: 232px;
+	width: auto;
+}
+
+/* the statistics under a chart: label size, centred under the plot */
+.reveal .slides section .statline {
+	margin: 16px auto 0;
+	max-width: 820px;
+	font-size: var(--t-label);
+	line-height: 1.45;
+	color: var(--sp-grey);
+	text-align: center;
+	text-wrap: balance;
+}
+
+.reveal .forest-chart {
+	height: 470px;
+}
+
+.reveal .styles-chart {
+	height: 462px;
+}
+
+.reveal .slides section .styles-foot {
+	max-width: 900px;
+	font-size: var(--t-label);
+	color: var(--sp-ink);
+}
+
+.reveal .criteria-chart {
+	height: 360px;
+}
+
+/* chart text, drawn in slide-space pixels */
+.reveal .chart-tick {
+	font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+	font-size: var(--t-label);
+	fill: var(--sp-grey);
+}
+
+.reveal .chart-tick--cat {
+	font-size: 20px;
+	font-weight: 600;
+	fill: var(--sp-ink);
+}
+
+.reveal .chart-tick--row {
+	fill: var(--sp-ink);
+}
+
+.reveal .chart-tick--dim {
+	font-size: var(--t-note);
+	fill: var(--sp-grey);
+}
+
+.reveal .chart-tick--key {
+	font-size: var(--t-label);
+	font-weight: 700;
+	fill: var(--sp-ink);
+}
+
+.reveal .chart-axis-label {
+	font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+	font-size: var(--t-label);
+	font-weight: 600;
+	fill: var(--sp-grey);
+}
+
+.reveal .chart-value {
+	font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+	font-size: 20px;
+	font-weight: 700;
+	font-variant-numeric: lining-nums tabular-nums;
+}
+
+.reveal .chart-value--big {
+	font-size: var(--t-display-s);
+}
+
+.reveal .chart-value--row {
+	font-size: var(--t-label);
+	font-weight: 600;
+}
+
+.reveal .chart-sub {
+	font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+	font-size: var(--t-label);
+	font-variant-numeric: lining-nums tabular-nums;
+	fill: var(--sp-grey);
+}
+
+.reveal .chart-note {
+	font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+	font-size: 20px;
+	font-weight: 700;
+	fill: var(--sp-ink);
+}
+
+.reveal .chart-note--human {
+	fill: var(--sp-human);
+	font-size: var(--t-label);
+}
+
+.reveal .chart-hint {
+	font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+	font-size: var(--t-note);
+	fill: var(--sp-grey);
+}
+
+/* ---------- prior literature, criteria ---------- */
+
+/* ---------- case slides ---------- */
+
+.reveal .ecount {
+	display: inline-block;
+	margin-left: 12px;
+	font-size: var(--t-label);
+	font-weight: 700;
+	font-variant-numeric: lining-nums tabular-nums;
+	color: var(--sp-human);
+}
+
+.reveal .ecount--bad {
+	color: var(--sp-ai-ink);
+}
+
+/* the letter stays readable; the reveal adds the highlighter band */
+.reveal .emark {
+	border-radius: 2px;
+	padding: 0 2px;
+	background: transparent;
+	transition: background-color 0.4s ease;
+}
+
+.reveal .emarks-ctl.visible ~ .game-board .emark {
+	background: var(--sp-mark);
+	font-weight: 700;
+}
+
+.reveal .swing {
+	margin-top: 26px;
+}
+
+.reveal .swing__table {
+	width: 100%;
+	margin: 0;
+	font-size: var(--t-body);
+}
+
+.reveal .swing__table th,
+.reveal .swing__table td {
+	border-bottom: 1px solid rgba(28, 25, 23, 0.14);
+	padding: 10px 14px;
+	font-variant-numeric: lining-nums tabular-nums;
+}
+
+.reveal .swing__table thead th {
+	font-size: var(--t-label);
+	font-weight: 600;
+	color: var(--sp-grey);
+}
+
+.reveal .swing__table tbody th {
+	font-weight: 600;
+	text-align: left;
+}
+
+.reveal .swing__table td {
+	text-align: center;
+}
+
+.reveal .rationales {
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+	max-width: 860px;
+}
+
+.reveal .rationales--split {
+	flex-direction: row;
+	max-width: none;
+	gap: 40px;
+	margin-top: 30px;
+}
+
+.reveal .rationales--split .rationale {
+	flex: 1;
+}
+
+.reveal .rationale {
+	width: auto;
+	margin: 0;
+	padding: 0;
+	background: none;
+	box-shadow: none;
+	border: none;
+}
+
+.reveal .rationale p {
+	margin: 0;
+	max-width: none;
+	font-family: var(--sp-serif);
+	font-style: italic;
+	font-size: 29px;
+	line-height: 1.4;
+	color: var(--sp-ink);
+}
+
+.reveal .rationale footer {
+	margin-top: 8px;
+	font-style: normal;
+	font-size: var(--t-label);
+	color: var(--sp-grey);
+}
+
+/* science fiction: one row per condition */
+.reveal .scifi-table {
+	width: 100%;
+	margin: 22px 0 0;
+	border-collapse: collapse;
+}
+
+.reveal .scifi-table th,
+.reveal .scifi-table td {
+	padding: 10px 14px;
+	border-bottom: 1px solid rgba(28, 25, 23, 0.16);
+	text-align: left;
+	vertical-align: middle;
+	font-size: var(--t-exhibit);
+	line-height: 1.4;
+}
+
+.reveal .scifi-table thead th {
+	padding-bottom: 8px;
+	border-bottom: 1px solid var(--sp-ink);
+	font-size: var(--t-label);
+	font-weight: 700;
+	white-space: nowrap;
+}
+
+.reveal .scifi-table tbody th {
+	width: 172px;
+	font-weight: 700;
+}
+
+.reveal .scifi-table thead th:nth-child(2),
+.reveal .scifi-table td.scifi-table__n {
+	width: 196px;
+	white-space: nowrap;
+}
+
+.reveal .scifi-table td.scifi-table__n {
+	font-family: var(--sp-serif);
+	font-size: var(--t-display-s);
+	font-weight: 700;
+	line-height: 1.1;
+	font-variant-numeric: lining-nums;
+}
+
+.reveal .scifi-table td {
+	text-wrap: balance;
+}
+
+.reveal .scifi-table .rq {
+	font-family: var(--sp-serif);
+	font-style: italic;
+}
+
+/* ---------- rationale panels (native rebuild of the paper's SI figure) ---------- */
+
+.reveal .panels {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 28px;
+}
+
+.reveal .panel {
+	box-sizing: border-box;
+	padding: 18px 24px 22px;
+	background: #fff;
+	border: 1px solid var(--sp-card-edge);
+	border-radius: 12px;
+}
+
+.reveal .panel__cond {
+	margin: 0;
+	max-width: none;
+	font-size: var(--t-body);
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+.reveal .panel__key {
+	margin: 8px 0 14px;
+	max-width: none;
+	font-size: var(--t-label);
+	line-height: 1.45;
+	color: var(--sp-grey);
+}
+
+.reveal .panel__key strong {
+	font-weight: 700;
+}
+
+.reveal .panel__key .k-q {
+	color: var(--sp-human);
+}
+
+.reveal .panel__key .k-ai {
+	color: var(--sp-ai-ink);
+}
+
+.reveal .panel__text {
+	margin: 0;
+	max-width: none;
+	font-size: var(--t-exhibit);
+	line-height: 1.55;
+}
+
+.reveal .panel__text mark {
+	padding: 1px 3px;
+	border-radius: 3px;
+	color: inherit;
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+.reveal .panel__text mark.q {
+	background: color-mix(in srgb, var(--sp-human) 20%, transparent);
+}
+
+.reveal .panel__text mark.ai {
+	background: color-mix(in srgb, var(--sp-ai) 26%, transparent);
+}
+
+/* ---------- caveats ---------- */
+
+.reveal .cav {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 56px;
+}
+
+.reveal .cav h3 {
+	margin: 0 0 16px;
+	font-family: var(--sp-serif);
+	font-size: var(--t-display-s);
+	font-weight: 700;
+}
+
+.reveal .cav .body {
+	margin: 0 0 14px;
+	font-size: var(--t-exhibit);
+	line-height: 1.45;
+}
+
+.reveal .cav .body strong {
+	color: var(--sp-ink);
+	font-weight: 700;
+}
+
+/* ---------- takeaways, parallels, paper ---------- */
+
+.reveal .takeaways {
+	margin: 0;
+	max-width: 880px;
+}
+
+.reveal .takeaways p {
+	margin: 0 0 20px;
+	max-width: none;
+	font-size: 29px;
+	font-weight: 600;
+	line-height: 1.38;
+	text-wrap: balance;
+}
+
+.reveal .takeaway-coda {
+	margin: 34px 0 0;
+	max-width: 880px;
+	font-family: var(--sp-serif);
+	font-size: var(--t-display-m);
+	line-height: 1.3;
+	color: var(--sp-ink);
+	text-wrap: balance;
+}
+
+.reveal .parallel {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 56px;
+}
+
+.reveal .parallel-col .parallel-col__year {
+	margin: 0 0 10px;
+	font-family: var(--sp-serif);
+	font-size: 54px;
+	font-weight: 700;
+	line-height: 1;
+	font-variant-numeric: lining-nums;
+}
+
+.reveal .parallel-col p {
+	margin: 0 0 12px;
+	max-width: none;
+	font-size: var(--t-body);
+	line-height: 1.5;
+}
+
+.reveal .parallel-col .parallel-col__src {
+	font-size: var(--t-label);
+	color: var(--sp-grey);
+}
+
+.reveal .coda {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	gap: 44px;
+	align-items: center;
+}
+
+.reveal .paper-card {
+	max-width: 820px;
+	margin-bottom: 26px;
+	background: #fff;
+	border: 1px solid var(--sp-card-edge);
+	border-radius: 10px;
+	padding: 20px 26px;
+}
+
+.reveal .paper-card__title {
+	margin: 0;
+	max-width: none;
+	font-family: var(--sp-serif);
+	font-size: var(--t-display-s);
+	font-weight: 700;
+	line-height: 1.3;
+}
+
+.reveal .paper-card__by {
+	margin: 10px 0 0;
+	max-width: none;
+	font-size: var(--t-label);
+	color: var(--sp-grey);
+}
+
+.reveal .paper-links {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	max-width: none;
+}
+
+.reveal .paper-links li {
+	margin: 0 0 10px;
+	font-size: var(--t-body);
+	line-height: 1.4;
+}
+
+.reveal .paper-thanks {
+	margin: 24px 0 0;
+	max-width: none;
+	font-size: var(--t-label);
+	color: var(--sp-grey);
+}
+
+/* ---------- backups ---------- */
+
+.reveal .slides section.backup-slide > h2 {
+	font-size: var(--t-title-sm);
+}
+
+.reveal .backup-tag {
+	position: absolute;
+	right: 0;
+	top: 40px;
+	margin: 0;
+	max-width: none;
+	font-size: var(--t-label);
+	font-weight: 600;
+	color: var(--sp-grey);
+}
+
+.reveal .backup-slide ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	max-width: 880px;
+	display: block;
+}
+
+.reveal .backup-slide ul li {
+	margin: 0 0 18px;
+	font-size: var(--t-body);
+	line-height: 1.45;
+}
+
+.reveal .backup-stat {
+	margin: 0 0 18px;
+	max-width: 760px;
+	font-family: var(--sp-serif);
+	font-size: var(--t-display-m);
+	line-height: 1.3;
+}
+
+.reveal .crit-defs strong {
+	color: var(--sp-ink);
+	font-weight: 700;
+}
+
+/* ---------- floating slips (title slide) ---------- */
+
+.reveal .floating-frag__attr {
+	font-size: 0.78em;
+}
+
+.reveal .floating-frag--sp-blue {
+	border-color: rgba(46, 79, 163, 0.45);
+	color: rgba(39, 56, 102, 0.68);
+}
+
+.reveal .floating-frag--sp-blue .floating-frag__attr {
+	color: rgba(39, 56, 102, 0.52);
+}
+
+.reveal .floating-frag--sp-orange {
+	border-color: rgba(194, 94, 42, 0.45);
+	color: rgba(128, 66, 32, 0.68);
+}
+
+.reveal .floating-frag--sp-orange .floating-frag__attr {
+	color: rgba(128, 66, 32, 0.52);
+}
+
+.reveal .floating-frag--sp-ink {
+	border-color: rgba(28, 25, 23, 0.16);
+	color: rgba(28, 25, 23, 0.52);
+}
+
+.reveal .floating-frag--sp-ink .floating-frag__attr {
+	color: rgba(28, 25, 23, 0.4);
+}
+
+.reveal .swing__n {
+	font-weight: 700;
+	color: var(--sp-ink);
+}
+
+.reveal .swing__table thead th:not(:first-child) {
+	text-align: center;
+}
+
+/* ---------- additions ---------- */
+
+/* the theme colours every bold word in the accent; here bold stays ink, so blue and orange keep one meaning each */
+.reveal strong {
+	color: inherit;
+}
+
+.reveal .slides section.section-slide h2 {
+	letter-spacing: 0;
+	text-wrap: balance;
+}
+
+.reveal .slides section.section-slide .section-slide__credit {
+	margin: 22px 0 0;
+	max-width: 760px;
+	font-size: var(--t-label);
+	line-height: 1.45;
+	color: rgba(240, 235, 227, 0.72);
+}
+
+/* the two questions that frame the opening: the divider type, without a number */
+.reveal .slides section.section-slide--question h2 {
+	max-width: 11.2em;
+	line-height: 1.16;
+}
+
+.reveal .slides section.section-slide--question h2 mark {
+	background: linear-gradient(
+		to top,
+		transparent 0.04em,
+		rgba(143, 208, 198, 0.2) 0.04em,
+		rgba(143, 208, 198, 0.2) 1.08em,
+		transparent 1.08em
+	);
+	color: inherit;
+	padding: 0 0.1em;
+	margin: 0 -0.1em;
+	border-radius: 4px;
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+/* title slide: a plain roman line, not an italic standfirst */
+.reveal .slides section.title-slide .title-slide__subtitle {
+	margin: 20px 0 0;
+	max-width: none;
+	font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+	font-style: normal;
+	font-weight: 400;
+	font-size: 28px;
+	letter-spacing: 0;
+	line-height: 1.3;
+	color: var(--sp-grey);
+}
+
+/* five domains, spread over the whole frame: the word, what was found, the source */
+.reveal dl.lit {
+	flex: 1 1 auto;
+	display: grid;
+	grid-template-columns: 218px minmax(0, 1fr);
+	column-gap: 26px;
+	align-content: space-between;
+	align-items: baseline;
+	max-width: none;
+	margin: 0;
+}
+
+.reveal dl.lit dt {
+	padding-left: 0.14em;
+	font-family: var(--sp-serif);
+	font-style: italic;
+	font-weight: 400;
+	font-size: var(--t-display-m);
+	line-height: 1.2;
+}
+
+.reveal dl.lit dd {
+	margin: 0;
+	font-size: var(--t-lead);
+	line-height: 1.32;
+	text-wrap: balance;
+}
+
+.reveal dl.lit .lit__ref {
+	display: block;
+	margin-top: 4px;
+	font-size: var(--t-label);
+	line-height: 1.3;
+	color: var(--sp-grey);
+}
+
+/* one claim per beat on the rates chart */
+.reveal .beat-lines {
+	position: relative;
+	height: 46px;
+	margin: 0 0 10px;
+}
+
+.reveal .slides section .beat-lines .beat-line {
+	position: absolute;
+	left: 0;
+	top: 0;
+	margin: 0;
+	max-width: none;
+	opacity: 0;
+	transition: opacity 0.35s ease;
+}
+
+.reveal .beat-lines[data-beat='0'] .beat-line[data-for='0'],
+.reveal .beat-lines[data-beat='1'] .beat-line[data-for='1'],
+.reveal .beat-lines[data-beat='2'] .beat-line[data-for='2'],
+.reveal .beat-lines[data-beat='3'] .beat-line[data-for='3'] {
+	opacity: 1;
+}
+
+.reveal .study2-chart {
+	height: 370px;
+}
+
+/* A/B cards: neutral while blind, tinted by true authorship once sources appear */
+.reveal .ab-card--plain {
+	background: #fff;
+	border: 2px solid rgba(28, 25, 23, 0.2);
+}
+
+.reveal .ab-card--plain .ab-card__tag {
+	color: var(--sp-ink);
+}
+
+
+
+.reveal .ratio-stage {
+	display: grid;
+	grid-template-columns: 410px minmax(0, 1fr);
+	gap: 44px;
+	align-items: start;
+}
+
+.reveal .emark--on {
+	background: var(--sp-mark);
+	font-weight: 700;
+}
+
+.reveal .cockney-lead {
+	margin: 0 0 34px;
+	max-width: 860px;
+	font-family: var(--sp-serif);
+	font-size: var(--t-display-m);
+	line-height: 1.32;
+	color: var(--sp-ink);
+}
+
+.reveal .cockney-lead strong.ai {
+	color: var(--sp-ai-ink);
+	font-weight: 700;
+}
+
+.reveal .paper-grid {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	gap: 44px;
+	align-items: start;
+}
+
+.reveal .qr {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+}
+
+.reveal .qr img {
+	display: block;
+	box-sizing: content-box;
+	width: 170px;
+	height: 170px;
+	max-width: none;
+	max-height: none;
+	margin: 0;
+	padding: 14px;
+	background: #fff;
+	border: 1px solid var(--sp-card-edge);
+	border-radius: 6px;
+}
+
+.reveal .qr figcaption {
+	font-size: var(--t-label);
+	color: var(--sp-grey);
+}
+
+/* ---------- PDF export ----------
+   Reveal's print stylesheet resets display and padding on every section, which would drop the
+   pinned titles onto the body text. Restore the frames, in print only. */
+
+html.print-pdf .reveal .slides section.frame,
+html.print-pdf .reveal .slides section.game-slide,
+html.print-pdf .reveal .slides section.case-slide,
+html.print-pdf .reveal .slides section.rationale-slide,
+html.print-pdf .reveal .slides section.statement-slide,
+html.print-pdf .reveal .slides section.bigquote-slide,
+html.print-pdf .reveal .slides section.title-slide,
+html.print-pdf .reveal .slides section.closing-slide,
+html.print-pdf .reveal .slides section.section-slide {
+	display: flex !important;
+	flex-direction: column;
+	height: 700px !important;
+}
+
+html.print-pdf .reveal .slides section.frame {
+	padding: 118px 0 40px !important;
+}
+
+html.print-pdf .reveal .slides section.game-slide,
+html.print-pdf .reveal .slides section.case-slide,
+html.print-pdf .reveal .slides section.rationale-slide {
+	justify-content: center;
+	padding: 36px 0 48px !important;
+}
+
+html.print-pdf .reveal .slides section.statement-slide,
+html.print-pdf .reveal .slides section.bigquote-slide {
+	justify-content: center;
+	padding: 0 52px !important;
+}
+
+html.print-pdf .reveal .slides section.title-slide,
+html.print-pdf .reveal .slides section.closing-slide {
+	padding: 3rem 3.25rem 2.5rem !important;
+}
+
+html.print-pdf .reveal .slides section.section-slide {
+	justify-content: center;
+	padding: 3rem 3.25rem !important;
+}
+
+.reveal .ab-card__label--plain {
+	color: var(--sp-grey);
+}
+
+/* the labels cross over each other on the swapped-labels slide (assets/swap-labels.js) */
+.reveal #cond-swapped .ab-card {
+	/* a will-change hint would make each card its own stacking context, and the label
+	   leaving the left card would then slide under the right one */
+	will-change: auto !important;
+}
+
+.reveal #cond-swapped .ab-card__label {
+	position: relative;
+	z-index: 3;
+}
+
+.reveal .slides section .swing-note {
+	margin: 20px 0 0;
+}

@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+		/>
+		<title><!-- PRESENTATION_TITLE -->Style and Prejudice</title>
+		<link rel="icon" href="data:," />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap"
+		/>
+
+		<link rel="stylesheet" href="../../reveal/dist/reset.css" />
+		<link rel="stylesheet" href="../../reveal/dist/reveal.css" />
+		<link rel="stylesheet" href="../../theme/wouter.css" />
+		<link rel="stylesheet" href="../../theme/highlight-wouter.css" />
+		<link rel="stylesheet" href="style-prejudice.css" />
+		<link rel="stylesheet" href="overrides.css" />
+	</head>
+	<!-- Accent palette: rubric (default) | lapis | verdigris | tyrian | archive -->
+	<body data-palette="verdigris">
+		<div class="reveal">
+			<div class="slides">
+				<!-- ============ TITLE ============ -->
+				<section class="title-slide title-slide--animated">
+					<div class="title-slide__zone" aria-hidden="true"></div>
+
+					<div class="title-slide__main">
+						<p class="title-slide__eyebrow">
+							<span class="title-slide__event"><!-- CONFERENCE -->Berkeley, November 9, 2026<!-- DATE --></span>
+						</p>
+						<h1 class="title-slide__presentation">Style and Prejudice</h1>
+						<p class="title-slide__subtitle">
+							Attribution bias in human and AI literary judgment
+						</p>
+					</div>
+
+					<footer class="slide-footer">
+						<div class="slide-footer__presenter">
+							<p class="slide-footer__name"><!-- AUTHOR -->Wouter Haverals &amp; Meredith Martin</p>
+							<p class="slide-footer__affiliation">
+								<!-- AFFILIATION -->Center for Digital Humanities, Princeton University
+							</p>
+						</div>
+
+						<div class="slide-footer__logos">
+							<img
+								src="../../assets/logos/princeton-mark-black.svg"
+								alt="Princeton University"
+								class="logo-princeton"
+							/>
+							<span class="slide-footer__divider" aria-hidden="true"></span>
+							<img
+								src="../../assets/logos/cdh-black.svg"
+								alt="Center for Digital Humanities at Princeton"
+								class="logo-cdh"
+							/>
+						</div>
+					</footer>
+
+					<aside class="notes">
+						<ul>
+							<li>The slips drifting by are one story: Queneau&rsquo;s bus anecdote, retold in different styles. That single story is the whole experiment.</li>
+							<li>The title promises both halves of the talk: style, and prejudice, ours and the machines&rsquo;.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<!-- ============ OPENING QUESTION ============ -->
+				<section class="section-slide section-slide--question" data-background-color="#16352f">
+					<h2>What does it mean when someone puts <mark>their name</mark> on something?</h2>
+					<aside class="notes">
+						<ul>
+							<li>The question behind the project. Not &ldquo;can AI write?&rdquo; but what the name on the page does to the reader.</li>
+							<li>The SI puts it this way: the name adds no word to the text, yet it changes how the words are read. Foucault&rsquo;s &ldquo;What Is an Author?&rdquo; is the background.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="frame lit-slide">
+					<h2>A familiar prejudice</h2>
+					<dl class="lit">
+						<dt><mark>Metaphor</mark></dt>
+						<dd>reads richer when credited to a poet than to &lsquo;a computer&rsquo; <span class="lit__ref">Gibbs 1991</span></dd>
+						<dt><mark>Painting</mark></dt>
+						<dd>rates lower once it is labeled AI <span class="lit__ref">Ragot 2020; Bellaiche 2023</span></dd>
+						<dt><mark>Music</mark></dt>
+						<dd>is judged less moving and less skillful under an AI label <span class="lit__ref">Shank 2023</span></dd>
+						<dt><mark>Poems</mark></dt>
+						<dd>by AI are rated higher blind, and any poem lower once labeled AI <span class="lit__ref">Porter &amp; Machery 2024</span></dd>
+						<dt><mark>Journalism</mark></dt>
+						<dd>is trusted less when marked machine-written <span class="lit__ref">Lermann Henestrosa &amp; Kimmerle 2024</span></dd>
+					</dl>
+					<aside class="notes">
+						<ul>
+							<li>Attribution bias in people is well documented across domains.</li>
+							<li>Poems, for instance: Porter and Machery found AI poems rated higher when authorship was left unstated, and any poem rated lower when participants were told it was AI-generated.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="section-slide section-slide--question" data-background-color="#16352f">
+					<h2>What happens when the judges are <mark>machines</mark> too?</h2>
+					<aside class="notes">
+						<ul>
+							<li>The open question sits on the other side of the bench: LLMs now score, rank and select creative work. Do they replicate the bias, escape it, or amplify it?</li>
+							<li>That question organizes everything that follows: first why style is the hardest test case, then the experiment.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<!-- ============ SECTION 1 ============ -->
+				<section class="section-slide" data-background-color="#16352f">
+					<p class="section-slide__number">1</p>
+					<h2>Two ways of defining style</h2>
+					<aside class="notes">
+						<ul>
+							<li>How the AI industry defines style, and how the humanities do. The gap between the two is where this study lives.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="frame shot-slide">
+					<h2>Creative writing has a leaderboard</h2>
+					<figure class="shot">
+						<img src="figures/lmarena.png" alt="LMArena Text Arena creative-writing leaderboard screenshot" />
+						<figcaption>lmarena.ai, Text Arena, creative writing: 782,533 votes over 321 models, March 6, 2026</figcaption>
+					</figure>
+					<aside class="notes">
+						<ul>
+							<li>Machines already sit in the evaluator&rsquo;s chair, or close to it. Chatbot Arena ranks models on a dedicated creative-writing category from human votes, and LLM-as-judge setups automate the same judgment.</li>
+							<li>A ranking implies a judge. Who, or what, is judging, and by what standard?</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="frame shot-slide">
+					<h2>Style as a product feature</h2>
+					<div class="shot-split shot-split--rev">
+						<figure class="shot">
+							<img src="figures/claude-style-ui.png" alt="claude.ai interface for generating a custom writing style" />
+							<figcaption>claude.ai, &ldquo;Describe your style&rdquo;</figcaption>
+						</figure>
+						<div class="shot-split__points">
+							<p class="lead">Style arrives as a menu: an objective, an audience, a voice and tone, or a general description.</p>
+						</div>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Industry treats style as something you set. Pick a voice, a tone, an audience.</li>
+							<li>Queneau&rsquo;s exercise titles already read like such settings: Dream, Alexandrines, Abusive, Cockney.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="frame shot-slide">
+					<h2>What &lsquo;style&rsquo; means in NLP</h2>
+					<div class="shot-split">
+						<div class="shot-split__points">
+							<p class="lead">The field works with high-level, functional attributes: sentiment, politeness, formality.</p>
+							<p class="lead">&lsquo;Style&rsquo; becomes a catch-all for everything users ask a rewriter to do.</p>
+							<p class="lead">What users actually request is wilder: to be more Dickensian, to be about vegetables, to be a word for a song.</p>
+						</div>
+						<figure class="shot">
+							<img src="figures/reif-table5.png" alt="Reif et al. table of user rewrite requests" />
+							<figcaption>Reif et al. 2022, Table 5: requests to an LM-powered text editor</figcaption>
+						</figure>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Reif et al. catalogued what people ask a text editor for: &ldquo;to be a word for a song&rdquo;, &ldquo;to be more magical&rdquo;. Style in the wild resists the tidy taxonomy.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="frame quotes-slide">
+					<h2>What &lsquo;style&rsquo; means in the humanities</h2>
+					<div class="qstack">
+						<blockquote class="qitem">
+							<p>&ldquo;Style rises up from the writer&rsquo;s myth-laden depths and unfolds <mark>beyond his area of control</mark>.&rdquo;</p>
+							<footer>Barthes, 1953, transl. 1967</footer>
+						</blockquote>
+						<blockquote class="qitem fragment fade-in">
+							<p>&ldquo;In pragmatic approaches, <mark>every aspect of the linguistic action</mark> that can be perceived as &lsquo;made&rsquo; pertains to the subject of stylistics.&rdquo;</p>
+							<footer>Herrmann, van Dalen-Oskam &amp; Schöch, 2015</footer>
+						</blockquote>
+						<blockquote class="qitem fragment fade-in">
+							<p>&ldquo;[&hellip;] hypertrophy of stylistic issues, stemming from a &lsquo;<mark><span class="nobr">style-is-everything</span></mark>&rsquo; approach.&rdquo;</p>
+							<footer>Püschel, 2008</footer>
+						</blockquote>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Three positions: style as the writer&rsquo;s unconscious signature, style as everything made in language, and a warning that the category inflates until it covers everything.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="bigquote-slide">
+					<blockquote class="bigquote bigquote--hang">
+						<p>&ldquo;The trouble with style is that we all think we know what it is, and the misfortune of theorists of style is that they must define what they mean by it.&rdquo;</p>
+						<footer>Bridgeman, 1995</footer>
+					</blockquote>
+					<aside class="notes">
+						<ul>
+							<li>No benchmark, no ground truth, and everyone confident. That is the kind of judgment where source cues get room to operate.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<!-- ============ SECTION 2 ============ -->
+				<section class="section-slide" data-background-color="#16352f">
+					<p class="section-slide__number">2</p>
+					<h2>Queneau&rsquo;s laboratory</h2>
+					<aside class="notes">
+						<ul>
+							<li>To study style evaluation you need texts where only style varies. Queneau built that corpus in 1947.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="frame book-slide">
+					<h2>Queneau&rsquo;s <em>Exercices de style</em> (1947)</h2>
+					<div class="book">
+						<div class="book__facts">
+							<p class="body">Raymond Queneau, 1903 to 1976: novelist, poet, critic, editor, co-founder of Oulipo.</p>
+							<p class="body">Ninety-nine retellings of one unremarkable anecdote: a crowded bus, a long-necked young man, a quarrel, and later, advice about a coat button.</p>
+							<p class="body">Tone, narration, rhetoric, genre conventions, poetic forms, linguistic play.</p>
+							<p class="body">English translation by Barbara Wright, 1958.</p>
+						</div>
+						<figure class="book__cover">
+							<img src="figures/exercises-cover-nd.jpg" alt="Exercises in Style cover with letterforms made of human figures" />
+							<figcaption>Exercises in Style, transl. Barbara Wright</figcaption>
+						</figure>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Read today the book looks like a manual for prompt-based style transfer avant la lettre: the titles of the exercises read like prompts, from Dream to Alexandrines to Abusive.</li>
+							<li>G&eacute;rard Genette&rsquo;s word for this is transstylisation; AI researchers now call it text style transfer.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="frame exercise-slide">
+					<h2>One story</h2>
+					<div class="ex-stage">
+						<article class="ex-card">
+							<h3>Notation</h3>
+							<p>In the S bus, in the rush hour. A chap of about 26, felt hat with a cord instead of a ribbon, neck too long, as if someone&rsquo;s been having a tug-of-war with it. People getting off. The chap in question gets annoyed with one of the men standing next to him. He accuses him of jostling him every time anyone goes past. A snivelling tone which is meant to be aggressive. When he sees a vacant seat he throws himself on to it.</p>
+							<p>Two hours later, I meet him in the Cour de Rome, in front of the gare Saint-Lazare. He&rsquo;s with a friend who&rsquo;s saying: &ldquo;You ought to get an extra button put on your overcoat.&rdquo; He shows him where (at the lapels) and why.</p>
+						</article>
+						<figure class="ex-strip">
+							<img src="figures/queneau-photomaton.png" alt="Raymond Queneau photo-booth self-portraits" />
+							<figcaption>Raymond Queneau, <em>Autoportrait dans un photomaton</em>, circa 1929 (Centre Pompidou)</figcaption>
+						</figure>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>The whole narrative substance. Nothing happens: a bus, a hat, a button. Every retelling keeps these events recognizable.</li>
+							<li>&lsquo;Notation&rsquo; is the zero-degree exposition, and the base text we later hand to GPT-4.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="frame exercise-slide">
+					<h2>Retold ninety-eight more times</h2>
+					<div class="ex-stage">
+						<div class="ex-stack">
+							<article class="ex-card">
+								<h3>Retrograde</h3>
+								<p>You ought to put another button on your overcoat, his friend told him. I met him in the middle of the Cour de Rome, after having left him rushing avidly towards a seat. He had just protested against being pushed by another passenger who, he said, was jostling him every time anyone got off. This scraggy young man was the wearer of a ridiculous hat. This took place on the platform of an S bus which was full that particular midday.</p>
+							</article>
+							<article class="ex-card fragment fade-in">
+								<h3>Animism</h3>
+								<p>A soft, brown hat with a dent in his middle, his brim turned down, a plaited cord round his crown, one hat among many others, jumping only when the bumps in the road were transmitted to him by the wheels of the automobile vehicle which was transporting him (the hat). At each stop the comings and goings of the passengers caused him to make certain lateral movements which at times were fairly pronounced, and this ended by angering him (the hat). [&hellip;]</p>
+							</article>
+							<article class="ex-card ex-card--haiku fragment fade-in">
+								<h3>Haiku</h3>
+								<p>Summer S long neck<br />plait hat toes abuse retreat<br />station button friend</p>
+							</article>
+						</div>
+						<figure class="ex-strip">
+							<img src="figures/queneau-photomaton.png" alt="Raymond Queneau photo-booth self-portraits" />
+							<figcaption>Raymond Queneau, <em>Autoportrait dans un photomaton</em>, circa 1929 (Centre Pompidou)</figcaption>
+						</figure>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Retrograde runs the events backwards. Animism narrates from the hat&rsquo;s point of view. Haiku compresses the story to seventeen syllables.</li>
+							<li>Same events, radically different textual performances: a controlled lattice of style over one narrative substrate.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="frame wall-slide">
+					<h2>Ninety-nine exercises, thirty chosen</h2>
+					<span class="fragment wall-on" data-fragment-index="1" aria-hidden="true"></span>
+					<div class="wall">
+						<ul>
+							<li>Notation</li><li>Double Entry</li><li>Litotes</li><li class="is-picked">Metaphorically</li><li class="is-picked">Retrograde</li><li>Surprises</li><li class="is-picked">Dream</li><li>Prognostication</li><li class="is-picked">Synchysis</li><li class="is-picked">The Rainbow</li><li>Word Game</li><li class="is-picked">Hesitation</li><li>Precision</li><li>The Subjective Side</li><li>Another Subjectivity</li><li>Narrative</li><li>Word Composition</li><li>Negativities</li><li class="is-picked">Animism</li><li>Anagrams</li>
+						</ul>
+						<ul>
+							<li>Distinguo</li><li>Homeoptotes</li><li>Official Letter</li><li>Blurb</li><li class="is-picked">Onomatopoeia</li><li class="is-picked">Logical Analysis</li><li>Insistence</li><li>Ignorance</li><li>Past</li><li>Present</li><li>Reported Speech</li><li>Passive</li><li class="is-picked">Alexandrines</li><li>Polyptotes</li><li>Apheresis</li><li class="is-picked">Apocope</li><li>Syncope</li><li>Speaking Personally</li><li class="is-picked">Exclamations</li><li>You Know</li><li class="is-picked">Lipogram</li>
+						</ul>
+						<ul>
+							<li class="is-picked">Noble</li><li class="is-picked">Cockney</li><li>Cross examination</li><li>Comedy</li><li>Asides</li><li>Parachesis</li><li>Spectral</li><li class="is-picked">Philosophic</li><li>Apostrophe</li><li>Awkward</li><li>Casual</li><li>Biased</li><li class="is-picked">Sonnet</li><li>Olfactory</li><li>Gustatory</li><li class="is-picked">Tactile</li><li>Visual</li><li>Auditory</li><li class="is-picked">Telegraphic</li><li>Ode</li><li>Permutations, letters</li>
+						</ul>
+						<ul>
+							<li>Permutations, words</li><li>Hellenisms</li><li>Reactionary</li><li class="is-picked">Haiku</li><li class="is-picked">Free Verse</li><li class="is-picked">Feminine</li><li>Gallicisms</li><li>Prothesis</li><li>Epenthesis</li><li>Paragoge</li><li>Parts of speech</li><li>Metathesis</li><li>Consequences</li><li>Proper nouns</li><li class="is-picked">Rhyming slang</li><li>Javanais</li><li>Antiphrasis</li><li class="is-picked">Dog Latin</li><li>More or Less</li>
+						</ul>
+						<ul>
+							<li>Opera English</li><li class="is-picked">For ze Frrensh</li><li class="is-picked">Spoonerisms</li><li>Botanical</li><li>Medical</li><li class="is-picked">Abusive</li><li>Gastronomical</li><li>Zoological</li><li>Futile</li><li>Modern Style</li><li>Probabilist</li><li>Portrait</li><li class="is-picked">Mathematical</li><li class="is-picked">West Indian</li><li>Interjections</li><li>Precious</li><li>Unexpected</li><li class="is-picked">Science Fiction</li>
+						</ul>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>All ninety-nine titles are on the wall, in Wright&rsquo;s English. We select thirty [click], spanning formal constraints (Lipogram, Alexandrines, Sonnet), registers (Noble, Abusive, Cockney), techniques (Retrograde, Hesitation, Dream) and play (Spoonerisms, Dog Latin).</li>
+							<li>The choice aims at stylistic diversity while keeping the story readable. The permutation exercises, which destroy comprehension, are left out.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<!-- ============ SECTION 3 ============ -->
+				<section class="section-slide" data-background-color="#16352f">
+					<p class="section-slide__number">3</p>
+					<h2>The experiment</h2>
+					<aside class="notes">
+						<ul>
+							<li>The design in one sentence: the same pairs of texts, three framings of who wrote them, and we watch the judgment move.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="frame pairs-slide">
+					<h2>Thirty matched pairs</h2>
+					<p class="lead">Each exercise gets a twin. GPT-4 receives Queneau&rsquo;s &lsquo;Notation&rsquo; story and one instruction.</p>
+					<div class="twins">
+						<article class="twin twin--q">
+							<p class="twin__who">Queneau, transl. Wright</p>
+							<p class="twin__verse">Summer S long neck<br />plait hat toes abuse retreat<br />station button friend</p>
+						</article>
+						<article class="twin twin--ai">
+							<p class="twin__who">GPT-4, told &ldquo;Rewrite the story as a haiku.&rdquo;</p>
+							<p class="twin__verse">Rush hour on the S bus,<br />long neck, hat askew, tensions rise&mdash;<br />later, coat advice.</p>
+						</article>
+					</div>
+					<p class="body fragment">Participants saw this description of the style: &ldquo;A haiku is a Japanese poem of seventeen syllables, in three lines of five, seven, and five, traditionally evoking images of the natural world.&rdquo;</p>
+					<aside class="notes">
+						<ul>
+							<li>The generator is GPT-4, state of the art when the project began in 2024, and deliberately a single model in Study 1. Study 2 widens it to fourteen creators.</li>
+							<li>No quality control beyond removing obvious artifacts such as &ldquo;Here is the rewritten version:&rdquo;. GPT-4 interprets each directive in its own way, as much as Queneau did.</li>
+							<li>Minimal prompting mirrors the book&rsquo;s own procedure: a style name and the base anecdote. Count the syllables with the room: Queneau&rsquo;s haiku is a strict 5-7-5 (SI p. 11).</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="game-slide" data-auto-animate data-auto-animate-id="game">
+					<p class="game-cond" data-id="cond"><span class="game-cond__name">Blind</span><span class="game-cond__detail">no authorship information</span></p>
+					<p class="game-q" data-id="q">Which text better matches a <strong>Cockney</strong> literary style?</p>
+					<div class="game-board">
+						<article class="ab-card ab-card--plain" data-id="card-a">
+							<p class="ab-card__label ab-card__label--plain" data-id="lab-q">Story A</p>
+							<p class="ab-card__tag" data-id="tag-a">A</p>
+							<p class="ab-card__text">So A&rsquo;m stand&rsquo;n&rsquo; n&rsquo; ahtsoider vis frog bus when A sees vis young Froggy bloke, caw bloimey, A finks, &rsquo;f&rsquo;at ain&rsquo;t ve most funniest look&rsquo;n&rsquo; geezer [&hellip;]</p>
+						</article>
+						<article class="ab-card ab-card--plain" data-id="card-b">
+							<p class="ab-card__label ab-card__label--plain" data-id="lab-ai">Story B</p>
+							<p class="ab-card__tag" data-id="tag-b">B</p>
+							<p class="ab-card__text">In the S blimmin&rsquo; bus, round rush hour. Some bloke of about 26, feels &rsquo;at with a cord instead of a ribbon, neck too long, as if some mug&rsquo;s been &rsquo;aving [&hellip;]</p>
+						</article>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>The task in outline, as participants and models saw it: two passages, one target style, a forced choice. The real interface shows the full texts and a description of the style. Five pairs per person, order and position randomized, attention checks included. Ask the room for a show of hands, A or B, before moving on.</li>
+							<li>In the blind condition there is no mention of AI anywhere in the interface, only the generic labels Story A and Story B. The cards are neutral here; the colors arrive with the real labels.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="game-slide" id="cond-correct" data-auto-animate data-auto-animate-id="game">
+					<p class="game-cond" data-id="cond"><span class="game-cond__name">Correct labels</span><span class="game-cond__detail">the open-label condition: each text carries its true source</span></p>
+					<p class="game-q" data-id="q">Which text better matches a <strong>Cockney</strong> literary style?</p>
+					<div class="game-board">
+						<article class="ab-card ab-card--q" data-id="card-a">
+							<p class="ab-card__label ab-card__label--q" data-id="lab-q">Human-written, by Queneau (transl. Wright)</p>
+							<p class="ab-card__tag" data-id="tag-a">A</p>
+							<p class="ab-card__text">So A&rsquo;m stand&rsquo;n&rsquo; n&rsquo; ahtsoider vis frog bus when A sees vis young Froggy bloke, caw bloimey, A finks, &rsquo;f&rsquo;at ain&rsquo;t ve most funniest look&rsquo;n&rsquo; geezer [&hellip;]</p>
+						</article>
+						<article class="ab-card ab-card--ai" data-id="card-b">
+							<p class="ab-card__label ab-card__label--ai" data-id="lab-ai">AI-generated, written by GPT-4</p>
+							<p class="ab-card__tag ab-card__tag--ai" data-id="tag-b">B</p>
+							<p class="ab-card__text">In the S blimmin&rsquo; bus, round rush hour. Some bloke of about 26, feels &rsquo;at with a cord instead of a ribbon, neck too long, as if some mug&rsquo;s been &rsquo;aving [&hellip;]</p>
+						</article>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Second condition: the labels are shown, and they are true. Card color now marks who really wrote the text, blue for Queneau and orange for GPT-4.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="game-slide" id="cond-swapped" data-auto-animate data-auto-animate-id="game">
+					<p class="game-cond" data-id="cond"><span class="game-cond__name">Swapped labels</span><span class="game-cond__detail">the counterfactual condition: the same two labels, exchanged</span></p>
+					<p class="game-q" data-id="q">Which text better matches a <strong>Cockney</strong> literary style?</p>
+					<div class="game-board">
+						<article class="ab-card ab-card--q" data-id="card-a">
+							<p class="ab-card__label ab-card__label--ai" data-id="lab-ai">AI-generated, written by GPT-4</p>
+							<p class="ab-card__tag" data-id="tag-a">A</p>
+							<p class="ab-card__text">So A&rsquo;m stand&rsquo;n&rsquo; n&rsquo; ahtsoider vis frog bus when A sees vis young Froggy bloke, caw bloimey, A finks, &rsquo;f&rsquo;at ain&rsquo;t ve most funniest look&rsquo;n&rsquo; geezer [&hellip;]</p>
+						</article>
+						<article class="ab-card ab-card--ai" data-id="card-b">
+							<p class="ab-card__label ab-card__label--q" data-id="lab-q">Human-written, by Queneau (transl. Wright)</p>
+							<p class="ab-card__tag ab-card__tag--ai" data-id="tag-b">B</p>
+							<p class="ab-card__text">In the S blimmin&rsquo; bus, round rush hour. Some bloke of about 26, feels &rsquo;at with a cord instead of a ribbon, neck too long, as if some mug&rsquo;s been &rsquo;aving [&hellip;]</p>
+						</article>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Third condition: the two labels trade places while the cards stay put. A blue card carrying an orange label is the manipulation. The texts never change; only the story about their origin does.</li>
+							<li>The question is never which version is better. It is whether being told who wrote it measurably moves the judgment.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+				<section class="frame judges-slide">
+					<h2>Who judged what</h2>
+					<table class="matrix">
+						<thead>
+							<tr>
+								<td></td>
+								<th scope="col">Blind</th>
+								<th scope="col">Correct labels</th>
+								<th scope="col">Swapped labels</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row"><span class="matrix__human">Human evaluators</span><span class="matrix__sub">556 people recruited on Prolific, five style pairs each</span></th>
+								<td><strong>930</strong><span class="matrix__unit">decisions</span><span class="matrix__sub">186 people</span></td>
+								<td><strong>925</strong><span class="matrix__unit">decisions</span><span class="matrix__sub">185 people</span></td>
+								<td><strong>925</strong><span class="matrix__unit">decisions</span><span class="matrix__sub">185 people</span></td>
+							</tr>
+							<tr>
+								<th scope="row"><span class="matrix__ai">AI evaluators</span><span class="matrix__sub">13 models from eight providers, three runs each, with a written rationale per answer</span></th>
+								<td><strong>1,162</strong><span class="matrix__unit">responses</span></td>
+								<td><strong>1,162</strong><span class="matrix__unit">responses</span></td>
+								<td><strong>1,164</strong><span class="matrix__unit">responses</span></td>
+							</tr>
+						</tbody>
+					</table>
+					<aside class="notes">
+						<ul>
+							<li>The same protocol for both evaluator types is what makes the human and machine bias magnitudes directly comparable: same stimuli, same group structure, same randomization. Between subjects, so no participant saw more than one condition.</li>
+							<li>GPT-4 sat out as an evaluator in Study 1: it wrote the stimuli, so it was benched to avoid self-evaluation.</li>
+								<li>One caveat for comparing the two groups: the models have very probably seen Queneau&rsquo;s book in training, so the gap in size cannot be read simply as greater label sensitivity (see the limits slide).</li>
+							<li>Princeton IRB protocol 18320, informed consent throughout. Participants were paid 4.50 dollars for a median of 17 minutes.</li>
+						</ul>
+					</aside>
+				</section>
+
+					<section class="frame backup-slide">
+						<p class="backup-tag">Backup</p>
+						<h2>Deciding takes longer without a label</h2>
+						<p class="backup-stat">Mean decision time: 115.7 seconds when blind, against 91.9 with correct labels and 89.2 with swapped ones.</p>
+						<p class="body">Without authorship information, participants took about 24 to 26 seconds longer on average (ANOVA F = 16.4, P &lt; 0.001); the medians are 77.6, 67.6 and 65.4 seconds. The paper reads this as a trace of labels cueing the judgment before the text is weighed.</p>
+						<aside class="notes">
+							<ul>
+								<li>Response times from SI Table S19. Participants: 580 recruited on Prolific, 24 excluded on timeouts and attention checks, 556 kept. 68.7% had never heard of Queneau&rsquo;s book, and excluding familiar readers leaves the bias at 13 to 14 points (SI Table S20).</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+
+				<!-- ============ SECTION 4 ============ -->
+				<section class="section-slide" data-background-color="#16352f">
+					<p class="section-slide__number">4</p>
+					<h2>The results</h2>
+				</section>
+
+				<section class="frame chart-slide" id="rates-slide">
+					<h2>Picking the AI text</h2>
+					<span class="fragment" data-fragment-index="1" data-beat="1" aria-hidden="true"></span>
+					<span class="fragment" data-fragment-index="2" data-beat="2" aria-hidden="true"></span>
+					<span class="fragment" data-fragment-index="3" data-beat="3" aria-hidden="true"></span>
+					<div class="beat-lines" id="rates-lines" data-beat="0">
+						<p class="lead beat-line" data-for="0">Without labels, people slightly prefer the AI text.</p>
+						<p class="lead beat-line" data-for="1">With correct labels, that preference disappears.</p>
+						<p class="lead beat-line" data-for="2">With swapped labels, people favor whichever text is labeled human.</p>
+						<p class="lead beat-line" data-for="3">Models do the same, by a wider margin.</p>
+					</div>
+					<div class="rates-stage">
+						<div class="rates-aside">
+							<figure class="bubble-figure bubble-figure--human">
+								<img src="figures/cartoon-human.png" alt="Drawing of a person thinking: AI can't be creative." />
+							</figure>
+							<figure class="bubble-figure bubble-figure--robot">
+								<img src="figures/cartoon-robot-question.png" alt="Drawing of a robot asking: can AI be creative?" />
+							</figure>
+						</div>
+						<div class="rates-chart" id="rates-chart" aria-label="Bar chart of AI text selection rates by condition and evaluator type"></div>
+					</div>
+					<p class="foot">Study 1. People: 556 participants, 2,780 decisions. Models: 13 evaluators, 3,488 responses. Error bars are 95% confidence intervals.</p>
+					<aside class="notes">
+						<ul>
+							<li>Beat 1, blind: people pick the AI text 55.3% of the time, a small but significant edge for GPT-4. Without labels the machine marginally wins.</li>
+							<li>Beat 2, correct labels: 47.8%, back to chance. Knowing erases the AI advantage.</li>
+							<li>Beat 3, swapped labels: 61.5%. The text believed to be human wins, whoever wrote it. That gap, 61.5 against 47.8, is a bias of 13.7 points (Cohen&rsquo;s h = 0.28, P &lt; 0.001).</li>
+							<li>Beat 4, the models join: 49.4% blind, a coin flip; 29.8% under correct labels; 64.1% under swapped ones. A swing of 34.3 points.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="frame chart-slide bias-slide" id="bias-slide">
+					<h2>Models show 2.5 times the bias</h2>
+					<p class="body">Bias is the share choosing the AI text under swapped labels minus the share under correct labels.</p>
+					<div class="bias-stage">
+						<div class="bias-aside">
+							<figure class="bubble-figure bubble-figure--punch fragment" data-fragment-index="1">
+								<img src="figures/cartoon-robot-punch.png" alt="Drawing of a robot concluding: AI can't be creative!" />
+							</figure>
+						</div>
+						<div class="bias-chart" id="bias-chart" aria-label="Attribution bias, humans versus AI evaluators"></div>
+					</div>
+					<p class="statline">Cohen&rsquo;s h 0.28 (95% CI 0.19 to 0.37) for people and 0.70 (0.62 to 0.78) for models. Odds ratios 1.75 and 4.21, all P &lt; 0.001; the two groups differ significantly (&chi;&sup2; = 32.3).</p>
+					<aside class="notes">
+						<ul>
+							<li>Same direction, very different size. In the paper&rsquo;s words, AI systems not only replicate but amplify the human tendency. One caveat from the SI: the models have very probably seen Queneau&rsquo;s book, so 34.3 against 13.7 points cannot be read simply as greater sensitivity to labels.</li>
+							<li>[click] The punchline the paper earns: by the end of the experiment it is the machine insisting that machines cannot be creative.</li>
+							<li>Adam Elkus on Bluesky: &ldquo;being unduly harsh on your own creative work is the most humanlike its been in a long time.&rdquo;</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+				<section class="frame chart-slide forest-slide" id="forest-slide">
+					<h2>Every model shows the bias</h2>
+					<div class="forest-chart" id="forest-chart" aria-label="Attribution bias effect size per model with human estimate"></div>
+					<p class="foot">Cohen&rsquo;s h for the bias of each model, with 95% confidence intervals. The shaded band is the human estimate, h = 0.28 (95% CI 0.19 to 0.37). Without the outlier at the top, the other twelve models average h = 0.67, still 2.4 times the human value.</p>
+					<aside class="notes">
+						<ul>
+							<li>All thirteen models land above the human point estimate, from Llama 4 Maverick at 0.40 to GPT-3.5 Turbo at 1.50.</li>
+							<li>Thirteen models from eight providers all show it, so it is no quirk of one vendor. The paper&rsquo;s reading is that preference training installs a deference to human judgment; this experiment does not test that cause.</li>
+						</ul>
+					</aside>
+				</section>
+
+					<section class="frame backup-slide">
+						<p class="backup-tag">Backup</p>
+						<h2>Other wordings give the same bias</h2>
+						<ul>
+							<li>Prestige reversed, &ldquo;written by an award-winning AI&rdquo;: the bias persists at +19.6 points.</li>
+							<li>Maximally neutral, symmetric labels, &ldquo;AI-authored&rdquo; against &ldquo;Human-authored&rdquo;: +23.1 points.</li>
+							<li>Deterministic decoding at temperature 0: +23.8 points. Not sampling noise.</li>
+							<li>Surface features do not explain it either: of five text metrics only lexical diversity separates the sets, and it does not track the bias across styles.</li>
+						</ul>
+						<aside class="notes">
+							<ul>
+								<li>The effect operates at the level of the authorship category, not of any particular phrasing, prestige cue or stochastic artifact. Full replication values in SI Figs. S14 to S16; the surface-feature control is SI Tables S1 and S2.</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+
+				<section class="frame chart-slide" id="study2-slide">
+					<h2>Any model judging any model</h2>
+					<p class="body">Study 2: fourteen models each wrote all thirty styles, and each of the fourteen judged the texts of all of them.</p>
+					<div class="study2-chart" id="study2-chart" aria-label="Share of AI-written texts chosen by AI evaluators, Study 2"></div>
+					<p class="foot">17,596 judgments. Bias +25.8 points (95% CI 24.1 to 27.6, Cohen&rsquo;s h = 0.52), ranging from &minus;6.7 to +70.0 across the 196 evaluator-creator pairs. Error bars are 95% confidence intervals.</p>
+					<aside class="notes">
+						<ul>
+							<li>Study 2 tests whether Study 1 measured something about GPT-4&rsquo;s prose. Here every model is a creator and every model an evaluator, a full 14 by 14 matrix, 420 stories.</li>
+							<li>Blind 54.5%, correct labels 39.9%, swapped labels 65.7%. The direction survives removing any single evaluator or creator (SI Figs. S18 and S19).</li>
+							<li>Most biased evaluator: Command R, +54.8 points on average. Creator whose texts are most vulnerable: Llama 3.3 70B Instruct, +30.5 points on average (SI Fig. S17).</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="frame chart-slide styles-slide" id="styles-slide">
+					<h2>The bias holds across thirty styles</h2>
+					<span class="fragment" data-fragment-index="1" data-beat="1" aria-hidden="true"></span>
+					<div class="styles-chart" id="styles-chart" aria-label="Attribution bias per style for AI and human evaluators"></div>
+					<p class="foot styles-foot" id="styles-counts"></p>
+					<aside class="notes">
+						<ul>
+							<li>Each row is one of the thirty styles, ranked by the models&rsquo; bias. The orange dots are models, on the first beat. The blue dots are people, on the click.</li>
+							<li>Models swing most on Cockney, Abusive and Rhyming slang, all above +55 points: registers and dialects. People swing most on Tactile, The Rainbow and West Indian, around +31 to +33 points.</li>
+							<li>A few styles resist, and Lipogram is the clearest case where people move the other way. We look at it next.</li>
+							<li>Values are from SI Table S17.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<!-- ============ SECTION 5 ============ -->
+				<section class="section-slide" data-background-color="#16352f">
+					<p class="section-slide__number">5</p>
+					<h2>Three exercises, up close</h2>
+					<aside class="notes">
+						<ul>
+							<li>Three cases along a gradient: a rule you can count, an authenticity you can argue about, and a creative risk you can admire or punish.</li>
+							<li>Say it aloud: the three cases are chosen to illustrate, while the estimates quoted come from all thirty styles.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="case-slide" id="lipogram-slide">
+					<p class="game-q">Which text better matches a <strong>Lipogram</strong> (no letter &lsquo;e&rsquo;)?</p>
+					<span class="fragment emarks-ctl" data-fragment-index="1" aria-hidden="true"></span>
+					<div class="game-board">
+						<article class="ab-card ab-card--q">
+							<p class="ab-card__label ab-card__label--q">Queneau, transl. Wright <span class="ecount fragment" data-fragment-index="1">no e&rsquo;s</span></p>
+							<p class="ab-card__text">Okay. At this stop, our bus did stop. Climbing on is a hip young chap with a collar that was too long, who had on his noggin a cap with a limp ribbon. [&hellip;]</p>
+						</article>
+						<article class="ab-card ab-card--ai">
+							<p class="ab-card__label ab-card__label--ai">AI-generated <span class="ecount ecount--bad fragment" data-fragment-index="1">9 e&rsquo;s in the full text</span></p>
+							<p class="ab-card__text">In a crowd<span class="emark">e</span>d city bus during rush hours. A young man, about 26, with a soft hat, cord in front of a ribbon, a long throat as though tugg<span class="emark">e</span>d at too hard. Folks alight. [&hellip;]</p>
+						</article>
+					</div>
+					<div class="swing fragment" data-fragment-index="2">
+						<table class="swing__table">
+							<thead>
+								<tr><th>Chose the AI text</th><th>Blind</th><th>Correct labels</th><th>Swapped labels</th><th>Swing</th></tr>
+							</thead>
+							<tbody>
+								<tr><th>AI evaluators</th><td>37.1%</td><td>28.9%</td><td>63.9%</td><td class="swing__n">+35.0 points</td></tr>
+								<tr><th>Human evaluators</th><td>46.7%</td><td>38.7%</td><td>18.2%</td><td class="swing__n">&minus;20.5 points</td></tr>
+							</tbody>
+						</table>
+					</div>
+					<p class="body swing-note fragment" data-fragment-index="3">Models forgave the violations once the text carried a human label. People held to the rule and judged it more harshly.</p>
+					<aside class="notes">
+						<ul>
+							<li>The clearest possible criterion: ban the letter e. Wright keeps the rule with circumlocutions, Saint-Thingy or Saint-You-Know Station. GPT-4&rsquo;s version breaks it nine times in the full text, a well-documented character-level weakness.</li>
+							<li>[click] Count the violations. [click] The table: blind, models choose Queneau&rsquo;s rule-keeping text 63% of the time, and 71% with correct labels; with swapped labels they choose the rule-breaking text 63.9% of the time. [click] People mostly chose the rule-keeping text under both labelings, 61% and 82%.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="rationale-slide">
+					<p class="game-q">Which text better matches a <strong>Lipogram</strong> (no letter &lsquo;e&rsquo;)?</p>
+					<div class="ratio-stage">
+						<article class="ab-card ab-card--ai">
+							<p class="ab-card__label ab-card__label--ai">AI-generated <span class="ecount ecount--bad">9 e&rsquo;s in the full text</span></p>
+							<p class="ab-card__text">In a crowd<span class="emark emark--on">e</span>d city bus during rush hours. A young man, about 26, with a soft hat, cord in front of a ribbon, a long throat as though tugg<span class="emark emark--on">e</span>d at too hard. Folks alight. [&hellip;]</p>
+						</article>
+						<div class="rationales">
+							<blockquote class="rationale">
+								<p>&ldquo;&hellip;successfully captures the essence of the &lsquo;Lipogram&rsquo; style by effectively omitting the letter &lsquo;e&rsquo; throughout the narrative.&rdquo;</p>
+								<footer>GPT-4o Mini, evaluating this text</footer>
+							</blockquote>
+							<blockquote class="rationale fragment">
+								<p>&ldquo;&hellip;the lipogram more subtly, making it a more authentic representation.&rdquo;</p>
+								<footer>Mistral Nemo, on the same text</footer>
+							</blockquote>
+						</div>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>More than leniency: rationalization. The rule is not relaxed, it is declared satisfied. A &lsquo;subtle&rsquo; lipogram is a contradiction in terms, since the constraint is binary.</li>
+							<li>People consistently selected the constraint-keeping version whatever the label. Models relaxed the standard when they believed a human was responsible for the violation (the swing on the previous slide).</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="case-slide numbers-slide">
+					<p class="game-q">Which text better matches a <strong>Cockney</strong> literary style?</p>
+					<p class="cockney-lead">Under correct labels, <strong class="ai">23.1%</strong> of model judgments chose the AI text. With the AI text labeled human, <strong class="ai">89.7%</strong> did.</p>
+					<div class="rationales rationales--split fragment">
+						<blockquote class="rationale">
+							<p>&ldquo;Extensive phonetic representation&rdquo;, a &ldquo;deep commitment to representing the Cockney accent.&rdquo;</p>
+							<footer>Claude 3.5 Haiku: Wright&rsquo;s text, labeled human</footer>
+						</blockquote>
+						<blockquote class="rationale">
+							<p>&ldquo;Nearly incomprehensible&rdquo; and &ldquo;caricatured.&rdquo;</p>
+							<footer>Claude Sonnet 4 and Qwen 2.5 72B: same text, labeled AI</footer>
+						</blockquote>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>A 66.7-point swing, among the strongest in the data. People moved far less on this style: +11.6 points.</li>
+							<li>The authenticity criterion changes direction with the label: the same orthographic daring is &lsquo;commitment&rsquo; from a human and &lsquo;caricature&rsquo; from a machine. The AI text&rsquo;s mild slang, dismissed as &ldquo;standard English with occasional slang&rdquo; under correct labels, becomes &ldquo;more natural and less forced&rdquo; once relabeled.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="case-slide scifi-slide">
+					<p class="game-q">Which text better matches a <strong>Science Fiction</strong> style?</p>
+					<div class="game-board">
+						<article class="ab-card ab-card--q">
+							<p class="ab-card__label ab-card__label--q">Queneau, transl. Wright</p>
+							<p class="ab-card__text">Estrangement: a &ldquo;flying saucer on Cassiopeia&rsquo;s Alpha Line&rdquo;, a Martian who stepped onto a &ldquo;Moon Man&rsquo;s extrapods&rdquo;, untranslatable alien terms like &ldquo;vrxtz&rdquo;.</p>
+						</article>
+						<article class="ab-card ab-card--ai">
+							<p class="ab-card__label ab-card__label--ai">GPT-4</p>
+							<p class="ab-card__text">Element substitution: the bus becomes a &ldquo;shuttle&rdquo;, the platform a &ldquo;space station&rdquo;, the overcoat a &ldquo;space jacket&rdquo;; passengers float instead of walking.</p>
+						</article>
+					</div>
+					<table class="scifi-table fragment">
+						<thead>
+							<tr>
+								<th scope="col">Condition</th>
+								<th scope="col">Models chose <span class="nobr">GPT-4</span></th>
+								<th scope="col">What their rationales said</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">Blind</th>
+								<td class="scifi-table__n">78.9%</td>
+								<td><span class="rq">&ldquo;Imagined futures grounded in rational speculation&rdquo;</span>: praise for the GPT-4 text.</td>
+							</tr>
+							<tr>
+								<th scope="row">Correct labels</th>
+								<td class="scifi-table__n">46.2%</td>
+								<td><span class="rq">&ldquo;Sci-fi window dressing&rdquo;</span>: the verdict on the GPT-4 text.</td>
+							</tr>
+							<tr>
+								<th scope="row">Swapped labels</th>
+								<td class="scifi-table__n">84.6%</td>
+								<td>Queneau&rsquo;s text is <span class="rq">&ldquo;creative and humorous&rdquo;</span>, and rejected for it.</td>
+							</tr>
+						</tbody>
+					</table>
+					<p class="foot fragment">People barely moved: 50.0%, 61.3% and 54.5% chose the GPT-4 text.</p>
+					<aside class="notes">
+						<ul>
+							<li>Two legitimate approaches to creative risk: cognitive estrangement against comfortable genre recognition. Blind, models reward the safer rewrite, praising its &ldquo;imagined futures grounded in rational speculation&rdquo; (DeepSeek R1) while Queneau&rsquo;s &ldquo;feels more like a parody or pastiche of sci-fi tropes&rdquo; (Command R).</li>
+							<li>With correct labels the reasoning inverts: &ldquo;sci-fi window dressing&rdquo; (Claude 3.5 Haiku) for GPT-4, and Queneau praised for fully committing to an imaginative future (Claude Sonnet 4).</li>
+							<li>The most telling moment in this exercise: with Queneau labeled AI, GPT-4o Mini calls his text &ldquo;creative and humorous&rdquo; and rejects it anyway. Creativity itself becomes grounds for dismissal once the text is believed to be artificial.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+				<section class="frame evidence-slide">
+					<h2>Same text, opposite verdicts</h2>
+					<div class="panels">
+						<article class="panel">
+							<p class="panel__cond">Correct labels</p>
+							<p class="panel__key"><span class="k-q">Queneau (transl. Wright)</span>, labeled human-authored. <span class="k-ai">GPT-4</span>, labeled AI-authored. Claude Sonnet 4 chooses Queneau.</p>
+							<p class="panel__text">[&hellip;] The narrative embraces science fiction&rsquo;s tradition of creating entirely new worlds, <mark class="q">complete with alien terminology (&ldquo;vrxtz,&rdquo; &ldquo;astrohelicoptering,&rdquo; &ldquo;extrapods&rdquo;) and playful cosmic humor</mark>. Version B, while competently written, takes a more conservative approach [&hellip;] while <mark class="ai">only adding superficial sci-fi elements like zero gravity and space shuttles</mark>. [&hellip;]</p>
+						</article>
+						<article class="panel">
+							<p class="panel__cond">Swapped labels</p>
+							<p class="panel__key"><span class="k-q">Queneau (transl. Wright)</span>, labeled AI-authored. <span class="k-ai">GPT-4</span>, labeled human-authored. Claude Sonnet 4 chooses GPT-4.</p>
+							<p class="panel__text">[&hellip;] It transforms the <mark class="ai">bus into a &ldquo;shuttle,&rdquo; the station into a &ldquo;space station,&rdquo;</mark> and incorporates realistic <mark class="ai">details like zero-gravity movement and space modules</mark>. [&hellip;] The <mark class="q">excessive alien terminology (&ldquo;marsing,&rdquo; &ldquo;vrxtz,&rdquo; &ldquo;astrohelicoptering&rdquo;) and forced humor</mark> distract from the story&rsquo;s core narrative. [&hellip;]</p>
+						</article>
+					</div>
+					<p class="foot">Claude Sonnet 4 on the same pair of &lsquo;Science Fiction&rsquo; passages (SI Fig. S3). Highlights mark evidence about each text, blue for Queneau&rsquo;s and orange for GPT-4&rsquo;s. The same features are praised in one panel and dismissed in the other.</p>
+					<aside class="notes">
+						<ul>
+							<li>Read the highlighted spans. Alien terminology is &lsquo;playful cosmic humor&rsquo; in one frame and &lsquo;excessive&rsquo; in the other. The shuttle substitution is &lsquo;superficial&rsquo; in one and &lsquo;realistic detail&rsquo; in the other. Nothing about the texts changed.</li>
+							<li>Each rationale is truncated here with [&hellip;]; the full pair is in the SI.</li>
+							<li>Down: the systematic version. In Study 2 a third of the verdicts flip with the labels alone, and the arguments flip with them (three backup slides).</li>
+						</ul>
+					</aside>
+				</section>
+
+					<section class="frame chart-slide onethree-slide backup-slide" id="onethree-slide">
+						<p class="backup-tag">Backup</p>
+						<h2>A third of verdicts flip with labels</h2>
+						<p class="body">In Study 2, swapping the labels alone flipped the forced choice in 1,899 of 5,846 paired evaluations, 32.5 percent. The arguments flipped with it.</p>
+						<div class="criteria-chart" id="criteria-chart" aria-label="Share of AI evaluators' arguments that switch sides between label conditions"></div>
+						<p class="foot fragment">When a verdict flips, at least one criterion switches sides in 96% of cases. For every criterion, at least 85% of its reversals favor whichever text carries the human label.</p>
+						<aside class="notes">
+							<ul>
+								<li>Systematic coding of 5,846 rationale pairs by three independent LLM coders, validated against human coders, over six recurring criteria.</li>
+								<li>Arguments about vocabulary, rule-following and genre fit switch sides in roughly three of ten eligible pairs, meaning pairs where both rationales take a stance on that criterion. Clarity and novelty are stickier. The criteria follow the label, whatever the text says.</li>
+								<li>[click] The reversals track the choice, and they point toward the human label.</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section class="frame backup-slide">
+						<p class="backup-tag">Backup</p>
+						<h2>Six recurring criteria</h2>
+						<ul class="crit-defs">
+							<li><strong>C1 Constraint and structure</strong>: does the text satisfy the formal rule, meter or letter constraint</li>
+							<li><strong>C2 Lexical and phonetic cues</strong>: concrete vocabulary, spellings and sounds cited as stylistic evidence</li>
+							<li><strong>C3 Voice and naturalness</strong>: does the voice read as natural or forced</li>
+							<li><strong>C4 Clarity and coherence</strong>: is the prose clear and easy to follow</li>
+							<li><strong>C5 Novelty versus convention</strong>: inventive or formulaic execution</li>
+							<li><strong>C6 Genre and style fit</strong>: appeals to what counts as the target style</li>
+						</ul>
+						<aside class="notes">
+							<ul>
+								<li>The categories are not mutually exclusive; one rationale may invoke several. Coders recorded each criterion&rsquo;s valence, which is what makes stance reversals detectable.</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section class="frame backup-slide">
+						<p class="backup-tag">Backup</p>
+						<h2>Praise mostly follows the label</h2>
+						<figure class="shot shot--wide">
+							<img src="figures/criterion-valence.png" alt="Mean valence of each criterion toward the text labeled human and the text labeled AI, under correct labels and under swapped labels" />
+							<figcaption>SI Fig. S4: mean valence of each criterion, from criticized to praised, for the text labeled human (blue) and the text labeled AI (red), under correct labels (left) and swapped labels (right). Clarity (C4) and novelty (C5) partly resist.</figcaption>
+						</figure>
+						<aside class="notes">
+							<ul>
+								<li>For constraint, lexical cues, voice and genre, the text carrying the human label is praised more in both panels, whichever text it is. Clarity tracks GPT-4&rsquo;s genuinely clearer prose, and novelty tracks Queneau&rsquo;s.</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+
+				<section class="frame caveats-slide">
+					<h2>What the data can and cannot show</h2>
+					<div class="cav">
+						<div>
+							<h3>What the checks show</h3>
+							<p class="body"><strong>The wording of the label.</strong> Prestige-reversed and neutral labels still produce biases of 19.6 and 23.1 points in models.</p>
+							<p class="body"><strong>Sampling noise.</strong> The bias is still +23.8 points at temperature zero.</p>
+							<p class="body"><strong>One model, creator or style.</strong> Dropping any single evaluator, creator or style leaves a bias of nearly the same size.</p>
+							<p class="body"><strong>Familiarity, for people.</strong> Excluding readers who know the book leaves the bias at 13 to 14 points.</p>
+						</div>
+						<div>
+							<h3>What it leaves open</h3>
+							<p class="body"><strong>How models decide.</strong> The rationales are written after the choice. They document how the bias shows in stated reasoning and cannot be read as a map of the model&rsquo;s process.</p>
+							<p class="body"><strong>Familiarity, for models.</strong> Every human-written text is Queneau&rsquo;s, and models have very probably read him. Familiarity could raise or lower their label effect, and this corpus cannot measure which, so the 2.5 times gap is not simply label sensitivity.</p>
+							<p class="body"><strong>Other tasks.</strong> One book, one translation, one question. Rating, ranking or longer texts are untested here.</p>
+						</div>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Left column: the robustness checks, mostly in the backups and SI (label wording, temperature, leave-one-out over models, creators and styles, familiarity exclusions for people).</li>
+							<li>Right column: the authors&rsquo; own caveats. The rationales are post-hoc accounts, not transparent windows into the model. Training data is undisclosed, and the models were very probably trained on Queneau&rsquo;s book, so the 34.3 against 13.7 points cannot be read simply as a difference in label sensitivity.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<!-- ============ SECTION 6 ============ -->
+				<section class="section-slide" data-background-color="#16352f">
+					<p class="section-slide__number">6</p>
+					<h2>Artificial judges, artificial readers</h2>
+				</section>
+
+				<section class="statement-slide epigraph-slide">
+					<p class="statement statement--quote">&ldquo;Only a machine can appreciate a sonnet written by another machine.&rdquo;</p>
+					<p class="statement-src">The line Queneau placed at the head of <em>Cent mille milliards de poèmes</em> (1961), credited to Alan Turing</p>
+					<aside class="notes">
+						<ul>
+							<li>In 1961 Queneau put this line at the head of his book of ten sonnets printed on strips, crediting it to Alan Turing (SI p. 2).</li>
+							<li>We can now test it. Models rate machine-made text lower once it is labeled machine-made, and by more than people do.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="frame takeaway-slide">
+					<h2>What we take from this</h2>
+					<div class="takeaways">
+						<p class="fragment" data-fragment-index="0">The same text reads better under a human name. We call this the human-authorship halo.</p>
+						<p class="fragment">People show it. Models show it 2.5 times as strongly: +13.7 and +34.3 points.</p>
+						<p class="fragment">Labels also change the reasons: a third of verdicts flip when only the labels do.</p>
+					</div>
+					<p class="takeaway-coda fragment">Our judgments begin to tilt the moment a text arrives with a name.</p>
+					<aside class="notes">
+						<ul>
+							<li>That is the answer to the question we opened with. A name works as a paratext: it sets expectations before a single sentence is weighed.</li>
+							<li>The paper&rsquo;s reading of the amplification, which this experiment does not test: these are preference-trained evaluators, RLHF teaches models to treat human judgment as the gold standard, and deference to the human author could be that learned prior at work.</li>
+							<li>For the LLM-as-judge paradigm, the explanations shift with the label, which makes them weak ground. The paper&rsquo;s own closing thought: developing artificial aesthetic intelligence may depend less on teaching models to evaluate, and more on understanding the cultural values they have already absorbed.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section>
+				<section class="bigquote-slide coda-slide">
+					<div class="coda">
+						<blockquote class="bigquote bigquote--coda">
+							<p>&ldquo;Some people have tried to see that book as an attempt at a demolition of literature, which wasn&rsquo;t my intention at all; <mark>I really only wanted to do some exercises</mark>. Maybe that allowed a certain scraping away of some of literature&rsquo;s various rusts and crusts. I&rsquo;d be very proud if I&rsquo;d had something to do with that, particularly if I did it <mark>without boring the reader too much</mark>.&rdquo;</p>
+							<footer>Queneau, 1950, transl. 2007</footer>
+						</blockquote>
+						<figure class="coda__cover">
+							<img src="figures/exercises-cover-red.jpg" alt="Exercises in Style cover with a grid of Queneau portraits" />
+							<figcaption>Cover of a later English edition of <em>Exercises in Style</em>: &ldquo;Now with many new exercises!&rdquo;</figcaption>
+						</figure>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>The lesson of the exercises was always that style is a game played between rule and rupture. AI has become that game&rsquo;s newest participant, and its performance is less that of an impartial judge than of a mirror.</li>
+							<li>Down: the critics&rsquo; alarm, 1947 and 2023, if there is time or a question about it.</li>
+						</ul>
+					</aside>
+				</section>
+
+					<section class="frame backup-slide parallel-slide">
+						<p class="backup-tag">Backup</p>
+						<h2>The critics&rsquo; alarm, then and now</h2>
+						<div class="parallel">
+							<div class="parallel-col">
+								<p class="parallel-col__year">1947</p>
+								<p>Simonnet reads Queneau&rsquo;s book as an infernal &laquo;bris de vocable&raquo;: Saint Language made martyr, formal play that leads nowhere, a violent deconstruction of language.</p>
+								<p class="parallel-col__src">Simonnet, 1947</p>
+							</div>
+							<div class="parallel-col">
+								<p class="parallel-col__year">2023</p>
+								<p>The same anxieties return about LLMs: a &ldquo;textpocalypse&rdquo; flooding the internet with generated prose, machines &ldquo;polluting the entire Western canon&rdquo;.</p>
+								<p class="parallel-col__src">Kirschenbaum, 2023; Hayles, 2023</p>
+							</div>
+						</div>
+						<aside class="notes">
+							<ul>
+								<li>Mechanical play with style has frightened critics before. Queneau&rsquo;s exercises were read as an attack on literature; the exercises outlived the alarm and became a classic.</li>
+							</ul>
+						</aside>
+					</section>
+				</section>
+
+				<section class="frame paper-slide">
+					<h2>The paper and the data</h2>
+					<div class="paper-grid">
+						<div>
+							<div class="paper-card">
+								<p class="paper-card__title">The human-authorship halo: attribution bias in literary style evaluation by humans and AI</p>
+								<p class="paper-card__by">Wouter Haverals &amp; Meredith Martin</p>
+							</div>
+							<ul class="paper-links">
+								<li>Preprint: <a href="https://arxiv.org/abs/2510.08831">arxiv.org/abs/2510.08831</a>, first posted as &ldquo;Everyone prefers human writers, including AI&rdquo;</li>
+								<li>Response data and AI-generated stimuli: <a href="https://doi.org/10.5281/zenodo.17109457">doi.org/10.5281/zenodo.17109457</a></li>
+								<li>Analysis code: <a href="https://github.com/WHaverals/style_and_prejudice">github.com/WHaverals/style_and_prejudice</a></li>
+							</ul>
+						</div>
+						<figure class="qr">
+							<img src="figures/qr-arxiv.svg" alt="QR code linking to the preprint on arXiv" />
+							<figcaption>The preprint</figcaption>
+						</figure>
+					</div>
+					<p class="paper-thanks">Supported by the Princeton Language and Intelligence Seed Grant Program.</p>
+					<aside class="notes">
+						<ul>
+							<li>De-identified human responses for all 556 participants, complete model response data, all generated stimuli and replication instructions are public. For copyright reasons the Zenodo stimuli use placeholder text in place of the Wright translation.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<!-- ============ CLOSING ============ -->
+				<section class="closing-slide">
+					<div class="closing-slide__main">
+						<p class="closing-slide__eyebrow">Thank you</p>
+						<h2 class="closing-slide__heading">Questions <em>&amp;</em> conversation</h2>
+						<p class="closing-slide__contact">
+							<a href="mailto:wouter.haverals@princeton.edu"><!-- EMAIL -->wouter.haverals@princeton.edu</a>
+							<a
+								class="closing-slide__icon"
+								href="https://bsky.app/profile/wouterhaverals.bsky.social"
+								aria-label="Bluesky"
+								target="_blank"
+								rel="noopener"
+							>
+								<svg viewBox="0 0 600 530" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+									<path
+										d="m135.72 44.03c66.496 49.921 138.02 151.14 164.28 205.46 26.262-54.316 97.782-155.54 164.28-205.46 47.98-36.021 125.72-63.892 125.72 24.795 0 17.712-10.155 148.79-16.111 170.07-20.703 73.984-96.144 92.854-163.25 81.433 117.3 19.964 147.14 86.092 82.697 152.22-122.39 125.59-175.91-31.511-189.63-71.766-2.514-7.3797-3.6904-10.832-3.7077-7.8964-0.0174-2.9357-1.1937 0.51669-3.7077 7.8964-13.714 40.255-67.233 197.36-189.63 71.766-64.444-66.128-34.605-132.26 82.697-152.22-67.108 11.421-142.55-7.4491-163.25-81.433-5.9562-21.282-16.111-152.36-16.111-170.07 0-88.687 77.742-60.816 125.72-24.795z"
+									/>
+								</svg>
+							</a>
+							<a
+								class="closing-slide__icon"
+								href="https://github.com/WHaverals/"
+								aria-label="GitHub"
+								target="_blank"
+								rel="noopener"
+							>
+								<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+									<path
+										d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8z"
+									/>
+								</svg>
+							</a>
+						</p>
+					</div>
+
+					<footer class="slide-footer">
+						<div class="slide-footer__presenter">
+							<p class="slide-footer__name"><!-- AUTHOR -->Wouter Haverals &amp; Meredith Martin</p>
+							<p class="slide-footer__affiliation">
+								<!-- AFFILIATION -->Center for Digital Humanities, Princeton University
+							</p>
+						</div>
+
+						<div class="slide-footer__logos">
+							<img
+								src="../../assets/logos/princeton-mark-black.svg"
+								alt="Princeton University"
+								class="logo-princeton"
+							/>
+							<span class="slide-footer__divider" aria-hidden="true"></span>
+							<img
+								src="../../assets/logos/cdh-black.svg"
+								alt="Center for Digital Humanities at Princeton"
+								class="logo-cdh"
+							/>
+						</div>
+					</footer>
+				</section>
+			</div>
+		</div>
+
+		<script src="../../reveal/dist/reveal.js"></script>
+		<script src="../../reveal/dist/plugin/notes.js"></script>
+		<script src="../../plugins/matter/matter.min.js"></script>
+		<script src="assets/floating-exercises.js"></script>
+		<script src="../../plugins/d3/d3.min.js"></script>
+
+		<script>
+			Reveal.initialize({
+				hash: true,
+				slideNumber: 'c/t',
+				transition: 'fade',
+				center: false,
+				pdfSeparateFragments: false,
+				plugins: [RevealNotes],
+			});
+		</script>
+		<script src="assets/charts.js"></script>
+		<script src="assets/swap-labels.js"></script>
+		<script>
+			// Animated title slide lifecycle (floating exercise slips).
+			let verses = null;
+			let titleSlideTimer = null;
+
+			const TRANSITION_MS = { default: 800, fast: 400, slow: 1200 };
+
+			function revealEl() {
+				return document.querySelector('.reveal');
+			}
+
+			function transitionDurationMs() {
+				const speed = Reveal.getConfig().transitionSpeed;
+				if (typeof speed === 'number' && speed >= 0) return speed;
+				if (typeof speed === 'string' && speed in TRANSITION_MS) {
+					return TRANSITION_MS[speed];
+				}
+				return TRANSITION_MS.default;
+			}
+
+			function stripAllTitleScrims() {
+				document
+					.querySelectorAll('.title-slide--scrims')
+					.forEach((slide) => slide.classList.remove('title-slide--scrims'));
+			}
+
+			function stopFloatingVerses() {
+				if (verses) {
+					verses.stop();
+					verses = null;
+				}
+			}
+
+			function startFloatingVerses(slide) {
+				stopFloatingVerses();
+				const zone = slide?.querySelector('.title-slide__zone');
+				if (!zone) return;
+
+				const start = () => {
+					if (Reveal.getCurrentSlide() !== slide) return;
+					verses = FloatingVerses.start(zone);
+				};
+
+				if (document.fonts && document.fonts.ready) {
+					document.fonts.ready.then(start);
+				} else {
+					start();
+				}
+			}
+
+			function activateTitleSlide(slide) {
+				const animated = slide?.classList.contains('title-slide--animated');
+				if (!animated) return;
+				if (Reveal.getCurrentSlide() !== slide) return;
+
+				slide.classList.add('title-slide--scrims');
+				startFloatingVerses(slide);
+			}
+
+			function finishSlideTransition() {
+				clearTimeout(titleSlideTimer);
+				titleSlideTimer = null;
+				revealEl().classList.remove('is-transitioning');
+				activateTitleSlide(Reveal.getCurrentSlide());
+			}
+
+			function beginSlideTransition() {
+				revealEl().classList.add('is-transitioning');
+				clearTimeout(titleSlideTimer);
+				stopFloatingVerses();
+				stripAllTitleScrims();
+
+				const ms = transitionDurationMs();
+				if (ms === 0) {
+					finishSlideTransition();
+					return;
+				}
+				titleSlideTimer = setTimeout(finishSlideTransition, ms + 50);
+			}
+
+			Reveal.on('ready', () => activateTitleSlide(Reveal.getCurrentSlide()));
+			Reveal.on('slidechanged', () => beginSlideTransition());
+			Reveal.on('slidetransitionend', () => finishSlideTransition());
+		</script>
+	</body>
+</html>

@@ -65,26 +65,57 @@
 					</footer>
 
 					<aside class="notes">
-						Welcome slide. Introduce yourself and the topic before diving in.
+						<ul>
+							<li>Introduce yourself and the topic before diving in.</li>
+						</ul>
 					</aside>
 				</section>
 
 				<section class="section-slide" data-background-color="#2a2420">
 					<p class="section-slide__number">1</p>
 					<h2>Section breaks look like this</h2>
+					<aside class="notes">
+						<ul>
+							<li>Name the next part of the talk in one sentence.</li>
+						</ul>
+					</aside>
 				</section>
 
-				<section>
+				<section class="frame">
+					<h2>One title position on every slide</h2>
+					<p class="lead">
+						Put <code>class="frame"</code> on a titled slide: the title stays pinned on one line,
+						and the content is centred in the space below it.
+					</p>
+					<p class="body">
+						Text sizes come from the type scale in <code>overrides.css</code>: lead 29, body 23,
+						label 18 and note 15 pixels.
+					</p>
+					<p class="note">Nothing in a deck is set smaller than the note size.</p>
+					<aside class="notes">
+						<ul>
+							<li>Every titled content slide gets class="frame": same title position, content centred below it.</li>
+							<li>Keep titles to one plain line and put the argument in these notes.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="frame">
 					<h2>Fragments</h2>
-					<p>Reveal content step by step.</p>
-					<p class="fragment fade-up">First point</p>
-					<p class="fragment fade-up">Second point</p>
-					<p class="fragment fade-up">Third point</p>
+					<p class="lead">Reveal content step by step.</p>
+					<p class="lead fragment fade-up">First point</p>
+					<p class="lead fragment fade-up">Second point</p>
+					<p class="lead fragment fade-up">Third point</p>
+					<aside class="notes">
+						<ul>
+							<li>Each click reveals one point.</li>
+						</ul>
+					</aside>
 				</section>
 
-				<section data-auto-animate>
+				<section class="frame" data-auto-animate>
 					<h2 data-id="animate-title">Auto-Animate</h2>
-					<p data-id="animate-body">Matching elements animate between slides.</p>
+					<p class="lead" data-id="animate-body">Matching elements animate between slides.</p>
 					<div
 						data-id="animate-box"
 						style="
@@ -95,11 +126,16 @@
 							border-radius: 12px;
 						"
 					></div>
+					<aside class="notes">
+						<ul>
+							<li>Elements with the same data-id move and resize between the two slides.</li>
+						</ul>
+					</aside>
 				</section>
 
-				<section data-auto-animate>
+				<section class="frame" data-auto-animate>
 					<h2 data-id="animate-title">Auto-Animate</h2>
-					<p data-id="animate-body">Same IDs, new layout.</p>
+					<p class="lead" data-id="animate-body">Same IDs, new layout.</p>
 					<div
 						data-id="animate-box"
 						style="
@@ -110,9 +146,14 @@
 							border-radius: 12px;
 						"
 					></div>
+					<aside class="notes">
+						<ul>
+							<li>Same data-id values, new size.</li>
+						</ul>
+					</aside>
 				</section>
 
-				<section>
+				<section class="frame">
 					<h2>Code</h2>
 					<pre><code class="hljs javascript" data-trim data-line-numbers="1|3-5|7">
 function greet(name) {
@@ -121,23 +162,47 @@ function greet(name) {
   return message;
 }
 					</code></pre>
+					<aside class="notes">
+						<ul>
+							<li>Line numbers step through the code: 1, then 3 to 5, then 7.</li>
+						</ul>
+					</aside>
 				</section>
 
-				<section data-background-color="#2a2420">
+				<section class="frame">
+					<h2>Quotations</h2>
+					<blockquote>
+						<p>Set a quotation in italic serif, with the credit below it and no bar down the side.</p>
+						<footer>Author, <em>Title</em> (Place: Publisher, Year), page.</footer>
+					</blockquote>
+					<aside class="notes">
+						<ul>
+							<li>Quote the primary source in full and give edition and page in the credit line.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="frame" data-background-color="#2a2420">
 					<h2>Dark Contrast Slide</h2>
-					<p>Use <code>data-background-color</code> for emphasis or section breaks.</p>
+					<p class="lead">Use <code>data-background-color</code> for emphasis or section breaks.</p>
+					<aside class="notes">
+						<ul>
+							<li>A dark background marks a break in the argument.</li>
+						</ul>
+					</aside>
 				</section>
 
-				<section>
-					<h2>Markdown (optional)</h2>
-					<section data-markdown>
-						<script type="text/template">
-## Markdown slide
+				<section data-markdown class="frame">
+					<script type="text/template">
+## Markdown (optional)
 
-- Write slides in Markdown when you want to
-- Still supports **fragments** with `<!-- .element: class="fragment" -->`
-						</script>
-					</section>
+- Write a slide in Markdown when that is quicker
+- Mix Markdown slides with HTML slides in one deck
+- Put speaker notes after a Note: line
+
+Note:
+- Fragments also work in Markdown, through an element attribute comment; see the reveal.js documentation.
+					</script>
 				</section>
 
 				<section class="closing-slide">
@@ -233,6 +298,7 @@ function greet(name) {
 				slideNumber: 'c/t',
 				transition: 'fade',
 				center: false,
+				// pdfSeparateFragments: false, // one PDF page per slide when builds need no pages of their own
 				plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
 			});
 		</script>
