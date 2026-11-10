@@ -14,7 +14,10 @@
       --text: #1c1917;    /* ink */
       --soft: #45403b;
       --muted: #6b655f;
-      --accent: #b5341c;  /* rubric, hover only */
+      --line: rgba(28, 25, 23, 0.14);
+      --accent: #b5341c;  /* rubric, links on hover only */
+      --year: 7rem;
+      --gap: 2.5rem;
     }
 
     * { box-sizing: border-box; }
@@ -31,76 +34,141 @@
     }
 
     main {
-      max-width: 680px;
+      max-width: 1080px;
       margin: 0 auto;
-      padding: 5.5rem 1.5rem 6rem;
+      padding: 5.5rem 2.5rem 7rem;
     }
 
     .masthead {
-      margin: 0 0 3.5rem;
+      margin: 0 0 4.5rem calc(var(--year) + var(--gap));
     }
 
     .masthead h1 {
       margin: 0;
       font-family: 'Alegreya', Georgia, serif;
-      font-size: 2.75rem;
+      font-size: 3.25rem;
       font-weight: 600;
-      line-height: 1.1;
+      line-height: 1.05;
     }
 
     .masthead p {
-      margin: 0.75rem 0 0;
+      margin: 0.85rem 0 0;
       color: var(--soft);
+    }
+
+    .year {
+      display: grid;
+      grid-template-columns: var(--year) 1fr;
+      column-gap: var(--gap);
+    }
+
+    .year + .year {
+      margin-top: 5rem;
+    }
+
+    .year h2 {
+      position: sticky;
+      top: 1.5rem;
+      align-self: start;
+      margin: 0;
+      font-family: 'Alegreya', Georgia, serif;
+      font-size: 1.75rem;
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--muted);
     }
 
     ul {
       list-style: none;
       margin: 0;
       padding: 0;
-      display: grid;
-      gap: 2.25rem;
     }
 
-    li {
+    .talks {
       display: grid;
-      gap: 0.15rem;
+      gap: 4rem;
     }
 
-    .deck-title {
-      justify-self: start;
+    .talk {
+      display: grid;
+      grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+      column-gap: var(--gap);
+      align-items: start;
+    }
+
+    .talk--no-cover .talk-text {
+      grid-column: 2;
+    }
+
+    .talk-cover {
+      display: block;
+    }
+
+    .talk-cover img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      border: 1px solid var(--line);
+    }
+
+    .talk-title {
+      margin: -0.2rem 0 0;
       font-family: 'Alegreya', Georgia, serif;
-      font-size: 1.6rem;
+      font-size: 1.9rem;
       font-weight: 500;
-      line-height: 1.2;
-      color: var(--text);
-      text-decoration: none;
+      line-height: 1.15;
       text-wrap: balance;
     }
 
-    .deck-title:hover,
-    .deck-title:focus-visible {
+    .talk-title a {
+      color: var(--text);
+      text-decoration: none;
+    }
+
+    .talk-subtitle {
+      margin: 0.4rem 0 0;
+      font-size: 1.1rem;
+      color: var(--soft);
+      text-wrap: pretty;
+    }
+
+    .talk-deliveries {
+      display: grid;
+      gap: 0.8rem;
+      margin-top: 1.25rem;
+    }
+
+    .talk-deliveries a {
+      color: var(--soft);
+      text-decoration: underline;
+      text-decoration-color: var(--line);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.22em;
+    }
+
+    .talk-when {
+      display: block;
+      color: var(--muted);
+    }
+
+    .talk-title a:hover,
+    .talk-deliveries a:hover,
+    a:focus-visible {
       color: var(--accent);
       text-decoration: underline;
+      text-decoration-color: currentColor;
       text-decoration-thickness: 1px;
       text-underline-offset: 0.2em;
     }
 
-    .deck-title:focus-visible {
+    a:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 3px;
     }
 
-    .deck-event {
-      margin-top: 0.3rem;
-      color: var(--soft);
-    }
-
-    .deck-meta {
-      color: var(--muted);
-    }
-
-    li.empty {
-      display: block;
+    .empty {
       color: var(--muted);
     }
 
@@ -109,10 +177,20 @@
       font-size: 0.9em;
     }
 
-    @media (max-width: 520px) {
-      main { padding: 3.5rem 1.25rem 4rem; }
-      .masthead h1 { font-size: 2.3rem; }
-      .deck-title { font-size: 1.4rem; }
+    @media (max-width: 860px) {
+      :root { --year: 0rem; --gap: 1.5rem; }
+      main { padding: 3.5rem 1.25rem 5rem; }
+      .masthead { margin: 0 0 3rem; }
+      .masthead h1 { font-size: 2.5rem; }
+      .year { display: block; }
+      .year h2 { position: static; margin-bottom: 1.5rem; }
+      .talks { gap: 3rem; }
+      .talk { grid-template-columns: minmax(0, 1fr); row-gap: 1.1rem; }
+      .talk--no-cover .talk-text { grid-column: 1; }
+      .talk-cover img { aspect-ratio: 16 / 9; }
+      .talk-title { margin-top: 0; font-size: 1.5rem; }
+      .talk-subtitle { font-size: 1rem; }
+      .talk-deliveries { margin-top: 0.8rem; }
     }
   </style>
 </head>
@@ -122,28 +200,64 @@
       <h1>Slidedecks</h1>
       <p>Oh, hello, you found my secret stash of slidedecks! ;-)</p>
     </header>
-    <ul>
-      <li>
-        <a class="deck-title" href="decks/2026-11-poetic-canon-stanford/" aria-describedby="deck-0-event">Ends of Prosody</a>
-        <span class="deck-event" id="deck-0-event">CESTA Lunch Seminar Series, Stanford University</span>
-        <span class="deck-meta">Stanford, November 19, 2026</span>
+    <section class="year" aria-labelledby="year-2026">
+      <h2 id="year-2026">2026</h2>
+      <ul class="talks">
+      <li class="talk">
+        <a class="talk-cover" href="decks/2026-11-style-and-prejudice/" tabindex="-1" aria-hidden="true"><img src="assets/home/2026-11-style-and-prejudice.jpg" alt="" width="640" height="480" loading="lazy" /></a>
+        <div class="talk-text">
+          <h3 class="talk-title"><a href="decks/2026-11-style-and-prejudice/">Style and Prejudice</a></h3>
+          <p class="talk-subtitle">Attribution bias in human and AI literary judgment</p>
+          <ul class="talk-deliveries">
+            <li>
+              <a href="decks/2026-11-style-and-prejudice/">Berkeley, November 9, 2026</a>
+            </li>
+          </ul>
+        </div>
       </li>
-      <li>
-        <a class="deck-title" href="decks/2026-11-poetic-canon-berkeley/" aria-describedby="deck-1-event">Ends of Prosody</a>
-        <span class="deck-event" id="deck-1-event">Cultural Analytics Series, UC Berkeley</span>
-        <span class="deck-meta">Berkeley, November 9, 2026</span>
+      <li class="talk">
+        <a class="talk-cover" href="decks/2026-11-poetic-canon-stanford/" tabindex="-1" aria-hidden="true"><img src="assets/home/2026-11-poetic-canon-stanford.jpg" alt="" width="640" height="480" loading="lazy" /></a>
+        <div class="talk-text">
+          <h3 class="talk-title"><a href="decks/2026-11-poetic-canon-stanford/">Ends of Prosody</a></h3>
+          <p class="talk-subtitle">Histories, Methods, Frictions</p>
+          <ul class="talk-deliveries">
+            <li>
+              <a href="decks/2026-11-poetic-canon-stanford/">CESTA Lunch Seminar Series, Stanford University</a>
+              <span class="talk-when">Stanford, November 19, 2026</span>
+            </li>
+            <li>
+              <a href="decks/2026-11-poetic-canon-berkeley/">Cultural Analytics Series, UC Berkeley</a>
+              <span class="talk-when">Berkeley, November 9, 2026</span>
+            </li>
+          </ul>
+        </div>
       </li>
-      <li>
-        <a class="deck-title" href="decks/2026-07-publishing-digital-edition/" aria-describedby="deck-2-event">Publishing a Digital Edition</a>
-        <span class="deck-event" id="deck-2-event">Antwerp DH Summer School 2026</span>
-        <span class="deck-meta">Antwerp, July 3, 2026</span>
+      <li class="talk">
+        <a class="talk-cover" href="decks/2026-07-publishing-digital-edition/" tabindex="-1" aria-hidden="true"><img src="assets/home/2026-07-publishing-digital-edition.jpg" alt="" width="640" height="480" loading="lazy" /></a>
+        <div class="talk-text">
+          <h3 class="talk-title"><a href="decks/2026-07-publishing-digital-edition/">Publishing a Digital Edition</a></h3>
+          <ul class="talk-deliveries">
+            <li>
+              <a href="decks/2026-07-publishing-digital-edition/">Antwerp DH Summer School 2026</a>
+              <span class="talk-when">Antwerp, July 3, 2026</span>
+            </li>
+          </ul>
+        </div>
       </li>
-      <li>
-        <a class="deck-title" href="decks/2026-06-poetic-canon/" aria-describedby="deck-3-event">Evolution of the Poetic Canon in the Princeton Prosody Archive</a>
-        <span class="deck-event" id="deck-3-event">Mapping the Canon: Quantitative Approaches to Literary History</span>
-        <span class="deck-meta">Darmstadt, June 18–19, 2026</span>
+      <li class="talk">
+        <a class="talk-cover" href="decks/2026-06-poetic-canon/" tabindex="-1" aria-hidden="true"><img src="assets/home/2026-06-poetic-canon.jpg" alt="" width="640" height="480" loading="lazy" /></a>
+        <div class="talk-text">
+          <h3 class="talk-title"><a href="decks/2026-06-poetic-canon/">Evolution of the Poetic Canon in the Princeton Prosody Archive</a></h3>
+          <ul class="talk-deliveries">
+            <li>
+              <a href="decks/2026-06-poetic-canon/">Mapping the Canon: Quantitative Approaches to Literary History</a>
+              <span class="talk-when">Darmstadt, June 18–19, 2026</span>
+            </li>
+          </ul>
+        </div>
       </li>
-    </ul>
+      </ul>
+    </section>
   </main>
 </body>
 </html>

@@ -1,0 +1,25 @@
+{
+	"_about": "Homepage settings per deck folder, read by build-index.mjs and build-home-covers.mjs. Text: title, subtitle, event, meta (place and date) override what the deck's title slide says; set a field to null to hide it. Published decks are frozen, so their homepage text is corrected here, not in the deck. Cover: an image inside the deck (src), cropped to 4:3 like CSS object-position (position, default centre), optionally enlarged (zoom). Without a cover the title slide is used. Run npm run build:covers after changing a cover.",
+	"2026-11-style-and-prejudice": {
+		"event": null,
+		"meta": "Berkeley, November 9, 2026",
+		"cover": { "src": "figures/exercises-cover-red.jpg", "position": "50% 42%", "zoom": 1.3 }
+	},
+	"2026-11-poetic-canon-stanford": {
+		"event": "CESTA Lunch Seminar Series, Stanford University",
+		"meta": "Stanford, November 19, 2026",
+		"cover": { "src": "assets/thelwall-1812-xlv.png", "position": "50% 21%" }
+	},
+	"2026-11-poetic-canon-berkeley": {
+		"event": "Cultural Analytics Series, UC Berkeley",
+		"meta": "Berkeley, November 9, 2026",
+		"cover": { "src": "assets/thelwall-1812-xlv.png", "position": "50% 21%" }
+	},
+	"2026-07-publishing-digital-edition": {
+		"meta": "Antwerp, July 3, 2026",
+		"cover": { "src": "evt-1.gif", "position": "42% 84%", "zoom": 1.25 }
+	},
+	"2026-06-poetic-canon": {
+		"cover": { "src": "figures/gray-elegy-opening.png", "position": "50% 50%" }
+	}
+}

@@ -1,4 +1,5 @@
-// Render the title slide of every deck listed on the homepage to assets/home/<deck>.jpg.
+// Make the homepage cover for every listed deck: assets/home/<deck>.jpg, 640 x 480.
+// The cover is the image named in scripts/homepage.json (cropped to 4:3), or else the deck's title slide.
 // Local only (needs Playwright and an installed Chrome), so the covers are committed:
 //   npm run build:covers            all listed decks
 //   npm run build:covers -- <deck>  one deck
@@ -12,6 +13,9 @@ import { chromium } from 'playwright';
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const decksDir = join(root, 'decks');
 const outDir = join(root, 'assets', 'home');
+const settings = JSON.parse(readFileSync(join(root, 'scripts', 'homepage.json'), 'utf8'));
+const W = 640;
+const H = 480;
 
 const TYPES = {
 	'.html': 'text/html; charset=utf-8',
@@ -31,9 +35,9 @@ const TYPES = {
 };
 
 const server = createServer((req, res) => {
-	let path = decodeURIComponent(new URL(req.url, 'http://x').pathname);
+	const path = decodeURIComponent(new URL(req.url, 'http://x').pathname);
 	let file = normalize(join(root, path));
-	if (!file.startsWith(root + sep) && file !== root) {
+	if (file !== root && !file.startsWith(root + sep)) {
 		res.writeHead(403).end();
 		return;
 	}
@@ -54,27 +58,57 @@ const decks = readdirSync(decksDir)
 	.filter((name) => !existsSync(join(decksDir, name, '.no-homepage')))
 	.filter((name) => only.length === 0 || only.includes(name));
 
+// An image cropped to W x H the way CSS object-fit: cover + object-position would, drawn from the
+// first frame (so a GIF gives a stable cover), optionally enlarged around the same point.
+async function imageCover(page, url, position = '50% 50%', zoom = 1) {
+	const [px, py] = position.split(/\s+/).map((v) => parseFloat(v) / 100);
+	await page.setContent(`<canvas width="${W}" height="${H}" style="display:block"></canvas>`);
+	await page.evaluate(
+		async ({ url, px, py, zoom, W, H }) => {
+			const blob = await (await fetch(url)).blob();
+			const bmp = await createImageBitmap(blob);
+			const scale = Math.max(W / bmp.width, H / bmp.height) * zoom;
+			const dw = bmp.width * scale;
+			const dh = bmp.height * scale;
+			const ctx = document.querySelector('canvas').getContext('2d');
+			ctx.imageSmoothingQuality = 'high';
+			ctx.drawImage(bmp, (W - dw) * px, (H - dh) * py, dw, dh);
+		},
+		{ url, px, py, zoom, W, H }
+	);
+	return page.locator('canvas');
+}
+
+async function titleSlideCover(page, name) {
+	await page.goto(`${base}/decks/${name}/?transition=none&nomotion=1`, { waitUntil: 'networkidle' });
+	await page.addStyleTag({
+		content:
+			'.reveal .controls, .reveal .progress, .reveal .slide-number { display: none !important; } *, *::before, *::after { transition: none !important; animation-play-state: paused !important; }',
+	});
+	await page.evaluate(async () => {
+		await document.fonts.ready;
+		if (window.Reveal?.isReady && !window.Reveal.isReady()) {
+			await new Promise((resolve) => window.Reveal.on('ready', resolve));
+		}
+		window.Reveal?.slide?.(0, 0, 0);
+	});
+	await page.waitForTimeout(800);
+	return page;
+}
+
 mkdirSync(outDir, { recursive: true });
 const browser = await chromium.launch({ channel: 'chrome' });
 try {
 	for (const name of decks) {
-		// 640 x 467 keeps the 960 x 700 slide ratio; shown at about 300 CSS px, so sharp on 2x screens.
-		const page = await browser.newPage({ viewport: { width: 640, height: 467 } });
-		await page.goto(`${base}/decks/${name}/?transition=none&nomotion=1`, { waitUntil: 'networkidle' });
-		await page.addStyleTag({
-			content: '.reveal .controls, .reveal .progress, .reveal .slide-number, .reveal .slide-menu-button { display: none !important; } *, *::before, *::after { transition: none !important; animation-play-state: paused !important; }',
-		});
-		await page.evaluate(async () => {
-			await document.fonts.ready;
-			if (window.Reveal?.isReady && !window.Reveal.isReady()) {
-				await new Promise((resolve) => window.Reveal.on('ready', resolve));
-			}
-			window.Reveal?.slide?.(0, 0, 0);
-		});
-		await page.waitForTimeout(800);
-		await page.screenshot({ path: join(outDir, `${name}.jpg`), type: 'jpeg', quality: 86 });
+		const cover = settings[name]?.cover;
+		const page = await browser.newPage({ viewport: { width: W, height: H } });
+		await page.goto(`${base}/`); // same origin, so the canvas may fetch the deck's image
+		const target = cover?.src
+			? await imageCover(page, `${base}/decks/${name}/${cover.src}`, cover.position, cover.zoom)
+			: await titleSlideCover(page, name);
+		await target.screenshot({ path: join(outDir, `${name}.jpg`), type: 'jpeg', quality: 84 });
 		await page.close();
-		console.log(`cover: assets/home/${name}.jpg`);
+		console.log(`cover: assets/home/${name}.jpg (${cover?.src ? cover.src : 'title slide'})`);
 	}
 } finally {
 	await browser.close();

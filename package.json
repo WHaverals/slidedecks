@@ -8,6 +8,7 @@
     "sync-vendor": "node scripts/sync-vendor.mjs",
     "build:theme": "sass theme/source/wouter.scss theme/wouter.css --load-path=node_modules/reveal.js/css/theme",
     "build:index": "node scripts/build-index.mjs",
+    "build:covers": "node scripts/build-home-covers.mjs",
     "build": "npm run sync-reveal && npm run sync-vendor && npm run build:theme && npm run build:index",
     "prepare:pages": "node scripts/prepare-pages.mjs",
     "new": "node scripts/new-deck.mjs",
