@@ -1,0 +1,759 @@
+/* ===== §04 The Ends of Prosody conference =====
+   Three content slides: the two objects (database | dataset), the format
+   (the week as a strip), and the outcome (one room, two issues).
+   Colour code, constant across the three slides:
+     peach  = the database and the scholars of prosody & poetics who use it
+     blue   = the dataset and the computational scholars who use it
+   The peach is the sunset of the Ends of Prosody banner (04 divider). Like the deck's teal and
+   coral, it has a fill (blocks, boxes, labels, and the wires and bars, drawn 3px or more so it
+   reads) and a darker ink for type (the kickers): the fill is too pale for text; the ink passes
+   4.5:1 on the paper. */
+
+.reveal .slides section.conf-slide {
+	--conf-db: #3d3833; /* neutral ink, for text on beige and peach */
+	--conf-db-fill: #f6ae99;
+	--conf-db-ink: #b4553f;
+	--conf-ds: var(--w-accent);
+	--conf-rule: #e2ddd5;
+	--conf-quiet: #57534e;
+	height: 100%;
+	box-sizing: border-box;
+	display: flex !important;
+	flex-direction: column;
+	padding-top: 0.35em;
+	padding-bottom: 0.55em;
+	text-align: left;
+}
+
+.reveal .slides section.conf-slide::before {
+	content: "";
+	display: block;
+	flex: none;
+	width: 2.8rem;
+	height: 5px;
+	background: var(--w-accent);
+	margin-bottom: 1.1rem;
+}
+
+.reveal .conf-slide h2 {
+	margin: 0;
+	font-size: 1.5em;
+	letter-spacing: -0.02em;
+}
+
+.reveal .conf-slide h2 em {
+	font-style: italic;
+	color: #f05c6a;
+}
+
+.reveal .conf-lede {
+	max-width: 34em;
+	margin: 0.3em 0 0;
+	font-family: Alegreya, Georgia, serif;
+	font-size: 0.7em;
+	font-style: italic;
+	font-weight: 500;
+	line-height: 1.35;
+	color: #57534e;
+}
+
+/* small uppercase label (kickers, field names, dates) */
+.reveal .conf-kicker {
+	margin: 0;
+	font-family: "Source Sans 3", "Source Sans Pro", sans-serif;
+	font-size: 0.4em;
+	font-weight: 600;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--conf-quiet);
+}
+
+/* journal titles stay italic inside a kicker */
+.reveal .conf-kicker em {
+	font-family: inherit;
+	letter-spacing: inherit;
+}
+
+.reveal .conf-kicker--db {
+	color: var(--conf-db-ink);
+}
+
+.reveal .conf-kicker--ds {
+	color: var(--conf-ds);
+}
+
+/* fragments fade in place */
+.reveal .conf-slide .fragment {
+	transition: opacity 0.45s ease, visibility 0.45s;
+}
+
+/* ---------- 04 divider: the section-slide layout, with the banner as the title card ----------
+   Number and credit are the theme's section-slide elements; the card takes the h2's place.
+   scene.svg is the Bluesky 16:9 animation (1920 x 1080 units), live. The grain is the
+   stills' paper filter, tiled at the card's scale, soft-light at 0.5. */
+
+.reveal .conf-title__card {
+	position: relative;
+	flex: none;
+	width: 100%;
+	aspect-ratio: 16 / 9;
+	overflow: hidden;
+	border-radius: 10px; /* slightly rounded; clips the scene and the grain */
+}
+
+.reveal .conf-title__scene {
+	display: block;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+	max-height: none;
+	margin: 0;
+	border: 0;
+	box-shadow: none;
+}
+
+.reveal .conf-title__grain {
+	position: absolute;
+	inset: 0;
+	/* one tile is 400 of the card's 1920 units wide */
+	background: url("assets/ends-of-prosody-title/grain.svg") 0 0 / calc(100% * 400 / 1920) auto repeat;
+	mix-blend-mode: soft-light;
+	opacity: 0.5;
+	pointer-events: none;
+}
+
+/* the date carries the slide's only words, so it is set larger than the other sections' credits */
+.reveal .section-slide__credit.conf-title__credit {
+	font-size: 0.56em;
+}
+
+.reveal .conf-sr {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip-path: inset(50%);
+	white-space: nowrap;
+}
+
+/* ---------- 04a: one archive, two objects ---------- */
+
+.reveal .conf-objects {
+	flex: 1;
+	min-height: 0;
+	margin-top: 0.9em;
+	display: grid;
+	grid-template-columns: 1fr 1fr; /* 50/50: the divider sits on the centre line */
+	column-gap: 0;
+}
+
+.reveal .conf-object {
+	margin: 0;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.55em;
+}
+
+.reveal .conf-object--db {
+	padding-right: 1.1em;
+}
+
+/* the gap between the two crowds: dashed grey = absent */
+.reveal .conf-object--ds {
+	padding-left: 1.1em;
+	border-left: 2px dashed #a8a29e;
+}
+
+/* two excerpts of one results page (prosody.princeton.edu, 760 px wide): the query, and the first hit */
+.reveal .conf-shots {
+	flex: 1;
+	min-height: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between; /* the hit's bottom lines up with the record's */
+	gap: 0.3em;
+}
+
+.reveal .conf-shot {
+	display: block;
+	width: 100%;
+	max-width: 100%; /* the theme caps img at 95% */
+	box-sizing: border-box;
+	height: auto;
+	margin: 0;
+	border: 1px solid var(--conf-rule);
+	box-shadow: none;
+}
+
+/* the two crowds as filled labels, like the 04b blocks and 04c boxes */
+.reveal .conf-who {
+	margin-top: auto;
+	padding: 0.28em 0.5em 0.34em;
+	border-radius: 3px;
+	font-family: Alegreya, Georgia, serif;
+	font-size: 0.78em;
+	font-style: italic;
+	font-weight: 500;
+	line-height: 1.2;
+}
+
+.reveal .conf-object--db .conf-who {
+	background: var(--conf-db-fill);
+	color: #1c1917;
+}
+
+.reveal .conf-object--ds .conf-who {
+	background: var(--conf-ds);
+	color: #faf8f5;
+}
+
+/* the dataset record: one field per row, name above value, light rules only.
+   It fills the column, so its rules line up with the screenshot's height. */
+.reveal .conf-record {
+	flex: 1;
+	min-height: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.reveal .conf-record > div {
+	flex: 1 1 auto;
+}
+
+.reveal .conf-field {
+	padding: 0.28em 0 0.32em;
+	border-bottom: 1px solid var(--conf-rule);
+}
+
+/* three short fields share one row; both such rows use the same thirds, so they align */
+.reveal .conf-fields {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	column-gap: 1.1em;
+	border-bottom: 1px solid var(--conf-rule);
+}
+
+.reveal .conf-fields .conf-field {
+	border-bottom: 0;
+}
+
+.reveal .conf-field--text {
+	border-bottom: 0;
+}
+
+.reveal .conf-record dt,
+.reveal .conf-record dd {
+	margin: 0;
+}
+
+/* field names are data: mono, as in the file */
+.reveal .conf-record dt {
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.38em;
+	color: #78716c;
+	white-space: nowrap;
+}
+
+.reveal .conf-record dd {
+	margin-top: 0.15em;
+	min-width: 0;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.42em;
+	line-height: 1.35;
+	color: #1c1917;
+	overflow-wrap: anywhere;
+}
+
+/* the page text as the dataset has it (EEBO-TCP transcription), period spelling kept */
+.reveal .conf-record dd.conf-ocr {
+	border-bottom: 0;
+	font-family: "IM Fell English", Alegreya, Georgia, serif;
+	font-size: 0.5em;
+	line-height: 1.3;
+	overflow-wrap: normal;
+}
+
+.reveal .conf-ocr mark {
+	padding: 0 0.1em;
+	background: color-mix(in srgb, var(--w-accent) 18%, transparent);
+	color: inherit;
+}
+
+.reveal .conf-ocr .conf-elide {
+	color: #a8a29e;
+}
+
+/* ---------- 04b: the week as a strip ---------- */
+
+.reveal .conf-meta {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: baseline;
+	gap: 0.3em 1.5em;
+	margin: 0.55em 0 0;
+}
+
+/* the two references on 04b (Recht, top left; the quotes' source, bottom right): darker than
+   the usual credit grey, so the thin mono strokes hold up */
+.reveal .conf-credit {
+	margin: 0;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.4em;
+	letter-spacing: 0.03em;
+	color: #3d3833;
+}
+
+.reveal .conf-credit em {
+	font-family: inherit;
+	letter-spacing: inherit;
+}
+
+.reveal .conf-legend {
+	display: flex;
+	gap: 1.4em;
+	margin: 0;
+	font-family: "Source Sans 3", "Source Sans Pro", sans-serif;
+	font-size: 0.4em;
+	color: var(--conf-quiet);
+}
+
+.reveal .conf-legend span {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.5em;
+}
+
+.reveal .conf-legend i {
+	display: inline-block;
+	width: 1.6em;
+	height: 0.9em;
+	box-sizing: border-box;
+}
+
+.reveal .conf-legend i.conf-swatch--ds {
+	background: var(--conf-ds);
+}
+
+.reveal .conf-legend i.conf-swatch--db {
+	background: var(--conf-db-fill);
+}
+
+.reveal .conf-week {
+	flex: 1;
+	min-height: 0;
+	list-style: none;
+	margin: 0.8em 0 0;
+	padding: 0;
+	display: grid;
+	grid-template-columns: repeat(4, 1fr);
+	grid-template-rows: 1fr auto auto; /* the days, the quote row, the source line */
+	column-gap: 0.7em;
+	row-gap: 0.5em;
+}
+
+.reveal .conf-day {
+	grid-row: 1;
+	min-width: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.45em;
+}
+
+.reveal .conf-day__blocks {
+	flex: 1;
+	min-height: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 0.35em;
+}
+
+.reveal .conf-block {
+	flex: 1;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	box-sizing: border-box;
+	padding: 0.5em 0.6em;
+	border-radius: 3px;
+	font-family: Alegreya, Georgia, serif;
+	font-size: 0.6em;
+	font-weight: 500;
+	line-height: 1.2;
+}
+
+.reveal .conf-block small {
+	display: block;
+	margin-top: 0.4em;
+	font-family: "Source Sans 3", "Source Sans Pro", sans-serif;
+	font-size: 0.68em;
+	font-weight: 400;
+	line-height: 1.3;
+}
+
+/* who was in the room: the head count, in words, under a thin rule in the block's own text colour */
+.reveal .conf-count {
+	display: block;
+	margin-top: 1.4em;
+	font-family: "Source Sans 3", "Source Sans Pro", sans-serif;
+	font-size: 0.68em;
+	font-weight: 400;
+	line-height: 1.3;
+}
+
+.reveal .conf-count::before {
+	content: "";
+	display: block;
+	height: 1px;
+	margin-bottom: 0.7em;
+	background: currentColor;
+	opacity: 0.35;
+}
+
+.reveal .conf-block--ds {
+	background: var(--conf-ds);
+	color: #faf8f5;
+}
+
+.reveal .conf-block--db {
+	background: var(--conf-db-fill);
+	color: #1c1917;
+}
+
+.reveal .conf-block--all {
+	background: #ece7df;
+	color: var(--conf-db);
+}
+
+/* short sessions run by the hosts (PPA intros, the CDH data talk, the student talk):
+   the caucus's beige, in label type, at a fixed small height */
+.reveal .conf-block--brief {
+	flex: none;
+	padding: 0.55em 0.85em;
+	background: #ece7df;
+	color: var(--conf-db);
+	font-family: "Source Sans 3", "Source Sans Pro", sans-serif;
+	font-size: 0.42em;
+	font-weight: 600;
+	line-height: 1.25;
+}
+
+/* a session that filled most of the day (Thursday's two panels): about two thirds of the column */
+.reveal .conf-block--long {
+	flex: 3.9;
+}
+
+/* the quote row (grid row 2): the maxim spans Wed-Thu, the Fri and Sat quotes sit under their days */
+.reveal .conf-day__rule {
+	grid-row: 2;
+	margin: 0;
+	font-family: Alegreya, Georgia, serif;
+	font-size: 0.55em; /* the size at which the maxim runs the full Wed-Thu width on one line */
+	font-style: italic;
+	font-weight: 500;
+	line-height: 1.25;
+	color: #1c1917;
+	text-align: center; /* each quote sits centred under its block(s) */
+	text-wrap: balance;
+}
+
+.reveal .conf-day__rule--maxim {
+	grid-column: 1 / span 2;
+	white-space: nowrap;
+}
+
+.reveal .conf-day__rule--fri {
+	grid-column: 3;
+}
+
+.reveal .conf-day__rule--sat {
+	grid-column: 4;
+}
+
+/* one source line for all three quotes, lower right: mirrors the Recht credit at top left */
+.reveal .conf-week__source {
+	grid-row: 3;
+	grid-column: 1 / -1;
+	margin-top: -0.2em;
+	text-align: right;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.4em;
+	letter-spacing: 0.03em;
+	color: #3d3833; /* matches the Recht credit */
+}
+
+/* ---------- 04b2: the week in photographs ----------
+   A 4 x 3 grid, one photo per block of 04b. The data play fills 3 x 2. The bottom row runs Wed to
+   Thu (student talk, PPA intro, panels) and the right column Fri to Sat (data presentations,
+   keynote); both end on the caucus in the bottom-right corner. One label per
+   event, in the 04b block colours: blue = data play and data presentations, peach = panels and
+   keynote, beige = host sessions and the caucus. */
+.reveal .conf-photos {
+	flex: 1;
+	min-height: 0;
+	margin: 0.55em 0 0;
+	display: grid;
+	grid-template-columns: repeat(4, minmax(0, 1fr));
+	grid-template-rows: repeat(3, minmax(0, 1fr));
+	grid-template-areas:
+		"hero  hero  hero dpres"
+		"hero  hero  hero key"
+		"talk  intro pan  caucus";
+	gap: 6px;
+}
+
+.reveal .conf-photo {
+	position: relative;
+	margin: 0;
+	min-width: 0;
+	min-height: 0;
+	overflow: hidden;
+	border-radius: 3px;
+}
+
+.reveal .conf-photo--talk { grid-area: talk; }
+.reveal .conf-photo--hero { grid-area: hero; }
+.reveal .conf-photo--intro { grid-area: intro; }
+.reveal .conf-photo--pan { grid-area: pan; }
+.reveal .conf-photo--dpres { grid-area: dpres; }
+.reveal .conf-photo--key { grid-area: key; }
+.reveal .conf-photo--caucus { grid-area: caucus; }
+
+.reveal .conf-photo img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	max-width: none;
+	max-height: none;
+	margin: 0;
+	border: 0;
+	box-shadow: none;
+	object-fit: cover;
+	object-position: 50% 50%;
+}
+
+/* keep the screen in frame where the cell crops the sides */
+.reveal .conf-photo--caucus img { object-position: 65% 50%; }
+
+.reveal .conf-chip {
+	position: absolute;
+	left: 6px;
+	bottom: 6px;
+	margin: 0;
+	padding: 0.3em 0.6em 0.36em;
+	border-radius: 3px;
+	font-family: "Source Sans 3", "Source Sans Pro", sans-serif;
+	font-size: 0.42em;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.reveal .conf-chip--ds { background: var(--conf-ds); color: #faf8f5; }
+.reveal .conf-chip--db { background: var(--conf-db-fill); color: #1c1917; }
+.reveal .conf-chip--brief { background: #ece7df; color: var(--conf-db); }
+
+.reveal .slides section p.conf-photos__credit {
+	flex: none;
+	width: 100%;
+	max-width: none; /* the theme caps section p at 42em */
+	margin: 0.35em 0 0;
+	text-align: right;
+	font-family: "Source Sans 3", "Source Sans Pro", sans-serif;
+	font-size: 0.4em;
+	line-height: 1.2;
+	color: #3d3833;
+}
+
+/* ---------- 04c: one room, two issues ---------- */
+
+.reveal .conf-flow {
+	flex: 1;
+	min-height: 0;
+	margin-top: 0.75em;
+	display: grid;
+	/* the short titles leave the in-nodes and the room their width; longer wires push
+	   the issues right, so their widest line (Martin & Haverals) ends near the edge */
+	grid-template-columns: 5.8em 1.55em 6.6em 1.55em 1fr;
+}
+
+.reveal .conf-flow__in,
+.reveal .conf-flow__out {
+	display: grid;
+	grid-template-rows: 1fr 1fr;
+	min-width: 0;
+}
+
+/* the two issues take their own height and sit at the top and bottom of the flow */
+.reveal .conf-flow__out {
+	grid-template-rows: auto auto;
+	align-content: space-between;
+}
+
+.reveal .conf-node {
+	align-self: center;
+	padding: 0.55em;
+	border-radius: 3px;
+	box-sizing: border-box;
+}
+
+.reveal .conf-node p {
+	margin: 0;
+}
+
+.reveal .conf-node__who {
+	font-family: Alegreya, Georgia, serif;
+	font-size: 0.6em;
+	font-weight: 500;
+	line-height: 1.2;
+}
+
+.reveal .conf-node__via {
+	margin-top: 0.35em !important;
+	font-family: "Source Sans 3", "Source Sans Pro", sans-serif;
+	font-size: 0.42em;
+	line-height: 1.3;
+}
+
+.reveal .conf-node--db {
+	background: var(--conf-db-fill);
+	color: #1c1917;
+}
+
+.reveal .conf-node--ds {
+	background: var(--conf-ds);
+	color: #faf8f5;
+}
+
+.reveal .conf-wire {
+	display: block;
+	width: 100%;
+	height: 100%;
+	overflow: visible;
+}
+
+.reveal .conf-wire path {
+	fill: none;
+	stroke-width: 3; /* the peach needs the weight; blue matches it */
+	vector-effect: non-scaling-stroke;
+}
+
+.reveal .conf-wire .conf-wire--db {
+	stroke: var(--conf-db-fill);
+}
+
+.reveal .conf-wire .conf-wire--ds {
+	stroke: var(--conf-ds);
+}
+
+/* the room's bar is the two strands that meet in it: peach over blue, in the wires' order */
+.reveal .conf-room {
+	align-self: center;
+	padding: 0.8em 0.6em 0.9em;
+	border-top: 5px solid var(--conf-db-fill);
+	box-shadow: inset 0 5px 0 var(--conf-ds);
+	background: #f1ede6;
+	text-align: center;
+}
+
+.reveal .conf-room p {
+	margin: 0;
+}
+
+.reveal .conf-room__name {
+	margin: 0.3em 0 0.55em !important;
+	font-family: Alegreya, Georgia, serif;
+	font-size: 0.7em;
+	font-weight: 600;
+	line-height: 1.15;
+	color: #1c1917;
+}
+
+.reveal .conf-room__fields {
+	font-family: "Source Sans 3", "Source Sans Pro", sans-serif;
+	font-size: 0.42em;
+	line-height: 1.45;
+	color: var(--conf-quiet);
+}
+
+.reveal .conf-issue {
+	align-self: center;
+	min-width: 0;
+	padding-left: 0.6em;
+	border-left: 4px solid currentColor;
+}
+
+.reveal .conf-issue--db {
+	color: var(--conf-db-fill); /* the rule; its kicker keeps the ink */
+}
+
+.reveal .conf-issue--ds {
+	color: var(--conf-ds);
+}
+
+.reveal .conf-issue ul {
+	list-style: none;
+	margin: 0.28em 0 0;
+	padding: 0;
+}
+
+/* author, then the article title as published; long titles wrap under a hanging indent */
+.reveal .conf-issue li {
+	margin: 0.27em 0 0;
+	padding-left: 1em;
+	text-indent: -1em;
+	font-family: "Source Sans 3", "Source Sans Pro", sans-serif;
+	font-size: 0.44em;
+	line-height: 1.25;
+	color: #3d3833;
+}
+
+.reveal .conf-issue li b {
+	font-weight: 600;
+	color: #1c1917;
+}
+
+/* the editors' introduction heads each issue, set off from the essays */
+.reveal .conf-issue li.conf-issue__intro {
+	margin-bottom: 0.5em;
+}
+
+/* a description, not a title */
+.reveal .conf-issue li i {
+	color: var(--conf-quiet);
+}
+
+/* […] where a title is cut: the light grey of absent things, a touch smaller */
+.reveal .conf-cut {
+	font-size: 0.9em;
+	color: #a8a29e;
+}
+
+.reveal .conf-open {
+	margin: 0.75em 0 0;
+	padding-top: 0.55em;
+	border-top: 1px solid var(--conf-rule);
+	display: flex;
+	flex-wrap: wrap;
+	align-items: baseline;
+	gap: 0.3em 1em;
+}
+
+.reveal .conf-open__quote {
+	margin: 0;
+	font-family: Alegreya, Georgia, serif;
+	font-size: 0.7em;
+	font-style: italic;
+	font-weight: 500;
+	color: #1c1917;
+}
+
+.reveal .conf-open__doi {
+	margin: 0;
+	font-family: "JetBrains Mono", ui-monospace, monospace;
+	font-size: 0.4em;
+	letter-spacing: 0.03em;
+	color: var(--conf-ds);
+}

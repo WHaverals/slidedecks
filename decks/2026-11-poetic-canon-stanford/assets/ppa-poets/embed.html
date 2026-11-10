@@ -1,0 +1,175 @@
+<!doctype html>
+<!--
+  Berkeley-deck copy of the PPA Poets explorer (whaverals.github.io, static/ppa_poets, 2026-10-19).
+  app.js and style.css are that version; app.js only adds PPA_POETS_ASSET_BASE and PPA_POETS_EMBED.
+  Data (data/network.json, data/time.json) loads from the published site.
+  The June deck embeds the repo-level assets/ppa-poets/ (old app) and is not affected.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>PPA Poets: Co-invocation Network</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css?v=20261019" />
+  <link rel="stylesheet" href="./embed.css?v=20261105" />
+</head>
+<!-- Starts in its embed state (folded panel) so nothing changes on screen when app.js finishes loading. -->
+<body class="embed">
+  <div id="graph" aria-hidden="true"></div>
+
+  <aside id="panel" class="collapsed" aria-label="Controls">
+    <header class="panelHead">
+      <div class="titleRow">
+        <h1>PPA Poets</h1>
+        <div class="headButtons">
+          <button id="aboutBtn" type="button" class="btn">About</button>
+          <button id="resetBtn" type="button" class="btn">Reset</button>
+          <button id="collapseBtn" type="button" class="btn iconBtn" aria-expanded="false" aria-controls="panelBody" title="Show controls">+</button>
+        </div>
+      </div>
+      <p class="subtitle">Which poets are named together in Princeton Prosody Archive works, 1559–1929</p>
+    </header>
+
+    <div class="searchWrap">
+      <input id="search" type="search" autocomplete="off" spellcheck="false"
+        placeholder="Find a poet…  (press / )" aria-label="Find a poet" aria-autocomplete="list"
+        aria-controls="searchResults" />
+      <ul id="searchResults" role="listbox" hidden></ul>
+    </div>
+
+    <div id="panelBody">
+      <section class="block" aria-labelledby="yearsHead">
+        <div class="blockHead">
+          <h2 id="yearsHead">Years</h2>
+          <div class="seg" role="radiogroup" aria-label="Years shown">
+            <button type="button" role="radio" data-mode="all" aria-checked="true">All years</button>
+            <button type="button" role="radio" data-mode="window" aria-checked="false">One window</button>
+          </div>
+        </div>
+        <div id="allYearsNote" class="note">All 2,967 works, pooled. Positions come from this archive-wide map in every view.</div>
+        <div id="windowControls" hidden>
+          <div id="windowChart" class="windowChart"></div>
+          <input id="windowSlider" type="range" min="0" max="35" step="1" value="27" aria-label="Publication window" />
+          <div id="windowSummary" class="windowSummary"></div>
+          <div id="windowWarning" class="warn" hidden></div>
+          <label class="check"><input id="markNew" type="checkbox" /> <span id="markNewLabel">Ring poets first named in the window's last decade</span></label>
+          <label class="check"><input id="hideAbsent" type="checkbox" /> Hide poets not named in this window</label>
+        </div>
+      </section>
+
+      <section class="block" aria-labelledby="showHead">
+        <h2 id="showHead">Show</h2>
+        <div class="row">
+          <span class="rowLabel" id="linksLbl">Links</span>
+          <div class="seg" role="radiogroup" aria-labelledby="linksLbl">
+            <button type="button" role="radio" data-links="3" aria-checked="true" title="Each poet's 3 strongest links">3 strongest</button>
+            <button type="button" role="radio" data-links="10" aria-checked="false" title="Each poet's 10 strongest links">10</button>
+            <button type="button" role="radio" data-links="0" aria-checked="false" title="Every link in the network">All</button>
+          </div>
+        </div>
+        <div class="row">
+          <span class="rowLabel" id="sizeLbl">Size</span>
+          <div class="seg" role="radiogroup" aria-labelledby="sizeLbl">
+            <button type="button" role="radio" data-size="links" aria-checked="true">Linked poets</button>
+            <button type="button" role="radio" data-size="works" aria-checked="false">Works naming</button>
+          </div>
+        </div>
+        <div class="row">
+          <span class="rowLabel" id="colorLbl">Colour</span>
+          <div class="seg" role="radiogroup" aria-labelledby="colorLbl">
+            <button type="button" role="radio" data-color="group" aria-checked="true">Community</button>
+            <button type="button" role="radio" data-color="period" aria-checked="false">Period</button>
+          </div>
+        </div>
+        <p id="encodingNote" class="note"></p>
+      </section>
+
+      <section class="block" aria-labelledby="legendHead">
+        <div class="blockHead">
+          <h2 id="legendHead">Legend</h2>
+          <button id="legendClear" type="button" class="linkBtn" hidden>Show all</button>
+        </div>
+        <ul id="legend" class="legend"></ul>
+        <p class="note small" id="legendHint">Click a row to isolate it; click more rows to add them.</p>
+      </section>
+    </div>
+    <div id="status" class="status" aria-live="polite">Loading…</div>
+  </aside>
+
+  <aside id="drawer" aria-label="Poet details" hidden>
+    <button id="drawerClose" type="button" class="btn iconBtn drawerClose" title="Close (Esc)">×</button>
+    <div id="drawerBody"></div>
+  </aside>
+
+  <div id="tooltip" role="tooltip" hidden></div>
+
+  <div id="about" role="dialog" aria-modal="true" aria-labelledby="aboutTitle" hidden>
+    <div class="aboutCard">
+      <button id="aboutClose" type="button" class="btn iconBtn aboutClose" title="Close (Esc)">×</button>
+      <h2 id="aboutTitle">How to read this map</h2>
+      <p>Each dot is a poet (a Wikidata identity) named in works of the
+        <a href="https://prosody.princeton.edu/" target="_blank" rel="noreferrer">Princeton Prosody Archive</a>.
+        The map shows <strong>co-invocation</strong>: which poets prosodists name in the same stretch of prose.
+        It is not an influence map, and being named together does not mean affinity; a pairing can be a contrast, a list or a lineage.</p>
+      <h3>Links</h3>
+      <p>Two poets are linked when both are named within the same five-page window in at least three works,
+        <em>and</em> in more works than you would expect from how often each is named overall.
+        The excess can be large (Shakespeare and Milton share 1,281 works, about 171 more than expected) or tiny.
+        Darker, thicker lines carry more excess. By default each poet shows only its three strongest links; switch to “All” to see all 33,573.</p>
+      <h3>Colour</h3>
+      <p><strong>Community</strong> colours are the seven Gephi modularity communities shown in Figure 7 of the article,
+        with the article's names for them. Community detection is randomised, so the boundaries are approximate:
+        repeated runs gave six or seven groups. <strong>Period</strong> colours group poets by birth year + 20, as in the article's Figure 5.</p>
+      <h3>Size and position</h3>
+      <p>By default, size is the number of poets a poet is linked to (as in Figure 7), not how often the poet is named.
+        Milton is named in more works than anyone, but has fewer distinctive partners than Wordsworth. Switch Size to “Works naming” to compare.
+        Positions come from a force layout made once in Gephi: poets that share many partners sit close together.
+        Distance is a rough guide only. A poet with a single link sits beside that one partner, whatever its period.</p>
+      <h3>Years</h3>
+      <p>“One window” keeps the archive-wide positions and shows a 30-year publication window (moved in 10-year steps).
+        Grey dots are poets not named in that window. Hollow rings are poets named there but with no link attested in that window.
+        A window's links are the archive-wide links that also pass the same test inside that window.
+        More than half the archive's works date from 1870–1929, so the map itself mostly reflects that period.
+        Windows with fewer than 50 works are hatched: read them as a list of names, not as structure.</p>
+      <h3>Source</h3>
+      <p>Haverals, Šeļa and Plecháč, “Canon Dynamics in the Princeton Prosody Archive, 1559–1929,”
+        <em>Journal of Cultural Analytics</em> 11(4), 2026, <a href="https://doi.org/10.22148/jca.1429" target="_blank" rel="noreferrer">doi:10.22148/jca.1429</a>.
+        Network files: <a href="https://doi.org/10.5281/zenodo.18623170" target="_blank" rel="noreferrer">Zenodo</a>.
+        Counts of works here use works with at least one retained page window (2,967), so they run slightly below the article's Table 2.</p>
+    </div>
+  </div>
+
+  <script>
+    window.PPA_POETS_EMBED = true;
+    window.PPA_POETS_ASSET_BASE = "https://whaverals.github.io/ppa_poets/";
+    // Early modern English poetry: deep violet instead of the site's brown (#7A5A3A).
+    window.PPA_POETS_GROUP_COLORS = { earlymod: "#4B3F9E" };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/graphology@0.25.4/dist/graphology.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sigma@3.0.2/dist/sigma.min.js"></script>
+  <script src="./app.js?v=20261108"></script>
+  <script>
+    // After a click in the map, keys go to this frame, not the deck. Hand the
+    // navigation keys back to reveal.js unless the search box has focus.
+    (function () {
+      let deck = null;
+      try { deck = window.parent !== window ? window.parent.Reveal : null; } catch (e) { deck = null; }
+      if (!deck || typeof deck.triggerKey !== "function") return;
+      const NAV = new Set([32, 33, 34, 37, 38, 39, 40]); // space, page up/down, arrows
+      document.addEventListener("keydown", (ev) => {
+        if (!NAV.has(ev.keyCode) || ev.defaultPrevented || ev.metaKey || ev.ctrlKey || ev.altKey) return;
+        if (ev.target.matches("input, textarea, select") || !document.getElementById("about").hidden) return;
+        if (ev.keyCode === 32 && ev.target.matches("button, [role=button]")) return;
+        ev.preventDefault();
+        // Return focus to the deck first, so the next key reaches reveal.js directly
+        // even after this frame is hidden or unloaded.
+        try { if (window.frameElement) window.frameElement.blur(); window.parent.focus(); } catch (e) { /* cross-origin: ignore */ }
+        deck.triggerKey(ev.keyCode);
+      });
+    })();
+  </script>
+</body>
+</html>

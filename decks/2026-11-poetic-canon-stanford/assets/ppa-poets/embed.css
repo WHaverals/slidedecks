@@ -1,0 +1,6 @@
+/* Berkeley deck embed. Loaded after style.css. */
+:root { --bg: #faf8f5; }
+html, body { overflow: hidden; }
+
+/* The poet drawer stops above reveal.js's arrows and slide number (bottom-right, ~90px tall). */
+#drawer { bottom: 100px; }
