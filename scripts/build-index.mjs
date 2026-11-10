@@ -6,6 +6,24 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const decksDir = join(root, 'decks');
 const indexPath = join(root, 'index.html');
 
+// Homepage text for decks whose title slide does not split the event and the place/date the way the
+// list wants (their title slides put everything in one event line). Published decks are frozen, so
+// their homepage lines are set here rather than in the deck. Keys are deck folder names; any of
+// title, event, meta may be given. Keep an entry in step with its deck if that deck is still edited.
+const HOMEPAGE_META = {
+	'2026-11-poetic-canon-stanford': {
+		event: 'CESTA Lunch Seminar Series, Stanford University',
+		meta: 'Stanford, November 19, 2026',
+	},
+	'2026-11-poetic-canon-berkeley': {
+		event: 'Cultural Analytics Series, UC Berkeley',
+		meta: 'Berkeley, November 9, 2026',
+	},
+	'2026-07-publishing-digital-edition': {
+		meta: 'Antwerp, July 3, 2026',
+	},
+};
+
 function decodeEntities(value) {
 	return value
 		.replaceAll('&ndash;', '–')
@@ -17,6 +35,11 @@ function decodeEntities(value) {
 		.replaceAll('&lsquo;', '‘')
 		.replaceAll('&ldquo;', '“')
 		.replaceAll('&rdquo;', '”')
+		.replaceAll('&lt;', '<')
+		.replaceAll('&gt;', '>')
+		.replaceAll('&quot;', '"')
+		.replaceAll('&#39;', "'")
+		.replace(/&#(x?)([0-9a-f]+);/gi, (_, hex, n) => String.fromCodePoint(parseInt(n, hex ? 16 : 10)))
 		.replaceAll('&amp;', '&');
 }
 
@@ -58,7 +81,7 @@ function getDeckMeta(deckPath) {
 	const dates = [...html.matchAll(/class="title-slide__date[^"]*"[^>]*>([\s\S]*?)<\/span>/gi)]
 		.map((m) => clean(m[1]))
 		.filter(Boolean);
-	const meta = dates.length ? dates.join(' · ') : null;
+	const meta = dates.length ? dates.join(', ') : null;
 
 	return { title, event, meta };
 }
@@ -80,13 +103,14 @@ function listDecks() {
 		.sort()
 		.reverse()
 		.map((name) => {
-			const { title, event, meta } = getDeckMeta(join(decksDir, name));
+			const fromSlide = getDeckMeta(join(decksDir, name));
+			const override = HOMEPAGE_META[name] ?? {};
 			return {
 				name,
-				title: title ?? name,
-				event,
-				meta,
-				url: `decks/${name}/`,
+				title: override.title || fromSlide.title || name,
+				event: override.event || fromSlide.event || null,
+				meta: override.meta || fromSlide.meta || null,
+				url: `decks/${encodeURIComponent(name)}/`,
 			};
 		});
 }
@@ -102,18 +126,26 @@ function exists(path) {
 
 const decks = listDecks();
 
-function renderCard(deck) {
-	const eyebrow = deck.event
-		? `<span class="card-event">${escapeHtml(deck.event)}</span>`
-		: '';
-	// real conference metadata if we have it; otherwise fall back to the slug
-	const metaLine = escapeHtml(deck.meta ?? deck.name);
-	return `      <li><a href="${deck.url}">${eyebrow}<strong class="card-title">${escapeHtml(deck.title)}</strong><span class="card-meta">${metaLine}</span></a></li>`;
+for (const key of Object.keys(HOMEPAGE_META)) {
+	if (!exists(join(decksDir, key, 'index.html'))) {
+		console.warn(`HOMEPAGE_META: no deck folder named ${key}`);
+	}
+}
+
+function renderCard(deck, index) {
+	const eventId = `deck-${index}-event`;
+	const describedBy = deck.event ? ` aria-describedby="${eventId}"` : '';
+	const lines = [
+		`        <a class="deck-title" href="${escapeHtml(deck.url)}"${describedBy}>${escapeHtml(deck.title)}</a>`,
+		deck.event ? `        <span class="deck-event" id="${eventId}">${escapeHtml(deck.event)}</span>` : '',
+		deck.meta ? `        <span class="deck-meta">${escapeHtml(deck.meta)}</span>` : '',
+	].filter(Boolean);
+	return `      <li>\n${lines.join('\n')}\n      </li>`;
 }
 
 const deckItems =
 	decks.length === 0
-		? '      <li class="empty">No decks yet. Run <code>npm run new -- 2026-09-my-talk</code></li>'
+		? '      <li class="empty">No public decks yet. Create one with <code>npm run new -- 2026-09-my-talk</code>, then delete its <code>.no-homepage</code> file.</li>'
 		: decks.map(renderCard).join('\n');
 
 const html = `<!DOCTYPE html>
@@ -122,16 +154,17 @@ const html = `<!DOCTYPE html>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Slidedecks</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500;600&family=Source+Sans+3:wght@400&display=swap" />
   <style>
     :root {
       color-scheme: light;
-      --bg: #faf8f5;
-      --text: #1c1917;
-      --muted: #6f675b;
-      --accent: #3c6e7a;       /* muted petrol — calm and editorial */
-      --card: #f5f1ea;
-      --border: #e8e1d8;
+      --bg: #faf8f5;      /* paper */
+      --text: #1c1917;    /* ink */
+      --soft: #45403b;
+      --muted: #6b655f;
+      --accent: #b5341c;  /* rubric, hover only */
     }
 
     * { box-sizing: border-box; }
@@ -140,6 +173,7 @@ const html = `<!DOCTYPE html>
       margin: 0;
       min-height: 100vh;
       font-family: 'Source Sans 3', system-ui, sans-serif;
+      font-size: 17px;
       background: var(--bg);
       color: var(--text);
       line-height: 1.5;
@@ -147,37 +181,26 @@ const html = `<!DOCTYPE html>
     }
 
     main {
-      max-width: 760px;
+      max-width: 680px;
       margin: 0 auto;
-      padding: 5rem 1.5rem 6rem;
+      padding: 5.5rem 1.5rem 6rem;
     }
 
     .masthead {
-      margin: 0 0 3rem;
+      margin: 0 0 3.5rem;
     }
 
     .masthead h1 {
       margin: 0;
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 2.6rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
-
-    .masthead h1::after {
-      content: "";
-      display: block;
-      width: 2.4rem;
-      height: 3px;
-      margin-top: 0.9rem;
-      background: var(--accent);
-      border-radius: 2px;
+      font-family: 'Alegreya', Georgia, serif;
+      font-size: 2.75rem;
+      font-weight: 600;
+      line-height: 1.1;
     }
 
     .masthead p {
-      margin: 1.1rem 0 0;
-      color: var(--muted);
-      font-size: 1.05rem;
+      margin: 0.75rem 0 0;
+      color: var(--soft);
     }
 
     ul {
@@ -185,66 +208,61 @@ const html = `<!DOCTYPE html>
       margin: 0;
       padding: 0;
       display: grid;
-      gap: 1rem;
+      gap: 2.25rem;
     }
 
-    li.empty {
-      padding: 1.25rem 1.5rem;
-      border: 1px dashed var(--border);
-      border-radius: 0.9rem;
+    li {
+      display: grid;
+      gap: 0.15rem;
+    }
+
+    .deck-title {
+      justify-self: start;
+      font-family: 'Alegreya', Georgia, serif;
+      font-size: 1.6rem;
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--text);
+      text-decoration: none;
+      text-wrap: balance;
+    }
+
+    .deck-title:hover,
+    .deck-title:focus-visible {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
+    }
+
+    .deck-title:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .deck-event {
+      margin-top: 0.3rem;
+      color: var(--soft);
+    }
+
+    .deck-meta {
       color: var(--muted);
     }
 
-    a {
-      display: grid;
-      gap: 0.5rem;
-      padding: 1.5rem 1.75rem;
-      border-radius: 0.9rem;
-      background: var(--card);
-      color: inherit;
-      text-decoration: none;
-      border: 1px solid var(--border);
-      transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    a:hover {
-      border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
-      transform: translateY(-2px);
-      box-shadow: 0 14px 32px -20px rgba(28, 25, 23, 0.45);
-    }
-
-    .card-event {
-      font-size: 0.72rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-    }
-
-    .card-title {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.4rem;
-      font-weight: 600;
-      line-height: 1.2;
-      letter-spacing: -0.01em;
-      color: var(--text);
-      transition: color 0.18s ease;
-    }
-
-    a:hover .card-title {
-      color: var(--accent);
-    }
-
-    .card-meta {
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: 0.82rem;
+    li.empty {
+      display: block;
       color: var(--muted);
     }
 
     code {
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: 0.85em;
-      color: var(--accent);
+      font-family: ui-monospace, monospace;
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 520px) {
+      main { padding: 3.5rem 1.25rem 4rem; }
+      .masthead h1 { font-size: 2.3rem; }
+      .deck-title { font-size: 1.4rem; }
     }
   </style>
 </head>

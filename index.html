@@ -4,16 +4,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Slidedecks</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Source+Sans+3:wght@400;600&family=JetBrains+Mono:wght@400;500&display=swap" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya:wght@500;600&family=Source+Sans+3:wght@400&display=swap" />
   <style>
     :root {
       color-scheme: light;
-      --bg: #faf8f5;
-      --text: #1c1917;
-      --muted: #6f675b;
-      --accent: #3c6e7a;       /* muted petrol — calm and editorial */
-      --card: #f5f1ea;
-      --border: #e8e1d8;
+      --bg: #faf8f5;      /* paper */
+      --text: #1c1917;    /* ink */
+      --soft: #45403b;
+      --muted: #6b655f;
+      --accent: #b5341c;  /* rubric, hover only */
     }
 
     * { box-sizing: border-box; }
@@ -22,6 +23,7 @@
       margin: 0;
       min-height: 100vh;
       font-family: 'Source Sans 3', system-ui, sans-serif;
+      font-size: 17px;
       background: var(--bg);
       color: var(--text);
       line-height: 1.5;
@@ -29,37 +31,26 @@
     }
 
     main {
-      max-width: 760px;
+      max-width: 680px;
       margin: 0 auto;
-      padding: 5rem 1.5rem 6rem;
+      padding: 5.5rem 1.5rem 6rem;
     }
 
     .masthead {
-      margin: 0 0 3rem;
+      margin: 0 0 3.5rem;
     }
 
     .masthead h1 {
       margin: 0;
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 2.6rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
-
-    .masthead h1::after {
-      content: "";
-      display: block;
-      width: 2.4rem;
-      height: 3px;
-      margin-top: 0.9rem;
-      background: var(--accent);
-      border-radius: 2px;
+      font-family: 'Alegreya', Georgia, serif;
+      font-size: 2.75rem;
+      font-weight: 600;
+      line-height: 1.1;
     }
 
     .masthead p {
-      margin: 1.1rem 0 0;
-      color: var(--muted);
-      font-size: 1.05rem;
+      margin: 0.75rem 0 0;
+      color: var(--soft);
     }
 
     ul {
@@ -67,66 +58,61 @@
       margin: 0;
       padding: 0;
       display: grid;
-      gap: 1rem;
+      gap: 2.25rem;
     }
 
-    li.empty {
-      padding: 1.25rem 1.5rem;
-      border: 1px dashed var(--border);
-      border-radius: 0.9rem;
+    li {
+      display: grid;
+      gap: 0.15rem;
+    }
+
+    .deck-title {
+      justify-self: start;
+      font-family: 'Alegreya', Georgia, serif;
+      font-size: 1.6rem;
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--text);
+      text-decoration: none;
+      text-wrap: balance;
+    }
+
+    .deck-title:hover,
+    .deck-title:focus-visible {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
+    }
+
+    .deck-title:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .deck-event {
+      margin-top: 0.3rem;
+      color: var(--soft);
+    }
+
+    .deck-meta {
       color: var(--muted);
     }
 
-    a {
-      display: grid;
-      gap: 0.5rem;
-      padding: 1.5rem 1.75rem;
-      border-radius: 0.9rem;
-      background: var(--card);
-      color: inherit;
-      text-decoration: none;
-      border: 1px solid var(--border);
-      transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
-    }
-
-    a:hover {
-      border-color: color-mix(in srgb, var(--accent) 55%, var(--border));
-      transform: translateY(-2px);
-      box-shadow: 0 14px 32px -20px rgba(28, 25, 23, 0.45);
-    }
-
-    .card-event {
-      font-size: 0.72rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--accent);
-    }
-
-    .card-title {
-      font-family: 'Fraunces', Georgia, serif;
-      font-size: 1.4rem;
-      font-weight: 600;
-      line-height: 1.2;
-      letter-spacing: -0.01em;
-      color: var(--text);
-      transition: color 0.18s ease;
-    }
-
-    a:hover .card-title {
-      color: var(--accent);
-    }
-
-    .card-meta {
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: 0.82rem;
+    li.empty {
+      display: block;
       color: var(--muted);
     }
 
     code {
-      font-family: 'JetBrains Mono', ui-monospace, monospace;
-      font-size: 0.85em;
-      color: var(--accent);
+      font-family: ui-monospace, monospace;
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 520px) {
+      main { padding: 3.5rem 1.25rem 4rem; }
+      .masthead h1 { font-size: 2.3rem; }
+      .deck-title { font-size: 1.4rem; }
     }
   </style>
 </head>
@@ -137,10 +123,26 @@
       <p>Oh, hello, you found my secret stash of slidedecks! ;-)</p>
     </header>
     <ul>
-      <li><a href="decks/2026-11-poetic-canon-stanford/"><span class="card-event">CESTA Lunch Seminar Series, Stanford University, November 19, 2026</span><strong class="card-title">Ends of Prosody</strong><span class="card-meta">2026-11-poetic-canon-stanford</span></a></li>
-      <li><a href="decks/2026-11-poetic-canon-berkeley/"><span class="card-event">Cultural Analytics Series, UC Berkeley, November 9, 2026</span><strong class="card-title">Ends of Prosody</strong><span class="card-meta">2026-11-poetic-canon-berkeley</span></a></li>
-      <li><a href="decks/2026-07-publishing-digital-edition/"><span class="card-event">Antwerp DH Summer School 2026</span><strong class="card-title">Publishing a Digital Edition</strong><span class="card-meta">3 July 2026</span></a></li>
-      <li><a href="decks/2026-06-poetic-canon/"><span class="card-event">Mapping the Canon: Quantitative Approaches to Literary History</span><strong class="card-title">Evolution of the Poetic Canon in the Princeton Prosody Archive</strong><span class="card-meta">Darmstadt · June 18–19, 2026</span></a></li>
+      <li>
+        <a class="deck-title" href="decks/2026-11-poetic-canon-stanford/" aria-describedby="deck-0-event">Ends of Prosody</a>
+        <span class="deck-event" id="deck-0-event">CESTA Lunch Seminar Series, Stanford University</span>
+        <span class="deck-meta">Stanford, November 19, 2026</span>
+      </li>
+      <li>
+        <a class="deck-title" href="decks/2026-11-poetic-canon-berkeley/" aria-describedby="deck-1-event">Ends of Prosody</a>
+        <span class="deck-event" id="deck-1-event">Cultural Analytics Series, UC Berkeley</span>
+        <span class="deck-meta">Berkeley, November 9, 2026</span>
+      </li>
+      <li>
+        <a class="deck-title" href="decks/2026-07-publishing-digital-edition/" aria-describedby="deck-2-event">Publishing a Digital Edition</a>
+        <span class="deck-event" id="deck-2-event">Antwerp DH Summer School 2026</span>
+        <span class="deck-meta">Antwerp, July 3, 2026</span>
+      </li>
+      <li>
+        <a class="deck-title" href="decks/2026-06-poetic-canon/" aria-describedby="deck-3-event">Evolution of the Poetic Canon in the Princeton Prosody Archive</a>
+        <span class="deck-event" id="deck-3-event">Mapping the Canon: Quantitative Approaches to Literary History</span>
+        <span class="deck-meta">Darmstadt, June 18–19, 2026</span>
+      </li>
     </ul>
   </main>
 </body>
