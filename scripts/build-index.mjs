@@ -1,4 +1,4 @@
-import { readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { join, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -6,8 +6,9 @@ const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const decksDir = join(root, 'decks');
 const indexPath = join(root, 'index.html');
 
-// Per-deck homepage settings (text overrides and covers); see the "_about" note in the file.
-const SETTINGS = JSON.parse(readFileSync(join(root, 'scripts', 'homepage.json'), 'utf8'));
+// Per-deck homepage settings (text overrides, dates, covers); see the "_about" note in the file.
+const settingsPath = join(root, 'scripts', 'homepage.json');
+const SETTINGS = existsSync(settingsPath) ? JSON.parse(readFileSync(settingsPath, 'utf8')) : {};
 
 function decodeEntities(value) {
 	return value
@@ -28,9 +29,14 @@ function decodeEntities(value) {
 		.replaceAll('&amp;', '&');
 }
 
-// strip inline tags and comments, decode the entities the decks use, collapse space
+// strip comments and tags (a line break counts as a space), decode entities, collapse space
 function clean(value) {
-	return decodeEntities(value.replace(/<!--[\s\S]*?-->/g, '').replace(/<[^>]+>/g, ''))
+	return decodeEntities(
+		value
+			.replace(/<!--[\s\S]*?-->/g, '')
+			.replace(/<br\s*\/?>/gi, ' ')
+			.replace(/<[^>]+>/g, '')
+	)
 		.replace(/\s+/g, ' ')
 		.trim();
 }
@@ -43,13 +49,13 @@ function getDeckMeta(deckPath) {
 	} catch {
 		return {};
 	}
-	const pick = (re) => {
+	const pick = (re, group = 1) => {
 		const m = html.match(re);
-		return m ? clean(m[1]) || null : null;
+		return m ? clean(m[group]) || null : null;
 	};
 	const title =
 		pick(/class="title-slide__presentation"[^>]*>([\s\S]*?)<\/h1>/i) ?? pick(/<title>([\s\S]*?)<\/title>/i);
-	const subtitle = pick(/class="title-slide__subtitle"[^>]*>([\s\S]*?)<\/p>/i);
+	const subtitle = pick(/<(\w+)[^>]*class="title-slide__subtitle"[^>]*>([\s\S]*?)<\/\1>/i, 2);
 	const event = pick(/class="title-slide__event"[^>]*>([\s\S]*?)<\/span>/i);
 	const dates = [...html.matchAll(/class="title-slide__date[^"]*"[^>]*>([\s\S]*?)<\/span>/gi)]
 		.map((m) => clean(m[1]))
@@ -63,50 +69,58 @@ function field(override, fromSlide, key) {
 	return fromSlide[key] || null;
 }
 
-function exists(path) {
+function isDir(path) {
 	try {
-		statSync(path);
-		return true;
+		return statSync(path).isDirectory();
 	} catch {
 		return false;
 	}
 }
 
 function listDecks() {
-	if (!exists(decksDir)) return [];
+	if (!isDir(decksDir)) return [];
 	return readdirSync(decksDir)
 		.filter((name) => {
 			const deckPath = join(decksDir, name);
-			if (!statSync(deckPath).isDirectory() || !exists(join(deckPath, 'index.html'))) return false;
+			if (!isDir(deckPath) || !existsSync(join(deckPath, 'index.html'))) return false;
 			// Decks with .no-homepage stay deployable but off the public index.
-			return !exists(join(deckPath, '.no-homepage'));
+			return !existsSync(join(deckPath, '.no-homepage'));
 		})
-		.sort()
-		.reverse()
 		.map((name) => {
 			const fromSlide = getDeckMeta(join(decksDir, name));
 			const override = SETTINGS[name] ?? {};
-			return {
+			const date = typeof override.date === 'string' ? override.date : null;
+			const year = (date ?? name).match(/^\d{4}/)?.[0] ?? '';
+			const deck = {
 				name,
-				year: /^\d{4}/.test(name) ? name.slice(0, 4) : '',
+				sortKey: date ?? name,
+				year,
 				title: field(override, fromSlide, 'title') || name,
 				subtitle: field(override, fromSlide, 'subtitle'),
 				event: field(override, fromSlide, 'event'),
 				meta: field(override, fromSlide, 'meta'),
 				url: `decks/${encodeURIComponent(name)}/`,
-				cover: exists(join(root, 'assets', 'home', `${name}.jpg`)) ? `assets/home/${encodeURIComponent(name)}.jpg` : null,
+				cover: existsSync(join(root, 'assets', 'home', `${name}.jpg`))
+					? `assets/home/${encodeURIComponent(name)}.jpg`
+					: null,
 			};
-		});
+			if (deck.title === 'Your Talk Title' || deck.event === 'Conference Name') {
+				console.warn(`${name}: title slide still has the template placeholders`);
+			}
+			return deck;
+		})
+		// newest first; undated folders (no leading year) last
+		.sort((a, b) => (!a.year - !b.year) || b.sortKey.localeCompare(a.sortKey) || b.name.localeCompare(a.name));
 }
 
 for (const key of Object.keys(SETTINGS)) {
-	if (!key.startsWith('_') && !exists(join(decksDir, key, 'index.html'))) {
+	if (!key.startsWith('_') && !existsSync(join(decksDir, key, 'index.html'))) {
 		console.warn(`homepage.json: no deck folder named ${key}`);
 	}
 }
 
 // One entry per talk: decks with the same title and subtitle are the same talk given more than once.
-// Entries keep the order of their most recent delivery and sit under that delivery's year.
+// A talk sits under the year of its most recent delivery, in the order of that delivery.
 const decks = listDecks();
 const talks = [];
 for (const deck of decks) {
@@ -126,25 +140,36 @@ for (const talk of talks) {
 	group.talks.push(talk);
 }
 
-function renderDelivery(deck) {
-	const label = deck.event ?? deck.meta ?? deck.title;
-	const sub = deck.event && deck.meta ? `\n              <span class="talk-when">${escapeHtml(deck.meta)}</span>` : '';
-	return `            <li>
-              <a href="${escapeHtml(deck.url)}">${escapeHtml(label)}</a>${sub}
-            </li>`;
+// Each delivery links to its own deck. A single delivery with no event shows its place and date as
+// plain text, since the title already links to the deck.
+function renderDelivery(deck, talk) {
+	const when = deck.meta ? `<span class="talk-when">${escapeHtml(deck.meta)}</span>` : '';
+	if (deck.event) {
+		return `            <li><a href="${escapeHtml(deck.url)}">${escapeHtml(deck.event)}</a>${when}</li>`;
+	}
+	if (talk.deliveries.length > 1) {
+		const label = deck.meta ?? deck.name;
+		return `            <li><a class="talk-when" href="${escapeHtml(deck.url)}">${escapeHtml(label)}</a></li>`;
+	}
+	return when ? `            <li>${when}</li>` : '';
 }
 
+let coverCount = 0;
 function renderTalk(talk) {
+	// the first cover is above the fold at every width, so it is not lazy-loaded
+	const loading = coverCount++ === 0 ? '' : ' loading="lazy"';
 	const cover = talk.cover
-		? `        <a class="talk-cover" href="${escapeHtml(talk.url)}" tabindex="-1" aria-hidden="true"><img src="${escapeHtml(talk.cover)}" alt="" width="640" height="480" loading="lazy" /></a>\n`
+		? `        <a class="talk-cover" href="${escapeHtml(talk.url)}" tabindex="-1" aria-hidden="true"><img src="${escapeHtml(talk.cover)}" alt="" width="960" height="720"${loading} /></a>\n`
 		: '';
+	if (!talk.cover) coverCount--;
 	const subtitle = talk.subtitle ? `\n          <p class="talk-subtitle">${escapeHtml(talk.subtitle)}</p>` : '';
+	const deliveries = talk.deliveries.map((d) => renderDelivery(d, talk)).filter(Boolean);
+	const list = deliveries.length
+		? `\n          <ul class="talk-deliveries">\n${deliveries.join('\n')}\n          </ul>`
+		: '';
 	return `      <li class="talk${talk.cover ? '' : ' talk--no-cover'}">
 ${cover}        <div class="talk-text">
-          <h3 class="talk-title"><a href="${escapeHtml(talk.url)}">${escapeHtml(talk.title)}</a></h3>${subtitle}
-          <ul class="talk-deliveries">
-${talk.deliveries.map(renderDelivery).join('\n')}
-          </ul>
+          <h3 class="talk-title"><a href="${escapeHtml(talk.url)}">${escapeHtml(talk.title)}</a></h3>${subtitle}${list}
         </div>
       </li>`;
 }
@@ -184,6 +209,7 @@ const html = `<!DOCTYPE html>
       --accent: #b5341c;  /* rubric, links on hover only */
       --year: 7rem;
       --gap: 2.5rem;
+      --cover: 26rem;
     }
 
     * { box-sizing: border-box; }
@@ -200,7 +226,7 @@ const html = `<!DOCTYPE html>
     }
 
     main {
-      max-width: 1080px;
+      max-width: 1240px;
       margin: 0 auto;
       padding: 5.5rem 2.5rem 7rem;
     }
@@ -224,7 +250,7 @@ const html = `<!DOCTYPE html>
 
     .year {
       display: grid;
-      grid-template-columns: var(--year) 1fr;
+      grid-template-columns: var(--year) minmax(0, 1fr);
       column-gap: var(--gap);
     }
 
@@ -252,12 +278,12 @@ const html = `<!DOCTYPE html>
 
     .talks {
       display: grid;
-      gap: 4rem;
+      gap: 4.5rem;
     }
 
     .talk {
       display: grid;
-      grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+      grid-template-columns: minmax(0, var(--cover)) minmax(0, 1fr);
       column-gap: var(--gap);
       align-items: start;
     }
@@ -280,11 +306,11 @@ const html = `<!DOCTYPE html>
     }
 
     .talk-title {
-      margin: -0.2rem 0 0;
+      margin: -0.25rem 0 0;
       font-family: 'Alegreya', Georgia, serif;
-      font-size: 1.9rem;
+      font-size: 2.1rem;
       font-weight: 500;
-      line-height: 1.15;
+      line-height: 1.12;
       text-wrap: balance;
     }
 
@@ -294,16 +320,17 @@ const html = `<!DOCTYPE html>
     }
 
     .talk-subtitle {
-      margin: 0.4rem 0 0;
-      font-size: 1.1rem;
-      color: var(--soft);
+      margin: 0.45rem 0 0;
+      font-size: 1.25rem;
+      line-height: 1.35;
+      color: var(--text);
       text-wrap: pretty;
     }
 
     .talk-deliveries {
       display: grid;
-      gap: 0.8rem;
-      margin-top: 1.25rem;
+      gap: 0.85rem;
+      margin-top: 1.5rem;
     }
 
     .talk-deliveries a {
@@ -316,6 +343,10 @@ const html = `<!DOCTYPE html>
 
     .talk-when {
       display: block;
+      color: var(--muted);
+    }
+
+    .talk-deliveries a.talk-when {
       color: var(--muted);
     }
 
@@ -343,20 +374,30 @@ const html = `<!DOCTYPE html>
       font-size: 0.9em;
     }
 
-    @media (max-width: 860px) {
-      :root { --year: 0rem; --gap: 1.5rem; }
-      main { padding: 3.5rem 1.25rem 5rem; }
-      .masthead { margin: 0 0 3rem; }
-      .masthead h1 { font-size: 2.5rem; }
+    /* Narrower screens: the year moves above the list; cover and text stay side by side. */
+    @media (max-width: 1060px) {
+      :root { --year: 0rem; --gap: 2rem; --cover: 1fr; }
+      main { padding: 4rem 2rem 6rem; }
+      .masthead { margin: 0 0 3.5rem; }
       .year { display: block; }
-      .year h2 { position: static; margin-bottom: 1.5rem; }
-      .talks { gap: 3rem; }
+      .year h2 { position: static; margin-bottom: 2rem; }
+      .talk { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+      .talk-title { font-size: 1.75rem; }
+      .talk-subtitle { font-size: 1.15rem; }
+    }
+
+    /* Phones: cover above the text. */
+    @media (max-width: 600px) {
+      :root { --gap: 1.25rem; }
+      main { padding: 3rem 1.25rem 4.5rem; }
+      .masthead { margin-bottom: 2.75rem; }
+      .masthead h1 { font-size: 2.5rem; }
+      .talks { gap: 3.25rem; }
       .talk { grid-template-columns: minmax(0, 1fr); row-gap: 1.1rem; }
       .talk--no-cover .talk-text { grid-column: 1; }
-      .talk-cover img { aspect-ratio: 16 / 9; }
-      .talk-title { margin-top: 0; font-size: 1.5rem; }
-      .talk-subtitle { font-size: 1rem; }
-      .talk-deliveries { margin-top: 0.8rem; }
+      .talk-title { margin-top: 0; font-size: 1.55rem; }
+      .talk-subtitle { font-size: 1.05rem; }
+      .talk-deliveries { margin-top: 1rem; }
     }
   </style>
 </head>

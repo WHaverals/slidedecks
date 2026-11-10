@@ -1,0 +1,32 @@
+<!doctype html>
+<!--
+  Homepage cover for Ends of Prosody (960 x 720): the deck's conference title scene, shown whole.
+  The 16:9 scene sits in the middle; the sky and the water continue above and below it in the
+  scene's own edge colours, and the deck's paper grain lies over everything (soft-light, 0.5),
+  as on the slide. Rendered by scripts/build-home-covers.mjs, which serves the repo root.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Ends of Prosody cover</title>
+<style>
+  html, body { margin: 0; width: 960px; height: 720px; overflow: hidden; }
+  body { position: relative; background: #e7e5e1; /* the water's lowest colour */ }
+  .sky { position: absolute; left: 0; top: 0; width: 960px; height: 90px; background: #ecebe8; /* the sky's highest colour */ }
+  .scene { position: absolute; left: 0; top: 90px; width: 960px; height: 540px; display: block; }
+  /* the sun's glow reaches the scene's top edge; fade it into the sky above so there is no seam */
+  .fade { position: absolute; left: 0; top: 90px; width: 960px; height: 110px; background: linear-gradient(#ecebe8, rgba(236, 235, 232, 0)); }
+  .grain {
+    position: absolute; inset: 0;
+    background: url("/decks/2026-11-poetic-canon-stanford/assets/ends-of-prosody-title/grain.svg") 0 0 / 200px 200px repeat;
+    mix-blend-mode: soft-light; opacity: 0.5;
+  }
+</style>
+</head>
+<body>
+  <div class="sky"></div>
+  <img class="scene" src="/decks/2026-11-poetic-canon-stanford/assets/ends-of-prosody-title/scene.svg" alt="" />
+  <div class="fade"></div>
+  <div class="grain"></div>
+</body>
+</html>

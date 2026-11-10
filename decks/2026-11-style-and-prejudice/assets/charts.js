@@ -91,16 +91,7 @@
 			['Exclamations', 17.3, 5.1],
 			['Feminine', 20.8, 7.7],
 		],
-		stylesKey: [
-			'Cockney',
-			'Abusive',
-			'Rhyming slang',
-			'Tactile',
-			'The Rainbow',
-			'West Indian',
-			'Lipogram',
-			'Science Fiction',
-		],
+		stylesKey: ['Cockney', 'Lipogram', 'Science Fiction'],
 	};
 
 	const isPrint = /print-pdf/gi.test(window.location.search);
@@ -883,7 +874,7 @@
 		loadColors();
 		const counts = document.getElementById('styles-counts');
 		if (counts) {
-			counts.textContent = `Models lean toward the human label in ${aiPos} of 30 styles, people in ${huPos} of 30. Bias is the swing in the share choosing the AI text, in percentage points.`;
+			counts.textContent = `Models lean toward the human label in ${aiPos} of 30 styles, people in ${huPos} of 30. Bias is the change in the share choosing the AI text from correct to swapped labels, in percentage points. Bold marks the three styles we look at next.`;
 		}
 
 		if (isPrint) {

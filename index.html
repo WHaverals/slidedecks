@@ -18,6 +18,7 @@
       --accent: #b5341c;  /* rubric, links on hover only */
       --year: 7rem;
       --gap: 2.5rem;
+      --cover: 26rem;
     }
 
     * { box-sizing: border-box; }
@@ -34,7 +35,7 @@
     }
 
     main {
-      max-width: 1080px;
+      max-width: 1240px;
       margin: 0 auto;
       padding: 5.5rem 2.5rem 7rem;
     }
@@ -58,7 +59,7 @@
 
     .year {
       display: grid;
-      grid-template-columns: var(--year) 1fr;
+      grid-template-columns: var(--year) minmax(0, 1fr);
       column-gap: var(--gap);
     }
 
@@ -86,12 +87,12 @@
 
     .talks {
       display: grid;
-      gap: 4rem;
+      gap: 4.5rem;
     }
 
     .talk {
       display: grid;
-      grid-template-columns: minmax(0, 18rem) minmax(0, 1fr);
+      grid-template-columns: minmax(0, var(--cover)) minmax(0, 1fr);
       column-gap: var(--gap);
       align-items: start;
     }
@@ -114,11 +115,11 @@
     }
 
     .talk-title {
-      margin: -0.2rem 0 0;
+      margin: -0.25rem 0 0;
       font-family: 'Alegreya', Georgia, serif;
-      font-size: 1.9rem;
+      font-size: 2.1rem;
       font-weight: 500;
-      line-height: 1.15;
+      line-height: 1.12;
       text-wrap: balance;
     }
 
@@ -128,16 +129,17 @@
     }
 
     .talk-subtitle {
-      margin: 0.4rem 0 0;
-      font-size: 1.1rem;
-      color: var(--soft);
+      margin: 0.45rem 0 0;
+      font-size: 1.25rem;
+      line-height: 1.35;
+      color: var(--text);
       text-wrap: pretty;
     }
 
     .talk-deliveries {
       display: grid;
-      gap: 0.8rem;
-      margin-top: 1.25rem;
+      gap: 0.85rem;
+      margin-top: 1.5rem;
     }
 
     .talk-deliveries a {
@@ -150,6 +152,10 @@
 
     .talk-when {
       display: block;
+      color: var(--muted);
+    }
+
+    .talk-deliveries a.talk-when {
       color: var(--muted);
     }
 
@@ -177,20 +183,30 @@
       font-size: 0.9em;
     }
 
-    @media (max-width: 860px) {
-      :root { --year: 0rem; --gap: 1.5rem; }
-      main { padding: 3.5rem 1.25rem 5rem; }
-      .masthead { margin: 0 0 3rem; }
-      .masthead h1 { font-size: 2.5rem; }
+    /* Narrower screens: the year moves above the list; cover and text stay side by side. */
+    @media (max-width: 1060px) {
+      :root { --year: 0rem; --gap: 2rem; --cover: 1fr; }
+      main { padding: 4rem 2rem 6rem; }
+      .masthead { margin: 0 0 3.5rem; }
       .year { display: block; }
-      .year h2 { position: static; margin-bottom: 1.5rem; }
-      .talks { gap: 3rem; }
+      .year h2 { position: static; margin-bottom: 2rem; }
+      .talk { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+      .talk-title { font-size: 1.75rem; }
+      .talk-subtitle { font-size: 1.15rem; }
+    }
+
+    /* Phones: cover above the text. */
+    @media (max-width: 600px) {
+      :root { --gap: 1.25rem; }
+      main { padding: 3rem 1.25rem 4.5rem; }
+      .masthead { margin-bottom: 2.75rem; }
+      .masthead h1 { font-size: 2.5rem; }
+      .talks { gap: 3.25rem; }
       .talk { grid-template-columns: minmax(0, 1fr); row-gap: 1.1rem; }
       .talk--no-cover .talk-text { grid-column: 1; }
-      .talk-cover img { aspect-ratio: 16 / 9; }
-      .talk-title { margin-top: 0; font-size: 1.5rem; }
-      .talk-subtitle { font-size: 1rem; }
-      .talk-deliveries { margin-top: 0.8rem; }
+      .talk-title { margin-top: 0; font-size: 1.55rem; }
+      .talk-subtitle { font-size: 1.05rem; }
+      .talk-deliveries { margin-top: 1rem; }
     }
   </style>
 </head>
@@ -204,55 +220,40 @@
       <h2 id="year-2026">2026</h2>
       <ul class="talks">
       <li class="talk">
-        <a class="talk-cover" href="decks/2026-11-style-and-prejudice/" tabindex="-1" aria-hidden="true"><img src="assets/home/2026-11-style-and-prejudice.jpg" alt="" width="640" height="480" loading="lazy" /></a>
-        <div class="talk-text">
-          <h3 class="talk-title"><a href="decks/2026-11-style-and-prejudice/">Style and Prejudice</a></h3>
-          <p class="talk-subtitle">Attribution bias in human and AI literary judgment</p>
-          <ul class="talk-deliveries">
-            <li>
-              <a href="decks/2026-11-style-and-prejudice/">Berkeley, November 9, 2026</a>
-            </li>
-          </ul>
-        </div>
-      </li>
-      <li class="talk">
-        <a class="talk-cover" href="decks/2026-11-poetic-canon-stanford/" tabindex="-1" aria-hidden="true"><img src="assets/home/2026-11-poetic-canon-stanford.jpg" alt="" width="640" height="480" loading="lazy" /></a>
+        <a class="talk-cover" href="decks/2026-11-poetic-canon-stanford/" tabindex="-1" aria-hidden="true"><img src="assets/home/2026-11-poetic-canon-stanford.jpg" alt="" width="960" height="720" /></a>
         <div class="talk-text">
           <h3 class="talk-title"><a href="decks/2026-11-poetic-canon-stanford/">Ends of Prosody</a></h3>
           <p class="talk-subtitle">Histories, Methods, Frictions</p>
           <ul class="talk-deliveries">
-            <li>
-              <a href="decks/2026-11-poetic-canon-stanford/">CESTA Lunch Seminar Series, Stanford University</a>
-              <span class="talk-when">Stanford, November 19, 2026</span>
-            </li>
-            <li>
-              <a href="decks/2026-11-poetic-canon-berkeley/">Cultural Analytics Series, UC Berkeley</a>
-              <span class="talk-when">Berkeley, November 9, 2026</span>
-            </li>
+            <li><a href="decks/2026-11-poetic-canon-stanford/">CESTA Lunch Seminar Series, Stanford University</a><span class="talk-when">Stanford, November 19, 2026</span></li>
+            <li><a href="decks/2026-11-poetic-canon-berkeley/">Cultural Analytics Series, UC Berkeley</a><span class="talk-when">Berkeley, November 9, 2026</span></li>
           </ul>
         </div>
       </li>
       <li class="talk">
-        <a class="talk-cover" href="decks/2026-07-publishing-digital-edition/" tabindex="-1" aria-hidden="true"><img src="assets/home/2026-07-publishing-digital-edition.jpg" alt="" width="640" height="480" loading="lazy" /></a>
+        <a class="talk-cover" href="decks/2026-11-style-and-prejudice/" tabindex="-1" aria-hidden="true"><img src="assets/home/2026-11-style-and-prejudice.jpg" alt="" width="960" height="720" loading="lazy" /></a>
+        <div class="talk-text">
+          <h3 class="talk-title"><a href="decks/2026-11-style-and-prejudice/">Style and Prejudice</a></h3>
+          <p class="talk-subtitle">Attribution bias in human and AI literary judgment</p>
+          <ul class="talk-deliveries">
+            <li><span class="talk-when">Berkeley, November 9, 2026</span></li>
+          </ul>
+        </div>
+      </li>
+      <li class="talk talk--no-cover">
         <div class="talk-text">
           <h3 class="talk-title"><a href="decks/2026-07-publishing-digital-edition/">Publishing a Digital Edition</a></h3>
           <ul class="talk-deliveries">
-            <li>
-              <a href="decks/2026-07-publishing-digital-edition/">Antwerp DH Summer School 2026</a>
-              <span class="talk-when">Antwerp, July 3, 2026</span>
-            </li>
+            <li><a href="decks/2026-07-publishing-digital-edition/">Antwerp DH Summer School 2026</a><span class="talk-when">Antwerp, July 3, 2026</span></li>
           </ul>
         </div>
       </li>
       <li class="talk">
-        <a class="talk-cover" href="decks/2026-06-poetic-canon/" tabindex="-1" aria-hidden="true"><img src="assets/home/2026-06-poetic-canon.jpg" alt="" width="640" height="480" loading="lazy" /></a>
+        <a class="talk-cover" href="decks/2026-06-poetic-canon/" tabindex="-1" aria-hidden="true"><img src="assets/home/2026-06-poetic-canon.jpg" alt="" width="960" height="720" loading="lazy" /></a>
         <div class="talk-text">
           <h3 class="talk-title"><a href="decks/2026-06-poetic-canon/">Evolution of the Poetic Canon in the Princeton Prosody Archive</a></h3>
           <ul class="talk-deliveries">
-            <li>
-              <a href="decks/2026-06-poetic-canon/">Mapping the Canon: Quantitative Approaches to Literary History</a>
-              <span class="talk-when">Darmstadt, June 18–19, 2026</span>
-            </li>
+            <li><a href="decks/2026-06-poetic-canon/">Mapping the Canon: Quantitative Approaches to Literary History</a><span class="talk-when">Darmstadt, June 18–19, 2026</span></li>
           </ul>
         </div>
       </li>
