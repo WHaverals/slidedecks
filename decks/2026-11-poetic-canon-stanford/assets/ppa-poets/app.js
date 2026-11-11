@@ -978,6 +978,106 @@
       start();
     }).observe($("graph"));
     start();
+
+    // ---------- deck sync (Stanford deck copy) ----------
+    // Reveal's speaker view runs a second copy of the deck, so a click in its preview reached only
+    // that copy of this map, never the one on the projector. Every copy of this page in the same
+    // browser now mirrors the others over a BroadcastChannel: the copy the presenter touches sends
+    // its settings after each click or keystroke, and pans and zooms as camera states while a
+    // gesture lasts. The other copies apply them. A selected poet is framed on each screen by its own fit.
+    if (EMBED && "BroadcastChannel" in window) {
+      const chan = new BroadcastChannel("ppa-poets-sync");
+      const VIEW = ["mode", "w", "links", "size", "color", "hideAbsent", "markNew"];
+      const snapshot = () => {
+        const s = { poet: state.selected >= 0 ? ND.qid[state.selected] : "", isolate: [...state.isolate].sort((a, b) => a - b),
+          sort: state.sort, showAllNb: state.showAllNb, collapsed: $("panel").classList.contains("collapsed"),
+          about: !$("about").hidden, q: sInput.value, listOpen: !sList.hidden };
+        for (const k of VIEW) s[k] = state[k];
+        return s;
+      };
+      function applySnapshot(s) {
+        if (VIEW.some((k) => state[k] !== s[k]) || [...state.isolate].sort((a, b) => a - b).join() !== s.isolate.join()) {
+          for (const k of VIEW) state[k] = s[k];
+          state.isolate.clear();
+          s.isolate.forEach((k) => state.isolate.add(k));
+          syncSegs();
+          updateYearsUI();
+          renderLegend();
+          if (state.selected >= 0) renderDrawer();
+          refresh();
+        }
+        const i = s.poet && qidIndex.has(s.poet) ? qidIndex.get(s.poet) : -1;
+        if (i !== state.selected) select(i);
+        if (state.sort !== s.sort || state.showAllNb !== s.showAllNb) {
+          state.sort = s.sort;
+          state.showAllNb = s.showAllNb;
+          if (state.selected >= 0) renderDrawer();
+        }
+        if ($("panel").classList.contains("collapsed") !== s.collapsed) setCollapsed(s.collapsed);
+        $("about").hidden = !s.about;
+        if (sInput.value !== s.q) sInput.value = s.q;
+        if (s.listOpen && s.q.trim()) renderResults(); else sList.hidden = true;
+        syncURL();
+      }
+
+      // Settings: sent shortly after any user event here, once the app's own handlers (and the
+      // search list's 120 ms blur) have run. Applying a snapshot fires no user events, so nothing echoes.
+      let sendTimer = 0;
+      const sendState = (ev) => {
+        if (ev.type === "click" && ev.target.closest && ev.target.closest("#resetBtn")) { chan.postMessage({ kind: "reset" }); return; }
+        clearTimeout(sendTimer);
+        sendTimer = setTimeout(() => chan.postMessage({ kind: "state", s: snapshot() }), 160);
+      };
+      for (const t of ["click", "input", "change", "keyup", "focusout"]) document.addEventListener(t, sendState, true);
+
+      // Camera: only while a pan, wheel zoom or double-click zoom made here is under way (sigma's
+      // zoom, inertia and double-click animations last 250 ms or less), so programmatic fits stay local.
+      const graphEl = $("graph");
+      let gestureUntil = 0;
+      let down = null;
+      const mark = (ms) => { gestureUntil = Math.max(gestureUntil, performance.now() + ms); };
+      graphEl.addEventListener("wheel", () => mark(700), { capture: true, passive: true });
+      graphEl.addEventListener("dblclick", () => mark(700), true);
+      graphEl.addEventListener("pointerdown", (ev) => { down = { x: ev.clientX, y: ev.clientY, moved: false }; }, true);
+      window.addEventListener("pointermove", (ev) => {
+        if (!down) return;
+        if (!down.moved && Math.hypot(ev.clientX - down.x, ev.clientY - down.y) > 4) down.moved = true;
+        if (down.moved) mark(700);
+      }, true);
+      window.addEventListener("pointerup", () => { if (down && down.moved) mark(900); down = null; }, true);
+      // What is sent is the visible part of the map (in sigma's framed-graph units), not the raw
+      // camera: sigma scales the map to each viewport's shape, so the same camera state shows a
+      // squarer speaker preview and a 16:9 projector at different zooms. Each copy fits the box instead.
+      const visibleBox = () => {
+        const a = renderer.viewportToFramedGraph({ x: 0, y: 0 });
+        const b = renderer.viewportToFramedGraph({ x: innerWidth, y: innerHeight });
+        return [a.x, a.y, b.x, b.y];
+      };
+      function showBox([ax, ay, bx, by]) {
+        const [cx0, cy0, cx1, cy1] = visibleBox();
+        const k = Math.max(Math.abs(bx - ax) / Math.abs(cx1 - cx0), Math.abs(by - ay) / Math.abs(cy1 - cy0));
+        if (!Number.isFinite(k) || k <= 0) return;
+        const target = { x: (ax + bx) / 2, y: (ay + by) / 2, ratio: camera.getState().ratio * k, angle: 0 };
+        if (camera.isAnimated()) camera.animate(target, { duration: 1 }); // cuts short a running fit
+        else camera.setState(target);
+      }
+      let camQueued = false;
+      camera.on("updated", () => {
+        if (camQueued || performance.now() > gestureUntil) return;
+        camQueued = true;
+        requestAnimationFrame(() => { camQueued = false; chan.postMessage({ kind: "camera", box: visibleBox() }); });
+      });
+
+      chan.onmessage = ({ data: m }) => {
+        if (!m || !started) return;
+        if (m.kind === "camera") {
+          if (performance.now() < gestureUntil) return; // the presenter is moving this copy right now
+          showBox(m.box);
+        } else if (m.kind === "state") applySnapshot(m.s);
+        else if (m.kind === "reset") resetAll();
+      };
+    }
+
     setStatus("");
   })().catch((err) => {
     console.error(err);

@@ -1,7 +1,9 @@
 <!doctype html>
 <!--
   Berkeley-deck copy of the PPA Poets explorer (whaverals.github.io, static/ppa_poets, 2026-10-19).
-  app.js and style.css are that version; app.js only adds PPA_POETS_ASSET_BASE and PPA_POETS_EMBED.
+  app.js and style.css are that version; app.js adds PPA_POETS_ASSET_BASE, PPA_POETS_EMBED,
+  PPA_POETS_GROUP_COLORS and (Stanford copy) a BroadcastChannel sync between copies of this page,
+  so a click in reveal's speaker view also moves the map on the projector.
   Data (data/network.json, data/time.json) loads from the published site.
   The June deck embeds the repo-level assets/ppa-poets/ (old app) and is not affected.
 -->
@@ -150,7 +152,7 @@
   </script>
   <script src="https://cdn.jsdelivr.net/npm/graphology@0.25.4/dist/graphology.umd.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sigma@3.0.2/dist/sigma.min.js"></script>
-  <script src="./app.js?v=20261108"></script>
+  <script src="./app.js?v=20261110"></script>
   <script>
     // After a click in the map, keys go to this frame, not the deck. Hand the
     // navigation keys back to reveal.js unless the search box has focus.
