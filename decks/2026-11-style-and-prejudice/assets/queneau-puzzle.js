@@ -47,6 +47,13 @@
 	}
 
 	function mount(box) {
+		// A page and a stylesheet from different deploys (a cached CSS file) would leave the
+		// tiles unsized, showing one piece enormous. Without its CSS the puzzle stays out of sight.
+		if (getComputedStyle(box).position !== 'absolute') {
+			box.hidden = true;
+			return null;
+		}
+
 		const tiles = []; // tile i is the piece whose home cell is i
 		const tileAt = new Array(COLS * ROWS).fill(-1);
 		let blank = MISSING;
