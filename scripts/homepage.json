@@ -21,7 +21,7 @@
 	"2026-07-publishing-digital-edition": {
 		"meta": "Antwerp, July 3, 2026",
 		"date": "2026-07-03",
-		"cover": false
+		"cover": { "html": "scripts/covers/publishing-digital-edition.html" }
 	},
 	"2026-06-poetic-canon": {
 		"date": "2026-06-18",

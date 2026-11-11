@@ -28,8 +28,8 @@
 		<div class="reveal">
 			<div class="slides">
 				<!-- ============ TITLE ============ -->
-				<section class="title-slide title-slide--animated">
-					<div class="title-slide__zone" aria-hidden="true"></div>
+				<section class="title-slide title-slide--puzzle">
+					<div class="title-puzzle" aria-hidden="true"></div>
 
 					<div class="title-slide__main">
 						<p class="title-slide__eyebrow">
@@ -66,7 +66,7 @@
 
 					<aside class="notes">
 						<ul>
-							<li>The slips drifting by are one story: Queneau&rsquo;s bus anecdote, retold in different styles. That single story is the whole experiment.</li>
+							<li>The portrait is a collage of Queneau cut into twelve pieces. One piece, with no face in it, has been taken out, and the others slide into the gap one at a time: the same material in a different order, which is what the exercises do to a single anecdote.</li>
 							<li>The title promises both halves of the talk: style, and prejudice, ours and the machines&rsquo;.</li>
 						</ul>
 					</aside>
@@ -546,7 +546,7 @@
 				<section class="frame chart-slide forest-slide" id="forest-slide">
 					<h2>Every model shows the bias</h2>
 					<div class="forest-chart" id="forest-chart" aria-label="Attribution bias effect size per model with human estimate"></div>
-					<p class="foot">Cohen&rsquo;s h for the bias of each model, with 95% confidence intervals. The shaded band is the human estimate, h = 0.28 (95% CI 0.19 to 0.37). Without the outlier at the top, the other twelve models average h = 0.67, still 2.4 times the human value.</p>
+					<p class="foot">Cohen&rsquo;s h per model with 95% confidence intervals. Shaded band: the human estimate, h = 0.28 (0.19 to 0.37). Without the top outlier the other twelve models average 0.67, 2.4 times the human value.</p>
 					<aside class="notes">
 						<ul>
 							<li>Cohen&rsquo;s h is an effect size for proportions (0.2 small, 0.5 medium, 0.8 large); it puts every model on one scale next to the human estimate.</li>
@@ -699,11 +699,11 @@
 					<div class="game-board">
 						<article class="ab-card ab-card--q">
 							<p class="ab-card__label ab-card__label--q">Queneau, transl. Wright</p>
-							<p class="ab-card__text">Estrangement: a &ldquo;flying saucer on Cassiopeia&rsquo;s Alpha Line&rdquo;, a Martian who stepped onto a &ldquo;Moon Man&rsquo;s extrapods&rdquo;, untranslatable alien terms like &ldquo;vrxtz&rdquo;.</p>
+							<p class="ab-card__text ab-card__text--gloss">Estrangement: a &ldquo;flying saucer on Cassiopeia&rsquo;s Alpha Line&rdquo;, a Martian who stepped onto a &ldquo;Moon Man&rsquo;s extrapods&rdquo;, untranslatable alien terms like &ldquo;vrxtz&rdquo;.</p>
 						</article>
 						<article class="ab-card ab-card--ai">
 							<p class="ab-card__label ab-card__label--ai">GPT-4</p>
-							<p class="ab-card__text">Element substitution: the bus becomes a &ldquo;shuttle&rdquo;, the platform a &ldquo;space station&rdquo;, the overcoat a &ldquo;space jacket&rdquo;; passengers float instead of walking.</p>
+							<p class="ab-card__text ab-card__text--gloss">Element substitution: the bus becomes a &ldquo;shuttle&rdquo;, the platform a &ldquo;space station&rdquo;, the overcoat a &ldquo;space jacket&rdquo;; passengers float instead of walking.</p>
 						</article>
 					</div>
 					<table class="scifi-table fragment">
@@ -1009,8 +1009,6 @@
 
 		<script src="../../reveal/dist/reveal.js"></script>
 		<script src="../../reveal/dist/plugin/notes.js"></script>
-		<script src="../../plugins/matter/matter.min.js"></script>
-		<script src="assets/floating-exercises.js"></script>
 		<script src="../../plugins/d3/d3.min.js"></script>
 
 		<script>
@@ -1025,89 +1023,22 @@
 		</script>
 		<script src="assets/charts.js"></script>
 		<script src="assets/swap-labels.js"></script>
+		<script src="assets/queneau-puzzle.js"></script>
 		<script>
-			// Animated title slide lifecycle (floating exercise slips).
-			let verses = null;
-			let titleSlideTimer = null;
-
-			const TRANSITION_MS = { default: 800, fast: 400, slow: 1200 };
-
-			function revealEl() {
-				return document.querySelector('.reveal');
-			}
-
-			function transitionDurationMs() {
-				const speed = Reveal.getConfig().transitionSpeed;
-				if (typeof speed === 'number' && speed >= 0) return speed;
-				if (typeof speed === 'string' && speed in TRANSITION_MS) {
-					return TRANSITION_MS[speed];
-				}
-				return TRANSITION_MS.default;
-			}
-
-			function stripAllTitleScrims() {
-				document
-					.querySelectorAll('.title-slide--scrims')
-					.forEach((slide) => slide.classList.remove('title-slide--scrims'));
-			}
-
-			function stopFloatingVerses() {
-				if (verses) {
-					verses.stop();
-					verses = null;
-				}
-			}
-
-			function startFloatingVerses(slide) {
-				stopFloatingVerses();
-				const zone = slide?.querySelector('.title-slide__zone');
-				if (!zone) return;
-
-				const start = () => {
-					if (Reveal.getCurrentSlide() !== slide) return;
-					verses = FloatingVerses.start(zone);
+			// Title slide: the sliding puzzle runs while the title slide is on screen.
+			(function () {
+				const box = document.querySelector('.title-puzzle');
+				const puzzle = box && window.QueneauPuzzle ? QueneauPuzzle.mount(box) : null;
+				if (!puzzle) return;
+				const sync = () => {
+					const current = Reveal.getCurrentSlide();
+					if (current && current.contains(box)) puzzle.play();
+					else puzzle.pause();
 				};
-
-				if (document.fonts && document.fonts.ready) {
-					document.fonts.ready.then(start);
-				} else {
-					start();
-				}
-			}
-
-			function activateTitleSlide(slide) {
-				const animated = slide?.classList.contains('title-slide--animated');
-				if (!animated) return;
-				if (Reveal.getCurrentSlide() !== slide) return;
-
-				slide.classList.add('title-slide--scrims');
-				startFloatingVerses(slide);
-			}
-
-			function finishSlideTransition() {
-				clearTimeout(titleSlideTimer);
-				titleSlideTimer = null;
-				revealEl().classList.remove('is-transitioning');
-				activateTitleSlide(Reveal.getCurrentSlide());
-			}
-
-			function beginSlideTransition() {
-				revealEl().classList.add('is-transitioning');
-				clearTimeout(titleSlideTimer);
-				stopFloatingVerses();
-				stripAllTitleScrims();
-
-				const ms = transitionDurationMs();
-				if (ms === 0) {
-					finishSlideTransition();
-					return;
-				}
-				titleSlideTimer = setTimeout(finishSlideTransition, ms + 50);
-			}
-
-			Reveal.on('ready', () => activateTitleSlide(Reveal.getCurrentSlide()));
-			Reveal.on('slidechanged', () => beginSlideTransition());
-			Reveal.on('slidetransitionend', () => finishSlideTransition());
+				Reveal.on('ready', sync);
+				Reveal.on('slidechanged', sync);
+				if (Reveal.isReady()) sync();
+			})();
 		</script>
 	</body>
 </html>
