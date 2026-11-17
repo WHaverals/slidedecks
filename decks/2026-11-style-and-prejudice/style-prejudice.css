@@ -941,9 +941,10 @@
 	margin: 0;
 }
 
-/* the person and the robot join with the last bar of people (beat 2); the person thinks that AI
-   cannot be creative, the robot is asked the question. With the last bar of models (beat 5) the
-   robot's question turns into its answer. On the next slide the robot is simply there. */
+/* the person joins with the last bar of people (beat 2) and thinks that AI cannot be creative; the
+   robot joins with the first bar of models (beat 3) and is asked the question. With the last bar of
+   models (beat 5) the robot's question turns into its answer. On the next slide the robot is simply
+   there. */
 .reveal .rates-aside .bubble-figure--human,
 .reveal .bubble-figure--robot {
 	opacity: 0;
@@ -951,7 +952,7 @@
 }
 
 .reveal [data-beat='2'].visible ~ .rates-stage .bubble-figure--human,
-.reveal [data-beat='2'].visible ~ .rates-stage .bubble-figure--robot {
+.reveal [data-beat='3'].visible ~ .rates-stage .bubble-figure--robot {
 	opacity: 1;
 }
 
@@ -2092,7 +2093,12 @@
 	display: grid;
 	grid-template-columns: 410px minmax(0, 1fr);
 	gap: 44px;
-	align-items: start;
+	align-items: stretch;
+}
+
+/* the two quotes start at the top of the card and end at its bottom edge */
+.reveal .ratio-stage .rationales {
+	justify-content: space-between;
 }
 
 .reveal .emark--on {
