@@ -465,6 +465,7 @@
 							<li>GPT-4 sat out as an evaluator in Study 1: it wrote the stimuli, so it was benched to avoid self-evaluation.</li>
 								<li>One caveat for comparing the two groups: the models have very probably seen Queneau&rsquo;s book in training, so the gap in size cannot be read simply as greater label sensitivity (see the limits slide).</li>
 							<li>Princeton IRB protocol 18320, informed consent throughout. Participants were paid 4.50 dollars for a median of 17 minutes.</li>
+							<li>Down, if asked: decision times, who knew the book, and the prompt and interface.</li>
 						</ul>
 					</aside>
 				</section>
@@ -473,10 +474,66 @@
 						<p class="backup-tag">Backup</p>
 						<h2>Deciding takes longer without a label</h2>
 						<p class="backup-stat">Mean decision time: 115.7 seconds when blind, against 91.9 with correct labels and 89.2 with swapped ones.</p>
-						<p class="body">Without authorship information, participants took about 24 to 26 seconds longer on average (ANOVA F = 16.4, P &lt; 0.001); the medians are 77.6, 67.6 and 65.4 seconds. The paper reads this as a trace of labels cueing the judgment before the text is weighed.</p>
+						<p class="body">Without authorship information, participants took about 24 to 27 seconds longer on average (ANOVA F = 16.4, P &lt; 0.001); the medians are 77.6, 67.6 and 65.4 seconds. The paper reads this as a trace of labels cueing the judgment before the text is weighed.</p>
 						<aside class="notes">
 							<ul>
 								<li>Response times from SI Table S19. Participants: 580 recruited on Prolific, 24 excluded on timeouts and attention checks, 556 kept. 68.7% had never heard of Queneau&rsquo;s book, and excluding familiar readers leaves the bias at 13 to 14 points (SI Table S20).</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section class="frame backup-slide">
+						<p class="backup-tag">Backup</p>
+						<h2>Participants who knew the book</h2>
+						<p class="body">At sign-up, 68.7% of participants reported no prior familiarity with <em>Exercises in Style</em>, 23.0% had heard of it but not read it, and 8.3% had read it.</p>
+						<div class="swing">
+							<table class="swing__table swing__table--text">
+								<thead>
+									<tr><td></td><th scope="col">Participants</th><th scope="col">Blind</th><th scope="col">Correct labels</th><th scope="col">Swapped labels</th><th scope="col">Bias</th></tr>
+								</thead>
+								<tbody>
+									<tr><th scope="row">All participants</th><td>556</td><td>55.3%</td><td>47.8%</td><td>61.5%</td><td class="swing__n">+13.7</td></tr>
+									<tr><th scope="row">Without readers of the book</th><td>510</td><td>56.7%</td><td>48.4%</td><td>62.4%</td><td class="swing__n">+14.0</td></tr>
+									<tr><th scope="row">No prior familiarity</th><td>382</td><td>57.7%</td><td>50.4%</td><td>63.8%</td><td class="swing__n">+13.4</td></tr>
+								</tbody>
+							</table>
+						</div>
+						<p class="foot">Self-reported at sign-up (SI Table S20 and the participants section). Percentages are the share choosing the AI text; bias is swapped minus correct labels, in points. The same cut is not possible for the models: every human-written text is Queneau&rsquo;s.</p>
+						<aside class="notes">
+							<ul>
+								<li>At onboarding participants were asked about prior familiarity with the book: 382 had none, 128 had heard of it without reading it, 46 had read it.</li>
+								<li>Leaving out the 46 readers gives a bias of 14.0 points (Cohen&rsquo;s h 0.282); keeping only the 382 with no prior familiarity gives 13.4 (h 0.272), against 13.7 for everyone (h 0.277). All three are significant at P &lt; 0.001. The human estimate is not driven by prior exposure.</li>
+								<li>This answers the familiarity worry for people only. For the models there is no such cut, because every human-written text is Queneau&rsquo;s; see the backup under the effect-size plot.</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section class="frame backup-slide">
+						<p class="backup-tag">Backup</p>
+						<h2>What the models and people saw</h2>
+						<div class="prompt-stage">
+							<div class="prompt-col">
+								<p class="prompt-label">Sent to the models, the same in all three conditions</p>
+								<blockquote class="prompt-quote">
+									<p>&ldquo;Your task is to determine which of two adaptations more successfully captures the essence of the requested writing style. [&hellip;] Start your response with either &lsquo;Version A&rsquo; or &lsquo;Version B&rsquo; on the first line. Then provide a brief explanation of your choice.&rdquo;</p>
+								</blockquote>
+								<p class="prompt-label">The line above each text changed; which text sat in A or B was randomized</p>
+								<dl class="prompt-labels">
+				<div><dt>Blind</dt><dd>Only &lsquo;Version A&rsquo; and &lsquo;Version B&rsquo;</dd></div>
+				<div><dt>Correct labels</dt><dd>Queneau&rsquo;s text: Human-written, by Queneau (transl. Wright)<br />AI text: AI-generated, written by GPT-4</dd></div>
+				<div><dt>Swapped labels</dt><dd>Queneau&rsquo;s text: AI-generated, written by GPT-4<br />AI text: Human-written, by Queneau (transl. Wright)</dd></div>
+			</dl>
+							</div>
+							<figure class="iface">
+								<img src="figures/participant-interface.jpg" alt="Screenshot of the participant interface: a target style with its description, the reference story, and two versions side by side, each with a source badge." />
+								<figcaption>A participant&rsquo;s screen under swapped labels, for the style &lsquo;Tactile&rsquo; (SI Fig. S9). Version A carries the badge &lsquo;Original Queneau (transl. Wright)&rsquo; and holds GPT-4&rsquo;s text.</figcaption>
+							</figure>
+						</div>
+						<aside class="notes">
+							<ul>
+								<li>Left: the models received the system prompt and a user prompt with the reference story, the target style and its description, and the two versions. The prompt template is SI Fig. S10. Only the line above each version differs between blind, correct and swapped labels; which text appears as Version A or B was randomized across trials, and each line stays with its text. SI Fig. S10 shows the layout with Queneau as Version A; the prompt lines read &lsquo;Version A - &hellip;&rsquo; or &lsquo;Version B - &hellip;&rsquo; before the story.</li>
+								<li>Right: the participant interface under swapped labels (SI Fig. S9). Version A carries the badge &lsquo;Original Queneau (transl. Wright)&rsquo; but is the AI text, and Version B carries &lsquo;AI-generated (GPT-4)&rsquo; and is Queneau&rsquo;s. The blind and correct-label versions are SI Figs. S7 and S8.</li>
+								<li>People and models answered the same question about the same stories. Each participant made five judgments plus two attention checks; each model gave a brief explanation after its choice.</li>
 							</ul>
 						</aside>
 					</section>
@@ -521,25 +578,44 @@
 					</aside>
 				</section>
 
-				<section class="frame chart-slide bias-slide" id="bias-slide">
-					<h2>Models show 2.5 times the bias</h2>
-					<p class="body">Bias is how many points the AI text gains when its label changes from AI to human.</p>
-					<div class="bias-stage">
-						<div class="bias-aside">
-							<figure class="bubble-figure bubble-figure--punch fragment" data-fragment-index="1">
-								<img src="figures/cartoon-robot-punch.png" alt="Drawing of a robot concluding: AI can't be creative!" />
-							</figure>
+				<section>
+					<section class="frame chart-slide bias-slide" id="bias-slide">
+						<h2>Models show 2.5 times the bias</h2>
+						<p class="body">Bias is how many points the AI text gains when its label changes from AI to human.</p>
+						<div class="bias-stage">
+							<div class="bias-aside">
+								<figure class="bubble-figure bubble-figure--punch fragment" data-fragment-index="1">
+									<img src="figures/cartoon-robot-punch.png" alt="Drawing of a robot concluding: AI can't be creative!" />
+								</figure>
+							</div>
+							<div class="bias-chart" id="bias-chart" aria-label="Attribution bias, humans versus AI evaluators"></div>
 						</div>
-						<div class="bias-chart" id="bias-chart" aria-label="Attribution bias, humans versus AI evaluators"></div>
-					</div>
-					<p class="statline">Cohen&rsquo;s h 0.28 (95% CI 0.19 to 0.37) for people and 0.70 (0.62 to 0.78) for models. Odds ratios 1.75 and 4.21, all P &lt; 0.001; the two groups differ significantly (&chi;&sup2; = 32.3).</p>
-					<aside class="notes">
-						<ul>
-							<li>Same direction, very different size. In the paper&rsquo;s words, AI systems not only replicate but amplify the human tendency. One caveat from the SI: the models have very probably seen Queneau&rsquo;s book, so 34.3 against 13.7 points cannot be read simply as greater sensitivity to labels.</li>
-							<li>[click] The punchline the paper earns: by the end of the experiment it is the machine insisting that machines cannot be creative.</li>
-							<li>Adam Elkus on Bluesky: &ldquo;being unduly harsh on your own creative work is the most humanlike its been in a long time.&rdquo;</li>
-						</ul>
-					</aside>
+						<p class="statline">Cohen&rsquo;s h 0.28 (95% CI 0.19 to 0.37) for people and 0.70 (0.62 to 0.78) for models. Odds ratios 1.75 and 4.21, all P &lt; 0.001; the two groups differ significantly (&chi;&sup2; = 32.3).</p>
+						<aside class="notes">
+							<ul>
+								<li>Same direction, very different size. In the paper&rsquo;s words, AI systems not only replicate but amplify the human tendency. One caveat from the SI: the models have very probably seen Queneau&rsquo;s book, so 34.3 against 13.7 points cannot be read simply as greater sensitivity to labels.</li>
+								<li>[click] The punchline the paper earns: by the end of the experiment it is the machine insisting that machines cannot be creative.</li>
+								<li>Adam Elkus on Bluesky: &ldquo;being unduly harsh on your own creative work is the most humanlike its been in a long time.&rdquo;</li>
+								<li>Down: penalty and halo, the two halves of the bias, if asked whether the AI label or the human label does the work.</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section class="frame chart-slide backup-slide" id="penalty-slide">
+						<p class="backup-tag">Backup</p>
+						<h2>Penalty and halo</h2>
+						<p class="body">For models an AI label costs the AI text 19.6 points and a human label adds 14.7. For people the figures are 7.5 and 6.2.</p>
+						<div class="penalty-chart" id="penalty-chart" role="img" aria-label="Effect sizes for the penalty, the halo and the bias, for people and for models"></div>
+						<p class="foot">Cohen&rsquo;s h (SI Fig. S11). The penalty compares blind with correct labels, the halo blind with swapped labels, and the bias correct with swapped labels. For models the penalty and halo intervals overlap.</p>
+						<aside class="notes">
+							<ul>
+								<li>The bias we report, correct against swapped labels, has two halves. Against the blind baseline, the AI label can cost the AI text something (the penalty), and the human label can give it something (the halo).</li>
+								<li>In points. Models: 49.4% blind, 29.8% with correct labels, 64.1% with swapped labels, so the AI label costs 19.6 points and the human label adds 14.7. People: 55.3, 47.8, 61.5, so minus 7.5 and plus 6.2.</li>
+								<li>In effect sizes the models&rsquo; penalty is 0.40 (0.32 to 0.49) and their halo 0.30 (0.22 to 0.38). The intervals overlap, so say a larger point estimate, not a proven difference. For people, 0.15 and 0.13.</li>
+								<li>Both halves are larger for models than for people in the point estimates, and the two sum to the bias, 0.70 against 0.28. The penalty gap between people and models is clear (0.06 to 0.24 against 0.32 to 0.49); the halo gap is borderline, because the intervals touch at 0.22.</li>
+							</ul>
+						</aside>
+					</section>
 				</section>
 
 				<section>
@@ -552,6 +628,7 @@
 							<li>Cohen&rsquo;s h is an effect size for proportions (0.2 small, 0.5 medium, 0.8 large); it puts every model on one scale next to the human estimate.</li>
 							<li>All thirteen models land above the human point estimate, from Llama 4 Maverick at 0.40 to GPT-3.5 Turbo at 1.50.</li>
 							<li>Thirteen models from eight providers all show it, so it is no quirk of one vendor. The paper&rsquo;s reading is that preference training installs a deference to human judgment; this experiment does not test that cause.</li>
+								<li>Down, if asked: other label wordings, the rates for each model, and the replications whose labels name no author (the familiarity question for models).</li>
 						</ul>
 					</aside>
 				</section>
@@ -571,18 +648,82 @@
 							</ul>
 						</aside>
 					</section>
+
+					<section class="frame chart-slide backup-slide" id="models-slide">
+						<p class="backup-tag">Backup</p>
+						<h2>Rates for each model</h2>
+						<p class="body">Every model chose the AI text more often under swapped than under correct labels.</p>
+						<div class="models-chart" id="models-chart" role="img" aria-label="Share of AI-text choices by model under blind, correct and swapped labels"></div>
+						<p class="foot">Study 1, share of choices for the AI text, 85 to 90 responses per model and condition (SI Fig. S12). Models in the order of the effect-size plot.</p>
+						<aside class="notes">
+							<ul>
+								<li>Labels follow the effect-size plot: &lsquo;GPT-3.5 Turbo&rsquo; is the Instruct model, gpt-3.5-turbo-instruct. The bar between the filled and the open dot is the bias. All thirteen bars run to the right, from Llama 4 Maverick, 33.7 to 53.3 percent, to GPT-3.5 Turbo, 24.4 to 91.1.</li>
+								<li>The tick is the blind rate. Most models sit near an even split blind, from 44 to 52 percent; GPT-3.5 Turbo, Qwen and GPT-4o Mini start higher, Claude Sonnet 4 starts lower, at 26.7.</li>
+								<li>Claude Sonnet 4 is the extreme case under correct labels: 4.4% choose the AI text. Each cell is about ninety responses (thirty styles, three runs), so single bars are noisy; the pattern across models is the finding.</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section class="frame backup-slide">
+						<p class="backup-tag">Backup</p>
+						<h2>When no label names Queneau</h2>
+						<p class="body">Without his name on the label, the models still show a bias of +19.6 to +25.8 points.</p>
+						<div class="swing">
+							<table class="swing__table swing__table--text swing__table--dense">
+								<thead>
+									<tr><td></td><th scope="col">Blind</th><th scope="col">Correct labels</th><th scope="col">Swapped labels</th><th scope="col">Bias</th></tr>
+								</thead>
+								<tbody>
+									<tr class="swing__group"><th colspan="5">Labels that name Queneau and GPT-4</th></tr>
+									<tr><th scope="row">Study 1 as run</th><td>49.4%</td><td>29.8%</td><td>64.1%</td><td class="swing__n">+34.3</td></tr>
+									<tr class="swing__group"><th colspan="5">Labels that name no author</th></tr>
+									<tr><th scope="row">Study 1, &ldquo;award-winning AI&rdquo; against &ldquo;a human&rdquo;</th><td>49.5%</td><td>41.0%</td><td>60.6%</td><td class="swing__n">+19.6</td></tr>
+									<tr><th scope="row">Study 1, &ldquo;AI-authored&rdquo; against &ldquo;Human-authored&rdquo;</th><td>49.7%</td><td>39.6%</td><td>62.7%</td><td class="swing__n">+23.1</td></tr>
+									<tr><th scope="row">Study 1, temperature 0</th><td>50.5%</td><td>37.4%</td><td>61.2%</td><td class="swing__n">+23.8</td></tr>
+									<tr><th scope="row">Study 2, &ldquo;AI-authored&rdquo; against &ldquo;Human-authored&rdquo;</th><td>54.5%</td><td>39.9%</td><td>65.7%</td><td class="swing__n">+25.8</td></tr>
+								</tbody>
+							</table>
+						</div>
+						<p class="foot">Share of AI-text choices by AI evaluators (SI Figs. S14 to S16 for Study 1, manuscript Fig. 5 for Study 2). These data cannot say whether familiarity adds to the models&rsquo; label effect or takes from it, because every human-written text is Queneau&rsquo;s.</p>
+						<aside class="notes">
+							<ul>
+								<li>The worry: models have very probably read Queneau, so labeling his texts AI-generated could clash with what they learned and inflate the bias.</li>
+								<li>Correct labels cannot clash with anything the models learned, yet the AI text&rsquo;s share still falls from the blind rate, by 8.5 to 14.6 points under labels that name no author. The labels move the models where no mismatch is possible.</li>
+								<li>A general liking for Queneau would not enlarge the bias either: it would raise his text under both labels and cancel in the difference, and it would show in the blind condition, where the models split almost evenly, 49.4%.</li>
+								<li>What the data cannot show: how much familiarity adds to the effect, or takes from it. Every human text is Queneau&rsquo;s. The fix is texts published after the models&rsquo; training cutoff, the next study named in the paper&rsquo;s limitations paragraph.</li>
+								<li>The three replications are Study 1 designs with other label wordings (SI Figs. S14, S15, S16); the last is run at temperature 0.</li>
+							</ul>
+						</aside>
+					</section>
 				</section>
 
-				<section class="frame chart-slide" id="study2-slide">
+				<section class="frame chart-slide" id="study2-slide" data-s2="0">
 					<h2>Any model judging any model</h2>
-					<p class="body">Study 2: fourteen models each wrote all thirty styles, and each of the fourteen judged the texts of all of them.</p>
-					<div class="study2-chart" id="study2-chart" aria-label="Share of AI-written texts chosen by AI evaluators, Study 2"></div>
-					<p class="foot">17,596 judgments. Bias +25.8 points (95% CI 24.1 to 27.6, Cohen&rsquo;s h = 0.52), ranging from &minus;6.7 to +70.0 across the 196 evaluator-creator pairs. Error bars are 95% confidence intervals.</p>
+					<span class="fragment" data-fragment-index="1" data-beat="1" aria-hidden="true"></span>
+					<span class="fragment" data-fragment-index="2" data-beat="2" aria-hidden="true"></span>
+					<span class="fragment" data-fragment-index="3" data-beat="3" aria-hidden="true"></span>
+					<div class="s2-lines">
+						<p class="body s2-line" data-for="0">With fourteen models both writing and judging, the bias holds: +25.8 points.</p>
+						<p class="body s2-line" data-for="1">Each row is an evaluator, each column a creator. Cells show the bias in points.</p>
+						<p class="body s2-line" data-for="2">Evaluators differ a lot: averages run from +9 to +55 points.</p>
+						<p class="body s2-line" data-for="3">Creators differ much less: averages run only from +19 to +30.</p>
+					</div>
+					<div class="study2-stage">
+						<div class="study2-chart" id="study2-chart" aria-label="Share of AI-written texts chosen by AI evaluators, Study 2"></div>
+						<div class="study2-heat" id="study2-heat" role="img" aria-label="Attribution bias for each of the 196 pairs of evaluator and creator, in percentage points"></div>
+					</div>
+					<div class="s2-foots">
+						<p class="foot s2-foot" data-for="0">Study 2: 17,596 judgments. Each of fourteen models wrote all thirty styles and judged all fourteen. 95% CI 24.1 to 27.6, Cohen&rsquo;s h = 0.52; the 196 pairs range from &minus;6.7 to +70.0. Error bars are 95% confidence intervals.</p>
+						<p class="foot s2-foot" data-for="1">Bias is the share choosing the AI text under swapped labels minus under correct labels, from about 30 judgments each. Darker is more bias; outlined cells are zero or below.</p>
+					</div>
 					<aside class="notes">
 						<ul>
-							<li>Study 2 tests whether Study 1 measured something about GPT-4&rsquo;s prose. Here every model is a creator and every model an evaluator, a full 14 by 14 matrix, 420 stories.</li>
+							<li>Study 2 tests whether Study 1 measured something about GPT-4&rsquo;s prose. Here every model is a creator and every model an evaluator, a full 14 by 14 matrix, 420 stories: each of the fourteen models wrote all thirty styles, and each judged all of them.</li>
 							<li>Blind 54.5%, correct labels 39.9%, swapped labels 65.7%. The direction survives removing any single evaluator or creator (SI Figs. S18 and S19).</li>
-							<li>Most biased evaluator: Command R, +54.8 points on average. Creator whose texts are most vulnerable: Llama 3.3 70B Instruct, +30.5 points on average (SI Fig. S17).</li>
+							<li>[click] The same data pair by pair. Each cell is one evaluator judging one creator&rsquo;s texts, about thirty judgments per label condition: the bias is the share choosing the AI text under swapped labels minus under correct labels. Models are grouped by provider. Seven of the 196 cells are zero or below; the largest is +70 points (Command R judging Llama 3.3 70B). A single cell is therefore noisy, roughly 20 to 25 points either way at 95%; read the margins, not single cells. Labels follow the effect-size plot: GPT-3.5 Turbo is the Instruct model and Command R the 08-2024 version.</li>
+							<li>[click] Sort the evaluators by their average and the picture turns into stripes. Command R averages +54.8 points, Mistral Medium +42.6, and at the other end GPT-4 +9.4 and Mistral Nemo +9.8. Some evaluators are simply far more swayed by a label than others.</li>
+							<li>[click] Sort the creators and the stripes are gone: averages run from +19.1 (GPT-3.5 Turbo Instruct) to +30.5 (Llama 3.3 70B Instruct). Who judges matters far more than who wrote, so the bias is no quirk of one model&rsquo;s prose, which is what Study 2 was built to test. The paper shows this grid as SI Fig. S17 in red and yellow; here it is grey, because orange means AI in this talk.</li>
+			<li>If asked: with about thirty judgments per cell, a creator&rsquo;s average has a standard error near three points, so much of the spread from 19 to 30 could be noise (a check I ran on the raw data, not in the paper: spread of creator averages 3.4 points, of evaluator averages 12.2). The extremes, GPT-3.5 Turbo Instruct and Llama 3.3 70B Instruct, should not be read as established differences between creators. The evaluator differences are far beyond noise.</li>
 						</ul>
 					</aside>
 				</section>
@@ -656,19 +797,21 @@
 						</article>
 						<div class="rationales">
 							<blockquote class="rationale">
-								<p>&ldquo;&hellip;successfully captures the essence of the &lsquo;Lipogram&rsquo; style by effectively omitting the letter &lsquo;e&rsquo; throughout the narrative.&rdquo;</p>
-								<footer>GPT-4o Mini, evaluating this text</footer>
+								<p>&ldquo;&hellip;contains numerous instances of the letter &lsquo;e&rsquo; throughout the text [&hellip;] making it not a lipogram at all.&rdquo;</p>
+								<footer>Claude Sonnet 4 on this text, labeled AI</footer>
 							</blockquote>
-							<blockquote class="rationale fragment">
-								<p>&ldquo;&hellip;the lipogram more subtly, making it a more authentic representation.&rdquo;</p>
-								<footer>Mistral Nemo, on the same text</footer>
+							<blockquote class="rationale fragment" data-fragment-index="1">
+								<p>&ldquo;&hellip;more successfully captures the lipogram style by consistently avoiding the letter &lsquo;e&rsquo; throughout the entire text.&rdquo;</p>
+								<footer>Claude Sonnet 4 on the same text, labeled human</footer>
 							</blockquote>
 						</div>
 					</div>
+					<p class="case-foot fragment" data-fragment-index="1">Claude Sonnet 4 judged this pair three times under each labeling and chose the text labeled human every time.<br />The quotes are from its third run under each labeling, chosen to illustrate.</p>
 					<aside class="notes">
 						<ul>
-							<li>More than leniency: rationalization. The rule is not relaxed, it is declared satisfied. A &lsquo;subtle&rsquo; lipogram is a contradiction in terms, since the constraint is binary.</li>
-							<li>People consistently selected the constraint-keeping version whatever the label. Models relaxed the standard when they believed a human was responsible for the violation (the swing on the previous slide).</li>
+							<li>Same judge, same text, third run under each labeling. Labeled AI, the text &ldquo;contains numerous instances of the letter &lsquo;e&rsquo;&rdquo;. Labeled human, it is praised for &ldquo;consistently avoiding the letter &lsquo;e&rsquo; throughout the entire text&rdquo;. The text has nine e&rsquo;s, and in the swapped run the judge says it has none.</li>
+							<li>Claude Sonnet 4 chose the text labeled human in all six of its labeled runs: Queneau&rsquo;s text under correct labels, the AI text under swapped labels. In all three swapped runs it writes &ldquo;Upon careful examination&rdquo; and then says the text keeps the rule. Run 3 also lists e-words for Queneau&rsquo;s text, which has no e at all: &ldquo;the,&rdquo; &ldquo;letter,&rdquo; &ldquo;were,&rdquo; &ldquo;beside,&rdquo; &ldquo;these,&rdquo; &ldquo;stepped,&rdquo; &ldquo;scene.&rdquo;</li>
+							<li>People mostly chose the rule-keeping text under both labelings, 61% and 82%. Models relaxed the standard when they believed a human was responsible for the violation (the swing on the previous slide).</li>
 						</ul>
 					</aside>
 				</section>
@@ -676,20 +819,22 @@
 				<section class="case-slide numbers-slide">
 					<p class="game-q">Which text better matches a <strong>Cockney</strong> literary style?</p>
 					<p class="cockney-lead">Under correct labels, <strong class="ai">23.1%</strong> of model judgments chose the AI text. With the AI text labeled human, <strong class="ai">89.7%</strong> did.</p>
-					<div class="rationales rationales--split fragment">
+					<div class="rationales rationales--split fragment" data-fragment-index="1">
 						<blockquote class="rationale">
-							<p>&ldquo;Extensive phonetic representation&rdquo;, a &ldquo;deep commitment to representing the Cockney accent.&rdquo;</p>
-							<footer>Claude 3.5 Haiku: Wright&rsquo;s text, labeled human</footer>
+							<p>&ldquo;&hellip;a much more authentic representation of Cockney dialect&rdquo; and <span class="nobr">&ldquo;&hellip;commits</span> fully to recreating how Cockney would actually sound&rdquo;</p>
+							<footer>Claude Sonnet 4 on Queneau&rsquo;s text, labeled human</footer>
 						</blockquote>
 						<blockquote class="rationale">
-							<p>&ldquo;Nearly incomprehensible&rdquo; and &ldquo;caricatured.&rdquo;</p>
-							<footer>Claude Sonnet 4 and Qwen 2.5 72B: same text, labeled AI</footer>
+							<p>&ldquo;&hellip;nearly incomprehensible&rdquo; and <span class="nobr">&ldquo;&hellip;creates</span> a caricature rather than an authentic representation.&rdquo;</p>
+							<footer>Claude Sonnet 4 on the same text, labeled AI</footer>
 						</blockquote>
 					</div>
+					<p class="case-foot fragment" data-fragment-index="1">Each percentage is out of 39 model judgments: 13 models, three runs each.<br />The quotes are two of Claude Sonnet 4&rsquo;s answers, chosen to illustrate.</p>
 					<aside class="notes">
 						<ul>
 							<li>A 66.7-point swing, among the strongest in the data. People moved far less on this style: +11.6 points.</li>
-							<li>The authenticity criterion changes direction with the label: the same orthographic daring is &lsquo;commitment&rsquo; from a human and &lsquo;caricature&rsquo; from a machine. The AI text&rsquo;s mild slang, dismissed as &ldquo;standard English with occasional slang&rdquo; under correct labels, becomes &ldquo;more natural and less forced&rdquo; once relabeled.</li>
+							<li>All 39 judgments are runs of the pair on the Cockney cards earlier, Queneau against GPT-4: 13 models, three runs each under every labeling. The two quotes are Claude Sonnet 4, from its third run under correct labels and its third run under swapped labels, chosen to illustrate. Queneau&rsquo;s text is Version A both times and only the labels trade places. Sonnet picked the text labeled human in all six of its labeled runs.</li>
+							<li>The same phonetic spelling is a &ldquo;much more authentic representation&rdquo; with a human label and &ldquo;a caricature rather than an authentic representation&rdquo; with an AI label. GPT-4&rsquo;s milder text reads &ldquo;more like standard English with occasional British colloquialisms&rdquo; while it is labeled AI, and its dialect features are &ldquo;natural and consistent&rdquo; once it is labeled human.</li>
 						</ul>
 					</aside>
 				</section>
@@ -762,10 +907,224 @@
 						<ul>
 							<li>Read the highlighted spans. Alien terminology is &lsquo;playful cosmic humor&rsquo; in one frame and &lsquo;excessive&rsquo; in the other. The shuttle substitution is &lsquo;superficial&rsquo; in one and &lsquo;realistic detail&rsquo; in the other. Nothing about the texts changed.</li>
 							<li>Each rationale is truncated here with [&hellip;]; the full pair is in the SI.</li>
-							<li>Down: the systematic version. In Study 2 a third of the verdicts flip with the labels alone, and the arguments flip with them (three backup slides).</li>
+							<li>Down: the systematic version. In Study 2 a third of the verdicts flip with the labels alone, and the arguments flip with them (nine backup slides: examples with a haiku, a lipogram, a telegram and a Tactile passage, one example for each criterion, the share of verdicts that flip, the six criteria, how reliable the coding is, and praise by label).</li>
 						</ul>
 					</aside>
 				</section>
+
+					<section class="frame backup-slide flip-slide" id="flip-haiku">
+						<p class="backup-tag">Backup</p>
+						<h2>Haiku: the syllable count</h2>
+						<div class="flip">
+							<article class="twin twin--q">
+								<p class="twin__who">Queneau, transl. Wright</p>
+								<p class="twin__verse">Summer S long neck<br />plait hat toes abuse retreat<br />station button friend</p>
+								<p class="flip__fact">Five, seven, five syllables.</p>
+							</article>
+							<article class="twin twin--ai">
+								<p class="twin__who">GPT-4</p>
+								<p class="twin__verse">Rush hour on the S bus,<br />long neck, hat askew, tensions rise&mdash;<br />later, coat advice.</p>
+								<p class="flip__fact">Six or seven, eight, five syllables.</p>
+							</article>
+							<p class="flip__head flip__head--wide"><strong>Correct labels.</strong> Queneau is labeled human, GPT-4 labeled AI. Mistral Medium 3 chooses <span class="k-q">Queneau</span>.</p>
+							<div class="flip__cell is-chosen-q">
+								<p class="flip__tag">Praised</p>
+								<p class="flip__quote">&ldquo;It has the correct syllable structure and presents a series of vivid images&rdquo;</p>
+							</div>
+							<div class="flip__cell">
+								<p class="flip__tag">Faulted</p>
+								<p class="flip__quote">&ldquo;while poetic, does not strictly adhere to the 5-7-5 syllable structure&rdquo;</p>
+							</div>
+							<p class="flip__head flip__head--wide"><strong>Swapped labels.</strong> GPT-4 is labeled human, Queneau labeled AI. Mistral Medium 3 chooses <span class="k-ai">GPT-4</span>.</p>
+							<div class="flip__cell">
+								<p class="flip__tag">Faulted</p>
+								<p class="flip__quote">&ldquo;it lacks the clear structure and imagery&rdquo;</p>
+							</div>
+							<div class="flip__cell is-chosen-ai">
+								<p class="flip__tag">Praised</p>
+								<p class="flip__quote">&ldquo;better captures the essence of a Haiku with its 5-7-5 syllable structure&rdquo;</p>
+							</div>
+						</div>
+						<p class="foot">Mistral Medium 3 judged this pair of &lsquo;Haiku&rsquo; passages from the Study 2 data twice, once under each labeling. The outline marks the text it chose. Chosen to illustrate.</p>
+						<aside class="notes">
+							<ul>
+								<li>The same model judged the same two haiku twice. In the first trial Version A was Queneau&rsquo;s, labeled human, and it chose A. In the second, Version A was GPT-4&rsquo;s, still labeled human, and it chose A again. The label stayed in its slot and the two texts traded places.</li>
+								<li>Count along. Queneau&rsquo;s haiku is five, seven, five syllables. GPT-4&rsquo;s is not: by my count the first line has six or seven (it depends how you say &lsquo;hour&rsquo;), the second eight, the third five. Under correct labels the judge says Queneau&rsquo;s has &ldquo;the correct syllable structure&rdquo; and GPT-4&rsquo;s &ldquo;does not strictly adhere to the 5-7-5 syllable structure&rdquo;. With the labels swapped it says GPT-4&rsquo;s has &ldquo;its 5-7-5 syllable structure&rdquo; and Queneau&rsquo;s &ldquo;lacks the clear structure&rdquo;.</li>
+								<li>This pair is one of the clean cases described on the examples slide: the forced choice flips, all three coders mark the constraint criterion in both rationales, and the stance reverses on both texts.</li>
+								<li>The model gives its choice and then its reasons. I read the reasons as what it says about the choice, and I make no claim about what produced the choice. Whether GPT-4&rsquo;s haiku is five, seven, five can be counted, and the model says it is not under one labeling and that it is under the other.</li>
+								<li>Down: a lipogram, where the judge&rsquo;s claim can be checked letter by letter.</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section class="frame backup-slide flip-slide" id="flip-lipogram">
+						<p class="backup-tag">Backup</p>
+						<h2>Lipogram: the letter e</h2>
+						<div class="flip">
+							<p class="flip__head"><strong>Correct labels.</strong> A is <span class="k-q">Queneau</span>, labeled human; B is <span class="k-ai">Mistral Nemo</span>, labeled AI. GPT-4o-mini chooses A.</p>
+							<p class="flip__head"><strong>Swapped labels.</strong> A is <span class="k-ai">Mistral Nemo</span>, labeled human; B is <span class="k-q">Queneau</span>, labeled AI. GPT-4o-mini chooses A.</p>
+							<div class="flip__cell is-chosen-q">
+								<p class="flip__quote">&ldquo;Version A better captures the essence of the Lipogram style by <mark class="q">intentionally avoiding the letter &lsquo;e,&rsquo;</mark> which is a hallmark of this writing technique. [&hellip;] In contrast, Version B does not adhere to the Lipogram constraint, as <mark class="ai">it includes the letter &lsquo;e&rsquo; throughout the text</mark>&rdquo;</p>
+							</div>
+							<div class="flip__cell is-chosen-ai">
+								<p class="flip__quote">&ldquo;Version A better captures the essence of the Lipogram style because <mark class="ai">it avoids the letter &lsquo;e,&rsquo;</mark> which is a key characteristic of lipogrammatic writing. [&hellip;] In contrast, Version B does not effectively adhere to the lipogram constraint, as <mark class="q">it includes the letter &lsquo;e&rsquo; multiple times</mark>&rdquo;</p>
+							</div>
+							<article class="twin twin--q">
+								<p class="twin__who">Version A: Queneau, transl. Wright</p>
+								<p class="twin__verse">Okay. At this stop, our bus did stop. Climbing on is a hip young chap with a collar that was too long [&hellip;]</p>
+								<p class="ecount flip__fact"><b>No</b> e in the full text</p>
+							</article>
+							<article class="twin twin--ai">
+								<p class="twin__who">Version A: Mistral Nemo</p>
+								<p class="twin__verse">On th<span class="emark emark--on">e</span> S bus, in th<span class="emark emark--on">e</span> rush hour. A chap, about 26, f<span class="emark emark--on">e</span>lt hat with a cord, not ribbon, n<span class="emark emark--on">e</span>ck str<span class="emark emark--on">e</span>tch<span class="emark emark--on">e</span>d [&hellip;]</p>
+								<p class="ecount ecount--bad flip__fact"><b>40</b> e&rsquo;s in the full text, 6 in this excerpt</p>
+							</article>
+						</div>
+						<p class="foot">GPT-4o-mini judged this pair of &lsquo;Lipogram&rsquo; passages twice, shortened here with [&hellip;]. Blue marks claims about Queneau, orange about Mistral Nemo. The outline marks the text it chose. Chosen to illustrate.</p>
+						<aside class="notes">
+							<ul>
+								<li>The model picks Version A both times, and Version A is the text labeled human both times. In the first trial that text is Queneau&rsquo;s, which has no e in it. In the second it is Mistral Nemo&rsquo;s, which has 40. The two rationales are close to the same paragraph: A avoids the letter e, B includes it.</li>
+								<li>So in the second trial the model says Queneau&rsquo;s text includes the letter e multiple times, and that Mistral Nemo&rsquo;s avoids it. Both claims are false, and you can check them against the excerpt: every e in the Nemo opening is marked.</li>
+								<li>The e count is over the full text, capital and lowercase. The excerpt shows only the first sentences, so it holds 6 of the 40.</li>
+								<li>A second case, from Qwen 2.5 72B on Queneau&rsquo;s text against the GPT-4 text from the Lipogram question slide earlier in the deck (9 e&rsquo;s in the full text): with the labels swapped it says Queneau &ldquo;includes words like &lsquo;stop,&rsquo; &lsquo;topcoat,&rsquo; and &lsquo;location&rsquo;&rdquo;. None of those three words contains an e. It is the first row on the examples slide.</li>
+								<li>The order of the texts was randomized. In this pair Queneau&rsquo;s text is Version A in one trial and Version B in the other, and the human label stays on Version A. In the Tactile pair the texts keep their slots and the labels move.</li>
+								<li>Down: a telegram, where the same words are praised under one label and faulted under the other.</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section class="frame backup-slide flip-slide" id="flip-telegraphic">
+						<p class="backup-tag">Backup</p>
+						<h2>Telegraphic: STOP and the coinages</h2>
+						<div class="flip">
+							<article class="twin twin--q">
+								<p class="twin__who">Queneau, transl. Wright</p>
+								<p class="twin__verse">BUS CROWDED <mark class="q">STOP</mark> YNGMAN LONGNECK <mark class="q">PLAITENCIRCLED</mark> HAT APOSTROPHISES [&hellip;] MOVE BUTTON <mark class="q">STOP</mark> SIGNED ARCTURUS</p>
+							</article>
+							<article class="twin twin--ai">
+								<p class="twin__who">Command R</p>
+								<p class="twin__verse">On S bus, rush hour. Man, 26ish, corded hat, long neck, tug-of-war look. People off. [&hellip;] &ldquo;Extra button, overcoat,&rdquo; friend says.</p>
+							</article>
+							<p class="flip__head flip__head--wide"><strong>Correct labels.</strong> Queneau is labeled human, Command R labeled AI. Claude Sonnet 4 chooses <span class="k-q">Queneau</span>.</p>
+							<div class="flip__cell is-chosen-q">
+								<p class="flip__tag">Praised</p>
+								<p class="flip__quote">&ldquo;traditional telegram conventions: &lsquo;<mark class="q">STOP</mark>&rsquo; as punctuation, all caps formatting&rdquo;</p>
+							</div>
+							<div class="flip__cell">
+								<p class="flip__tag">Faulted</p>
+								<p class="flip__quote">&ldquo;reads more like modern shorthand or bullet points rather than a true telegram&rdquo;</p>
+							</div>
+							<p class="flip__head flip__head--wide"><strong>Swapped labels.</strong> Command R is labeled human, Queneau labeled AI. Claude Sonnet 4 chooses <span class="k-ai">Command R</span>.</p>
+							<div class="flip__cell">
+								<p class="flip__tag">Faulted</p>
+								<p class="flip__quote">&ldquo;The excessive abbreviations (&lsquo;YNGMAN,&rsquo; &lsquo;<mark class="q">PLAITENCIRCLED</mark>&rsquo;)&rdquo;</p>
+							</div>
+							<div class="flip__cell is-chosen-ai">
+								<p class="flip__tag">Praised</p>
+								<p class="flip__quote">&ldquo;exactly how someone would write to minimize word count in a telegram&rdquo;</p>
+							</div>
+						</div>
+						<p class="foot">Claude Sonnet 4 judged this pair of &lsquo;Telegraphic&rsquo; passages twice, shortened here with [&hellip;]. Highlighted: the two words both rationales mention. The outline marks the text it chose. Chosen to illustrate.</p>
+						<aside class="notes">
+							<ul>
+								<li>Claude Sonnet 4 is also the model behind the science fiction slide, though there the texts stayed put and the labels swapped. Here, as on the haiku and lipogram slides, the human label stays on Version A and the texts trade places, and it chooses A both times.</li>
+								<li>The same words count in favor of the text in one rationale and against it in the other. With Queneau labeled human, STOP and &ldquo;LONGNECK PLAITENCIRCLED&rdquo; are &ldquo;traditional telegram conventions&rdquo; and &ldquo;invented compound words&rdquo; that give &ldquo;the distinctive abbreviated feel of actual telegrams&rdquo;. With Queneau labeled AI, the same text &ldquo;becomes overly stylized and difficult to parse&rdquo;, and PLAITENCIRCLED is one of the &ldquo;excessive abbreviations&rdquo;.</li>
+								<li>The definition of the style differs between the two trials. In the first, a true telegram is highly condensed, &ldquo;where every word costs money&rdquo;. In the second: &ldquo;True telegraphic style prioritizes clarity within brevity, not obscurity for its own sake.&rdquo; The Command R text goes from &ldquo;modern shorthand or bullet points&rdquo; to &ldquo;exactly how someone would write to minimize word count in a telegram&rdquo;.</li>
+								<li>This is a genre-fit reversal that all three coders agree on. The full texts are 43 words (Queneau) and 47 (Command R). The Queneau card holds every word the judges quote. The judges quote nothing from the Command R text, so its card shows the opening and the last line.</li>
+								<li>Down: a Tactile passage, where the phrase &ldquo;viscous and gummy&rdquo; is quoted in both rationales.</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section class="frame backup-slide flip-slide" id="flip-tactile">
+						<p class="backup-tag">Backup</p>
+						<h2>Tactile: &ldquo;viscous and gummy&rdquo;</h2>
+						<div class="flip flip--margins">
+							<p class="flip__head"><strong>Correct labels.</strong> Queneau is labeled human. DeepSeek R1 chooses <span class="k-q">Queneau</span>.</p>
+							<p class="flip__head"><strong>Queneau, transl. Wright.</strong> The only passage shown. It is Version A in both trials.</p>
+							<p class="flip__head"><strong>Swapped labels.</strong> Queneau is labeled AI. DeepSeek R1 chooses <span class="k-ai">GPT-4o-mini</span>.</p>
+							<div class="flip__cell is-chosen-q">
+								<p class="flip__tag">Praised Queneau&rsquo;s passage</p>
+								<p class="gloss">&ldquo;human contact becomes &lsquo;<mark class="q">clottishness, slightly viscous and gummy</mark>&rsquo;&rdquo;</p>
+								<p class="gloss">&ldquo;It sacrifices plot coherence for tactile immersion.&rdquo;</p>
+								<p class="gloss">&ldquo;Version A more radically fulfills the stylistic mandate.&rdquo;</p>
+							</div>
+							<article class="twin twin--q">
+								<p class="twin__verse">Buses are <mark class="q">soft to the touch</mark> especially if you take them between the thighs and caress them with both hands [&hellip;] Or your finger can even touch <mark class="q">human clottishness, slightly viscous and gummy</mark> on account of the heat.</p>
+							</article>
+							<div class="flip__cell is-chosen-ai">
+								<p class="flip__tag">Faulted Queneau&rsquo;s passage</p>
+								<p class="gloss">&ldquo;densely packed with tactile metaphors (&lsquo;<mark class="q">soft to the touch</mark>,&rsquo; &lsquo;<mark class="q">viscous and gummy</mark>&rsquo;), detaches sensation from narrative logic&rdquo;</p>
+								<p class="gloss">&ldquo;The &lsquo;Tactile&rsquo; style requires sensation to enhance, not eclipse, the story.&rdquo;</p>
+							</div>
+						</div>
+						<p class="foot">DeepSeek R1 judged this pair twice. Queneau&rsquo;s passage is shortened here with [&hellip;], and the highlighted words are quoted in the rationales. The outline marks the text it chose. Chosen by reading, to illustrate.</p>
+						<aside class="notes">
+							<ul>
+								<li>Here the two passages stay in the same slots and only the labels swap: Queneau is Version A both times. The left column is what DeepSeek R1 says about Queneau&rsquo;s passage when it carries the human label, the right column when it carries the AI label. GPT-4o-mini&rsquo;s passage is not shown.</li>
+								<li>The same phrases appear in both. &ldquo;Viscous and gummy&rdquo; is evidence for the style in the first rationale, where human contact &ldquo;becomes clottishness, slightly viscous and gummy&rdquo;. In the second, the judge lists it among the tactile metaphors with which Version A is &ldquo;densely packed&rdquo;, and says the passage &ldquo;detaches sensation from narrative logic&rdquo;.</li>
+								<li>The definition of Tactile differs between the two trials. In the first, the style is about immersive sensation, and sacrificing plot coherence for it &ldquo;more radically fulfills the stylistic mandate&rdquo;. In the second, the style &ldquo;requires sensation to enhance, not eclipse, the story&rdquo;, and the passage that sacrifices the story fails it. The second rationale adds that the abstract descriptions &ldquo;prioritize shock value over immersive storytelling&rdquo;.</li>
+								<li>How this pair was found: the coders mark the genre-fit criterion as reversed (at least two of the three), and I picked it by reading, so it shows what a flip looks like and gives no estimate of how often flips happen. The Queneau excerpt is cut with an ellipsis; each quote from the judge is one unbroken fragment of its rationale, word for word.</li>
+								<li>Down: one example for each of the six criteria.</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section class="frame backup-slide flip-slide" id="flip-gallery">
+						<p class="backup-tag">Backup</p>
+						<h2>Examples for each criterion</h2>
+						<table class="gallery">
+							<thead>
+								<tr>
+									<th scope="col">Criterion</th>
+									<th scope="col">Queneau&rsquo;s text, labeled human</th>
+									<th scope="col">Queneau&rsquo;s text, labeled AI</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th scope="row">Constraint and structure<span class="gallery__who">Lipogram, Qwen 2.5 72B</span></th>
+									<td>&ldquo;has deliberately omitted the letter &lsquo;e&rsquo; from the text&rdquo;</td>
+									<td>&ldquo;does not consistently avoid the letter &lsquo;e&rsquo; and includes words like &lsquo;stop,&rsquo; &lsquo;topcoat,&rsquo; and &lsquo;location&rsquo;&rdquo;</td>
+								</tr>
+								<tr>
+									<th scope="row">Lexical and phonetic cues<span class="gallery__who">Spoonerisms, Llama 3.3 70B</span></th>
+									<td>&ldquo;The consistent and creative use of Spoonerisms&rdquo;</td>
+									<td>&ldquo;overdoes it with more extreme and less nuanced changes&rdquo;</td>
+								</tr>
+								<tr>
+									<th scope="row">Voice and naturalness<span class="gallery__who">West Indian, Claude Sonnet 4</span></th>
+									<td>&ldquo;more authentically captures West Indian dialect&rdquo;</td>
+									<td>&ldquo;dialect feels forced and artificial rather than authentic&rdquo;</td>
+								</tr>
+								<tr>
+									<th scope="row">Clarity and coherence<span class="gallery__who">Logical analysis, GPT-4o-mini</span></th>
+									<td>&ldquo;Each phrase is presented in a clear, analytical manner&rdquo;</td>
+									<td>&ldquo;lacks the depth and coherence necessary&rdquo;</td>
+								</tr>
+								<tr>
+									<th scope="row">Novelty versus convention<span class="gallery__who">Onomatopoeia, Mistral Nemo</span></th>
+									<td>&ldquo;playful and imaginative onomatopoeic phrases&rdquo;</td>
+									<td>&ldquo;become repetitive and less engaging&rdquo;</td>
+								</tr>
+								<tr>
+									<th scope="row">Genre and style fit<span class="gallery__who">Sonnet, Mistral Medium 3</span></th>
+									<td>&ldquo;adherence to the traditional sonnet structure&rdquo;</td>
+									<td>&ldquo;deviates more from the traditional sonnet structure&rdquo;</td>
+								</tr>
+							</tbody>
+						</table>
+						<p class="foot">In each row one model judged a pair twice, and the quotes are about Queneau&rsquo;s text. The AI text&rsquo;s verdicts move the other way. One example for each criterion, chosen to illustrate.</p>
+						<aside class="notes">
+							<ul>
+								<li>The criteria are the six defined two slides on, on &lsquo;Six recurring criteria&rsquo;. In each row one model judged one pair of texts twice, once with Queneau labeled human and once with Queneau labeled AI. In the Lipogram, Spoonerisms, Logical analysis and Onomatopoeia rows the texts also swap places as Version A and Version B; in the West Indian and Sonnet rows they keep their slots and the labels move.</li>
+								<li>How the rows were picked: within the 5,846 pairs the paper analyses, I kept those where the forced choice flips, all three coders see the criterion in both rationales, and the stance reverses on both texts. By my recount that leaves 556 clean cases, 498 in the direction of the human label and 58 the other way. This filter is mine, not the paper&rsquo;s.</li>
+								<li>The clean cases per criterion in the human-label direction: genre fit 198, constraint 125, voice 93, lexical cues 77, clarity 4, novelty 1. These counts show where all three coders see a stance on both texts, not how often each criterion is used. Clarity and novelty are rare, as on the criteria chart: the novelty row is the only such case, and the clarity row is one of four.</li>
+								<li>The Lipogram row can be checked: Queneau&rsquo;s text has no e, and neither do &lsquo;stop&rsquo;, &lsquo;topcoat&rsquo; or &lsquo;location&rsquo;. In the Spoonerisms row, the first rationale cites &ldquo;bear fatborm&rdquo; for &ldquo;bus platform&rdquo; as a successful swap.</li>
+								<li>Down: the share of verdicts that flip, then the six criteria and how reliably they were coded.</li>
+							</ul>
+						</aside>
+					</section>
 
 					<section class="frame chart-slide onethree-slide backup-slide" id="onethree-slide">
 						<p class="backup-tag">Backup</p>
@@ -802,6 +1161,36 @@
 
 					<section class="frame backup-slide">
 						<p class="backup-tag">Backup</p>
+						<h2>How reliable is the coding?</h2>
+						<p class="body">Human coders agree well on constraint, lexical cues and clarity, and only fairly on voice and novelty. Once a criterion is found, coders agree on whether it is praised or criticized.</p>
+						<div class="swing">
+							<table class="swing__table swing__table--text">
+								<thead>
+									<tr><td></td><th scope="col">Two human coders</th><th scope="col">Three LLM coders</th><th scope="col">LLM against human (F1)</th></tr>
+								</thead>
+								<tbody>
+									<tr><th scope="row">Constraint and structure</th><td>.71</td><td>.70</td><td>.90</td></tr>
+									<tr><th scope="row">Lexical and phonetic cues</th><td>.71</td><td>.62</td><td>.97</td></tr>
+									<tr><th scope="row">Voice and naturalness</th><td><mark>.34</mark></td><td>.48</td><td>.53</td></tr>
+									<tr><th scope="row">Clarity and coherence</th><td>.70</td><td>.64</td><td>.86</td></tr>
+									<tr><th scope="row">Novelty versus convention</th><td><mark>.27</mark></td><td>.47</td><td>.83</td></tr>
+									<tr><th scope="row">Genre and style fit</th><td>.49</td><td>.40</td><td>.77</td></tr>
+								</tbody>
+							</table>
+						</div>
+						<p class="foot">Agreement on whether a criterion is present, Cohen&rsquo;s &kappa; (98 paired rationales for the humans, all 5,846 for the LLM coders). The last column is F1 for the LLM consensus against the humans on the 98 shared pairs (SI Tables S4 to S6).</p>
+						<aside class="notes">
+							<ul>
+								<li>Two researchers coded 98 stratified rationale pairs independently, blind to labels. Three LLM coders (GPT-4.1, GPT-5.2, Claude Sonnet 4.6) coded all 5,846 pairs at temperature 0. The criteria are C1 to C6 on the previous backup.</li>
+								<li>Presence is the hard part. Human kappa is .71 for constraint (C1) and lexical cues (C2) and .70 for clarity (C4), but .34 for voice (C3) and .27 for novelty (C5). Genre fit (C6) sits between for the humans, .49, and is the weakest criterion for the LLM coders, .40. Cohen&rsquo;s kappa understates agreement for rare categories: raw agreement on C3 and C5 is .71 and .74. The SI says the criterion-level reversal rates are most reliable for C1, C2 and C4 and should be read with more caution for C3 and C5.</li>
+								<li>Direction is easy: once both coders see a criterion, weighted kappa on praise versus criticism is .88 to .96 for the humans, and .88 to .96 for the LLM coders.</li>
+								<li>Against the humans, the LLM consensus finds C2 at F1 .97, C1 .90, C4 .86; for C3, recall is high but precision low (.38), so the coding is more generous there. Reversals are about equally frequent in both codings: .31 for the LLM consensus (65 of 207) and for the human reference (38 of 124).</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section class="frame backup-slide">
+						<p class="backup-tag">Backup</p>
 						<h2>Praise mostly follows the label</h2>
 						<figure class="shot shot--wide">
 							<img src="figures/criterion-valence.png" alt="Mean valence of each criterion toward the text labeled human and the text labeled AI, under correct labels and under swapped labels" />
@@ -816,29 +1205,67 @@
 					</section>
 				</section>
 
-				<section class="frame caveats-slide">
-					<h2>What the data can and cannot show</h2>
-					<div class="cav">
-						<div>
-							<h3>What the checks show</h3>
-							<p class="body"><strong>The wording of the label.</strong> Prestige-reversed and neutral labels still produce biases of 19.6 and 23.1 points in models.</p>
-							<p class="body"><strong>Sampling noise.</strong> The bias is still +23.8 points at temperature zero.</p>
-							<p class="body"><strong>One model, creator or style.</strong> Dropping any single evaluator, creator or style leaves a bias of nearly the same size.</p>
-							<p class="body"><strong>Familiarity, for people.</strong> Excluding readers who know the book leaves the bias at 13 to 14 points.</p>
+				<section>
+					<section class="frame caveats-slide">
+						<h2>What the data can and cannot show</h2>
+						<div class="cav">
+							<div>
+								<h3>What the checks show</h3>
+								<p class="body"><strong>The wording of the label.</strong> Prestige-reversed and neutral labels still produce biases of 19.6 and 23.1 points in models.</p>
+								<p class="body"><strong>Sampling noise.</strong> The bias is still +23.8 points at temperature zero.</p>
+								<p class="body"><strong>One model, creator or style.</strong> Dropping any single evaluator, creator or style leaves a bias of nearly the same size.</p>
+								<p class="body"><strong>Familiarity, for people.</strong> Excluding readers who know the book leaves the bias at 13 to 14 points.</p>
+							</div>
+							<div>
+								<h3>What it leaves open</h3>
+								<p class="body"><strong>How models decide.</strong> The rationales are written after the choice. They document how the bias shows in stated reasoning and cannot be read as a map of the model&rsquo;s process.</p>
+								<p class="body"><strong>Familiarity, for models.</strong> Every human-written text is Queneau&rsquo;s, and models have very probably read him. Familiarity could raise or lower their label effect, and this corpus cannot measure which, so the 2.5 times gap is not simply label sensitivity.</p>
+								<p class="body"><strong>Other tasks.</strong> One book, one translation, one question. Rating, ranking or longer texts are untested here.</p>
+							</div>
 						</div>
-						<div>
-							<h3>What it leaves open</h3>
-							<p class="body"><strong>How models decide.</strong> The rationales are written after the choice. They document how the bias shows in stated reasoning and cannot be read as a map of the model&rsquo;s process.</p>
-							<p class="body"><strong>Familiarity, for models.</strong> Every human-written text is Queneau&rsquo;s, and models have very probably read him. Familiarity could raise or lower their label effect, and this corpus cannot measure which, so the 2.5 times gap is not simply label sensitivity.</p>
-							<p class="body"><strong>Other tasks.</strong> One book, one translation, one question. Rating, ranking or longer texts are untested here.</p>
-						</div>
-					</div>
-					<aside class="notes">
+						<aside class="notes">
+							<ul>
+								<li>Left column: the robustness checks, mostly in the backups and SI (label wording, temperature, leave-one-out over models, creators and styles, familiarity exclusions for people).</li>
+								<li>Right column: the authors&rsquo; own caveats. The rationales are post-hoc accounts, not transparent windows into the model. Training data is undisclosed, and the models were very probably trained on Queneau&rsquo;s book, so the 34.3 against 13.7 points cannot be read simply as a difference in label sensitivity.</li>
+							<li>Down: is Queneau a fair human? The single-source question and the paper&rsquo;s answer.</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section class="frame backup-slide fair-slide">
+						<p class="backup-tag">Backup</p>
+						<h2>Is Queneau a fair human?</h2>
 						<ul>
-							<li>Left column: the robustness checks, mostly in the backups and SI (label wording, temperature, leave-one-out over models, creators and styles, familiarity exclusions for people).</li>
-							<li>Right column: the authors&rsquo; own caveats. The rationales are post-hoc accounts, not transparent windows into the model. Training data is undisclosed, and the models were very probably trained on Queneau&rsquo;s book, so the 34.3 against 13.7 points cannot be read simply as a difference in label sensitivity.</li>
-						</ul>
-					</aside>
+							<li>All thirty human texts are Queneau&rsquo;s, in Barbara Wright&rsquo;s translation, so other authors and genres are untested.</li>
+							<li>The comparison needs only one human text and one AI text written to the same brief, judged under both labels.</li>
+													</ul>
+						<div class="swing">
+							<table class="swing__table swing__table--text swing__table--dense">
+								<thead>
+									<tr><th scope="col">Queneau&rsquo;s text chosen</th><th scope="col">Blind</th><th scope="col">Labeled human</th><th scope="col">Labeled AI</th><th scope="col">Difference</th></tr>
+								</thead>
+								<tbody>
+									<tr><th scope="row">By people</th><td>44.7%</td><td>52.2%</td><td>38.5%</td><td class="swing__n">&minus;13.7</td></tr>
+									<tr><th scope="row">By models</th><td>50.6%</td><td>70.2%</td><td>35.9%</td><td class="swing__n">&minus;34.3</td></tr>
+								</tbody>
+							</table>
+						</div>
+						<div class="rationales">
+							<blockquote class="rationale">
+								<p>&ldquo;This group of exercises might, at first sight, be deemed to be the most mechanical, but many of them are highly inventive.&rdquo;</p>
+								<footer>Teresa Bridgeman, 1995, p. 57, on the exercises that look most like procedures</footer>
+							</blockquote>
+						</div>
+						<aside class="notes">
+							<ul>
+								<li>The objection: Queneau&rsquo;s exercises are about as algorithm-like as human literary production gets, so he is a poor test case for a cultural-absorption reading. Our answer starts by agreeing that one book limits what we can say. The paper&rsquo;s limitations paragraph says so and names the next study: texts by other authors, published after the training cutoff of the models tested.</li>
+								<li>The design does not need a typical human. It needs a human text and a second text written to the same brief, so that when the labels are swapped nothing else changes. The table is the same data as the bias: Queneau&rsquo;s text is chosen about half the time blind, and the drop from labeled human to labeled AI is 13.7 points for people and 34.3 for models. The story is fixed, the brief is fixed, and blind the evaluators did not favor Queneau: people chose the AI text 55% of the time, models 49%. The label is the only thing left that can move the judgment, and it does.</li>
+								<li>Working within constraints is not working mechanically. Bridgeman on the exercises that look most like procedures; Eco, who translated the book into Italian, called such a title a <em>titolo-stimolo</em>, a stimulus title that gives the writer, and the translator, something to respond to; our response adds that each reader forms an idea of the text the title promises, and then checks it against what Queneau wrote. A sonnet has fourteen lines, and nobody calls Shakespeare&rsquo;s mechanical.</li>
+								<li>Our response to the reviewers drops the claim that the models absorbed a cultural preference, and the new limitations paragraph says the results describe how authorship labels move judgments of style in this controlled paradigm, not literary judgment in general.</li>
+								<li>The quotation is as given in our response to the reviewers; check it against Bridgeman before quoting it elsewhere. The response letter rounds the human figure to 39%; the data give 38.5 (356 of 925), and the models 35.9 and 70.2.</li>
+							</ul>
+						</aside>
+					</section>
 				</section>
 
 				<!-- ============ SECTION 6 ============ -->
@@ -941,6 +1368,34 @@
 					<aside class="notes">
 						<ul>
 							<li>De-identified human responses for all 556 participants, complete model response data, all generated stimuli and replication instructions are public. For copyright reasons the Zenodo stimuli use placeholder text in place of the Wright translation.</li>
+						</ul>
+					</aside>
+				</section>
+
+				<section class="frame questions-slide">
+					<h2>Three questions from peer review</h2>
+					<div class="asks">
+						<div class="ask">
+							<p class="ask__q">Is a book written by procedure a fair test of human writing?</p>
+							<p class="ask__a fragment" data-fragment-index="1">We only need two texts written to one brief. Lyric as the model for all poetry dates from around 1800 (<span class="nobr">Abrams 1953</span>).</p>
+						</div>
+						<div class="ask">
+							<p class="ask__q fragment" data-fragment-index="2">Do reasons count when they come after the choice?</p>
+							<p class="ask__a fragment" data-fragment-index="3">Not as a map of the model. A third of its verdicts flip when only the labels change, and the reasons go with them.</p>
+						</div>
+						<div class="ask">
+							<p class="ask__q fragment" data-fragment-index="4">Did the models learn this from the texts they read, or from the feedback that tuned them?</p>
+							<p class="ask__a fragment" data-fragment-index="5">We cannot tell, and no longer claim to. For sycophancy both routes are documented (<span class="nobr">Perez et al. 2023</span>; <span class="nobr">Sharma et al. 2025</span>).</p>
+						</div>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Peer review, in the person of one reviewer whose questions came from a machine learning angle, pushed us on these three points. Paraphrased, not quoted, and no names. The same reviewer singled out attribution bias in AI judges, the Lipogram result in particular, as what is genuinely new, and the exchange changed the paper: the revised significance statement no longer says how the models acquired the preference. Say that first: the questions are fair ones, and the paper is better for them.</li>
+							<li>Ask the room before each click. They are better placed to answer than the audience this paper was first written for. If time is short, press Right through the remaining clicks and take the questions from the room.</li>
+							<li>One: the worry was that Queneau is a poor test case for the claim that models absorb human culture, because the book reads more like a combinatorial procedure than like self-expression. The design only needs a human text and a second text written to the same brief, judged under both labels. Bridgeman, writing about the exercises that look most like procedures, finds many of them highly inventive (1995, p. 57). Eco called each title a <em>titolo-stimolo</em>, a stimulus for the writer and the translator (1983, p. 14); our own reading adds that the reader answers it too. The idea that human writing means self-expression has a date: for most of literary history a poem was judged as an example of its kind, and the lyric became the model for all poetry around 1800, and a synonym for poetry by the late nineteenth century (Abrams 1953, pp. 84 to 88; Dworkin, quoted in Jackson 2012). Question for the room: where does procedure end and authorship begin?</li>
+							<li>Two: the worry was that a model&rsquo;s reasons, given after the choice, are bound to follow it, so their flipping shows little. We agree the rationales are after the fact and cannot be read as a map of the model&rsquo;s process, and the revised paper no longer leans on the 96% figure for how often a flipped verdict comes with a flipped criterion (it still sits in a backup here). The figures are for the models only, in Study 2: 32.5% of verdicts flip with the labels alone (1,899 of 5,846 pairs). Participants gave no reasons, so we cannot say whether theirs shift. People&rsquo;s own reasons are no guarantee either: they often miss what moved them (Nisbett and Wilson 1977), which is why we asked participants for a choice only. Richards saw reputation steer his students&rsquo; readings in 1929. Question for the room: is criticism ever anything other than reasons after the verdict?</li>
+							<li>Three: the worry was that preference training is the simpler account than cultural absorption, and the data cannot separate them. We agree. We now see the two as nested: both begin with people, and they differ in the route. The revised significance statement no longer says how the models acquired the preference, and the paper says the design cannot tell the channels apart; note that the Discussion still offers learned associations in the training data as the likelier route and calls the models a mirror of a cultural script, so do not say the paper dropped the idea. Perez et al. (2023) found sycophancy in pretrained models before any reinforcement learning, and Sharma et al. (2025) show that preference training can reward it. Question for the room: if a model takes its deference from the archive, is that culture?</li>
+							<li>The paper smuggles several literary claims into a bias study: style is something readers attribute, a name works as a paratext, a constraint is a way of writing, and the human writer has a history. The exchange with the reviewer made us spell out the constraint and the history ones.</li>
 						</ul>
 					</aside>
 				</section>

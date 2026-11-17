@@ -1093,6 +1093,14 @@
 
 .reveal .rationales--split .rationale {
 	flex: 1;
+	display: flex;
+	flex-direction: column;
+}
+
+/* quotes of different length: the credits share one baseline */
+.reveal .rationales--split .rationale footer {
+	margin-top: auto;
+	padding-top: 10px;
 }
 
 .reveal .rationale {
@@ -1292,6 +1300,33 @@
 	line-height: 1.3;
 	color: var(--sp-ink);
 	text-wrap: balance;
+}
+
+/* the closing questions: the question in the divider type, our answer under it in sans */
+.reveal .asks {
+	display: grid;
+	gap: 28px;
+	max-width: 880px;
+}
+
+.reveal .slides section .asks .ask__q {
+	margin: 0;
+	max-width: 880px;
+	font-family: var(--sp-serif);
+	font-size: var(--t-display-s);
+	font-weight: 400;
+	line-height: 1.28;
+	color: var(--sp-ink);
+	text-wrap: pretty;
+}
+
+.reveal .slides section .asks .ask__a {
+	margin: 8px 0 0;
+	max-width: 780px;
+	font-size: var(--t-exhibit);
+	line-height: 1.42;
+	color: var(--sp-ink);
+	text-wrap: pretty;
 }
 
 .reveal .parallel {
@@ -1631,8 +1666,92 @@
 	opacity: 1;
 }
 
-.reveal .study2-chart {
-	height: 370px;
+/* Study 2: the bar chart and the 14 x 14 grid share one stage; data-s2 on the slide (set by
+   charts.js, 0 to 3) says which is showing and which claim and footnote go with it. */
+.reveal .study2-stage {
+	position: relative;
+	height: 430px;
+}
+
+.reveal .study2-chart,
+.reveal .study2-heat {
+	position: absolute;
+	inset: 0;
+	transition: opacity 0.45s ease;
+}
+
+.reveal .study2-heat {
+	opacity: 0;
+	pointer-events: none;
+}
+
+.reveal #study2-slide[data-s2='1'] .study2-chart,
+.reveal #study2-slide[data-s2='2'] .study2-chart,
+.reveal #study2-slide[data-s2='3'] .study2-chart {
+	opacity: 0;
+}
+
+.reveal #study2-slide[data-s2='1'] .study2-heat,
+.reveal #study2-slide[data-s2='2'] .study2-heat,
+.reveal #study2-slide[data-s2='3'] .study2-heat {
+	opacity: 1;
+}
+
+.reveal .s2-lines {
+	position: relative;
+	height: 38px;
+	margin: 0 0 8px;
+}
+
+.reveal .s2-foots {
+	position: relative;
+	height: 52px;
+	margin-top: 16px;
+}
+
+.reveal .slides section .s2-lines .s2-line,
+.reveal .slides section .s2-foots .s2-foot {
+	position: absolute;
+	left: 0;
+	top: 0;
+	margin: 0;
+	max-width: none;
+	opacity: 0;
+	transition: opacity 0.35s ease;
+}
+
+.reveal .slides section .s2-foots .s2-foot {
+	max-width: 850px;
+}
+
+.reveal #study2-slide:not([data-s2]) .s2-line[data-for='0'],
+.reveal #study2-slide:not([data-s2]) .s2-foot[data-for='0'],
+.reveal #study2-slide[data-s2='0'] .s2-line[data-for='0'],
+.reveal #study2-slide[data-s2='0'] .s2-foot[data-for='0'],
+.reveal #study2-slide[data-s2='1'] .s2-line[data-for='1'],
+.reveal #study2-slide[data-s2='2'] .s2-line[data-for='2'],
+.reveal #study2-slide[data-s2='3'] .s2-line[data-for='3'],
+.reveal #study2-slide[data-s2='1'] .s2-foot[data-for='1'],
+.reveal #study2-slide[data-s2='2'] .s2-foot[data-for='1'],
+.reveal #study2-slide[data-s2='3'] .s2-foot[data-for='1'] {
+	opacity: 1;
+}
+
+/* the grid's own text: creator names slanted over their columns, integers in the cells */
+.reveal .chart-tick--col {
+	font-size: var(--t-note);
+	fill: var(--sp-ink);
+}
+
+.reveal .chart-tick--grey {
+	fill: var(--sp-grey);
+}
+
+.reveal .chart-cell {
+	font-family: 'Source Sans 3', 'Source Sans Pro', sans-serif;
+	font-size: var(--t-note);
+	font-weight: 600;
+	font-variant-numeric: lining-nums tabular-nums;
 }
 
 /* A/B cards: neutral while blind, tinted by true authorship once sources appear */
@@ -1672,6 +1791,15 @@
 	font-weight: 700;
 }
 
+.reveal .slides section .case-foot {
+	max-width: none;
+	margin: 34px 0 0;
+	font-family: var(--sp-sans);
+	font-size: var(--t-label);
+	line-height: 1.4;
+	color: var(--sp-grey);
+}
+
 .reveal .paper-grid {
 	display: grid;
 	grid-template-columns: minmax(0, 1fr) auto;
@@ -1703,6 +1831,380 @@
 
 .reveal .qr figcaption {
 	font-size: var(--t-label);
+	color: var(--sp-grey);
+}
+
+/* ---------- backups: tables, prompt, interface, charts ---------- */
+
+/* tables of rates: a text first column (not bold) and group rows */
+.reveal .swing__table--text tbody th {
+	font-weight: 400;
+	line-height: 1.3;
+}
+
+.reveal .swing__table .swing__group th {
+	padding: 18px 14px 6px;
+	border-bottom: none;
+	font-size: var(--t-label);
+	font-weight: 700;
+	color: var(--sp-grey);
+}
+
+.reveal .swing__table--text .swing__group:first-child th {
+	padding-top: 10px;
+}
+
+.reveal .swing__table--text td {
+	white-space: nowrap;
+}
+
+.reveal .swing__table thead td {
+	border-bottom: 1px solid var(--sp-ink);
+}
+
+.reveal .swing__table thead th:first-child:not(:empty) {
+	text-align: left;
+}
+
+.reveal .fair-slide .swing {
+	margin-top: 12px;
+}
+
+.reveal .swing__table--dense {
+	font-size: var(--t-exhibit);
+}
+
+.reveal .swing__table--dense th,
+.reveal .swing__table--dense td {
+	padding: 8px 14px;
+}
+
+.reveal .swing__table--dense tbody th {
+	width: 480px;
+}
+
+/* the weak cells of a table, marked as in the text */
+.reveal .swing__table mark {
+	padding: 0.02em 0.22em;
+	margin: 0 -0.22em;
+	background: var(--hl-teal) left bottom / 100% 96% no-repeat;
+	color: inherit;
+}
+
+/* what the models and people saw (SI Figs. S9 and S10) */
+.reveal .prompt-stage {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) auto;
+	gap: 36px;
+	align-items: center;
+}
+
+.reveal .slides section .prompt-label {
+	margin: 0 0 8px;
+	max-width: none;
+	font-size: var(--t-label);
+	font-weight: 700;
+	line-height: 1.3;
+	color: var(--sp-grey);
+}
+
+.reveal .prompt-quote {
+	width: auto;
+	margin: 0 0 26px;
+	padding: 0;
+	background: none;
+	box-shadow: none;
+	border: none;
+}
+
+.reveal .prompt-quote p {
+	margin: 0;
+	max-width: none;
+	font-family: var(--sp-serif);
+	font-size: var(--t-exhibit);
+	line-height: 1.5;
+	color: var(--sp-ink);
+}
+
+.reveal .prompt-labels {
+	margin: 0;
+	display: grid;
+	gap: 10px;
+}
+
+.reveal .prompt-labels dt {
+	margin: 0 0 1px;
+	font-size: var(--t-label);
+	font-weight: 700;
+	line-height: 1.3;
+	color: var(--sp-ink);
+}
+
+.reveal .prompt-labels dd {
+	margin: 0;
+	font-family: var(--sp-serif);
+	font-size: var(--t-label);
+	line-height: 1.4;
+	color: var(--sp-ink);
+}
+
+.reveal .iface {
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+	width: 350px;
+}
+
+.reveal .iface img {
+	display: block;
+	width: 350px;
+	height: auto;
+	max-width: none;
+	max-height: none;
+	margin: 0;
+	border: 1px solid var(--sp-card-edge);
+	border-radius: 6px;
+}
+
+.reveal .iface figcaption {
+	font-size: var(--t-note);
+	line-height: 1.4;
+	color: var(--sp-grey);
+}
+
+.reveal .penalty-chart {
+	height: 316px;
+}
+
+.reveal .models-chart {
+	height: 410px;
+}
+
+/* the haiku pair above its two rationales */
+.reveal .haiku-slide .twins {
+	margin: 0 0 16px;
+	gap: 20px;
+}
+
+.reveal .haiku-slide .twin {
+	padding: 12px 20px 14px;
+}
+
+.reveal .haiku-slide .twin__who {
+	margin-bottom: 6px;
+}
+
+.reveal .haiku-slide .twin__verse {
+	font-size: var(--t-exhibit);
+	line-height: 1.4;
+}
+
+.reveal .haiku-slide .panel {
+	padding: 14px 22px 16px;
+}
+
+.reveal .haiku-slide .panel__cond {
+	font-size: var(--t-exhibit);
+}
+
+.reveal .haiku-slide .panel__key {
+	margin: 4px 0 8px;
+}
+
+.reveal .haiku-slide .panel__text {
+	font-size: var(--t-label);
+	line-height: 1.45;
+}
+
+/* the answer to the single-source question */
+.reveal .fair-slide ul {
+	margin-bottom: 8px;
+}
+
+.reveal .fair-slide .rationales {
+	margin-top: 14px;
+	gap: 0;
+}
+
+.reveal .fair-slide .rationale p {
+	font-size: var(--t-verse);
+}
+
+/* ---------- flip slides: the same texts under correct and swapped labels ---------- */
+
+.reveal .flip {
+	display: grid;
+	grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	gap: 10px 20px;
+	width: 880px;
+	align-items: stretch;
+}
+
+.reveal .flip .twin {
+	margin: 0;
+	padding: 12px 18px 12px;
+}
+
+.reveal .flip .twin__who {
+	margin-bottom: 6px;
+}
+
+.reveal .flip .twin__verse {
+	font-size: var(--t-exhibit);
+	line-height: 1.4;
+	white-space: normal;
+	text-wrap: pretty;
+}
+
+.reveal .flip__fact {
+	margin: 8px 0 0;
+	max-width: none;
+	font-size: var(--t-label);
+	color: var(--sp-grey);
+}
+
+.reveal .flip .flip__head {
+	margin: 6px 0 0;
+	max-width: none;
+	font-size: var(--t-label);
+	line-height: 1.35;
+}
+
+.reveal .flip__head--wide {
+	grid-column: 1 / -1;
+}
+
+.reveal .flip__head .k-q {
+	color: var(--sp-human);
+	font-weight: 700;
+}
+
+.reveal .flip__head .k-ai {
+	color: var(--sp-ai-ink);
+	font-weight: 700;
+}
+
+.reveal .flip__cell {
+	box-sizing: border-box;
+	padding: 10px 18px 12px;
+	background: #fff;
+	border: 1px solid var(--sp-card-edge);
+	border-radius: 12px;
+}
+
+.reveal .flip__cell.is-chosen-q {
+	outline: 3px solid var(--sp-human);
+	outline-offset: -3px;
+}
+
+.reveal .flip__cell.is-chosen-ai {
+	outline: 3px solid var(--sp-ai);
+	outline-offset: -3px;
+}
+
+/* the marked e's sit close together in running text */
+.reveal .flip .emark--on {
+	padding: 0.04em 0.1em;
+	margin: 0 -0.1em;
+}
+
+.reveal .flip__tag {
+	margin: 0 0 3px;
+	max-width: none;
+	font-size: var(--t-label);
+	font-weight: 700;
+	color: var(--sp-grey);
+}
+
+.reveal .flip__quote {
+	margin: 0;
+	max-width: none;
+	font-family: var(--sp-serif);
+	font-size: var(--t-exhibit);
+	line-height: 1.4;
+}
+
+.reveal .flip mark {
+	padding: 0.04em 0.18em;
+	margin: 0 -0.18em;
+	color: inherit;
+	-webkit-box-decoration-break: clone;
+	box-decoration-break: clone;
+}
+
+.reveal .flip mark.q {
+	background: var(--hl-blue) left bottom / 100% 96% no-repeat;
+}
+
+.reveal .flip mark.ai {
+	background: var(--hl-orange) left bottom / 100% 96% no-repeat;
+}
+
+/* passage between two columns of glosses */
+.reveal .flip--margins {
+	grid-template-columns: 285px 290px 285px;
+	gap: 10px;
+}
+
+.reveal .flip--margins .flip__head strong {
+	display: block;
+}
+
+.reveal .gloss {
+	margin: 0 0 12px;
+	max-width: none;
+	text-wrap: pretty;
+	font-family: var(--sp-serif);
+	font-size: var(--t-exhibit);
+	line-height: 1.4;
+}
+
+.reveal .gloss:last-child {
+	margin-bottom: 0;
+}
+
+/* one example per criterion */
+.reveal table.gallery {
+	width: 100%;
+	margin: 0;
+	table-layout: fixed;
+	border-collapse: collapse;
+}
+
+.reveal table.gallery th,
+.reveal table.gallery td {
+	padding: 6px 14px;
+	text-align: left;
+	vertical-align: top;
+	border-bottom: 1px solid rgba(28, 25, 23, 0.14);
+}
+
+.reveal table.gallery thead th {
+	font-size: var(--t-label);
+	font-weight: 700;
+	border-bottom: 1px solid var(--sp-ink);
+}
+
+.reveal table.gallery thead th:first-child {
+	width: 225px;
+}
+
+.reveal table.gallery tbody th {
+	font-size: var(--t-label);
+	font-weight: 700;
+	line-height: 1.3;
+}
+
+.reveal table.gallery tbody td {
+	font-family: var(--sp-serif);
+	font-size: var(--t-exhibit);
+	line-height: 1.35;
+}
+
+.reveal .gallery__who {
+	display: block;
+	font-weight: 400;
 	color: var(--sp-grey);
 }
 
@@ -1753,6 +2255,11 @@ html.print-pdf .reveal .slides section.closing-slide {
 html.print-pdf .reveal .slides section.section-slide {
 	justify-content: center;
 	padding: 3rem 3.25rem !important;
+}
+
+/* the Study 2 stage prints in its final state (the grid); no fades to wait for */
+html.print-pdf .reveal #study2-slide * {
+	transition: none !important;
 }
 
 .reveal .ab-card__label--plain {

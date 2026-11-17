@@ -4,7 +4,8 @@
  * Deck charts for Style and Prejudice, drawn with d3 and driven by Reveal
  * fragments (rates, styles) or slide entry (bias, forest, criteria).
  * Numbers are transcribed from the manuscript and its SI; CIs are 95%.
- *   rates, bias, forest: manuscript Figs. 2 and 3; study2: manuscript Fig. 5
+ *   rates, bias, forest: manuscript Figs. 2 and 3; study2: manuscript Fig. 5;
+ *   matrix: the 14 x 14 evaluator-by-creator grid behind it (see the comment at DATA.matrix)
  *   styles: SI Table S17 (attribution bias per style, percentage points)
  *   criteria: SI Table S12
  */
@@ -27,6 +28,57 @@
 			{ cond: 'Blind', v: 54.5, lo: 53.2, hi: 55.8 },
 			{ cond: 'Correct labels', v: 39.9, lo: 38.6, hi: 41.1 },
 			{ cond: 'Swapped labels', v: 65.7, lo: 64.5, hi: 66.9 },
+		],
+		// Study 2, 14 evaluators (rows) by 14 creators (columns), in the same model order:
+		// bias in percentage points = share choosing the AI text under swapped labels minus
+		// under correct labels, from about 30 judgments per condition and cell. Recomputed from
+		// the raw responses with the authors' response-quality filter, which gives the 17,596
+		// valid responses of the paper (cell mean +25.8, range -6.7 to +70.0, 7 cells at or below
+		// zero); the margins match SI Fig. S17 (evaluators +9.4 to +54.8, creators +19.1 to +30.5).
+		matrix: {
+			names: ['Claude 3.5 Haiku', 'Claude Sonnet 4', 'Command R', 'DeepSeek R1', 'DeepSeek Chat v3', 'Gemini 2.5 Flash', 'Llama 3.3 70B', 'Llama 4 Maverick', 'Mistral Medium', 'Mistral Nemo', 'GPT-3.5 Turbo', 'GPT-4', 'GPT-4o Mini', 'Qwen 2.5 72B'],
+			v: [
+				[26.67, 36.67, 6.67, 23.33, 23.33, 13.33, 23.33, 33.33, 30, 26.67, 13.33, 30, 13.33, 23.33],
+				[46.67, 40, 16.67, 40, 53.33, 33.33, 33.33, 26.67, 30, 26.67, 13.33, 30, 36.67, 20],
+				[56.67, 60, 56.67, 40, 46.67, 56.67, 70, 66.67, 46.67, 56.67, 46.67, 60, 63.33, 40],
+				[-2.38, 23.33, 19.54, 20, 3.45, 16.67, 35.52, 24.14, 15.06, 18.16, 23.33, 17.88, 15.06, 11.38],
+				[31.38, 33.1, 22.87, 33.33, 19.66, 35.06, 31.03, 23.33, 33.33, 26.67, 23.33, 16.67, 50, 48.28],
+				[38.85, 26.67, 26.67, 33.33, 26.67, 30, 26.67, 33.33, 38.51, 26.67, 10.57, 26.67, 30, 23.33],
+				[29.77, 30, 30, 30, 30, 20, 33.33, 40, 16.67, 23.33, 13.33, 21.84, 20, 26.67],
+				[16.67, 26.67, 16.67, 6.67, 6.67, 20, 26.67, 16.67, 3.33, 16.67, 6.67, 28.39, 6.67, 16.67],
+				[53.33, 40, 23.33, 43.33, 46.67, 36.67, 53.33, 60, 46.67, 40, 23.33, 60, 36.67, 33.33],
+				[13.33, 6.67, 33.33, -3.33, 26.67, 6.67, -6.67, 10, 3.33, 16.67, 0, 20, 3.33, 6.67],
+				[10, 26.67, 16.67, 23.33, 13.33, 20, 36.67, 23.33, 36.67, 26.67, 43.33, 33.33, 21.49, 23.33],
+				[6.67, 6.67, 23.33, 3.33, 10, 16.67, 0, 16.67, 3.33, 12.07, 10, 13.33, 10, 0],
+				[26.67, 23.33, 30, 26.67, 3.33, 13.33, 23.33, 20, 16.67, 33.33, 13.33, 30, 36.67, -3.33],
+				[13.33, 20, 40, 10, 20, 26.67, 40, 23.33, 33.33, 36.67, 26.67, 30, 20, 20],
+			],
+		},
+		// SI Fig. S11: Cohen's h (95% CI) for three comparisons of label conditions, people and models.
+		// Penalty: blind against correct labels. Halo: blind against swapped labels. Bias: correct
+		// against swapped labels. Recomputed from the pooled rates (people 55.3, 47.8, 61.5; models
+		// 49.4, 29.8, 64.1), which gives 0.15, 0.13, 0.28 and 0.40, 0.30, 0.70.
+		penalty: [
+			{ name: 'Penalty', sub: 'AI label against no label', human: [0.15, 0.06, 0.24], ai: [0.4, 0.32, 0.49] },
+			{ name: 'Halo', sub: 'human label against no label', human: [0.13, 0.04, 0.22], ai: [0.3, 0.22, 0.38] },
+			{ name: 'Bias', sub: 'human label against AI label', human: [0.28, 0.19, 0.37], ai: [0.7, 0.62, 0.78] },
+		],
+		// Study 1, share of AI-text choices by model: [model, blind, correct labels, swapped labels],
+		// from the 3,488 raw responses (85 to 90 per model and condition); same order as the forest plot.
+		modelRates: [
+			['GPT-3.5 Turbo', 66.7, 24.4, 91.1],
+			['Claude Sonnet 4', 26.7, 4.4, 46.7],
+			['Qwen 2.5 72B', 60.0, 24.4, 72.2],
+			['Mistral Medium', 52.2, 24.4, 65.6],
+			['Gemini 2.5 Flash', 44.9, 22.2, 53.9],
+			['GPT-4o Mini', 61.1, 45.6, 76.7],
+			['Command R', 52.2, 38.9, 70.0],
+			['DeepSeek R1', 47.1, 28.1, 58.0],
+			['DeepSeek Chat v3', 44.4, 34.4, 63.3],
+			['Llama 3.3 70B', 44.4, 33.3, 60.0],
+			['Mistral Nemo', 47.7, 41.2, 66.7],
+			['Claude 3.5 Haiku', 47.8, 32.6, 55.6],
+			['Llama 4 Maverick', 46.7, 33.7, 53.3],
 		],
 		bias: [
 			{ who: 'Human evaluators', v: 13.7, calc: '61.5 − 47.8', kind: 'human' },
@@ -755,6 +807,196 @@
 		});
 	}
 
+	/* ---------------- Study 2: the 14 x 14 grid (beats 1 to 3 of the same slide) ----------------
+	   Beat 1 shows every evaluator-creator pair in provider order, beat 2 sorts the evaluators
+	   by their average and adds it, beat 3 does the same for the creators. Warm greys only:
+	   orange and blue mean AI and human in this deck, so neither appears here. */
+
+	const heat = { built: false, beat: -1 };
+	// Six steps rather than a continuous ramp: a smooth ramp passes through mid-greys where
+	// neither ink nor paper type is easy to read, and every cell carries its number anyway.
+	const HEAT_STEPS = [
+		{ from: 55, fill: '#2a2420', text: '#faf8f5' },
+		{ from: 40, fill: '#5e544b', text: '#faf8f5' },
+		{ from: 30, fill: '#a39686', text: '#1c1917' },
+		{ from: 20, fill: '#c4b8a8', text: '#1c1917' },
+		{ from: 10, fill: '#ddd4c7', text: '#1c1917' },
+		{ from: -Infinity, fill: '#efe9df', text: '#1c1917' },
+	];
+	const MINUS = '−';
+
+	function buildHeat() {
+		const box = svgIn('#study2-heat');
+		if (!box) return;
+		const names = DATA.matrix.names;
+		const val = DATA.matrix.v;
+		const n = names.length;
+		const mean = (a) => a.reduce((s, x) => s + x, 0) / a.length;
+		const rowMean = val.map(mean);
+		const colMean = names.map((_, c) => mean(val.map((r) => r[c])));
+
+		const labelW = 158;
+		const meanGap = 14;
+		const meanW = 58;
+		const top = 102;
+		const avgGap = 10;
+		const cw = Math.min(46, Math.floor((box.w - labelW - meanGap - meanW) / n));
+		const ph = Math.floor((box.h - top - avgGap) / (n + 1));
+		const used = labelW + n * cw + meanGap + meanW;
+		const x0 = Math.max(0, Math.round((box.w - used) / 2)) + labelW;
+		const meanX = x0 + n * cw + meanGap + meanW / 2;
+
+		const step = (v) => HEAT_STEPS.find((st) => v >= st.from);
+		const fmt = (v) => {
+			const r = Math.round(v);
+			return r < 0 ? MINUS + Math.abs(r) : String(r);
+		};
+
+		const order = (vals) =>
+			vals
+				.map((v, i) => [v, i])
+				.sort((a, b) => b[0] - a[0] || a[1] - b[1])
+				.map((p) => p[1]);
+		const rankOf = (idx) => {
+			const rank = [];
+			idx.forEach((i, pos) => (rank[i] = pos));
+			return rank;
+		};
+		heat.rowRank = [rankOf(d3.range(n)), rankOf(order(rowMean))];
+		heat.colRank = [rankOf(d3.range(n)), rankOf(order(colMean))];
+		heat.ph = ph;
+		heat.cw = cw;
+		heat.top = top;
+		heat.x0 = x0;
+
+		const g = box.svg.append('g');
+
+		// the average column and its header
+		heat.avgHead = g
+			.append('text')
+			.attr('x', meanX)
+			.attr('y', top - 9)
+			.attr('text-anchor', 'middle')
+			.attr('class', 'chart-tick chart-tick--dim')
+			.attr('opacity', 0)
+			.text('Average');
+
+		heat.rows = names.map((nm, e) => {
+			const rg = g.append('g').attr('transform', `translate(0,${top + heat.rowRank[0][e] * ph})`);
+			rg.append('text')
+				.attr('x', x0 - 12)
+				.attr('y', ph / 2 + 6)
+				.attr('text-anchor', 'end')
+				.attr('class', 'chart-tick chart-tick--row')
+				.text(nm);
+			const cells = val[e].map((v, c) => {
+				const out = v <= 0;
+				const st = step(Math.round(v));
+				const fill = out ? 'none' : st.fill;
+				const cg = rg.append('g').attr('transform', `translate(${x0 + heat.colRank[0][c] * cw},0)`);
+				cg.append('rect')
+					.attr('x', 1)
+					.attr('y', 1)
+					.attr('width', cw - 2)
+					.attr('height', ph - 2)
+					.attr('rx', 2)
+					.attr('fill', fill)
+					.attr('stroke', out ? C.ink : 'none')
+					.attr('stroke-width', out ? 1.4 : 0);
+				cg.append('text')
+					.attr('x', cw / 2)
+					.attr('y', ph / 2 + 5)
+					.attr('text-anchor', 'middle')
+					.attr('class', 'chart-cell')
+					.attr('fill', out ? C.ink : st.text)
+					.text(fmt(v));
+				return cg;
+			});
+			const avg = rg
+				.append('text')
+				.attr('x', meanX)
+				.attr('y', ph / 2 + 6)
+				.attr('text-anchor', 'middle')
+				.attr('class', 'chart-value chart-value--row')
+				.attr('fill', C.ink)
+				.attr('opacity', 0)
+				.text(fmt(rowMean[e]));
+			return { rg, cells, avg };
+		});
+
+		// the creator names, slanted over their columns
+		heat.cols = names.map((nm, c) => {
+			const cg = g
+				.append('g')
+				.attr('transform', `translate(${x0 + heat.colRank[0][c] * cw + cw / 2 + 4},${top - 9})`);
+			cg.append('text').attr('transform', 'rotate(-45)').attr('class', 'chart-tick chart-tick--col').text(nm);
+			return cg;
+		});
+
+		// the creator averages under the grid
+		const avgY = top + n * ph + avgGap;
+		heat.avgLabel = g
+			.append('text')
+			.attr('x', x0 - 12)
+			.attr('y', avgY + ph / 2 + 6)
+			.attr('text-anchor', 'end')
+			.attr('class', 'chart-tick chart-tick--row chart-tick--grey')
+			.attr('opacity', 0)
+			.text('Average');
+		heat.colAvg = names.map((nm, c) =>
+			g
+				.append('text')
+				.attr('x', x0 + heat.colRank[0][c] * cw + cw / 2)
+				.attr('y', avgY + ph / 2 + 6)
+				.attr('text-anchor', 'middle')
+				.attr('class', 'chart-value chart-value--row')
+				.attr('fill', C.ink)
+				.attr('opacity', 0)
+				.text(fmt(colMean[c]))
+		);
+	}
+
+	function heatApply(beat) {
+		if (!heat.built) return;
+		const first = heat.beat < 0;
+		if (beat === heat.beat) return;
+		heat.beat = beat;
+		// the first call only sets the state: nothing animates from an unseen starting point
+		const mv = (sel, delay, ms) => (first ? sel : go(sel, delay, ms));
+		const r = beat >= 2 ? 1 : 0;
+		const c = beat >= 3 ? 1 : 0;
+		heat.rows.forEach((row, e) => {
+			mv(row.rg, heat.rowRank[r][e] * 28, 900).attr('transform', `translate(0,${heat.top + heat.rowRank[r][e] * heat.ph})`);
+			row.cells.forEach((cg, col) => {
+				mv(cg, heat.colRank[c][col] * 28, 900).attr('transform', `translate(${heat.x0 + heat.colRank[c][col] * heat.cw},0)`);
+			});
+			mv(row.avg, r ? 800 : 0, 380).attr('opacity', r);
+		});
+		heat.cols.forEach((cg, col) => {
+			mv(cg, heat.colRank[c][col] * 28, 900).attr(
+				'transform',
+				`translate(${heat.x0 + heat.colRank[c][col] * heat.cw + heat.cw / 2 + 4},${heat.top - 9})`
+			);
+		});
+		heat.colAvg.forEach((t, col) => {
+			mv(t, c ? 800 : 0, 380)
+				.attr('x', heat.x0 + heat.colRank[c][col] * heat.cw + heat.cw / 2)
+				.attr('opacity', c);
+		});
+		mv(heat.avgHead, r ? 800 : 0, 380).attr('opacity', r);
+		mv(heat.avgLabel, c ? 800 : 0, 380).attr('opacity', c);
+	}
+
+	// beat 0 is the bar chart; beats 1 to 3 swap in the grid. CSS reads data-s2 on the slide.
+	function study2Apply(beat) {
+		const slide = document.getElementById('study2-slide');
+		if (slide) slide.dataset.s2 = String(beat);
+		if (beat >= 1 || heat.built) {
+			ensure(heat, buildHeat);
+			heatApply(beat);
+		}
+	}
+
 	/* ---------------- criteria bars (slide entry) ---------------- */
 
 	const criteria = { built: false };
@@ -819,6 +1061,184 @@
 		});
 	}
 
+	/* ---------------- backup: penalty and halo (SI Fig. S11) ---------------- */
+
+	const penalty = { built: false };
+
+	function buildPenalty() {
+		const box = svgIn('#penalty-chart');
+		if (!box) return;
+		const m = { top: 44, right: 78, bottom: 56, left: 292 };
+		const iw = box.w - m.left - m.right;
+		const ih = box.h - m.top - m.bottom;
+		const g = box.svg.append('g').attr('transform', `translate(${m.left},${m.top})`);
+		const x = d3.scaleLinear().domain([0, 0.9]).range([0, iw]);
+		const y = d3.scaleBand().domain(DATA.penalty.map((d) => d.name)).range([0, ih]).paddingInner(0.2);
+
+		g.append('g')
+			.selectAll('line')
+			.data([0, 0.2, 0.4, 0.6, 0.8])
+			.join('line')
+			.attr('x1', (d) => x(d))
+			.attr('x2', (d) => x(d))
+			.attr('y1', 0)
+			.attr('y2', ih)
+			.attr('stroke', (d) => (d === 0 ? 'rgba(28,25,23,0.45)' : C.hair))
+			.attr('stroke-dasharray', (d) => (d === 0 ? null : '2 5'));
+		const ax = g.append('g').attr('transform', `translate(0,${ih})`);
+		ax.selectAll('text')
+			.data([0, 0.2, 0.4, 0.6, 0.8])
+			.join('text')
+			.attr('x', (d) => x(d))
+			.attr('y', 26)
+			.attr('text-anchor', 'middle')
+			.attr('class', 'chart-tick')
+			.text((d) => d.toFixed(1));
+		g.append('text')
+			.attr('x', iw / 2)
+			.attr('y', ih + 50)
+			.attr('text-anchor', 'middle')
+			.attr('class', 'chart-axis-label')
+			.text('Cohen’s h, with 95% confidence intervals');
+
+		const legend = box.svg.append('g').attr('transform', `translate(${m.left},22)`);
+		[
+			['People', C.human, 0],
+			['Models', C.ai, 120],
+		].forEach(([label, col, dx]) => {
+			legend.append('circle').attr('cx', dx + 7).attr('cy', -5).attr('r', 7).attr('fill', col);
+			legend.append('text').attr('x', dx + 22).attr('y', 1).attr('class', 'chart-tick chart-tick--row').text(label);
+		});
+
+		DATA.penalty.forEach((d) => {
+			const cy = y(d.name) + y.bandwidth() / 2;
+			g.append('text')
+				.attr('x', -22)
+				.attr('y', cy - 2)
+				.attr('text-anchor', 'end')
+				.attr('class', 'chart-tick chart-tick--cat')
+				.text(d.name);
+			g.append('text')
+				.attr('x', -22)
+				.attr('y', cy + 20)
+				.attr('text-anchor', 'end')
+				.attr('class', 'chart-tick chart-tick--dim')
+				.text(d.sub);
+			[
+				[d.human, C.human, -15],
+				[d.ai, C.ai, 15],
+			].forEach(([[v, lo, hi], col, dy]) => {
+				g.append('line')
+					.attr('x1', x(lo))
+					.attr('x2', x(hi))
+					.attr('y1', cy + dy)
+					.attr('y2', cy + dy)
+					.attr('stroke', col)
+					.attr('stroke-width', 2.4)
+					.attr('stroke-linecap', 'round');
+				g.append('circle').attr('cx', x(v)).attr('cy', cy + dy).attr('r', 7.5).attr('fill', col);
+				g.append('text')
+					.attr('x', x(hi) + 12)
+					.attr('y', cy + dy + 6)
+					.attr('class', 'chart-value chart-value--row')
+					.attr('fill', col)
+					.text(v.toFixed(2));
+			});
+		});
+	}
+
+	/* ---------------- backup: rates for each model (SI Fig. S12) ---------------- */
+
+	const modelRates = { built: false };
+
+	function buildModelRates() {
+		const box = svgIn('#models-chart');
+		if (!box) return;
+		const m = { top: 40, right: 54, bottom: 34, left: 190 };
+		const iw = box.w - m.left - m.right;
+		const ih = box.h - m.top - m.bottom;
+		const g = box.svg.append('g').attr('transform', `translate(${m.left},${m.top})`);
+		const rows = DATA.modelRates;
+		const x = d3.scaleLinear().domain([0, 100]).range([0, iw]);
+		const y = d3.scalePoint().domain(rows.map((r) => r[0])).range([0, ih]).padding(0.5);
+
+		g.append('g')
+			.selectAll('line')
+			.data([0, 25, 50, 75, 100])
+			.join('line')
+			.attr('x1', (d) => x(d))
+			.attr('x2', (d) => x(d))
+			.attr('y1', 0)
+			.attr('y2', ih)
+			.attr('stroke', (d) => (d === 50 ? 'rgba(28,25,23,0.45)' : C.hair))
+			.attr('stroke-dasharray', (d) => (d === 50 ? '5 4' : '2 5'));
+		g.append('g')
+			.selectAll('text')
+			.data([0, 25, 50, 75, 100])
+			.join('text')
+			.attr('x', (d) => x(d))
+			.attr('y', ih + 26)
+			.attr('text-anchor', 'middle')
+			.attr('class', 'chart-tick')
+			.text((d) => d + '%');
+
+		const legend = box.svg.append('g').attr('transform', `translate(${m.left},22)`);
+		legend.append('circle').attr('cx', 7).attr('cy', -5).attr('r', 6.5).attr('fill', C.ai);
+		legend.append('text').attr('x', 22).attr('y', 1).attr('class', 'chart-tick').text('Correct labels');
+		legend.append('circle').attr('cx', 196).attr('cy', -5).attr('r', 6.5).attr('fill', '#faf8f5').attr('stroke', C.ai).attr('stroke-width', 2.5);
+		legend.append('text').attr('x', 211).attr('y', 1).attr('class', 'chart-tick').text('Swapped labels');
+		legend.append('line').attr('x1', 394).attr('x2', 394).attr('y1', -13).attr('y2', 3).attr('stroke', C.ink).attr('stroke-width', 2.4).attr('opacity', 0.6);
+		legend.append('text').attr('x', 406).attr('y', 1).attr('class', 'chart-tick').text('Blind');
+
+		rows.forEach(([name, blind, open, swapped]) => {
+			const cy = y(name);
+			g.append('text')
+				.attr('x', -16)
+				.attr('y', cy + 6)
+				.attr('text-anchor', 'end')
+				.attr('class', 'chart-tick chart-tick--row')
+				.text(name);
+			g.append('line')
+				.attr('x1', x(open))
+				.attr('x2', x(swapped))
+				.attr('y1', cy)
+				.attr('y2', cy)
+				.attr('stroke', C.ai)
+				.attr('stroke-opacity', 0.32)
+				.attr('stroke-width', 9)
+				.attr('stroke-linecap', 'round');
+			g.append('line')
+				.attr('x1', x(blind))
+				.attr('x2', x(blind))
+				.attr('y1', cy - 8)
+				.attr('y2', cy + 8)
+				.attr('stroke', C.ink)
+				.attr('stroke-width', 2.4)
+				.attr('opacity', 0.6);
+			g.append('circle').attr('cx', x(open)).attr('cy', cy).attr('r', 6.5).attr('fill', C.ai);
+			g.append('circle')
+				.attr('cx', x(swapped))
+				.attr('cy', cy)
+				.attr('r', 6.5)
+				.attr('fill', '#faf8f5')
+				.attr('stroke', C.ai)
+				.attr('stroke-width', 2.5);
+			g.append('text')
+				.attr('x', x(open) - 14)
+				.attr('y', cy + 6)
+				.attr('text-anchor', 'end')
+				.attr('class', 'chart-value chart-value--row')
+				.attr('fill', C.ink)
+				.text(Math.round(open));
+			g.append('text')
+				.attr('x', x(swapped) + 14)
+				.attr('y', cy + 6)
+				.attr('class', 'chart-value chart-value--row')
+				.attr('fill', C.ink)
+				.text(Math.round(swapped));
+		});
+	}
+
 	/* ---------------- wiring ----------------
 	   Hidden reveal slides measure zero width, so each chart is built lazily, the
 	   first time its slide becomes current (or up front when printing, where every
@@ -858,6 +1278,7 @@
 		if (host('study2-slide')) {
 			ensure(study2, buildStudy2);
 			study2Play();
+			study2Apply(isPrint ? 3 : currentBeat(document.getElementById('study2-slide')));
 		}
 		if (host('styles-slide')) {
 			ensure(styles, buildStyles);
@@ -868,6 +1289,8 @@
 			ensure(criteria, buildCriteria);
 			criteriaPlay();
 		}
+		if (host('penalty-slide')) ensure(penalty, buildPenalty);
+		if (host('models-slide')) ensure(modelRates, buildModelRates);
 	}
 
 	function init() {
@@ -884,10 +1307,13 @@
 			ensure(study2, buildStudy2);
 			ensure(styles, buildStyles);
 			ensure(criteria, buildCriteria);
+			ensure(penalty, buildPenalty);
+			ensure(modelRates, buildModelRates);
 			ratesApply(3);
 			biasPlay();
 			forestPlay();
 			study2Play();
+			study2Apply(3);
 			stylesPlayModels();
 			stylesApply(1);
 			criteriaPlay();
@@ -906,17 +1332,26 @@
 				ensure(styles, buildStyles);
 				stylesApply(+f.dataset.beat);
 			}
+			if (f.closest('#study2-slide')) {
+				ensure(study2, buildStudy2);
+				study2Apply(currentBeat(document.getElementById('study2-slide')));
+			}
 		});
 		Reveal.on('fragmenthidden', (e) => {
 			const f = e.fragment;
 			if (!f.dataset.beat) return;
 			if (f.closest('#rates-slide')) ratesApply(+f.dataset.beat - 1);
 			if (f.closest('#styles-slide')) stylesApply(+f.dataset.beat - 1);
+			if (f.closest('#study2-slide')) study2Apply(currentBeat(document.getElementById('study2-slide')));
 		});
 		onSlide(Reveal.getCurrentSlide());
 	}
 
-	if (Reveal.isReady()) {
+	// Printing: the page layout only exists once reveal has built it, and the charts measure
+	// their boxes, so build them then, not when the window happens to be some other width.
+	if (isPrint) {
+		Reveal.on('pdf-ready', init);
+	} else if (Reveal.isReady()) {
 		init();
 	} else {
 		Reveal.on('ready', init);
