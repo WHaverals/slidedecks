@@ -2618,3 +2618,71 @@ html.print-pdf .reveal .slides section.frame.references-slide {
 	line-height: 1.4;
 	overflow-wrap: anywhere;
 }
+
+/* ---------- the thirty exercises: an index, then one backup slide per exercise ----------
+   The index is plain type in three columns, alphabetical. Each exercise slide puts Queneau's
+   opening beside GPT-4's in two cards of one fixed size, so every slide of the set has the
+   same frame and the text decides only how much of it is shown. */
+
+.reveal .backup-slide ul.style-index {
+	display: grid;
+	grid-auto-flow: column;
+	grid-template-rows: repeat(10, auto);
+	grid-template-columns: repeat(3, 1fr);
+	column-gap: 36px;
+	row-gap: 8px;
+	max-width: none;
+}
+
+.reveal .backup-slide ul.style-index li {
+	margin: 0;
+	font-size: var(--t-lead);
+	line-height: 1.4;
+}
+
+.reveal .style-index a,
+.reveal .style-back a {
+	color: var(--sp-ink);
+	text-decoration: underline;
+	text-decoration-color: var(--r-link-color);
+	text-decoration-thickness: 1.5px;
+	text-underline-offset: 5px;
+}
+
+.reveal .style-index a:hover,
+.reveal .style-back a:hover {
+	color: var(--r-link-color);
+}
+
+.reveal .slides section .style-index__foot {
+	margin-top: 22px;
+}
+
+.reveal .style-slide .game-board {
+	gap: 30px;
+}
+
+.reveal .style-slide .ab-card {
+	height: 440px;
+	overflow: hidden;
+}
+
+.reveal .style-slide .ab-card__text {
+	font-size: var(--t-exhibit);
+	line-height: 1.45;
+}
+
+/* verse and list-like texts: one block per line, a wrapped line hangs under its start */
+.reveal .style-slide .ab-card__text--verse .vl {
+	display: block;
+	padding-left: 1.4em;
+	text-indent: -1.4em;
+}
+
+.reveal .style-slide .ab-card__text--verse .vl--st {
+	margin-top: 0.7em;
+}
+
+.reveal .slides section .style-back {
+	margin-top: 20px;
+}
