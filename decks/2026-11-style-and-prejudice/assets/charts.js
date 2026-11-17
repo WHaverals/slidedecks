@@ -143,7 +143,7 @@
 			['Exclamations', 17.3, 5.1],
 			['Feminine', 20.8, 7.7],
 		],
-		stylesKey: ['Cockney', 'Lipogram', 'Science Fiction'],
+		stylesKey: ['Lipogram', 'Science Fiction'],
 	};
 
 	const isPrint = /print-pdf/gi.test(window.location.search);
@@ -191,7 +191,7 @@
 		return { el, svg, w, h };
 	}
 
-	/* ---------------- rates chart (fragment beats 0-3) ---------------- */
+	/* ---------------- rates chart (fragment beats 0-5) ---------------- */
 
 	const rates = { built: false, beat: -1 };
 
@@ -336,7 +336,8 @@
 		showOrHide('human-0', beat >= 0, 0);
 		showOrHide('human-1', beat >= 1, 0);
 		showOrHide('human-2', beat >= 2, 0);
-		['ai-0', 'ai-1', 'ai-2'].forEach((k, i) => showOrHide(k, beat >= 3, i * dur(170)));
+		// the model bars arrive one per beat: blind, correct labels, swapped labels
+		['ai-0', 'ai-1', 'ai-2'].forEach((k, i) => showOrHide(k, beat >= 3 + i, 0));
 		go(rates.legend.select('.rates-legend--ai'), 0, 250).attr('opacity', beat >= 3 ? 1 : 0);
 	}
 
@@ -347,7 +348,7 @@
 	function buildBias() {
 		const box = svgIn('#bias-chart');
 		if (!box) return;
-		const m = { top: 56, right: 24, bottom: 92, left: 84 };
+		const m = { top: 78, right: 24, bottom: 104, left: 90 };
 		const iw = box.w - m.left - m.right;
 		const ih = box.h - m.top - m.bottom;
 		const g = box.svg.append('g').attr('transform', `translate(${m.left},${m.top})`);
@@ -356,8 +357,8 @@
 			.scaleBand()
 			.domain(DATA.bias.map((d) => d.who))
 			.range([0, iw])
-			.paddingInner(0.42)
-			.paddingOuter(0.18);
+			.paddingInner(0.3)
+			.paddingOuter(0.2);
 		const y = d3.scaleLinear().domain([0, 40]).range([ih, 0]);
 
 		g.append('g')
@@ -380,7 +381,7 @@
 		DATA.bias.forEach((d) => {
 			g.append('text')
 				.attr('x', x(d.who) + x.bandwidth() / 2)
-				.attr('y', ih + 58)
+				.attr('y', ih + 66)
 				.attr('text-anchor', 'middle')
 				.attr('class', 'chart-sub')
 				.text(d.calc);
@@ -430,30 +431,35 @@
 			return { rect, label, d };
 		});
 
-		// the 2.5x annotation: an arc from the human bar to the AI bar
-		const x1 = x(DATA.bias[0].who) + x.bandwidth() / 2;
-		const x2 = x(DATA.bias[1].who) + x.bandwidth() / 2;
-		const y1 = y(13.7) - 50;
-		const y2 = y(34.3) - 30;
+		// the 2.5x annotation: a long swoop from the human bar up and over to the AI bar
+		const bw = x.bandwidth();
+		const x1 = x(DATA.bias[0].who) + bw / 2;
+		const x2 = x(DATA.bias[1].who) + bw / 2;
+		const sx = x1 + 78;
+		const sy = y(13.7) - 34;
+		const ex = x2 - bw / 2 + 4;
+		const ey = y(34.3) - 34;
 		bias.arc = g
 			.append('path')
 			.attr(
 				'd',
-				`M ${x1 + 34} ${y1} C ${x1 + (x2 - x1) * 0.45} ${y1 - 44}, ${x2 - (x2 - x1) * 0.35} ${y2 + 12}, ${x2 - 58} ${y2 + 6}`
+				`M ${sx} ${sy} C ${sx + 40} ${sy - 150}, ${ex - (ex - sx) * 0.55} ${ey - 78}, ${ex} ${ey}`
 			)
 			.attr('fill', 'none')
 			.attr('stroke', C.ink)
-			.attr('stroke-width', 2)
+			.attr('stroke-width', 2.6)
+			.attr('stroke-linecap', 'round')
 			.attr('marker-end', 'url(#sp-arrow)')
 			.attr('opacity', 0);
 		bias.note = g
 			.append('text')
-			.attr('x', (x1 + x2) / 2 - 30)
-			.attr('y', y(40) - 22)
-			.attr('text-anchor', 'middle')
-			.attr('class', 'chart-note')
-			.attr('opacity', 0)
-			.text('2.5 times the human bias');
+			.attr('x', sx - 14)
+			.attr('y', y(31))
+			.attr('text-anchor', 'end')
+			.attr('class', 'chart-note chart-note--lg')
+			.attr('opacity', 0);
+		bias.note.append('tspan').attr('x', sx - 14).text('2.5 times');
+		bias.note.append('tspan').attr('x', sx - 14).attr('dy', '1.25em').text('the human bias');
 
 		box.svg
 			.append('defs')
@@ -462,8 +468,8 @@
 			.attr('viewBox', '0 0 10 10')
 			.attr('refX', 8)
 			.attr('refY', 5)
-			.attr('markerWidth', 7)
-			.attr('markerHeight', 7)
+			.attr('markerWidth', 6.5)
+			.attr('markerHeight', 6.5)
 			.attr('orient', 'auto-start-reverse')
 			.append('path')
 			.attr('d', 'M 0 0 L 10 5 L 0 10 z')
@@ -987,14 +993,14 @@
 		mv(heat.avgLabel, c ? 800 : 0, 380).attr('opacity', c);
 	}
 
-	// beat 0 is the bar chart; beats 1 to 3 swap in the grid. CSS reads data-s2 on the slide.
+	// the grid slide: beat 1 is the grid as drawn, 2 sorts the evaluators, 3 sorts the creators.
+	// CSS reads data-s2 on the slide.
 	function study2Apply(beat) {
-		const slide = document.getElementById('study2-slide');
-		if (slide) slide.dataset.s2 = String(beat);
-		if (beat >= 1 || heat.built) {
-			ensure(heat, buildHeat);
-			heatApply(beat);
-		}
+		const b = Math.max(1, beat);
+		const slide = document.getElementById('study2-grid-slide');
+		if (slide) slide.dataset.s2 = String(b);
+		ensure(heat, buildHeat);
+		heatApply(b);
 	}
 
 	/* ---------------- criteria bars (slide entry) ---------------- */
@@ -1265,7 +1271,7 @@
 		const host = (id) => slide.id === id || !!slide.closest('#' + id);
 		if (host('rates-slide')) {
 			ensure(rates, buildRates);
-			ratesApply(isPrint ? 3 : currentBeat(document.getElementById('rates-slide')));
+			ratesApply(isPrint ? 5 : currentBeat(document.getElementById('rates-slide')));
 		}
 		if (host('bias-slide')) {
 			ensure(bias, buildBias);
@@ -1278,7 +1284,9 @@
 		if (host('study2-slide')) {
 			ensure(study2, buildStudy2);
 			study2Play();
-			study2Apply(isPrint ? 3 : currentBeat(document.getElementById('study2-slide')));
+		}
+		if (host('study2-grid-slide')) {
+			study2Apply(isPrint ? 3 : currentBeat(document.getElementById('study2-grid-slide')));
 		}
 		if (host('styles-slide')) {
 			ensure(styles, buildStyles);
@@ -1297,7 +1305,7 @@
 		loadColors();
 		const counts = document.getElementById('styles-counts');
 		if (counts) {
-			counts.textContent = `Models lean toward the human label in ${aiPos} of 30 styles, people in ${huPos} of 30. Bias is the change in the share choosing the AI text from correct to swapped labels, in percentage points. Bold marks the three styles we look at next.`;
+			counts.textContent = `Models lean toward the human label in ${aiPos} of 30 styles, people in ${huPos} of 30. Bias is the change in the share choosing the AI text from correct to swapped labels, in percentage points. Bold marks the two styles we look at next.`;
 		}
 
 		if (isPrint) {
@@ -1309,7 +1317,7 @@
 			ensure(criteria, buildCriteria);
 			ensure(penalty, buildPenalty);
 			ensure(modelRates, buildModelRates);
-			ratesApply(3);
+			ratesApply(5);
 			biasPlay();
 			forestPlay();
 			study2Play();
@@ -1332,9 +1340,8 @@
 				ensure(styles, buildStyles);
 				stylesApply(+f.dataset.beat);
 			}
-			if (f.closest('#study2-slide')) {
-				ensure(study2, buildStudy2);
-				study2Apply(currentBeat(document.getElementById('study2-slide')));
+			if (f.closest('#study2-grid-slide')) {
+				study2Apply(currentBeat(document.getElementById('study2-grid-slide')));
 			}
 		});
 		Reveal.on('fragmenthidden', (e) => {
@@ -1342,7 +1349,7 @@
 			if (!f.dataset.beat) return;
 			if (f.closest('#rates-slide')) ratesApply(+f.dataset.beat - 1);
 			if (f.closest('#styles-slide')) stylesApply(+f.dataset.beat - 1);
-			if (f.closest('#study2-slide')) study2Apply(currentBeat(document.getElementById('study2-slide')));
+			if (f.closest('#study2-grid-slide')) study2Apply(currentBeat(document.getElementById('study2-grid-slide')));
 		});
 		onSlide(Reveal.getCurrentSlide());
 	}
