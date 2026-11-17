@@ -81,8 +81,8 @@
 			['Llama 4 Maverick', 46.7, 33.7, 53.3],
 		],
 		bias: [
-			{ who: 'Human evaluators', v: 13.7, calc: '61.5 − 47.8', kind: 'human' },
-			{ who: 'AI evaluators', v: 34.3, calc: '64.1 − 29.8', kind: 'ai' },
+			{ who: 'Human evaluators', v: 13.7, calc: 'swapped 61.5 minus correct 47.8', kind: 'human' },
+			{ who: 'AI evaluators', v: 34.3, calc: 'swapped 64.1 minus correct 29.8', kind: 'ai' },
 		],
 		forest: [
 			{ model: 'GPT-3.5 Turbo', h: 1.5 },
@@ -1109,8 +1109,8 @@
 
 		const legend = box.svg.append('g').attr('transform', `translate(${m.left},22)`);
 		[
-			['People', C.human, 0],
-			['Models', C.ai, 120],
+			['Human evaluators', C.human, 0],
+			['AI evaluators', C.ai, 230],
 		].forEach(([label, col, dx]) => {
 			legend.append('circle').attr('cx', dx + 7).attr('cy', -5).attr('r', 7).attr('fill', col);
 			legend.append('text').attr('x', dx + 22).attr('y', 1).attr('class', 'chart-tick chart-tick--row').text(label);

@@ -360,7 +360,8 @@
 			const mainIn = mains.filter((s) => s.n >= sec.slides[0] && s.n <= sec.slides[1]);
 			const bk = backups.filter((s) => s.n >= sec.slides[0] && s.n <= sec.slides[1]);
 			const first = mainIn[0];
-			const sl = sec.slides[0] === sec.slides[1] ? `${sec.slides[0]}` : `${sec.slides[0]}–${sec.slides[1]}`;
+			const lastMainN = mainIn.length ? mainIn[mainIn.length - 1].n : sec.slides[1];
+			const sl = first && first.n !== lastMainN ? `${first.n}–${lastMainN}` : `${sec.slides[0]}`;
 			const bkNote = bk.length ? `<small>backups below: ${compressRange(bk.map((x) => x.n))}</small>` : '';
 			rows += `<tr><td class="n">${sec.num}</td><td class="sec">${sec.label}${bkNote}</td><td class="sl">${sl}</td><td class="pg">${first ? pgLink(first.n) : ''}</td><td class="who"></td><td class="time"></td></tr>`;
 		});

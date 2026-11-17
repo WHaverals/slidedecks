@@ -99,15 +99,15 @@
 					<h2>A familiar prejudice</h2>
 					<dl class="lit">
 						<dt><mark>Metaphor</mark></dt>
-						<dd>reads richer when credited to a poet than to &lsquo;a computer&rsquo; <span class="lit__ref">Gibbs 1991</span></dd>
+						<dd>reads richer when credited to a poet than to &lsquo;a computer&rsquo; <span class="lit__ref">Gibbs et al., 1991</span></dd>
 						<dt><mark>Painting</mark></dt>
-						<dd>rates lower once it is labeled AI <span class="lit__ref">Ragot 2020; Bellaiche 2023</span></dd>
+						<dd>rates lower once it is labeled AI <span class="lit__ref">Ragot et al., 2020; Bellaiche et al., 2023</span></dd>
 						<dt><mark>Music</mark></dt>
-						<dd>is liked less and rated lower in quality under an AI label <span class="lit__ref">Shank 2023</span></dd>
+						<dd>is liked less and rated lower in quality under an AI label <span class="lit__ref">Shank et al., 2023</span></dd>
 						<dt><mark>Poems</mark></dt>
-						<dd>by AI are rated higher blind, and poems are rated lower labeled AI than labeled human <span class="lit__ref">Porter &amp; Machery 2024</span></dd>
+						<dd>by AI are rated higher blind but lower once labeled AI <span class="lit__ref">Porter &amp; Machery, 2024</span></dd>
 						<dt><mark>Journalism</mark></dt>
-						<dd>is trusted less when marked machine-written <span class="lit__ref">Lermann Henestrosa &amp; Kimmerle 2024</span></dd>
+						<dd>is trusted less when marked machine-written <span class="lit__ref">Lermann Henestrosa &amp; Kimmerle, 2024</span></dd>
 					</dl>
 					<aside class="notes">
 						<ul>
@@ -127,7 +127,7 @@
 					<h2>What happens when the judges are <mark>machines</mark> too?</h2>
 					<aside class="notes">
 						<ul>
-							<li>People carry this bias toward anything labeled AI. Now machines sit in the judge&rsquo;s seat too: LLMs score, rank and select creative work.</li>
+							<li>People carry this bias toward work labeled AI. Now machines sit in the judge&rsquo;s seat too: LLMs score, rank and select creative work.</li>
 							<li>The question: what happens when the judges are machines too? <mark>Do they replicate the bias, escape it, or amplify it</mark>?</li>
 							<li><em>Reference</em></li>
 							<li>That question organizes everything that follows: first why style is a good test of attribution, then the experiment.</li>
@@ -135,92 +135,99 @@
 					</aside>
 				</section>
 
-				<!-- ============ SECTION 1 ============ -->
-				<section class="section-slide" data-background-color="#16352f">
-					<p class="section-slide__number">1</p>
-					<h2>Two ways of defining style</h2>
-					<aside class="notes">
-						<ul>
-							<li>Our object of study is style, literary style.</li>
-							<li>Before the experiment, a very brief look at the research we situate ourselves in, the literature review in the paper.</li>
-							<li>Even though this is cognitive and behavioral science, we need at least a shared idea of what style is. <mark>It is a murky concept and very hard to theorize</mark>. So: style in all its murkiness.</li>
-							<li>First how the AI side uses and defines style, then how the humanities define it.</li>
-							<li><em>Reference</em></li>
-							<li>How the AI industry defines style, and how the humanities do. The gap between the two is where this study lives.</li>
-						</ul>
-					</aside>
-				</section>
-
-				<section class="frame shot-slide">
-					<h2>Creative writing has a leaderboard</h2>
-					<figure class="shot">
-						<img src="figures/lmarena.png" alt="LMArena Text Arena creative-writing leaderboard screenshot" />
-						<figcaption>lmarena.ai, Text Arena, creative writing: 782,533 votes over 321 models, March 6, 2026</figcaption>
-					</figure>
-					<aside class="notes">
-						<ul>
-							<li>In AI, style is used to market the models and show what they can do, and people want to judge it on creative writing.</li>
-							<li>Machines already sit in the evaluator&rsquo;s chair, or close to it, and LLM-as-judge setups automate the same judgment. A ranking implies a judge: who, or what, is judging, and by what standard?</li>
-							<li>Arena (it began as Chatbot Arena in 2023 and is now simply Arena): anyone can type a prompt, two anonymous models answer side by side, you vote for the better one (or tie, or both bad), and only then do you see the names.</li>
-							<li>Scores come from a Bradley-Terry model fitted to the votes. They read like Elo ratings, and only the gaps mean anything. The plus-minus is a confidence interval. Rank spread is the best and worst rank a model could have once all the intervals are counted.</li>
-							<li>Creative writing is one slice of the battles: those whose prompts an LLM classifier tagged as creative writing (checklist: originality, emotional or artistic expression, interpretive answers, more than factual reporting). Stories, poems, lyrics, jokes. About a tenth of recent prompts.</li>
-							<li><mark>A vote says which answer people prefer. It says nothing about which text fits a style</mark>. The voters are an open public, and the Arena authors expect mostly LLM hobbyists and researchers. No literary expertise is documented.</li>
-							<li>Arena has its own idea of style: it statistically controls for answer length and markdown formatting (style control, introduced in 2024, the default since May 2025, switched on in the March 2026 screenshot).</li>
-							<li>Optional, for questions: in September 2026 the Arena team reported that AI judges pick their own answer more often than human voters do, 58% against 34%. It is a single source from the platform itself, so re-read it before citing the figures. The date on the screenshot is a data cutoff, and Arena was renamed from LMArena on 28 January 2026.</li>
-						</ul>
-					</aside>
-				</section>
-
-				<section class="frame shot-slide">
-					<h2>Style as a product feature</h2>
-					<div class="shot-split shot-split--rev">
-						<figure class="shot">
-							<img src="figures/claude-style-ui.png" alt="claude.ai interface for generating a custom writing style" />
-							<figcaption>claude.ai, &ldquo;Describe your style&rdquo; [screenshot, March 2026]</figcaption>
-						</figure>
-						<div class="shot-split__points">
-							<p class="lead">Style arrives as a menu: an objective, an audience, a voice and tone, or a general description.</p>
-						</div>
-					</div>
-					<aside class="notes">
-						<ul>
-							<li>Style arrives as a menu. In Claude&rsquo;s dialog you define a style objective, tailor to an audience, use a specific voice and tone, or describe it generally. You set the tone, you set the style.</li>
-							<li>Anthropic introduced custom styles on 26 November 2024. The presets are Normal, Concise, Formal and Explanatory. You can make your own from a writing sample or, as in this dialog, by describing it.</li>
-							<li>Anthropic&rsquo;s own words for a style are how Claude communicates, in terms of tone, structure, brevity and polish. Its examples are developers writing documentation and marketers following brand guidelines. That is workplace writing; literary style is a different matter.</li>
-							<li><mark>A menu makes style a setting: chosen from outside and separable from what is said</mark>. That is the content and style split behind text style transfer. Its own surveys say the field has no stable definition of style (Troiano et al. 2023, p. 894) and say that most deep learning work defines style as whatever varies across datasets (Jin et al. 2022, p. 160).</li>
-							<li>Humanists hold that the split is weaker than the menu suggests. No discourse comes without style, and the neutral base is a style too (Genette 1993, pp. 125 to 126). Goodman asks only that what is said can vary independently of how it is said (1975, p. 800).</li>
-							<li>The menu is also a label. <mark>It promises what the text will be before a sentence is read, as a name does</mark>. Queneau&rsquo;s titles already read like such settings: Dream, Alexandrines, Abusive, Cockney.</li>
-							<li>This style dialog in the Claude app is being phased out and replaced by skills. A skill is a folder of written instructions that Claude loads when a task calls for it, and it can describe almost anything: a house format, a template, a workflow, and also a writing style. Existing custom styles are migrated into skills, so the menu of options gives way to a description in your own words. Call it the style dialog in the Claude app and do not attribute the five option labels to Anthropic&rsquo;s documentation.</li>
-						</ul>
-					</aside>
-				</section>
-
-				<section class="frame shot-slide">
-					<h2>What &lsquo;style&rsquo; means in NLP</h2>
-					<div class="shot-split">
-						<div class="shot-split__points">
-							<p class="lead">The field works with high-level, functional attributes: sentiment, politeness, formality.</p>
-							<p class="lead">&lsquo;Style&rsquo; becomes a catch-all for everything users ask a rewriter to do.</p>
-							<p class="lead">What users actually request is wilder: to be more Dickensian, to be about vegetables, to be a word for a song.</p>
-						</div>
-						<figure class="shot">
-							<img src="figures/reif-table5.png" alt="Reif et al. table of user rewrite requests" />
-							<figcaption>Reif et al. 2022, Table 5: requests to an LM-powered text editor</figcaption>
-						</figure>
-					</div>
-					<aside class="notes">
-						<ul>
-							<li>Traditional NLP treats style as high-level attributes such as sentiment, politeness and formality. In practice a style was whatever differs between two labeled corpora: positive and negative Yelp reviews for sentiment (Shen et al. 2017), informal and formal rewrites for formality (Rao and Tetreault 2018), polite and impolite emails for politeness (Madaan et al. 2020). Success is scored by a separately trained classifier, plus content preservation and fluency.</li>
-							<li>Early work tried to disentangle these attributes, pulling content apart from attribute and treating attributes as separate dimensions that can be controlled independently (Hu et al. 2017 control sentiment and tense). A deliberate simplification: style served as a catch-all for these attributes. The Jin survey itself calls sentiment more of a content attribute (p. 160) and says attribute and meaning can be hard or impossible to separate (p. 180).</li>
-							<li>In today&rsquo;s work with prompted, instruction-following language models the word no longer fits that older meaning, and it strains how we define and interpret style. Some research still treats single attributes as style: detoxification is a shared task (PAN 2024).</li>
-							<li>Reif et al. 2022: they built a rewrite editor and asked 30 people from a creative writing group to write a story with it. They got 333 rewrite requests, and Table 5 lists the unique requests in the form Rewrite this. There is a lot of variability and ambiguity, in what users expect and in what the models return. From the table: more philosophical, more magical, a little less angsty, a word for a song, fit better grammatically with the rest of the story, with a few words, about vegetables (my favorite).</li>
-							<li><mark>The idea of style in these requests is far from the older one</mark>. Careful: high-level, functional is our gloss and not Reif&rsquo;s wording, and the sample is a small group of creative writers, so say requests to one editor, not users at large.</li>
-						</ul>
-					</aside>
-				</section>
-
+				<!-- ============ WHY STYLE ============ -->
 				<section>
-				<section class="frame quotes-slide">
+					<section class="frame bridge-slide">
+						<h2>Style has no answer key</h2>
+						<div class="bridge-rows">
+							<p class="bridge-row">A fact can be checked and an argument can be tested. Whether a text fits a style is a matter of <mark>judgment</mark>.</p>
+							<p class="bridge-row fragment" data-fragment-index="1">Yet AI models are <mark>ranked on creative writing</mark> and marketed for writing in a requested style.</p>
+							<p class="bridge-row fragment" data-fragment-index="2">So who is said to have written a text <mark>can change the verdict</mark>.</p>
+						</div>
+						<aside class="notes">
+							<ul>
+								<li>So where do we test this? We need a domain with <mark>no answer key</mark>: our object of study is style, literary style. It is a murky concept and very hard to theorize.</li>
+								<li>A fact can be checked and an argument can be tested. <mark>Whether a text fits a style is a matter of judgment</mark>.</li>
+								<li>[click] And yet this is where AI is ranked and marketed. Arena ranks models on creative writing by vote, chat tools offer a menu for styles, and researchers study text style transfer. The menu is also a label. <mark>It promises what the text will be before a sentence is read, as a name does</mark>.</li>
+								<li>[click] So who is said to have written a text can change the verdict. Nobody can say what style is, which is exactly why it is a good test of attribution. With no answer key, <mark>the name on the page can do the judging</mark>.</li>
+								<li>For the test we need a set of texts that differ only in style.</li>
+								<li><em>Reference</em></li>
+								<li>Down, if asked how AI and the humanities define style: the Arena leaderboard, the style menu in a chat app, what style means in NLP, what it means in the humanities, more definitions, and Bridgeman on why we all think we know what style is. The AI side comes first, then the humanities.</li>
+								<li>In the paper: unlike factual accuracy or argumentative soundness, stylistic quality lacks definitive benchmarks, which makes it open to the biases that authorship labels trigger.</li>
+								<li>Keep the wording of the task in view: participants and models are asked which text better matches a style, never which they prefer. A vote says which answer people prefer and says nothing about which text fits a style (see the leaderboard backup).</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section class="frame shot-slide backup-slide">
+						<h2>Creative writing has a leaderboard</h2>
+						<figure class="shot">
+							<img src="figures/lmarena.png" alt="LMArena Text Arena creative-writing leaderboard screenshot" />
+							<figcaption>lmarena.ai, Text Arena, creative writing [screenshot, March 2026]</figcaption>
+						</figure>
+						<aside class="notes">
+							<ul>
+								<li>In AI, style is used to market the models and show what they can do, and people want to judge it on creative writing.</li>
+								<li>Machines already sit in the evaluator&rsquo;s chair, or close to it, and LLM-as-judge setups automate the same judgment. A ranking implies a judge: who, or what, is judging, and by what standard?</li>
+								<li>Arena (it began as Chatbot Arena in 2023 and is now simply Arena): anyone can type a prompt, two anonymous models answer side by side, you vote for the better one (or tie, or both bad), and only then do you see the names.</li>
+								<li>Scores come from a Bradley-Terry model fitted to the votes. They read like Elo ratings, and only the gaps mean anything. The plus-minus is a confidence interval. Rank spread is the best and worst rank a model could have once all the intervals are counted.</li>
+								<li>Creative writing is one slice of the battles: those whose prompts an LLM classifier tagged as creative writing (checklist: originality, emotional or artistic expression, interpretive answers, more than factual reporting). Stories, poems, lyrics, jokes. About a tenth of recent prompts.</li>
+								<li><mark>A vote says which answer people prefer. It says nothing about which text fits a style</mark>. The voters are an open public, and the Arena authors expect mostly LLM hobbyists and researchers. No literary expertise is documented.</li>
+								<li>Arena has its own idea of style: it statistically controls for answer length and markdown formatting (style control, introduced in 2024, the default since May 2025, switched on in the March 2026 screenshot).</li>
+								<li>Optional, for questions: in September 2026 the Arena team reported that AI judges pick their own answer more often than human voters do, 58% against 34%. It is a single source from the platform itself, so re-read it before citing the figures. The date on the screenshot is a data cutoff, and Arena was renamed from LMArena on 28 January 2026.</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section class="frame shot-slide backup-slide">
+						<h2>Style as a product feature</h2>
+						<div class="shot-split shot-split--rev">
+							<figure class="shot">
+								<img src="figures/claude-style-ui.png" alt="claude.ai interface for generating a custom writing style" />
+								<figcaption>claude.ai, &ldquo;Describe your style&rdquo; [screenshot, March 2026]</figcaption>
+							</figure>
+							<div class="shot-split__points">
+								<p class="lead">Style arrives as a menu: an objective, an audience, a voice and tone, or a general description.</p>
+							</div>
+						</div>
+						<aside class="notes">
+							<ul>
+								<li>Style arrives as a menu. In Claude&rsquo;s dialog you define a style objective, tailor to an audience, use a specific voice and tone, or describe it generally. You set the tone, you set the style.</li>
+								<li>Anthropic introduced custom styles on 26 November 2024. The presets are Normal, Concise, Formal and Explanatory. You can make your own from a writing sample or, as in this dialog, by describing it.</li>
+								<li>Anthropic&rsquo;s own words for a style are how Claude communicates, in terms of tone, structure, brevity and polish. Its examples are developers writing documentation and marketers following brand guidelines. That is workplace writing; literary style is a different matter.</li>
+								<li><mark>A menu makes style a setting: chosen from outside and separable from what is said</mark>. That is the content and style split behind text style transfer. Its own surveys say the field has no stable definition of style (Troiano et al. 2023, p. 894) and say that most deep learning work defines style as whatever varies across datasets (Jin et al. 2022, p. 160).</li>
+								<li>Humanists hold that the split is weaker than the menu suggests. No discourse comes without style, and the neutral base is a style too (Genette 1993, pp. 125 to 126). Goodman asks only that what is said can vary independently of how it is said (1975, p. 800).</li>
+								<li>The menu is also a label. <mark>It promises what the text will be before a sentence is read, as a name does</mark>. Queneau&rsquo;s titles already read like such settings: Dream, Alexandrines, Abusive, Cockney.</li>
+								<li>This style dialog in the Claude app is being phased out and replaced by skills. A skill is a folder of written instructions that Claude loads when a task calls for it, and it can describe almost anything: a house format, a template, a workflow, and also a writing style. Existing custom styles are migrated into skills, so the menu of options gives way to a description in your own words. Call it the style dialog in the Claude app and do not attribute the five option labels to Anthropic&rsquo;s documentation.</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section class="frame shot-slide backup-slide">
+						<h2>What &lsquo;style&rsquo; means in NLP</h2>
+						<div class="shot-split">
+							<div class="shot-split__points">
+								<p class="lead">The field works with high-level attributes such as sentiment, politeness and formality.</p>
+								<p class="lead">&lsquo;Style&rsquo; becomes a catch-all for everything users ask a rewriter to do.</p>
+								<p class="lead">What users actually request is wilder: to be more Dickensian, to be about vegetables, to be a word for a song.</p>
+							</div>
+							<figure class="shot">
+								<img src="figures/reif-table5.png" alt="Reif et al. table of user rewrite requests" />
+								<figcaption>Reif et al., 2022: requests to an LM-powered text editor</figcaption>
+							</figure>
+						</div>
+						<aside class="notes">
+							<ul>
+								<li>Traditional NLP treats style as high-level attributes such as sentiment, politeness and formality. In practice a style was whatever differs between two labeled corpora: positive and negative Yelp reviews for sentiment (Shen et al. 2017), informal and formal rewrites for formality (Rao and Tetreault 2018), polite and impolite emails for politeness (Madaan et al. 2020). Success is scored by a separately trained classifier, plus content preservation and fluency.</li>
+								<li>Early work tried to disentangle these attributes, pulling content apart from attribute and treating attributes as separate dimensions that can be controlled independently (Hu et al. 2017 control sentiment and tense). A deliberate simplification: style served as a catch-all for these attributes. The Jin survey itself calls sentiment more of a content attribute (p. 160) and says attribute and meaning can be hard or impossible to separate (p. 180).</li>
+								<li>In today&rsquo;s work with prompted, instruction-following language models the word no longer fits that older meaning, and it strains how we define and interpret style. Some research still treats single attributes as style: detoxification is a shared task (PAN 2024).</li>
+								<li>Reif et al. 2022: they built a rewrite editor and asked 30 people from a creative writing group to write a story with it. They got 333 rewrite requests, and Table 5 lists the unique requests in the form Rewrite this. There is a lot of variability and ambiguity, in what users expect and in what the models return. From the table: more philosophical, more magical, a little less angsty, a word for a song, fit better grammatically with the rest of the story, with a few words, about vegetables (my favorite).</li>
+								<li><mark>The idea of style in these requests is far from the older one</mark>. Careful: high-level, functional is our gloss and not Reif&rsquo;s wording, and the sample is a small group of creative writers, so say requests to one editor, not users at large.</li>
+							</ul>
+						</aside>
+					</section>
+
+					<section class="frame quotes-slide backup-slide">
 					<h2>What &lsquo;style&rsquo; means in the humanities</h2>
 					<div class="qstack">
 						<blockquote class="qitem">
@@ -228,8 +235,8 @@
 							<footer>Barthes, 1953, transl. 1967</footer>
 						</blockquote>
 						<blockquote class="qitem fragment fade-in">
-							<p>&ldquo;In pragmatic approaches, <mark>every aspect of the linguistic action</mark> that can be perceived as &lsquo;made&rsquo; pertains to the subject of stylistics.&rdquo;</p>
-							<footer>Herrmann, van Dalen-Oskam &amp; Schöch, 2015</footer>
+							<p>&ldquo;In pragmatic approaches, <mark>every aspect of the linguistic action</mark> that can be perceived as &lsquo;made&rsquo; pertains to the subject <span class="nobr">of stylistics.&rdquo;</span></p>
+							<footer>Herrmann et al., 2015</footer>
 						</blockquote>
 						<blockquote class="qitem fragment fade-in">
 							<p>&bdquo;[&hellip;] einer <mark>Hypertrophie</mark> sprachstilistischer Fragestellungen.&ldquo;</p>
@@ -257,12 +264,12 @@
 								<tr><th scope="col">Source</th><th scope="col">What it says</th></tr>
 							</thead>
 							<tbody>
-								<tr><th scope="row">Hoover 2007<span class="defs__field">p. 176</span></th><td>Stylometry assumes that authors mostly cannot steer their word frequencies, which come from stable habits that work like a fingerprint.</td></tr>
-								<tr><th scope="row">Milic 1991<span class="defs__field">p. 394</span></th><td>Computational stylisticians tacitly ignore the view that &ldquo;a change in style is a change in meaning&rdquo;, because their analysis rests on one stable style per writer.</td></tr>
-								<tr><th scope="row">Troiano et al. 2023<span class="defs__field">p. 894</span></th><td>Text style transfer research has no stable definition of style, since no consensus exists on one, and the survey does not supply one either.</td></tr>
-								<tr><th scope="row">Jin et al. 2022<span class="defs__field">p. 160</span></th><td>Most deep learning work on text style transfer defines style from the data: whatever attributes vary from one dataset to another.</td></tr>
-								<tr><th scope="row">Genette 1997<span class="defs__field">pp. 83 to 84</span></th><td>Copying a poem directly is a purely mechanical task. Imitating a style is a new production: another text in the same style.</td></tr>
-								<tr><th scope="row">Goodman 1975<span class="defs__field">pp. 800 and 808</span></th><td>Style needs no exact synonymy, only that what is said can vary independently of how it is said. Rhyme and alliteration frequencies are stylistic too.</td></tr>
+								<tr><th scope="row">Hoover, 2007</th><td>Stylometry assumes that authors mostly cannot steer their word frequencies, which come from stable habits that work like a fingerprint.</td></tr>
+								<tr><th scope="row">Milic, 1991</th><td>Computational stylisticians tacitly ignore the view that &ldquo;a change in style is a change in meaning&rdquo;, because their analysis rests on one stable style per writer.</td></tr>
+								<tr><th scope="row">Troiano et al., 2023</th><td>Text style transfer research has no stable definition of style, since no consensus exists on one, and the survey does not supply one either.</td></tr>
+								<tr><th scope="row">Jin et al., 2022</th><td>Most deep learning work on text style transfer defines style from the data: whatever attributes vary from one dataset to another.</td></tr>
+								<tr><th scope="row">Genette, 1997</th><td>Copying a poem directly is a purely mechanical task. Imitating a style is a new production: another text in the same style.</td></tr>
+								<tr><th scope="row">Goodman, 1975</th><td>Style needs no exact synonymy, only that what is said can vary independently of how it is said. Rhyme and alliteration frequencies are stylistic too.</td></tr>
 							</tbody>
 						</table>
 						<aside class="notes">
@@ -277,29 +284,29 @@
 							</ul>
 						</aside>
 					</section>
+
+					<section class="bigquote-slide backup-slide">
+						<blockquote class="bigquote bigquote--hang">
+							<p>&ldquo;The trouble with style is that we all think we know what it is, and the misfortune of theorists of style is that they must define what they mean by it.&rdquo;</p>
+							<footer>Bridgeman, 1995</footer>
+						</blockquote>
+						<aside class="notes">
+							<ul>
+								<li>The trouble with style: we all think we know what it is, and theorists of style must define it (Bridgeman 1995, p. 31).</li>
+								<li>Are we still there? Do we still need to define style, or do we just look at whatever style is?</li>
+								<li>No benchmark, no ground truth, and everyone confident. <mark>That is the kind of judgment where source cues get room to operate</mark>.</li>
+							</ul>
+						</aside>
+					</section>
 				</section>
 
-				<section class="bigquote-slide">
-					<blockquote class="bigquote bigquote--hang">
-						<p>&ldquo;The trouble with style is that we all think we know what it is, and the misfortune of theorists of style is that they must define what they mean by it.&rdquo;</p>
-						<footer>Bridgeman, 1995</footer>
-					</blockquote>
-					<aside class="notes">
-						<ul>
-							<li>The trouble with style: we all think we know what it is, and theorists of style must define it (Bridgeman 1995, p. 31).</li>
-							<li>Are we still there? Do we still need to define style, or do we just look at whatever style is?</li>
-							<li>No benchmark, no ground truth, and everyone confident. <mark>That is the kind of judgment where source cues get room to operate</mark>.</li>
-						</ul>
-					</aside>
-				</section>
-
-				<!-- ============ SECTION 2 ============ -->
+				<!-- ============ SECTION 1 ============ -->
 				<section class="section-slide" data-background-color="#16352f">
-					<p class="section-slide__number">2</p>
+					<p class="section-slide__number">1</p>
 					<h2>Queneau&rsquo;s laboratory</h2>
 					<aside class="notes">
 						<ul>
-							<li>Bridge: nobody can say what style is, which is exactly why it is a good test of attribution. With no answer key, the name on the page can do the judging. <mark>Queneau gives us a corpus where a title names the style and everything else stays put</mark>.</li>
+							<li><mark>Queneau gives us a corpus where a title names the style and everything else stays put</mark>.</li>
 							<li>Queneau: a novelist and poet of the 1940s to the 1960s. He began among the Surrealists in the mid-1920s and broke with them in 1929. His first novel, Le Chiendent, came in 1933. From 1938 he worked at Gallimard, as a reader and editor, and he was a serious amateur mathematician. Say he died in 1976; sources disagree on the place.</li>
 							<li>In 1960 he co-founded the Oulipo, the Ouvroir de litt&eacute;rature potentielle, the Workshop of Potential Literature, with Fran&ccedil;ois Le Lionnais, a chemical engineer and mathematician. First meeting: 24 November 1960 in Paris. Several members came from mathematics and the sciences: Claude Berge (graph theory), Paul Braffort (computer science), Jacques Roubaud (poet and professor of mathematics). Most Oulipians are writers.</li>
 							<li>Oulipo is not a surrealist movement. It grew out of Queneau&rsquo;s break with surrealist spontaneity, and it replaces that with explicit rules while keeping a taste for play.</li>
@@ -314,13 +321,13 @@
 					<div class="book">
 						<div class="book__facts">
 							<p class="body"><strong>Raymond Queneau</strong>, 1903 to 1976: novelist, poet, critic, editor, <span class="nobr">co-founder</span> of Oulipo.</p>
-							<p class="body"><strong>Ninety-nine retellings</strong> of one unremarkable anecdote.</p>
+							<p class="body"><strong>Ninety-nine versions</strong> of one unremarkable anecdote.</p>
 							<p class="body">They differ in tone, narration, rhetoric, genre, poetic form and wordplay.</p>
 							<p class="body">English translation by <strong>Barbara Wright</strong>, 1958.</p>
 						</div>
 						<figure class="book__cover">
 							<img src="figures/exercises-cover-nd.jpg" alt="Exercises in Style cover with letterforms made of human figures" />
-							<figcaption>Exercises in Style, transl. Barbara Wright</figcaption>
+							<figcaption><em>Exercises in Style</em>, transl. Wright</figcaption>
 						</figure>
 					</div>
 					<aside class="notes">
@@ -329,8 +336,8 @@
 							<li>English translation by Barbara Wright, 1958 (Gaberbocchus Press, London).</li>
 							<li>Origin, in Queneau&rsquo;s 1963 preface, which quotes Michel Leiris: the two heard Bach&rsquo;s Art of the Fugue at a concert in the 1930s and said it would be interesting to do something like it in literature, with variations proliferating almost without end around a very slim theme.</li>
 							<li>The 99 styles: the book itself has no sections or categories, just a flat list. Critics have proposed groupings. Wright said she analyzed them into roughly seven groups: types of speech, written prose, poetry, character sketches, grammatical and rhetorical forms, jargon, and odds and ends. Bridgeman uses five: subjectivity, social function, literature, grammar and rhetoric, and play. Eco used the four classes of rhetoric. Our list on the slide (tone, narration, rhetoric, genre, form, wordplay) is informal.</li>
-							<li><em>Reference</em></li>
 							<li>Read today the book looks like a manual for prompt-based style transfer avant la lettre: the titles of the exercises read like prompts, from Dream to Alexandrines to Abusive.</li>
+							<li><em>Reference</em></li>
 							<li>G&eacute;rard Genette&rsquo;s word for this is transstylisation; AI researchers now call it text style transfer.</li>
 						</ul>
 					</aside>
@@ -342,7 +349,7 @@
 						<article class="ex-card">
 							<h3>Notation</h3>
 							<p>In the S bus, in the rush hour. A chap of about 26, felt hat with a cord instead of a ribbon, neck too long, as if someone&rsquo;s been having a tug-of-war with it. People getting off. The chap in question gets annoyed with one of the men standing next to him. He accuses him of jostling him every time anyone goes past. A snivelling tone which is meant to be aggressive. When he sees a vacant seat he throws himself on to it.</p>
-							<p>Two hours later, I meet him in the Cour de Rome, in front of the gare Saint-Lazare. He&rsquo;s with a friend who&rsquo;s saying: &ldquo;You ought to get an extra button put on your overcoat.&rdquo; He shows him where (at the lapels) and why.</p>
+							<p>Two hours later, I meet him in the Cour de Rome, in front of the gare Saint-Lazare. He&rsquo;s with a friend who&rsquo;s saying: &ldquo;You ought to get an extra button put on your overcoat.&rdquo; He shows him where <span class="nobr">(at the lapels) and why.</span></p>
 						</article>
 						<figure class="ex-strip">
 							<img src="figures/queneau-photomaton.png" alt="Raymond Queneau photo-booth self-portraits" />
@@ -425,9 +432,9 @@
 					</aside>
 				</section>
 
-				<!-- ============ SECTION 3 ============ -->
+				<!-- ============ SECTION 2 ============ -->
 				<section class="section-slide" data-background-color="#16352f">
-					<p class="section-slide__number">3</p>
+					<p class="section-slide__number">2</p>
 					<h2>The experiment</h2>
 					<aside class="notes">
 						<ul>
@@ -560,15 +567,15 @@
 						<tbody>
 							<tr>
 								<th scope="row"><span class="matrix__human">Human evaluators</span><span class="matrix__sub">556 people</span></th>
-								<td><strong>930</strong><span class="matrix__unit">decisions</span><span class="matrix__sub">186 people</span></td>
-								<td><strong>925</strong><span class="matrix__unit">decisions</span><span class="matrix__sub">185 people</span></td>
-								<td><strong>925</strong><span class="matrix__unit">decisions</span><span class="matrix__sub">185 people</span></td>
+								<td><strong>930</strong><span class="matrix__unit">judgments</span><span class="matrix__sub">186 people</span></td>
+								<td><strong>925</strong><span class="matrix__unit">judgments</span><span class="matrix__sub">185 people</span></td>
+								<td><strong>925</strong><span class="matrix__unit">judgments</span><span class="matrix__sub">185 people</span></td>
 							</tr>
 							<tr>
-								<th scope="row"><span class="matrix__ai">AI evaluators</span><span class="matrix__sub">13 models from 8 providers (three runs each plus written rationales)</span></th>
-								<td><strong>1,162</strong><span class="matrix__unit">responses</span></td>
-								<td><strong>1,162</strong><span class="matrix__unit">responses</span></td>
-								<td><strong>1,164</strong><span class="matrix__unit">responses</span></td>
+								<th scope="row"><span class="matrix__ai">AI evaluators</span><span class="matrix__sub">13 models from 8 providers<br />(three runs each plus written rationales)</span></th>
+								<td><strong>1,162</strong><span class="matrix__unit">judgments</span></td>
+								<td><strong>1,162</strong><span class="matrix__unit">judgments</span></td>
+								<td><strong>1,164</strong><span class="matrix__unit">judgments</span></td>
 							</tr>
 						</tbody>
 					</table>
@@ -632,7 +639,7 @@
 								<blockquote class="prompt-quote">
 									<p>&ldquo;Your task is to determine which of two adaptations more successfully captures the essence of the requested writing style. [&hellip;] Start your response with either &lsquo;Version A&rsquo; or &lsquo;Version B&rsquo; on the first line. Then provide a brief explanation of your choice.&rdquo;</p>
 								</blockquote>
-								<p class="prompt-label">The line above each text changed; which text sat in A or B was randomized</p>
+								<p class="prompt-label">Only the line above each text changed</p>
 								<dl class="prompt-labels">
 				<div><dt>Blind</dt><dd>Only &lsquo;Version A&rsquo; and &lsquo;Version B&rsquo;</dd></div>
 				<div><dt>Correct labels</dt><dd>Queneau&rsquo;s text: Human-written, by Queneau (transl. Wright)<br />AI text: AI-generated, written by GPT-4</dd></div>
@@ -654,9 +661,9 @@
 					</section>
 				</section>
 
-				<!-- ============ SECTION 4 ============ -->
+				<!-- ============ SECTION 3 ============ -->
 				<section class="section-slide" data-background-color="#16352f">
-					<p class="section-slide__number">4</p>
+					<p class="section-slide__number">3</p>
 					<h2>The results</h2>
 					<aside class="notes">
 						<ul>
@@ -674,11 +681,11 @@
 					<span class="fragment" data-fragment-index="5" data-beat="5" aria-hidden="true"></span>
 					<div class="beat-lines" id="rates-lines" data-beat="0">
 						<p class="lead beat-line" data-for="0">Without labels, people pick the AI text slightly more often.</p>
-						<p class="lead beat-line" data-for="1">With correct labels, that preference disappears.</p>
+						<p class="lead beat-line" data-for="1">With correct labels, people no longer prefer the AI text.</p>
 						<p class="lead beat-line" data-for="2">With swapped labels, people favor whichever text is labeled human.</p>
 						<p class="lead beat-line" data-for="3">Without labels, models are at a coin flip.</p>
-						<p class="lead beat-line" data-for="4">With correct labels, they pick the AI text far less often.</p>
-						<p class="lead beat-line" data-for="5">With swapped labels, they pick it far more often.</p>
+						<p class="lead beat-line" data-for="4">With correct labels, models pick the AI text far less often.</p>
+						<p class="lead beat-line" data-for="5">With swapped labels, models pick the AI text far more often.</p>
 					</div>
 					<div class="rates-stage">
 						<div class="rates-aside">
@@ -692,7 +699,7 @@
 						</div>
 						<div class="rates-chart" id="rates-chart" aria-label="Bar chart of AI text selection rates by condition and evaluator type"></div>
 					</div>
-					<p class="statline">Study 1. People: 556 participants, 2,780 decisions. Models: 13 evaluators, 3,488 responses. Error bars are 95% confidence intervals.</p>
+					<p class="statline">Study 1. 556&nbsp;people (2,780&nbsp;judgments) and 13&nbsp;models (3,488&nbsp;judgments). Error bars show 95% confidence intervals.</p>
 					<aside class="notes">
 						<ul>
 							<li>Beat 1, blind: people pick the AI text 55.3% of the time, a small but significant edge for GPT-4. We did not ask people for reasons, so we cannot know why. Porter and Machery found something similar with poems, and their explanation was that the machine&rsquo;s text is more straightforward and easier to take in. Some of Queneau&rsquo;s exercises are harder going, so this may be a preference for ease and not a verdict on style.</li>
@@ -782,7 +789,7 @@
 						<h2>Rates for each model</h2>
 						<p class="body">Every model chose the AI text more often under swapped than under correct labels.</p>
 						<div class="models-chart" id="models-chart" role="img" aria-label="Share of AI-text choices by model under blind, correct and swapped labels"></div>
-						<p class="foot">Study 1, share of choices for the AI text, 85 to 90 responses per model and condition (SI Fig. S12). Models in the order of the effect-size plot.</p>
+						<p class="foot">Study 1, share of choices for the AI text, 85 to 90 judgments per model and condition (SI Fig. S12). Models in the order of the effect-size plot.</p>
 						<aside class="notes">
 							<ul>
 								<li>Labels follow the effect-size plot: &lsquo;GPT-3.5 Turbo&rsquo; is the Instruct model, gpt-3.5-turbo-instruct. The bar between the filled and the open dot is the bias. All thirteen bars run to the right, from Llama 4 Maverick, 33.7 to 53.3 percent, to GPT-3.5 Turbo, 24.4 to 91.1.</li>
@@ -798,7 +805,7 @@
 						<div class="swing">
 							<table class="swing__table swing__table--text swing__table--dense">
 								<thead>
-									<tr><td></td><th scope="col">Blind</th><th scope="col">Correct labels</th><th scope="col">Swapped labels</th><th scope="col">Bias</th></tr>
+									<tr><th scope="col">Chose the AI text</th><th scope="col">Blind</th><th scope="col">Correct labels</th><th scope="col">Swapped labels</th><th scope="col">Bias</th></tr>
 								</thead>
 								<tbody>
 									<tr class="swing__group"><th colspan="5">Labels that name Queneau and GPT-4</th></tr>
@@ -885,9 +892,9 @@
 					</aside>
 				</section>
 
-				<!-- ============ SECTION 5 ============ -->
+				<!-- ============ SECTION 4 ============ -->
 				<section class="section-slide" data-background-color="#16352f">
-					<p class="section-slide__number">5</p>
+					<p class="section-slide__number">4</p>
 					<h2>Two exercises, up close</h2>
 					<aside class="notes">
 						<ul>
@@ -913,11 +920,11 @@
 					<div class="swing fragment" data-fragment-index="2">
 						<table class="swing__table">
 							<thead>
-								<tr><th>Chose the AI text</th><th>Blind</th><th>Correct labels</th><th class="is-hl">Swapped labels</th><th>Bias</th></tr>
+								<tr><th>Chose the AI text</th><th>Blind</th><th>Correct labels</th><th class="is-hl">Swapped labels</th><th>Bias (points)</th></tr>
 							</thead>
 							<tbody>
-								<tr><th>AI evaluators</th><td>37.1%</td><td>28.9%</td><td class="is-hl">63.9%</td><td class="swing__n">+35.0 points</td></tr>
-								<tr><th>Human evaluators</th><td>46.7%</td><td>38.7%</td><td class="is-hl">18.2%</td><td class="swing__n">&minus;20.5 points</td></tr>
+								<tr><th>AI evaluators</th><td>37.1%</td><td>28.9%</td><td class="is-hl">63.9%</td><td class="swing__n">+35.0</td></tr>
+								<tr><th>Human evaluators</th><td>46.7%</td><td>38.7%</td><td class="is-hl">18.2%</td><td class="swing__n">&minus;20.5</td></tr>
 							</tbody>
 						</table>
 					</div>
@@ -948,6 +955,7 @@
 								<footer>Claude Sonnet 4 on the same text, labeled human</footer>
 							</blockquote>
 						</div>
+						<p class="case-foot fragment" data-fragment-index="1">The quotes are two of Claude Sonnet 4&rsquo;s answers, chosen to illustrate.</p>
 					</div>
 					<aside class="notes">
 						<ul>
@@ -973,7 +981,7 @@
 							<div class="sf-col">
 								<article class="ab-card ab-card--ai">
 									<p class="ab-card__label ab-card__label--ai">GPT-4</p>
-									<p class="ab-card__text">On the S <mark class="ai">shuttle</mark>, during peak transit hours through the <mark class="ai">space station</mark>. A young man around 26, sporting a felt hat with a <mark class="ai">tech-cord</mark> replacing the traditional ribbon&nbsp;[&hellip;]</p>
+									<p class="ab-card__text">On the S <mark class="ai">shuttle</mark>, during peak transit hours through the <mark class="ai">space station</mark>. A young man around 26, sporting a felt hat with a <mark class="ai"><span class="nobr">tech-cord</span></mark> replacing the traditional ribbon&nbsp;[&hellip;]</p>
 								</article>
 								<p class="sf-cap">Story element substitution</p>
 							</div>
@@ -983,7 +991,7 @@
 								<tr>
 									<th scope="col">Condition</th>
 									<th scope="col">Models chose <span class="nobr">GPT-4</span></th>
-									<th scope="col">What a model&rsquo;s rationale said</th>
+									<th scope="col">Model rationales, chosen to illustrate</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -1047,14 +1055,12 @@
 						<article class="panel">
 							<p class="panel__cond">Correct labels</p>
 							<p class="panel__key panel__key--verdict">Claude Sonnet 4 chooses <span class="k-q">Queneau</span> <span class="nobr">(labeled human)</span></p>
-							<p class="panel__sub">Queneau&rsquo;s text carries the human label, GPT-4&rsquo;s the AI label.</p>
-							<p class="panel__text">[&hellip;] The narrative embraces science fiction&rsquo;s tradition of creating entirely new worlds, <mark class="q">complete with alien terminology (&ldquo;vrxtz,&rdquo; &ldquo;astrohelicoptering,&rdquo; &ldquo;extrapods&rdquo;) and playful cosmic humor</mark>. Version B, while competently written, takes a more conservative approach [&hellip;] while <mark class="ai">only adding superficial sci-fi elements like zero gravity and space shuttles</mark>.&nbsp;[&hellip;]</p>
+														<p class="panel__text">[&hellip;] The narrative embraces science fiction&rsquo;s tradition of creating entirely new worlds, <mark class="q">complete with alien terminology (&ldquo;vrxtz,&rdquo; &ldquo;astrohelicoptering,&rdquo; &ldquo;extrapods&rdquo;) and playful cosmic humor</mark>. Version B, while competently written, takes a more conservative approach [&hellip;] while <mark class="ai">only adding superficial sci-fi elements like zero gravity and space shuttles</mark>.&nbsp;[&hellip;]</p>
 						</article>
 						<article class="panel">
 							<p class="panel__cond">Swapped labels</p>
 							<p class="panel__key panel__key--verdict">Claude Sonnet 4 chooses <span class="k-ai">GPT-4</span> <span class="nobr">(labeled human)</span></p>
-							<p class="panel__sub">Queneau&rsquo;s text carries the AI label, GPT-4&rsquo;s the human label.</p>
-							<p class="panel__text">[&hellip;] It transforms the <mark class="ai">bus into a &ldquo;shuttle,&rdquo; the station into a &ldquo;space station,&rdquo;</mark> and incorporates realistic <mark class="ai">details like zero-gravity movement and space modules</mark>. [&hellip;] The <mark class="q">excessive alien terminology (&ldquo;marsing,&rdquo; &ldquo;vrxtz,&rdquo; &ldquo;astrohelicoptering&rdquo;) and forced humor</mark> distract from the story&rsquo;s core narrative.&nbsp;[&hellip;]</p>
+														<p class="panel__text">[&hellip;] It transforms the <mark class="ai">bus into a &ldquo;shuttle,&rdquo; the station into a &ldquo;space station,&rdquo;</mark> and incorporates realistic <mark class="ai">details like zero-gravity movement and space modules</mark>. [&hellip;] The <mark class="q">excessive alien terminology (&ldquo;marsing,&rdquo; &ldquo;vrxtz,&rdquo; &ldquo;astrohelicoptering&rdquo;) and forced humor</mark> distract from the story&rsquo;s core narrative.&nbsp;[&hellip;]</p>
 						</article>
 					</div>
 					<aside class="notes">
@@ -1101,7 +1107,7 @@
 								<p class="flip__quote">&ldquo;better captures the essence of a Haiku with its 5-7-5 syllable structure&rdquo;</p>
 							</div>
 						</div>
-						<p class="foot">Mistral Medium 3 judged this pair of &lsquo;Haiku&rsquo; passages from the Study 2 data twice, once under each labeling. The outline marks the text it chose. Chosen to illustrate.</p>
+						<p class="foot">Mistral Medium 3 judged this pair of &lsquo;Haiku&rsquo; passages twice. The outline marks the text it chose. Chosen to illustrate.</p>
 						<aside class="notes">
 							<ul>
 								<li>The same model judged the same two haiku twice. In the first trial Version A was Queneau&rsquo;s, labeled human, and it chose A. In the second, Version A was GPT-4&rsquo;s, still labeled human, and it chose A again. The label stayed in its slot and the two texts traded places.</li>
@@ -1116,8 +1122,8 @@
 					<section class="frame backup-slide flip-slide" id="flip-lipogram">
 						<h2>Lipogram: the letter e</h2>
 						<div class="flip">
-							<p class="flip__head"><strong>Correct labels.</strong> A is <span class="k-q">Queneau</span>, labeled human; B is <span class="k-ai">Mistral Nemo</span>, labeled AI. GPT-4o-mini chooses A.</p>
-							<p class="flip__head"><strong>Swapped labels.</strong> A is <span class="k-ai">Mistral Nemo</span>, labeled human; B is <span class="k-q">Queneau</span>, labeled AI. GPT-4o-mini chooses A.</p>
+							<p class="flip__head"><strong>Correct labels.</strong> A is <span class="k-q">Queneau</span>, labeled human; B&nbsp;is <span class="k-ai">Mistral&nbsp;Nemo</span>, labeled AI. GPT-4o&nbsp;Mini chooses A.</p>
+							<p class="flip__head"><strong>Swapped labels.</strong> A is <span class="k-ai">Mistral&nbsp;Nemo</span>, labeled human; B&nbsp;is <span class="k-q">Queneau</span>, labeled AI. GPT-4o&nbsp;Mini chooses A.</p>
 							<div class="flip__cell is-chosen-q">
 								<p class="flip__quote">&ldquo;Version A better captures the essence of the Lipogram style by <mark class="q">intentionally avoiding the letter &lsquo;e,&rsquo;</mark> which is a hallmark of this writing technique. [&hellip;] In contrast, Version B does not adhere to the Lipogram constraint, as <mark class="ai">it includes the letter &lsquo;e&rsquo; throughout the text</mark>&rdquo;</p>
 							</div>
@@ -1135,7 +1141,7 @@
 								<p class="ecount ecount--bad flip__fact"><b>40</b> e&rsquo;s in the full text, 6 in this excerpt</p>
 							</article>
 						</div>
-						<p class="foot">GPT-4o-mini judged this pair of &lsquo;Lipogram&rsquo; passages twice, shortened here with [&hellip;]. Blue marks claims about Queneau, orange about Mistral Nemo. The outline marks the text it chose. Chosen to illustrate.</p>
+						<p class="foot">GPT-4o Mini judged this pair of &lsquo;Lipogram&rsquo; passages twice, shortened here with [&hellip;]. Blue marks claims about Queneau, orange about Mistral Nemo. The outline marks the text it chose. Chosen to illustrate.</p>
 						<aside class="notes">
 							<ul>
 								<li>The model picks Version A both times, and Version A is the text labeled human both times. In the first trial that text is Queneau&rsquo;s, which has no e in it. In the second it is Mistral Nemo&rsquo;s, which has 40. The two rationales are close to the same paragraph: A avoids the letter e, B includes it.</li>
@@ -1195,7 +1201,7 @@
 						<div class="flip flip--margins">
 							<p class="flip__head"><strong>Correct labels.</strong> Queneau is labeled human. DeepSeek R1 chooses <span class="k-q">Queneau</span>.</p>
 							<p class="flip__head"><strong>Queneau, transl. Wright.</strong> The only passage shown. It is Version A in both trials.</p>
-							<p class="flip__head"><strong>Swapped labels.</strong> Queneau is labeled AI. DeepSeek R1 chooses <span class="k-ai">GPT-4o-mini</span>.</p>
+							<p class="flip__head"><strong>Swapped labels.</strong> Queneau is labeled AI. DeepSeek R1 chooses <span class="k-ai">GPT-4o Mini</span>.</p>
 							<div class="flip__cell is-chosen-q">
 								<p class="flip__tag">Praised Queneau&rsquo;s passage</p>
 								<p class="gloss">&ldquo;human contact becomes &lsquo;<mark class="q">clottishness, slightly viscous and gummy</mark>&rsquo;&rdquo;</p>
@@ -1214,7 +1220,7 @@
 						<p class="foot">DeepSeek R1 judged this pair twice. Queneau&rsquo;s passage is shortened here with [&hellip;], and the highlighted words are quoted in the rationales. The outline marks the text it chose. Chosen by reading, to illustrate.</p>
 						<aside class="notes">
 							<ul>
-								<li>Here the two passages stay in the same slots and only the labels swap: Queneau is Version A both times. The left column is what DeepSeek R1 says about Queneau&rsquo;s passage when it carries the human label, the right column when it carries the AI label. GPT-4o-mini&rsquo;s passage is not shown.</li>
+								<li>Here the two passages stay in the same slots and only the labels swap: Queneau is Version A both times. The left column is what DeepSeek R1 says about Queneau&rsquo;s passage when it carries the human label, the right column when it carries the AI label. GPT-4o Mini&rsquo;s passage is not shown.</li>
 								<li>The same phrases appear in both. &ldquo;Viscous and gummy&rdquo; is evidence for the style in the first rationale, where human contact &ldquo;becomes clottishness, slightly viscous and gummy&rdquo;. In the second, the judge lists it among the tactile metaphors with which Version A is &ldquo;densely packed&rdquo;, and says the passage &ldquo;detaches sensation from narrative logic&rdquo;.</li>
 								<li>The definition of Tactile differs between the two trials. In the first, the style is about immersive sensation, and sacrificing plot coherence for it &ldquo;more radically fulfills the stylistic mandate&rdquo;. In the second, the style &ldquo;requires sensation to enhance, not eclipse, the story&rdquo;, and the passage that sacrifices the story fails it. The second rationale adds that the abstract descriptions &ldquo;prioritize shock value over immersive storytelling&rdquo;.</li>
 								<li>How this pair was found: the coders mark the genre-fit criterion as reversed (at least two of the three), and I picked it by reading, so it shows what a flip looks like and gives no estimate of how often flips happen. The Queneau excerpt is cut with an ellipsis; each quote from the judge is one unbroken fragment of its rationale, word for word.</li>
@@ -1250,7 +1256,7 @@
 									<td>&ldquo;dialect feels forced and artificial rather than authentic&rdquo;</td>
 								</tr>
 								<tr>
-									<th scope="row">Clarity and coherence<span class="gallery__who">Logical analysis, GPT-4o-mini</span></th>
+									<th scope="row">Clarity and coherence<span class="gallery__who">Logical analysis, GPT-4o Mini</span></th>
 									<td>&ldquo;Each phrase is presented in a clear, analytical manner&rdquo;</td>
 									<td>&ldquo;lacks the depth and coherence necessary&rdquo;</td>
 								</tr>
@@ -1280,7 +1286,7 @@
 
 					<section class="frame chart-slide onethree-slide backup-slide" id="onethree-slide">
 						<h2>A third of verdicts flip with labels</h2>
-						<p class="body">In Study 2, swapping the labels alone flipped the forced choice in 1,899 of 5,846 paired evaluations, 32.5 percent. The arguments flipped with it.</p>
+						<p class="body">In Study 2, swapping the labels alone flipped the forced choice in 1,899 of 5,846 paired evaluations, 32.5%. The arguments flipped with it.</p>
 						<div class="criteria-chart" id="criteria-chart" aria-label="Share of AI evaluators' arguments that switch sides between label conditions"></div>
 						<p class="foot fragment">When a verdict flips, at least one criterion switches sides in 96% of cases. For every criterion, at least 85% of its reversals favor whichever text carries the human label.</p>
 						<aside class="notes">
@@ -1354,9 +1360,9 @@
 				</section>
 
 
-				<!-- ============ SECTION 6 ============ -->
+				<!-- ============ SECTION 5 ============ -->
 				<section class="section-slide" data-background-color="#16352f">
-					<p class="section-slide__number">6</p>
+					<p class="section-slide__number">5</p>
 					<h2>Artificial judges, artificial readers</h2>
 					<aside class="notes">
 						<ul>
@@ -1369,15 +1375,15 @@
 				<section class="frame takeaway-slide">
 					<h2>What we take from this</h2>
 					<div class="takeaways">
-						<p class="takeaway-claim fragment" data-fragment-index="0">The same text is judged a better match for its style under a human name. We call this the <mark>human authorship halo</mark>.</p>
+						<p class="takeaway-claim fragment" data-fragment-index="0">The same text is judged a better match for its style under a human name.<br />We call this the <mark>human-authorship halo</mark>.</p>
 						<div class="takeaway-cards">
 							<p class="takeaway-card fragment" data-fragment-index="1">People show it. Models show it 2.5 times as strongly.</p>
-							<p class="takeaway-card fragment" data-fragment-index="2">Labels also change the reasons.</p>
+							<p class="takeaway-card fragment" data-fragment-index="2">Labels also change the reasons models give.</p>
 						</div>
 					</div>
 					<blockquote class="takeaway-quote fragment" data-fragment-index="3">
 						<p>&ldquo;[&hellip;] we take a hint for our response from the poet&rsquo;s reputation.&rdquo;</p>
-						<footer>I. A. Richards, <em>Practical Criticism</em>, 1929</footer>
+						<footer>Richards, 1929</footer>
 					</blockquote>
 					<aside class="notes">
 						<ul>
@@ -1421,7 +1427,7 @@
 							</div>
 							<div class="parallel-col">
 								<p class="parallel-col__year">2023</p>
-								<p>The same anxieties return about LLMs: a &ldquo;textpocalypse&rdquo; flooding the internet with generated prose, machines &ldquo;polluting the entire Western canon&rdquo;.</p>
+								<p>The same anxieties return about LLMs: a &ldquo;textpocalypse&rdquo; flooding the internet with generated prose, machines &ldquo;polluting the entire Western canon.&rdquo;</p>
 								<p class="parallel-col__src">Kirschenbaum, 2023; Hayles, 2023</p>
 							</div>
 						</div>
@@ -1454,7 +1460,7 @@
 				</section>
 
 				<section class="section-slide" data-background-color="#16352f">
-					<p class="section-slide__number">7</p>
+					<p class="section-slide__number">6</p>
 					<h2>Battlegrounds in peer review</h2>
 					<aside class="notes">
 						<ul>
@@ -1506,7 +1512,7 @@
 				<section class="closing-slide">
 					<div class="closing-slide__main">
 						<p class="closing-slide__eyebrow">Thank you</p>
-						<h2 class="closing-slide__heading">Questions <em>&amp;</em> conversation</h2>
+						<h2 class="closing-slide__heading">Questions and conversation</h2>
 						<div class="closing-slide__contact closing-slide__contact--stack">
 							<a href="mailto:wouter.haverals@princeton.edu"><!-- EMAIL -->wouter.haverals@princeton.edu</a>
 							<a class="closing-slide__row" href="https://bsky.app/profile/wouterhaverals.bsky.social" target="_blank" rel="noopener">
@@ -1552,7 +1558,7 @@
 					</footer>
 					<aside class="notes">
 						<ul>
-							<li>Thank you. My email, Bluesky and GitHub are on the slide, and the links to the paper, the data and the code are on the slide called The paper and the data. If questions turn to the limits or to whether Queneau is a fair human, there are backup slides after this one.</li>
+							<li>Thank you. My email, Bluesky and GitHub are on the slide, and the links to the paper, the data and the code are on the slide called The paper and the data. If questions turn to the limits or to whether Queneau is a fair test of human writing, there are backup slides after this one.</li>
 						</ul>
 					</aside>
 				</section>
@@ -1574,7 +1580,7 @@
 							<div>
 								<h3>What the checks show</h3>
 								<p class="body"><strong>The wording of the label.</strong> Prestige-reversed and neutral labels still produce biases of 19.6 and 23.1 points in models.</p>
-								<p class="body"><strong>Sampling noise.</strong> The bias is still +23.8 points at temperature zero.</p>
+								<p class="body"><strong>Sampling noise.</strong> The bias is still +23.8 points at temperature 0.</p>
 								<p class="body"><strong>One model, creator or style.</strong> Dropping any single evaluator, creator or style leaves a bias of nearly the same size.</p>
 								<p class="body"><strong>Familiarity, for people.</strong> Excluding readers who know the book leaves the bias at 13 to 14 points.</p>
 							</div>
@@ -1595,7 +1601,7 @@
 					</section>
 
 					<section class="frame backup-slide fair-slide">
-						<h2>Is Queneau a fair human?</h2>
+						<h2>Is Queneau a fair test of human writing?</h2>
 						<ul>
 							<li>All thirty human texts are Queneau&rsquo;s, in Barbara Wright&rsquo;s translation, so other authors and genres are untested.</li>
 							<li>The comparison needs only one human text and one AI text written to the same brief, judged under both labels.</li>
@@ -1603,11 +1609,11 @@
 						<div class="swing">
 							<table class="swing__table swing__table--text swing__table--dense">
 								<thead>
-									<tr><th scope="col">Queneau&rsquo;s text chosen</th><th scope="col">Blind</th><th scope="col">Labeled human</th><th scope="col">Labeled AI</th><th scope="col">Difference</th></tr>
+									<tr><th scope="col">Queneau&rsquo;s text chosen</th><th scope="col">Blind</th><th scope="col">Labeled human</th><th scope="col">Labeled AI</th><th scope="col">Difference in points</th></tr>
 								</thead>
 								<tbody>
-									<tr><th scope="row">By people</th><td>44.7%</td><td>52.2%</td><td>38.5%</td><td class="swing__n">&minus;13.7</td></tr>
-									<tr><th scope="row">By models</th><td>50.6%</td><td>70.2%</td><td>35.9%</td><td class="swing__n">&minus;34.3</td></tr>
+									<tr><th scope="row">Human evaluators</th><td>44.7%</td><td>52.2%</td><td>38.5%</td><td class="swing__n">&minus;13.7</td></tr>
+									<tr><th scope="row">AI evaluators</th><td>50.6%</td><td>70.2%</td><td>35.9%</td><td class="swing__n">&minus;34.3</td></tr>
 								</tbody>
 							</table>
 						</div>
@@ -1636,8 +1642,8 @@
 						<ul class="refs">
 							<li>Abrams, M. H. (1953). <em>The mirror and the lamp: Romantic theory and the critical tradition</em>. Oxford University Press.</li>
 							<li>Agudo, U., et al. (2022). Assessing emotion and sensitivity of AI artwork. <em>Frontiers in Psychology, 13</em>.</li>
-							<li>Anthropic. (2024, November 26). <em>Tailor Claude&rsquo;s responses to your personal style</em>. anthropic.com/news/styles (archived 27 November 2024)</li>
-							<li>Anthropic. (2026, June 1). <em>Styles are moving to skills</em> [Help center article]. support.claude.com/en/articles/10181068 (archived 10 July 2026)</li>
+							<li>Anthropic. (2024, November 26). <em>Tailor Claude&rsquo;s responses to your personal style</em>. anthropic.com/news/styles (archived November 27, 2024)</li>
+							<li>Anthropic. (2026, June 1). <em>Styles are moving to skills</em> [Help center article]. support.claude.com/en/articles/10181068 (archived July 10, 2026)</li>
 							<li>Anthropic. (n.d.). <em>What are skills?</em> [Help center article]. support.claude.com/en/articles/12512176</li>
 							<li>Arena (formerly LMArena). (2026, March 6). <em>Text Arena: Creative writing</em> [Leaderboard]. lmarena.ai</li>
 							<li>Asch, S. E. (1948). The doctrine of suggestion, prestige and imitation in social psychology. <em>Psychological Review, 55</em>.</li>
@@ -1654,8 +1660,8 @@
 								<li>The works cited on the slides and in these notes, in alphabetical order. The slide shortens each entry: three authors at most, then et al., and no DOIs, issue numbers or page ranges. The full references follow in these notes. Page numbers given in the notes refer to the editions listed here.</li>
 								<li>Abrams, M. H. (1953). <em>The mirror and the lamp: Romantic theory and the critical tradition</em>. Oxford University Press.</li>
 								<li>Agudo, U., Arrese, M., Liberal, K. G., &amp; Matute, H. (2022). Assessing emotion and sensitivity of AI artwork. <em>Frontiers in Psychology, 13</em>, Article 879088. doi:10.3389/fpsyg.2022.879088</li>
-								<li>Anthropic. (2024, November 26). <em>Tailor Claude&rsquo;s responses to your personal style</em>. anthropic.com/news/styles (archived 27 November 2024)</li>
-								<li>Anthropic. (2026, June 1). <em>Styles are moving to skills</em> [Help center article]. Archived 10 July 2026 at web.archive.org/web/20260710101210/https://support.claude.com/en/articles/10181068-styles-are-moving-to-skills</li>
+								<li>Anthropic. (2024, November 26). <em>Tailor Claude&rsquo;s responses to your personal style</em>. anthropic.com/news/styles (archived November 27, 2024)</li>
+								<li>Anthropic. (2026, June 1). <em>Styles are moving to skills</em> [Help center article]. Archived July 10, 2026 at web.archive.org/web/20260710101210/https://support.claude.com/en/articles/10181068-styles-are-moving-to-skills</li>
 								<li>Anthropic. (n.d.). <em>What are skills?</em> [Help center article]. support.claude.com/en/articles/12512176-what-are-skills</li>
 								<li>Arena (formerly LMArena). (2026, March 6). <em>Text Arena: Creative writing</em> [Leaderboard]. lmarena.ai</li>
 								<li>Asch, S. E. (1948). The doctrine of suggestion, prestige and imitation in social psychology. <em>Psychological Review, 55</em>(5), 250&ndash;276. doi:10.1037/h0057270</li>
@@ -1676,7 +1682,7 @@
 							<li>Cunningham, C. V., Radvansky, G. A., &amp; Brockmole, J. R. (2025). Human creativity versus artificial intelligence: Source attribution, observer attitudes, and eye movements while viewing visual art. <em>Frontiers in Psychology, 16</em>.</li>
 							<li>Davis, E. (2024). <em>ChatGPT&rsquo;s poetry is incompetent and banal: A discussion of (Porter and Machery, 2024)</em> [Unpublished manuscript]. New York University. cs.nyu.edu/~davise/papers/GPT-Poetry.pdf</li>
 							<li>Dementieva, D., et al. (2024). Overview of the multilingual text detoxification task at PAN 2024. <em>CLEF 2024 Working Notes</em>.</li>
-							<li>Eco, U. (1983). Tradurre <em>Exercices de style</em> di Queneau. <em>Francofonia</em>, no. 5. English translation (2002): On translating Queneau&rsquo;s <em>Exercices de style</em> into Italian, <em>The Translator, 8</em>.</li>
+							<li>Eco, U. (1983). Tradurre <em>Exercices de style</em> di Queneau. <em>Francofonia, 5</em>. English translation (2002): On translating Queneau&rsquo;s <em>Exercices de style</em> into Italian, <em>The Translator, 8</em>.</li>
 							<li>Etaugh, C., &amp; Sanders, S. (1974). Evaluation of performance as a function of status and sex variables. <em>The Journal of Social Psychology, 94</em>.</li>
 							<li>Foucault, M. (1977). What is an author? In <em>Language, counter-memory, practice</em> (D. F. Bouchard &amp; S. Simon, Trans.). Cornell University Press. (Original 1969.)</li>
 							<li>Genette, G. (1993). <em>Fiction and diction</em> (C. Porter, Trans.). Cornell University Press. (Original 1991.)</li>
@@ -1757,7 +1763,7 @@
 							<li>Porter, B., &amp; Machery, E. (2024). AI-generated poetry is indistinguishable from human-written poetry and is rated more favorably. <em>Scientific Reports, 14</em>.</li>
 							<li>P&#252;schel, U. (2008). Stilistik der deutschsprachigen L&#228;nder vom Beginn des 20. Jahrhunderts bis zur Gegenwart. In <em>Rhetorik und Stilistik / Rhetoric and stylistics</em> (Vol. 1). Walter de Gruyter.</li>
 							<li>Queneau, R. (1958). <em>Exercises in style</em> (B. Wright, Trans.). Gaberbocchus Press. (Original 1947; augmented ed., New Directions, 2012.)</li>
-							<li>Queneau, R. (2007). Conversation with Georges Ribemont-Dessaignes. In <em>Letters, numbers, forms</em> (J. Stump, Trans., pp. 174&ndash;180). University of Illinois Press. (Original 1950.)</li>
+							<li>Queneau, R. (2007). Conversation with Georges Ribemont-Dessaignes. In <em>Letters, numbers, forms</em> (J. Stump, Trans.). University of Illinois Press. (Original 1950.)</li>
 							<li>Ragot, M., Martin, N., &amp; Cojean, S. (2020). AI-generated vs. human artworks. A perception bias towards artificial intelligence? <em>CHI 2020 Extended Abstracts</em>.</li>
 							<li>Rao, S., &amp; Tetreault, J. (2018). Dear sir or madam, may I introduce the GYAFC dataset: Corpus, benchmarks and metrics for formality style transfer. <em>NAACL 2018</em>.</li>
 							<li>Reif, E., et al. (2022). A recipe for arbitrary text style transfer with large language models. <em>ACL 2022</em> (short papers).</li>
@@ -1784,7 +1790,7 @@
 					<section class="frame backup-slide references-slide">
 						<h2>References R&ndash;W</h2>
 						<ul class="refs">
-							<li>Richards, I. A. (1929). <em>Practical criticism: A study of literary judgment</em>. Kegan Paul, Trench, Trubner. (Pages: Harvest Books printing.)</li>
+							<li>Richards, I. A. (1929). <em>Practical criticism: A study of literary judgment</em>. Kegan Paul, Trench, Trubner.</li>
 							<li>Shank, D. B., et al. (2023). AI composer bias: Listeners like music less when they think it was composed by an AI. <em>Journal of Experimental Psychology: Applied, 29</em>.</li>
 							<li>Sharma, M., et al. (2024). Towards understanding sycophancy in language models. <em>ICLR 2024</em>.</li>
 							<li>Shen, T., et al. (2017). Style transfer from non-parallel text by cross-alignment. <em>Advances in Neural Information Processing Systems, 30</em>.</li>
@@ -1794,7 +1800,7 @@
 							<li>Thorndike, E. L. (1920). A constant error in psychological ratings. <em>Journal of Applied Psychology, 4</em>.</li>
 							<li>Troiano, E., Velutharambath, A., &amp; Klinger, R. (2023). From theories on styles to their transfer in text: Bridging the gap with a hierarchical survey. <em>Natural Language Engineering, 29</em>.</li>
 							<li>Turpin, M., et al. (2023). Language models don&rsquo;t always say what they think: Unfaithful explanations in chain-of-thought prompting. <em>Advances in Neural Information Processing Systems, 36</em>.</li>
-							<li>Walsh, M., Preus, A., &amp; Antoniak, M. (2024). Sonnet or not, bot? Poetry evaluation for large models and datasets. <em>Findings of EMNLP 2024</em>, pp.&#160;15568&ndash;15603.</li>
+							<li>Walsh, M., Preus, A., &amp; Antoniak, M. (2024). Sonnet or not, bot? Poetry evaluation for large models and datasets. <em>Findings of EMNLP 2024</em>.</li>
 							<li>Wilson, T. D., &amp; Schooler, J. W. (1991). Thinking too much: Introspection can reduce the quality of preferences and decisions. <em>Journal of Personality and Social Psychology, 60</em>.</li>
 						</ul>
 						<aside class="notes">

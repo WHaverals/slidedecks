@@ -6,16 +6,87 @@
 	"deckUrlPath": "/decks/2026-11-style-and-prejudice/index.html",
 	"repeatBridgeInNext": true,
 	"sections": [
-		{ "id": "opening", "num": "", "label": "Opening", "slides": [1, 1] },
-		{ "id": "question", "num": "", "label": "The question", "slides": [2, 4] },
-		{ "id": "s1", "num": "1", "label": "Two ways of defining style", "slides": [5, 11] },
-		{ "id": "s2", "num": "2", "label": "Queneau’s laboratory", "slides": [12, 16] },
-		{ "id": "s3", "num": "3", "label": "The experiment", "slides": [17, 25] },
-		{ "id": "s4", "num": "4", "label": "The results", "slides": [26, 36] },
-		{ "id": "s5", "num": "5", "label": "Two exercises, up close", "slides": [37, 51] },
-		{ "id": "s6", "num": "6", "label": "Artificial judges, artificial readers", "slides": [52, 56] },
-		{ "id": "s7", "num": "7", "label": "Battlegrounds in peer review", "slides": [57, 58] },
-		{ "id": "close", "num": "", "label": "Close", "slides": [59, 59] }
+		{
+			"id": "opening",
+			"num": "",
+			"label": "Opening",
+			"slides": [
+				1,
+				1
+			]
+		},
+		{
+			"id": "question",
+			"num": "",
+			"label": "The question",
+			"slides": [
+				2,
+				11
+			]
+		},
+		{
+			"id": "s1",
+			"num": "1",
+			"label": "Queneau’s laboratory",
+			"slides": [
+				12,
+				16
+			]
+		},
+		{
+			"id": "s2",
+			"num": "2",
+			"label": "The experiment",
+			"slides": [
+				17,
+				25
+			]
+		},
+		{
+			"id": "s3",
+			"num": "3",
+			"label": "The results",
+			"slides": [
+				26,
+				36
+			]
+		},
+		{
+			"id": "s4",
+			"num": "4",
+			"label": "Two exercises, up close",
+			"slides": [
+				37,
+				51
+			]
+		},
+		{
+			"id": "s5",
+			"num": "5",
+			"label": "Artificial judges, artificial readers",
+			"slides": [
+				52,
+				56
+			]
+		},
+		{
+			"id": "s6",
+			"num": "6",
+			"label": "Battlegrounds in peer review",
+			"slides": [
+				57,
+				58
+			]
+		},
+		{
+			"id": "close",
+			"num": "",
+			"label": "Close",
+			"slides": [
+				59,
+				59
+			]
+		}
 	],
 	"afterClose": {
 		"firstSlide": 60,
@@ -23,11 +94,29 @@
 		"referencesTo": 67
 	},
 	"keys": [
-		["Right", "next slide on the main line (skips the slides below)"],
-		["Space, Page Down", "next step, going down into a stack (most clickers)"],
-		["Down, Up", "into a stack of backups, and back up"],
-		["S", "speaker view"],
-		["B", "black screen (pause); B again to return"],
-		["Esc", "overview of all slides"]
+		[
+			"Right",
+			"next slide on the main line (skips the slides below)"
+		],
+		[
+			"Space, Page Down",
+			"next step, going down into a stack (most clickers)"
+		],
+		[
+			"Down, Up",
+			"into a stack of backups, and back up"
+		],
+		[
+			"S",
+			"speaker view"
+		],
+		[
+			"B",
+			"black screen (pause); B again to return"
+		],
+		[
+			"Esc",
+			"overview of all slides"
+		]
 	]
 }
