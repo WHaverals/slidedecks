@@ -899,11 +899,6 @@
 	width: 138px;
 }
 
-.reveal #rates-slide .foot {
-	font-size: var(--t-exhibit);
-	color: var(--sp-ink);
-}
-
 /* the chart is the slide: bigger figures and labels than the default chart text */
 .reveal .rates-chart .chart-value {
 	font-size: var(--t-verse);
@@ -939,13 +934,16 @@
 	margin: 0;
 }
 
-/* the robot and its question join when the AI bars do (beat 3) */
+/* each cartoon joins with the last bar of its group: the person with the swapped-label bar of
+   people (beat 2), the robot with the swapped-label bar of models (beat 5) */
+.reveal .rates-aside .bubble-figure--human,
 .reveal .bubble-figure--robot {
 	opacity: 0;
 	transition: opacity 0.5s ease 0.25s;
 }
 
-.reveal [data-beat='3'].visible ~ .rates-stage .bubble-figure--robot {
+.reveal [data-beat='2'].visible ~ .rates-stage .bubble-figure--human,
+.reveal [data-beat='5'].visible ~ .rates-stage .bubble-figure--robot {
 	opacity: 1;
 }
 
@@ -966,9 +964,10 @@
 .reveal .bias-aside {
 	grid-column: 1;
 	grid-row: 1;
+	align-self: stretch;
 	display: flex;
 	flex-direction: column;
-	justify-content: flex-end;
+	justify-content: center;
 	padding-bottom: 36px;
 }
 
@@ -1325,9 +1324,10 @@
 	color: var(--sp-grey);
 }
 
-/* the credit line runs as wide as the two cards */
-.reveal .slides section.evidence-slide .foot {
-	max-width: none;
+/* with the credit line gone the quotes take the body size */
+.reveal .evidence-slide .panel__text {
+	font-size: var(--t-body);
+	line-height: 1.48;
 }
 
 /* science fiction: a snippet in each card, what it shows under it */
@@ -1447,8 +1447,9 @@
 	max-width: 900px;
 }
 
-.reveal .takeaways p {
-	margin: 0 0 26px;
+/* the claim runs large across the top, the two supporting points sit in their own cards */
+.reveal .takeaways .takeaway-claim {
+	margin: 0 0 34px;
 	max-width: none;
 	font-family: var(--sp-serif);
 	font-size: var(--t-display-m);
@@ -1458,10 +1459,32 @@
 	text-wrap: balance;
 }
 
+.reveal .takeaways .takeaway-cards {
+	display: grid;
+	grid-template-columns: 1.2fr 1fr;
+	gap: 26px;
+}
+
+.reveal .takeaways .takeaway-card {
+	box-sizing: border-box;
+	margin: 0;
+	max-width: none;
+	padding: 22px 28px 24px;
+	background: #fff;
+	border: 1px solid var(--sp-card-edge);
+	border-radius: 12px;
+	font-family: var(--sp-serif);
+	font-size: var(--t-display-s);
+	font-weight: 400;
+	line-height: 1.3;
+	color: var(--sp-ink);
+	text-wrap: balance;
+}
+
 /* the closing quotation: italic serif, credit below, no bar */
 .reveal .takeaway-quote {
 	width: auto;
-	margin: 36px 0 0;
+	margin: 40px 0 0;
 	padding: 0;
 	background: none;
 	border: none;
@@ -1548,30 +1571,41 @@
 
 .reveal .paper-card {
 	max-width: none;
-	margin-bottom: 34px;
+	margin-bottom: 26px;
 	background: #fff;
 	border: 1px solid var(--sp-card-edge);
-	border-radius: 10px;
-	padding: 20px 26px;
+	border-radius: 12px;
+	padding: 28px 36px 28px;
 }
 
 .reveal .paper-card__title {
 	margin: 0;
 	max-width: none;
 	font-family: var(--sp-serif);
-	font-size: var(--t-display-s);
+	font-size: var(--t-display-m);
 	font-weight: 400;
-	line-height: 1.3;
+	line-height: 1.26;
 }
 
 .reveal .paper-card__by {
-	margin: 10px 0 0;
+	margin: 18px 0 0;
+	max-width: none;
+	font-size: var(--t-body);
+	font-weight: 600;
+	color: var(--sp-ink);
+}
+
+.reveal .paper-card__aff {
+	margin: 2px 0 0;
 	max-width: none;
 	font-size: var(--t-label);
 	color: var(--sp-grey);
 }
 
 .reveal .paper-links {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 20px;
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -1579,16 +1613,19 @@
 }
 
 .reveal .paper-links li {
-	display: grid;
-	grid-template-columns: 200px minmax(0, 1fr);
-	gap: 18px;
-	align-items: baseline;
-	margin: 0 0 18px;
-	font-size: var(--t-body);
-	line-height: 1.4;
+	box-sizing: border-box;
+	margin: 0;
+	padding: 18px 22px 20px;
+	background: #fff;
+	border: 1px solid var(--sp-card-edge);
+	border-radius: 12px;
+	font-size: var(--t-exhibit);
+	line-height: 1.35;
 }
 
 .reveal .paper-links__k {
+	display: block;
+	margin-bottom: 8px;
 	font-size: var(--t-label);
 	font-weight: 700;
 	color: var(--sp-grey);
@@ -1605,17 +1642,6 @@
 
 .reveal .slides section.backup-slide > h2 {
 	font-size: var(--t-title-sm);
-}
-
-.reveal .backup-tag {
-	position: absolute;
-	right: 0;
-	top: 40px;
-	margin: 0;
-	max-width: none;
-	font-size: var(--t-label);
-	font-weight: 600;
-	color: var(--sp-grey);
 }
 
 .reveal .backup-slide ul {
@@ -2050,40 +2076,6 @@
 	font-family: var(--sp-sans);
 	font-size: var(--t-label);
 	line-height: 1.4;
-	color: var(--sp-grey);
-}
-
-.reveal .paper-grid {
-	display: grid;
-	grid-template-columns: minmax(0, 1fr) auto;
-	gap: 56px;
-	align-items: center;
-}
-
-.reveal .qr {
-	margin: 0;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 10px;
-}
-
-.reveal .qr img {
-	display: block;
-	box-sizing: content-box;
-	width: 210px;
-	height: 210px;
-	max-width: none;
-	max-height: none;
-	margin: 0;
-	padding: 14px;
-	background: #fff;
-	border: 1px solid var(--sp-card-edge);
-	border-radius: 6px;
-}
-
-.reveal .qr figcaption {
-	font-size: var(--t-label);
 	color: var(--sp-grey);
 }
 
@@ -2565,7 +2557,7 @@ html.print-pdf .reveal #study2-grid-slide * {
 }
 
 .reveal .backup-slide ul.refs li {
-	margin: 0 0 9px;
+	margin: 0 0 12px;
 	padding-left: 1.3em;
 	text-indent: -1.3em;
 	font-size: var(--t-note);

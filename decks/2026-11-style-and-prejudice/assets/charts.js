@@ -1305,7 +1305,7 @@
 		loadColors();
 		const counts = document.getElementById('styles-counts');
 		if (counts) {
-			counts.textContent = `Models lean toward the human label in ${aiPos} of 30 styles, people in ${huPos} of 30. Bias is the change in the share choosing the AI text from correct to swapped labels, in percentage points. Bold marks the two styles we look at next.`;
+			counts.textContent = `Models lean toward the human label in ${aiPos} of 30 styles, people in ${huPos} of 30. Bias is the change in the share choosing the AI text from correct to swapped labels, in percentage points.`;
 		}
 
 		if (isPrint) {
