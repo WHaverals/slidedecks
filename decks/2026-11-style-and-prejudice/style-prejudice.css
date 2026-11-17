@@ -829,7 +829,7 @@
 
 .reveal .rates-stage {
 	display: grid;
-	grid-template-columns: 130px 1fr;
+	grid-template-columns: 154px 1fr;
 	gap: 14px;
 	align-items: end;
 }
@@ -842,7 +842,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-end;
-	gap: 16px;
+	gap: 4px;
 	padding-bottom: 54px;
 }
 
@@ -855,8 +855,8 @@
 
 .reveal .bubble-figure img {
 	display: block;
-	height: 190px;
-	width: auto;
+	width: 154px;
+	height: auto;
 	margin: 0;
 }
 
@@ -894,8 +894,8 @@
 }
 
 .reveal .bias-aside img {
-	height: 232px;
-	width: auto;
+	width: 140px;
+	height: auto;
 }
 
 /* the statistics under a chart: label size, centred under the plot */
@@ -1450,6 +1450,47 @@
 .reveal .crit-defs strong {
 	color: var(--sp-ink);
 	font-weight: 700;
+}
+
+/* backup: more definitions of style, one source per row */
+.reveal .defs {
+	width: 100%;
+	margin: 0;
+	font-size: var(--t-exhibit);
+	border-collapse: collapse;
+	table-layout: fixed;
+}
+
+.reveal .defs th,
+.reveal .defs td {
+	padding: 12px 14px;
+	border-bottom: 1px solid rgba(28, 25, 23, 0.14);
+	text-align: left;
+	vertical-align: top;
+	line-height: 1.34;
+}
+
+.reveal .defs thead th {
+	border-bottom: 1px solid var(--sp-ink);
+	font-size: var(--t-label);
+	font-weight: 700;
+	color: var(--sp-ink);
+}
+
+.reveal .defs thead th:first-child {
+	width: 224px;
+}
+
+.reveal .defs tbody th {
+	font-weight: 700;
+	color: var(--sp-ink);
+}
+
+.reveal .defs__field {
+	display: block;
+	font-size: var(--t-label);
+	font-weight: 400;
+	color: var(--sp-grey);
 }
 
 /* ---------- floating slips (title slide) ---------- */
