@@ -1620,24 +1620,24 @@
 
 .reveal .paper-card {
 	max-width: none;
-	margin-bottom: 26px;
+	margin-bottom: 30px;
 	background: #fff;
 	border: 1px solid var(--sp-card-edge);
 	border-radius: 12px;
-	padding: 28px 36px 28px;
+	padding: 36px 44px 36px;
 }
 
 .reveal .paper-card__title {
 	margin: 0;
 	max-width: none;
 	font-family: var(--sp-serif);
-	font-size: var(--t-display-m);
+	font-size: var(--t-title-sm);
 	font-weight: 400;
-	line-height: 1.26;
+	line-height: 1.2;
 }
 
 .reveal .paper-card__by {
-	margin: 18px 0 0;
+	margin: 24px 0 0;
 	max-width: none;
 	font-size: var(--t-body);
 	font-weight: 600;
@@ -1645,7 +1645,7 @@
 }
 
 .reveal .paper-card__aff {
-	margin: 2px 0 0;
+	margin: 3px 0 0;
 	max-width: none;
 	font-size: var(--t-label);
 	color: var(--sp-grey);
@@ -1654,7 +1654,7 @@
 .reveal .paper-links {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
-	gap: 20px;
+	gap: 24px;
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -1664,28 +1664,22 @@
 .reveal .paper-links li {
 	box-sizing: border-box;
 	margin: 0;
-	padding: 18px 22px 20px;
+	padding: 24px 26px 28px;
 	background: #fff;
 	border: 1px solid var(--sp-card-edge);
 	border-radius: 12px;
-	font-size: var(--t-exhibit);
+	font-size: var(--t-body);
 	line-height: 1.35;
 }
 
 .reveal .paper-links__k {
 	display: block;
-	margin-bottom: 8px;
+	margin-bottom: 10px;
 	font-size: var(--t-label);
 	font-weight: 700;
 	color: var(--sp-grey);
 }
 
-.reveal .paper-thanks {
-	margin: 24px 0 0;
-	max-width: none;
-	font-size: var(--t-label);
-	color: var(--sp-grey);
-}
 
 /* ---------- backups ---------- */
 
