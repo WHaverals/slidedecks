@@ -340,3 +340,26 @@
 	font-size: 0.55em;
 	text-wrap: pretty;
 }
+
+/* "Thank you, Mark!": a handwritten note under the Chadwyck-Healey column, shown with it (fragment 3).
+   It hangs from the "246,724 reference poems" line; the arrow's tail sits at 68.6% of the drawing's
+   width, so that point is put on the line's centre. It moves with the column when the fourth stage
+   appears. Colour: a red-chalk tone (#b4644a), baked into assets/thanks-mark.svg. */
+.reveal .qpipe__src--corpus {
+	position: relative;
+}
+
+.reveal .qpipe__thanks {
+	position: absolute;
+	top: calc(100% + 0.2em);
+	left: 50%;
+	width: 300px;
+	max-width: none;
+	max-height: none;
+	height: auto;
+	margin: 0;
+	border: 0;
+	box-shadow: none;
+	transform: translateX(-68.6%);
+	pointer-events: none;
+}

@@ -782,9 +782,9 @@
       else if (state.links) linkTxt = `Showing each poet's ${state.links} strongest links${wl} (${fmt(shown)} of ${fmt(win ? win.nLinks : E)}).`;
       else linkTxt = `Showing all ${fmt(shown)} links${wl}.`;
       const sizeTxt = state.size === "links"
-        ? (win ? "Size: poets linked in this window." : "Size: number of linked poets (as in the article's Figure 7).")
+        ? (win ? "Size: poets linked in this window." : "Size: number of linked poets.")
         : (win ? "Size: works naming the poet in this window." : "Size: works naming the poet.");
-      const colorTxt = state.color === "group" ? "Colour: Gephi community." : "Colour: period, by birth year + 20.";
+      const colorTxt = state.color === "group" ? "Colour: community (consensus of 500 weighted Louvain runs)." : "Colour: period, by birth year + 20.";
       $("encodingNote").textContent = `${linkTxt} Darker lines carry more excess co-mention. ${sizeTxt} ${colorTxt}`;
     }
 

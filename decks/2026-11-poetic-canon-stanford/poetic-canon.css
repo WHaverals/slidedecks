@@ -570,8 +570,8 @@
 }
 
 .reveal .references-slide h2 {
-	margin: 0 0 0.7em;
-	font-size: 1.5em;
+	margin: 0 0 0.55em;
+	font-size: 1.2em; /* smaller than a content title, so two slides hold the whole list */
 	letter-spacing: -0.02em;
 }
 
@@ -583,12 +583,12 @@
 }
 
 .reveal .references-list li {
-	margin: 0 0 0.4em;
+	margin: 0 0 0.42em;
 	padding-left: 1.5em;
 	text-indent: -1.5em; /* hanging indent for citations */
-	font-size: 0.37em;
-	line-height: 1.35;
-	color: #8a8378; /* publisher / year sit back in muted grey */
+	font-size: 0.475em; /* 17 px: the list is split over two slides, so it can be read from the room */
+	line-height: 1.3;
+	color: #77706a; /* publisher / year sit back in muted grey (a shade darker at the larger size) */
 }
 
 /* author leads each entry in the archive blue — makes the alphabetical list scan */
